@@ -11,7 +11,11 @@ export const GAME_IDS = {
   FIRE_ICE: 'fireice',
   GOLD_MINER: 'goldminer',
   PVZ: 'pvz',
-  SKETCHOUT: 'sketchup'
+  SKETCHOUT: 'sketchup',
+  FLAPPY_BIRD: 'flappybird',
+  PACMAN: 'pacman',
+  STICKMAN_HOOK: 'stickmanhook',
+  HEXGL: 'hexgl'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -75,7 +79,11 @@ export const STORAGE_KEYS = {
   FIRE_ICE: 'mouyu_fireice',
   GOLD_MINER: 'mouyu_goldminer',
   PVZ: 'mouyu_pvz',
-  SKETCHOUT: 'mouyu_sketchup'
+  SKETCHOUT: 'mouyu_sketchup',
+  FLAPPY_BIRD: 'mouyu_flappybird',
+  PACMAN: 'mouyu_pacman',
+  STICKMAN_HOOK: 'mouyu_stickmanhook',
+  HEXGL: 'mouyu_hexgl'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -202,5 +210,33 @@ export const GAMES_LIST: GameInfo[] = [
     description: '物理弹射对战，与对手一决高下！',
     icon: '💥',
     controls: ['← → 调整角度', '空格 蓄力发射']
+  },
+  {
+    id: GAME_IDS.FLAPPY_BIRD,
+    name: 'Flappy Bird',
+    description: '点击让小鸟飞翔，穿过管道得分！',
+    icon: '🐦',
+    controls: ['点击或空格 飞行']
+  },
+  {
+    id: GAME_IDS.PACMAN,
+    name: '吃豆人',
+    description: '经典吃豆人，吃光豆子躲避幽灵！',
+    icon: '🟡',
+    controls: ['方向键或WASD移动']
+  },
+  {
+    id: GAME_IDS.STICKMAN_HOOK,
+    name: 'Stickman Hook',
+    description: '抓住钩子摇摆前进，挑战最远距离！',
+    icon: '🦸',
+    controls: ['空格/W按住抓住', '松手释放']
+  },
+  {
+    id: GAME_IDS.HEXGL,
+    name: 'HexGL赛车',
+    description: 'WebGL极速赛车，躲避障碍完成圈数！',
+    icon: '🏎',
+    controls: ['← → 移动', '↑ 加速', '↓ 减速']
   }
 ];

@@ -13,6 +13,10 @@ import FireIce from '../games/FireIce/FireIce';
 import GoldMiner from '../games/GoldMiner/GoldMiner';
 import PlantVsZombie from '../games/PlantVsZombie/PlantVsZombie';
 import Sketchout from '../games/Sketchout/Sketchout';
+import FlappyBird from '../games/FlappyBird/FlappyBird';
+import Pacman from '../games/Pacman/Pacman';
+import StickmanHook from '../games/StickmanHook/StickmanHook';
+import HexGL from '../games/HexGL/HexGL';
 import { GAME_IDS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -133,6 +137,38 @@ function GameContainer({ gameId }: GameContainerProps) {
       case GAME_IDS.SKETCHOUT:
         return (
           <Sketchout
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.FLAPPY_BIRD:
+        return (
+          <FlappyBird
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.PACMAN:
+        return (
+          <Pacman
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.STICKMAN_HOOK:
+        return (
+          <StickmanHook
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.HEXGL:
+        return (
+          <HexGL
             onScoreUpdate={handleScoreUpdate}
             onGameOver={handleGameOver}
             onExit={handleExit}
