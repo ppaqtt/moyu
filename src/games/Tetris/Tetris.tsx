@@ -137,13 +137,12 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
       row.map((cell, c) => (
         <div
           key={`${r}-${c}`}
-          className="border"
           style={{
             width: CELL_SIZE,
             height: CELL_SIZE,
-            backgroundColor: cell ? engine.getPieceColor(cell) : 'rgba(22, 33, 62, 0.5)',
-            borderColor: cell ? engine.getPieceColor(cell) : 'rgba(255,255,255,0.1)',
-            boxShadow: cell ? `inset 0 0 10px rgba(255,255,255,0.3), 0 0 5px ${engine.getPieceColor(cell)}` : 'none'
+            backgroundColor: cell ? engine.getPieceColor(cell) : 'rgba(26, 26, 46, 0.6)',
+            border: cell ? `2px solid ${engine.getPieceColor(cell)}` : '1px solid rgba(255,255,255,0.05)',
+            boxShadow: cell ? `inset 0 0 15px rgba(255,255,255,0.3), 0 0 10px ${engine.getPieceColor(cell)}80` : 'none'
           }}
         />
       ))
@@ -162,7 +161,7 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
     ];
 
     const shape = pieces[nextPieceType];
-    const color = ['#00f5ff', '#ffff00', '#a000ff', '#ff8c00', '#0000ff', '#00ff00', '#ff0000'][nextPieceType];
+    const color = ['#00d2ff', '#ffd700', '#a855f7', '#ff6b9d', '#22c55e', '#f97316', '#06b6d4'][nextPieceType];
 
     return (
       <div className="grid gap-0" style={{ gridTemplateColumns: `repeat(${shape[0].length}, 20px)` }}>
@@ -174,7 +173,8 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
                 width: 20,
                 height: 20,
                 backgroundColor: cell ? color : 'transparent',
-                boxShadow: cell ? `0 0 5px ${color}` : 'none'
+                boxShadow: cell ? `0 0 8px ${color}` : 'none',
+                borderRadius: cell ? '3px' : '0'
               }}
             />
           ))
@@ -184,53 +184,88 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-6">
-      <div className="flex flex-col items-center gap-4">
+    <motion.div
+      className="flex flex-col lg:flex-row items-center gap-8"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="flex flex-col items-center gap-5">
         <motion.button
           onClick={onExit}
-          className="px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300"
+          className="px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300"
           style={{
-            backgroundColor: NEON_COLORS.darkPurple,
-            color: NEON_COLORS.neonBlue,
-            boxShadow: `0 0 10px ${NEON_COLORS.neonBlue}40`
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+            color: '#ffffff',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backdropFilter: 'blur(10px)'
           }}
-          whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonBlue}` }}
+          whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonCyan}50` }}
           whileTap={{ scale: 0.95 }}
         >
-          返回
+          ← 返回
         </motion.button>
 
-        <div className="text-center">
-          <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>当前分数</div>
-          <div className="text-3xl font-bold" style={{ color: NEON_COLORS.neonPink }}>{score}</div>
+        <div
+          className="text-center p-4 rounded-2xl backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
+        >
+          <div className="text-xs uppercase tracking-widest mb-1" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>当前分数</div>
+          <div className="text-3xl font-black" style={{ 
+            color: NEON_COLORS.neonPink,
+            textShadow: `0 0 20px ${NEON_COLORS.neonPink}80`
+          }}>{score}</div>
         </div>
 
-        <div className="text-center">
-          <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>最高记录</div>
-          <div className="text-2xl font-bold" style={{ color: NEON_COLORS.neonBlue }}>{record.bestScore}</div>
+        <div
+          className="text-center p-4 rounded-2xl backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
+        >
+          <div className="text-xs uppercase tracking-widest mb-1" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>最高记录</div>
+          <div className="text-2xl font-bold" style={{ 
+            color: NEON_COLORS.neonCyan,
+            textShadow: `0 0 15px ${NEON_COLORS.neonCyan}80`
+          }}>{record.bestScore}</div>
         </div>
 
-        <div className="text-center">
-          <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>下一块</div>
+        <div
+          className="text-center p-4 rounded-2xl backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
+        >
+          <div className="text-xs uppercase tracking-widest mb-2" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>下一块</div>
           <div
-            className="mt-2 p-2 rounded-lg"
-            style={{ backgroundColor: NEON_COLORS.darkPurple }}
+            className="p-3 rounded-xl"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
           >
             {renderNextPiece()}
           </div>
         </div>
 
-        <div className="flex gap-2 text-sm" style={{ color: NEON_COLORS.gold }}>
-          <div>等级: <span className="font-bold" style={{ color: NEON_COLORS.neonPink }}>{level}</span></div>
-          <div>行数: <span className="font-bold" style={{ color: NEON_COLORS.neonBlue }}>{lines}</span></div>
+        <div className="flex gap-4 text-sm" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+          <div className="px-3 py-1.5 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            等级: <span className="font-bold" style={{ color: NEON_COLORS.neonPurple }}>{level}</span>
+          </div>
+          <div className="px-3 py-1.5 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            行数: <span className="font-bold" style={{ color: NEON_COLORS.neonGreen }}>{lines}</span>
+          </div>
         </div>
       </div>
 
       <div
-        className="relative rounded-xl overflow-hidden"
+        className="relative rounded-2xl overflow-hidden"
         style={{
-          backgroundColor: NEON_COLORS.darkPurple,
-          boxShadow: `0 0 30px ${NEON_COLORS.neonPink}30`
+          background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(15, 15, 26, 0.98))',
+          boxShadow: `0 0 40px ${NEON_COLORS.neonPurple}30, 0 20px 60px rgba(0, 0, 0, 0.5)`,
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
         <div className="grid" style={{ gridTemplateColumns: `repeat(${BOARD_WIDTH}, ${CELL_SIZE}px)` }}>
@@ -239,32 +274,53 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
 
         {isPaused && !isGameOver && (
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ backgroundColor: 'rgba(26, 26, 46, 0.9)' }}
+            className="absolute inset-0 flex items-center justify-center backdrop-blur-md"
+            style={{ backgroundColor: 'rgba(15, 15, 26, 0.9)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="text-3xl font-bold" style={{ color: NEON_COLORS.neonPink }}>暂停</div>
+            <div 
+              className="text-4xl font-black" 
+              style={{ 
+                color: NEON_COLORS.neonCyan,
+                textShadow: `0 0 30px ${NEON_COLORS.neonCyan}`
+              }}
+            >
+              暂停
+            </div>
           </motion.div>
         )}
 
         {isGameOver && (
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center"
-            style={{ backgroundColor: 'rgba(26, 26, 46, 0.95)' }}
+            className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-md"
+            style={{ backgroundColor: 'rgba(15, 15, 26, 0.95)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="text-4xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>游戏结束</div>
-            <div className="text-2xl mb-6" style={{ color: NEON_COLORS.gold }}>最终得分: {score}</div>
+            <div 
+              className="text-4xl font-black mb-4" 
+              style={{ 
+                color: NEON_COLORS.neonPink,
+                textShadow: `0 0 30px ${NEON_COLORS.neonPink}`
+              }}
+            >
+              游戏结束
+            </div>
+            <div 
+              className="text-2xl mb-6" 
+              style={{ color: NEON_COLORS.gold }}
+            >
+              最终得分: {score}
+            </div>
             <div className="flex gap-4">
               <motion.button
                 onClick={handleRestart}
-                className="px-6 py-3 rounded-lg font-bold"
+                className="px-6 py-3 rounded-xl font-bold"
                 style={{
-                  backgroundColor: NEON_COLORS.neonPink,
-                  color: NEON_COLORS.white,
-                  boxShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                  background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.neonPurple})`,
+                  color: '#ffffff',
+                  boxShadow: `0 0 25px ${NEON_COLORS.neonPink}60`
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -273,11 +329,12 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
               </motion.button>
               <motion.button
                 onClick={onExit}
-                className="px-6 py-3 rounded-lg font-bold"
+                className="px-6 py-3 rounded-xl font-bold"
                 style={{
-                  backgroundColor: NEON_COLORS.darkPurple,
-                  color: NEON_COLORS.neonBlue,
-                  border: `2px solid ${NEON_COLORS.neonBlue}`
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                  color: '#ffffff',
+                  border: `1px solid ${NEON_COLORS.neonCyan}`,
+                  boxShadow: `0 0 15px ${NEON_COLORS.neonCyan}30`
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -289,13 +346,33 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
         )}
       </div>
 
-      <div className="hidden lg:block text-sm space-y-1" style={{ color: NEON_COLORS.gold, opacity: 0.7 }}>
-        <div>← → 移动</div>
-        <div>↑ 旋转</div>
-        <div>↓ 加速下落</div>
-        <div>空格 立即下落</div>
-        <div>ESC 暂停</div>
+      <div 
+        className="hidden lg:block p-4 rounded-2xl backdrop-blur-xl space-y-2" 
+        style={{ 
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }}
+      >
+        <div className="text-xs uppercase tracking-wider mb-3" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>操作说明</div>
+        {['← → 移动', '↑ 旋转', '↓ 加速下落', '空格 立即下落', 'ESC 暂停'].map((key, i) => (
+          <div 
+            key={i} 
+            className="text-sm flex items-center gap-2" 
+            style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+          >
+            <span 
+              className="px-2 py-0.5 rounded text-xs font-mono" 
+              style={{ 
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                color: NEON_COLORS.neonCyan
+              }}
+            >
+              {key.split(' ')[0]}
+            </span>
+            <span>{key.split(' ').slice(1).join(' ')}</span>
+          </div>
+        ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

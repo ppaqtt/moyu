@@ -22,7 +22,7 @@ export default function ParticleBg() {
 
     let animationId: number;
     const particles: Particle[] = [];
-    const colors = ['#ff2e63', '#08d9d6', '#ffffff'];
+    const colors = ['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -33,16 +33,16 @@ export default function ParticleBg() {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        radius: Math.random() * 3 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.5 + 0.2
+        alpha: Math.random() * 0.4 + 0.15
       };
     };
 
     const initParticles = () => {
-      const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 20000));
+      const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
       for (let i = 0; i < particleCount; i++) {
         particles.push(createParticle());
       }
@@ -70,6 +70,16 @@ export default function ParticleBg() {
         ctx.globalAlpha = p.alpha;
         ctx.fill();
         ctx.globalAlpha = 1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2);
+        gradient.addColorStop(0, p.color);
+        gradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradient;
+        ctx.globalAlpha = p.alpha * 0.3;
+        ctx.fill();
+        ctx.globalAlpha = 1;
       });
 
       for (let i = 0; i < particles.length; i++) {
@@ -78,12 +88,21 @@ export default function ParticleBg() {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = '#08d9d6';
-            ctx.globalAlpha = (1 - distance / 150) * 0.2;
+            
+            const gradient = ctx.createLinearGradient(
+              particles[i].x, particles[i].y,
+              particles[j].x, particles[j].y
+            );
+            gradient.addColorStop(0, particles[i].color);
+            gradient.addColorStop(1, particles[j].color);
+            
+            ctx.strokeStyle = gradient;
+            ctx.globalAlpha = (1 - distance / 180) * 0.15;
+            ctx.lineWidth = 1;
             ctx.stroke();
             ctx.globalAlpha = 1;
           }
@@ -101,7 +120,11 @@ export default function ParticleBg() {
     initParticles();
     animate();
 
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => {
+      resize();
+      particles.length = 0;
+      initParticles();
+    });
 
     return () => {
       window.removeEventListener('resize', resize);
@@ -113,7 +136,7 @@ export default function ParticleBg() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.7 }}
     />
   );
 }
