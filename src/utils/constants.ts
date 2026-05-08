@@ -3,7 +3,12 @@ export const GAME_IDS = {
   TETRIS: 'tetris',
   SNAKE: 'snake',
   BOUNCE: 'bounce',
-  FUSION_2048: 'fusion2048'
+  FUSION_2048: 'fusion2048',
+  MINESWEEPER: 'minesweeper',
+  BEJEWEL: 'bejeweled',
+  SUDOKU: 'sudoku',
+  SUBWAY: 'subway',
+  FIRE_ICE: 'fireice'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -59,7 +64,12 @@ export const STORAGE_KEYS = {
   TETRIS: 'mouyu_tetris',
   SNAKE: 'mouyu_snake',
   BOUNCE: 'mouyu_bounce',
-  FUSION_2048: 'mouyu_fusion'
+  FUSION_2048: 'mouyu_fusion',
+  MINESWEEPER: 'mouyu_minesweeper',
+  BEJEWEL: 'mouyu_bejeweled',
+  SUDOKU: 'mouyu_sudoku',
+  SUBWAY: 'mouyu_subway',
+  FIRE_ICE: 'mouyu_fireice'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -130,5 +140,40 @@ export const GAMES_LIST: GameInfo[] = [
     description: '融合俄罗斯方块与2048的创新玩法！',
     icon: '✨',
     controls: ['← → 移动', '↑ 旋转', '↓ 加速下落']
+  },
+  {
+    id: GAME_IDS.MINESWEEPER,
+    name: '扫雷',
+    description: '经典扫雷，点击揭示方块找出所有地雷！',
+    icon: '💣',
+    controls: ['左键点击揭示', '右键标记地雷']
+  },
+  {
+    id: GAME_IDS.BEJEWEL,
+    name: '宝石迷阵',
+    description: '交换宝石匹配消除，挑战高分！',
+    icon: '💎',
+    controls: ['点击选中', '点击相邻交换']
+  },
+  {
+    id: GAME_IDS.SUDOKU,
+    name: '数独',
+    description: '经典数字谜题，填入1-9完成挑战！',
+    icon: '🔢',
+    controls: ['点击选择格子', '点击数字填入']
+  },
+  {
+    id: GAME_IDS.SUBWAY,
+    name: '地铁跑酷',
+    description: '无限跑酷，躲避障碍收集金币！',
+    icon: '🏃',
+    controls: ['← → 换道', '↑ 跳', '↓ 滑']
+  },
+  {
+    id: GAME_IDS.FIRE_ICE,
+    name: '森林冰火人',
+    description: '双人合作闯关，两种角色配合通关！',
+    icon: '🔥',
+    controls: ['火人: WASD', '冰人: 方向键']
   }
 ];

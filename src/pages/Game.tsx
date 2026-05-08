@@ -5,6 +5,11 @@ import Tetris from '../games/Tetris/Tetris';
 import Snake from '../games/Snake/Snake';
 import Bounce from '../games/Bounce/Bounce';
 import Fusion2048 from '../games/Fusion2048/Fusion2048';
+import Minesweeper from '../games/Minesweeper/Minesweeper';
+import Bejeweled from '../games/Bejeweled/Bejeweled';
+import Sudoku from '../games/Sudoku/Sudoku';
+import SubwaySurfers from '../games/SubwaySurfers/SubwaySurfers';
+import FireIce from '../games/FireIce/FireIce';
 import { GAME_IDS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -61,6 +66,46 @@ function GameContainer({ gameId }: GameContainerProps) {
       case GAME_IDS.FUSION_2048:
         return (
           <Fusion2048
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.MINESWEEPER:
+        return (
+          <Minesweeper
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.BEJEWEL:
+        return (
+          <Bejeweled
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.SUDOKU:
+        return (
+          <Sudoku
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.SUBWAY:
+        return (
+          <SubwaySurfers
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.FIRE_ICE:
+        return (
+          <FireIce
             onScoreUpdate={handleScoreUpdate}
             onGameOver={handleGameOver}
             onExit={handleExit}
