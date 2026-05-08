@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
+import ParticleBg from '../components/ParticleBg';
 import Game2048 from '../games/Game2048/Game2048';
 import Tetris from '../games/Tetris/Tetris';
 import Snake from '../games/Snake/Snake';
@@ -20,7 +22,7 @@ import HexGL from '../games/HexGL/HexGL';
 import TempleRun from '../games/TempleRun/TempleRun';
 import OneVOne from '../games/OneVOne/OneVOne';
 import CrossCode from '../games/CrossCode/CrossCode';
-import { GAME_IDS } from '../utils/constants';
+import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
   gameId: string;
@@ -203,22 +205,47 @@ function GameContainer({ gameId }: GameContainerProps) {
         );
       default:
         return (
-          <div className="flex flex-col items-center justify-center min-h-screen">
-            <h1 className="text-3xl font-bold mb-4 text-white">游戏加载中...</h1>
-            <button
-              onClick={handleExit}
-              className="px-6 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+          <motion.div
+            className="flex flex-col items-center justify-center min-h-screen"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <div
+              className="p-8 rounded-3xl text-center backdrop-blur-xl"
+              style={{
+                background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
+              }}
             >
-              返回首页
-            </button>
-          </div>
+              <div className="text-6xl mb-4">🎮</div>
+              <h1 className="text-3xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>
+                游戏加载中...
+              </h1>
+              <motion.button
+                onClick={handleExit}
+                className="px-6 py-3 rounded-xl font-bold"
+                style={{
+                  background: `linear-gradient(135deg, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`,
+                  color: '#ffffff',
+                  boxShadow: `0 0 20px ${NEON_COLORS.neonCyan}50`
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                返回首页
+              </motion.button>
+            </div>
+          </motion.div>
         );
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      {renderGame()}
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <ParticleBg />
+      <div className="relative z-10">
+        {renderGame()}
+      </div>
     </div>
   );
 }
@@ -228,8 +255,19 @@ export default function Game() {
 
   if (!id) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4 text-white">未找到游戏</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div
+          className="p-8 rounded-3xl text-center backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
+        >
+          <div className="text-6xl mb-4">🔍</div>
+          <h1 className="text-3xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>
+            未找到游戏
+          </h1>
+        </div>
       </div>
     );
   }

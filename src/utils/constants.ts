@@ -109,12 +109,19 @@ export const TILE_COLORS: Record<number, string> = {
 };
 
 export const NEON_COLORS = {
-  primary: '#1a1a2e',
-  neonPink: '#ff2e63',
-  neonBlue: '#08d9d6',
-  gold: '#eaeaea',
-  darkPurple: '#16213e',
-  white: '#ffffff'
+  primary: '#0f0f1a',
+  secondary: '#1a1a2e',
+  accent: '#6c5ce7',
+  neonPink: '#ff6b9d',
+  neonBlue: '#00d2ff',
+  neonCyan: '#00d2ff',
+  neonPurple: '#a855f7',
+  neonGreen: '#39ff14',
+  gold: '#ffd700',
+  white: '#ffffff',
+  darkPurple: '#1a1a2e',
+  cardBg: 'rgba(26, 26, 46, 0.8)',
+  glassBg: 'rgba(255, 255, 255, 0.05)'
 };
 
 export interface GameInfo {
