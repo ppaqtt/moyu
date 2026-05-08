@@ -17,6 +17,9 @@ import FlappyBird from '../games/FlappyBird/FlappyBird';
 import Pacman from '../games/Pacman/Pacman';
 import StickmanHook from '../games/StickmanHook/StickmanHook';
 import HexGL from '../games/HexGL/HexGL';
+import TempleRun from '../games/TempleRun/TempleRun';
+import OneVOne from '../games/OneVOne/OneVOne';
+import CrossCode from '../games/CrossCode/CrossCode';
 import { GAME_IDS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -169,6 +172,30 @@ function GameContainer({ gameId }: GameContainerProps) {
       case GAME_IDS.HEXGL:
         return (
           <HexGL
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.TEMPLE_RUN:
+        return (
+          <TempleRun
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.ONEVONE:
+        return (
+          <OneVOne
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.CROSSCODE:
+        return (
+          <CrossCode
             onScoreUpdate={handleScoreUpdate}
             onGameOver={handleGameOver}
             onExit={handleExit}

@@ -15,7 +15,10 @@ export const GAME_IDS = {
   FLAPPY_BIRD: 'flappybird',
   PACMAN: 'pacman',
   STICKMAN_HOOK: 'stickmanhook',
-  HEXGL: 'hexgl'
+  HEXGL: 'hexgl',
+  TEMPLE_RUN: 'templerun',
+  ONEVONE: 'onevone',
+  CROSSCODE: 'crosscode'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -83,7 +86,10 @@ export const STORAGE_KEYS = {
   FLAPPY_BIRD: 'mouyu_flappybird',
   PACMAN: 'mouyu_pacman',
   STICKMAN_HOOK: 'mouyu_stickmanhook',
-  HEXGL: 'mouyu_hexgl'
+  HEXGL: 'mouyu_hexgl',
+  TEMPLE_RUN: 'mouyu_templerun',
+  ONEVONE: 'mouyu_onevone',
+  CROSSCODE: 'mouyu_crosscode'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -238,5 +244,26 @@ export const GAMES_LIST: GameInfo[] = [
     description: 'WebGL极速赛车，躲避障碍完成圈数！',
     icon: '🏎',
     controls: ['← → 移动', '↑ 加速', '↓ 减速']
+  },
+  {
+    id: GAME_IDS.TEMPLE_RUN,
+    name: '神庙逃亡',
+    description: '在古老神庙中跑酷躲避障碍！',
+    icon: '🏛',
+    controls: ['← → 换道', '↑ 跳', '↓ 滑']
+  },
+  {
+    id: GAME_IDS.ONEVONE,
+    name: '1v1对战',
+    description: '双人同屏射击对战，谁是最后的赢家！',
+    icon: '🎯',
+    controls: ['P1: WASD移动 F射击', 'P2: 方向键移动 空格射击']
+  },
+  {
+    id: GAME_IDS.CROSSCODE,
+    name: 'CrossCode',
+    description: '复古像素风动作RPG，升级打怪！',
+    icon: '⚔',
+    controls: ['← → 移动', '空格 跳跃', 'J 攻击']
   }
 ];
