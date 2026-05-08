@@ -10,6 +10,9 @@ import Bejeweled from '../games/Bejeweled/Bejeweled';
 import Sudoku from '../games/Sudoku/Sudoku';
 import SubwaySurfers from '../games/SubwaySurfers/SubwaySurfers';
 import FireIce from '../games/FireIce/FireIce';
+import GoldMiner from '../games/GoldMiner/GoldMiner';
+import PlantVsZombie from '../games/PlantVsZombie/PlantVsZombie';
+import Sketchout from '../games/Sketchout/Sketchout';
 import { GAME_IDS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -106,6 +109,30 @@ function GameContainer({ gameId }: GameContainerProps) {
       case GAME_IDS.FIRE_ICE:
         return (
           <FireIce
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.GOLD_MINER:
+        return (
+          <GoldMiner
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.PVZ:
+        return (
+          <PlantVsZombie
+            onScoreUpdate={handleScoreUpdate}
+            onGameOver={handleGameOver}
+            onExit={handleExit}
+          />
+        );
+      case GAME_IDS.SKETCHOUT:
+        return (
+          <Sketchout
             onScoreUpdate={handleScoreUpdate}
             onGameOver={handleGameOver}
             onExit={handleExit}

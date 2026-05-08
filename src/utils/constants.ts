@@ -8,7 +8,10 @@ export const GAME_IDS = {
   BEJEWEL: 'bejeweled',
   SUDOKU: 'sudoku',
   SUBWAY: 'subway',
-  FIRE_ICE: 'fireice'
+  FIRE_ICE: 'fireice',
+  GOLD_MINER: 'goldminer',
+  PVZ: 'pvz',
+  SKETCHOUT: 'sketchup'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -69,7 +72,10 @@ export const STORAGE_KEYS = {
   BEJEWEL: 'mouyu_bejeweled',
   SUDOKU: 'mouyu_sudoku',
   SUBWAY: 'mouyu_subway',
-  FIRE_ICE: 'mouyu_fireice'
+  FIRE_ICE: 'mouyu_fireice',
+  GOLD_MINER: 'mouyu_goldminer',
+  PVZ: 'mouyu_pvz',
+  SKETCHOUT: 'mouyu_sketchup'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -175,5 +181,26 @@ export const GAMES_LIST: GameInfo[] = [
     description: '双人合作闯关，两种角色配合通关！',
     icon: '🔥',
     controls: ['火人: WASD', '冰人: 方向键']
+  },
+  {
+    id: GAME_IDS.GOLD_MINER,
+    name: '黄金矿工',
+    description: '操控爪子挖掘金矿，积累财富！',
+    icon: '⛏',
+    controls: ['鼠标控制方向', '点击释放爪子']
+  },
+  {
+    id: GAME_IDS.PVZ,
+    name: '植物大战僵尸',
+    description: '布置植物防线，抵御僵尸入侵！',
+    icon: '🌻',
+    controls: ['鼠标点击选择植物', '点击草坪种植']
+  },
+  {
+    id: GAME_IDS.SKETCHOUT,
+    name: '弹射对战',
+    description: '物理弹射对战，与对手一决高下！',
+    icon: '💥',
+    controls: ['← → 调整角度', '空格 蓄力发射']
   }
 ];
