@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
+const CATEGORIES = [
+  { id: 'all', name: '全部', icon: '🎮' },
+  { id: 'puzzle', name: '经典益智', icon: '🧩' },
+  { id: 'arcade', name: '休闲竞技', icon: '🏃' },
+  { id: 'retro', name: '怀旧联机', icon: '🔥' },
+  { id: 'premium', name: '高分神作', icon: '⭐' },
+  { id: 'classic', name: '经典休闲', icon: '✨' }
+];
+
+const GAME_CATEGORIES: Record<string, string[]> = {
+  puzzle: ['2048', 'tetris', 'snake', 'minesweeper', 'bejeweled', 'sudoku'],
+  arcade: ['subway', 'templerun', 'stickmanhook'],
+  retro: ['fireice', 'goldminer', 'pvz'],
+  premium: ['sketchup', 'hexgl', 'onevone', 'crosscode'],
+  classic: ['bounce', 'fusion2048', 'flappybird', 'pacman']
+};
+
 export default function Home() {
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredGames = selectedCategory === 'all'
+    ? GAMES_LIST
+    : GAMES_LIST.filter(game => GAME_CATEGORIES[selectedCategory]?.includes(game.id));
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8 relative">
       <ParticleBg />
 
       <motion.div
-        className="text-center mb-12 relative z-10"
+        className="text-center mb-8 relative z-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -50,8 +72,37 @@ export default function Home() {
         </motion.p>
       </motion.div>
 
+      <motion.div
+        className="flex flex-wrap justify-center gap-3 mb-8 relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        {CATEGORIES.map((cat) => (
+          <motion.button
+            key={cat.id}
+            onClick={() => setSelectedCategory(cat.id)}
+            className="px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2 transition-all"
+            style={{
+              backgroundColor: selectedCategory === cat.id ? NEON_COLORS.neonPink : NEON_COLORS.darkPurple,
+              color: selectedCategory === cat.id ? NEON_COLORS.white : NEON_COLORS.gold,
+              border: `2px solid ${selectedCategory === cat.id ? NEON_COLORS.neonPink : 'transparent'}`,
+              boxShadow: selectedCategory === cat.id ? `0 0 15px ${NEON_COLORS.neonPink}60` : 'none'
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>{cat.icon}</span>
+            <span>{cat.name}</span>
+            <span className="text-xs opacity-70">
+              ({cat.id === 'all' ? GAMES_LIST.length : GAME_CATEGORIES[cat.id]?.length || 0})
+            </span>
+          </motion.button>
+        ))}
+      </motion.div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl relative z-10">
-        {GAMES_LIST.map((game, index) => (
+        {filteredGames.map((game, index) => (
           <motion.div
             key={game.id}
             initial={{ opacity: 0, scale: 0.8 }}
