@@ -42,6 +42,22 @@ import TetrisBattle from '../games/TetrisBattle/TetrisBattle';
 import SnakeDuo from '../games/SnakeDuo/SnakeDuo';
 import BunnyHunter from '../games/BunnyHunter/BunnyHunter';
 import PinballDuo from '../games/PinballDuo/PinballDuo';
+import Thunder from '../games/Thunder/Thunder';
+import SpaceShooter from '../games/SpaceShooter/SpaceShooter';
+import TankBattle from '../games/TankBattle/TankBattle';
+import BubbleShooter from '../games/BubbleShooter/BubbleShooter';
+import ZombieShooter from '../games/ZombieShooter/ZombieShooter';
+import Monopoly from '../games/Monopoly/Monopoly';
+import HappyFarm from '../games/HappyFarm/HappyFarm';
+import CookingMaster from '../games/CookingMaster/CookingMaster';
+import ShopMaster from '../games/ShopMaster/ShopMaster';
+import FruitNinja from '../games/FruitNinja/FruitNinja';
+import WhackAMole from '../games/WhackAMole/WhackAMole';
+import ColorMatch from '../games/ColorMatch/ColorMatch';
+import BrainTest from '../games/BrainTest/BrainTest';
+import Chess from '../games/Chess/Chess';
+import Gobang from '../games/Gobang/Gobang';
+import Ludo from '../games/Ludo/Ludo';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -263,6 +279,38 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <BunnyHunter />;
       case GAME_IDS.PINBALL_DUO:
         return <PinballDuo />;
+      case GAME_IDS.THUNDER:
+        return <Thunder />;
+      case GAME_IDS.SPACE_SHOOTER:
+        return <SpaceShooter />;
+      case GAME_IDS.TANK_BATTLE:
+        return <TankBattle />;
+      case GAME_IDS.BUBBLE_SHOOTER:
+        return <BubbleShooter />;
+      case GAME_IDS.ZOMBIE_SHOOTER:
+        return <ZombieShooter />;
+      case GAME_IDS.MONOPOLY:
+        return <Monopoly />;
+      case GAME_IDS.HAPPY_FARM:
+        return <HappyFarm />;
+      case GAME_IDS.COOKING_MASTER:
+        return <CookingMaster />;
+      case GAME_IDS.SHOP_MASTER:
+        return <ShopMaster />;
+      case GAME_IDS.FRUIT_NINJA:
+        return <FruitNinja />;
+      case GAME_IDS.WHACK_A_MOLE:
+        return <WhackAMole />;
+      case GAME_IDS.COLOR_MATCH:
+        return <ColorMatch />;
+      case GAME_IDS.BRAIN_TEST:
+        return <BrainTest />;
+      case GAME_IDS.CHESS:
+        return <Chess />;
+      case GAME_IDS.GOBANG:
+        return <Gobang />;
+      case GAME_IDS.LUDO:
+        return <Ludo />;
       default:
         return (
           <motion.div

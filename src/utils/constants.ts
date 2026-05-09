@@ -42,7 +42,27 @@ export const GAME_IDS = {
   TETRIS_BATTLE: 'tetrisbattle',
   SNAKE_DUO: 'snakeduo',
   BUNNY_HUNTER: 'bunnyhunter',
-  PINBALL_DUO: 'pinballduo'
+  PINBALL_DUO: 'pinballduo',
+  // 射击飞行类
+  THUNDER: 'thunder',
+  SPACE_SHOOTER: 'spaceshooter',
+  TANK_BATTLE: 'tankbattle',
+  BUBBLE_SHOOTER: 'bubbleshooter',
+  ZOMBIE_SHOOTER: 'zombieshooter',
+  // 策略经营类
+  MONOPOLY: 'monopoly',
+  HAPPY_FARM: 'happyfarm',
+  COOKING_MASTER: 'cookingmaster',
+  SHOP_MASTER: 'shopmaster',
+  // 敏捷反应类
+  FRUIT_NINJA: 'fruitninja',
+  WHACK_A_MOLE: 'whackamole',
+  COLOR_MATCH: 'colormatch',
+  BRAIN_TEST: 'braintest',
+  // 棋牌休闲类
+  CHESS: 'chess',
+  GOBANG: 'gobang',
+  LUDO: 'ludo'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -308,6 +328,169 @@ export const PINBALL_DUO_CONSTANTS = {
   BALL_MAX_SPEED: 18
 };
 
+// 雷电游戏常量
+export const THUNDER_CONSTANTS = {
+  CANVAS_WIDTH: 480,
+  CANVAS_HEIGHT: 700,
+  PLAYER_WIDTH: 40,
+  PLAYER_HEIGHT: 50,
+  BULLET_WIDTH: 6,
+  BULLET_HEIGHT: 15,
+  ENEMY_WIDTH: 35,
+  ENEMY_HEIGHT: 35,
+  INITIAL_SPEED: 5,
+  BULLET_SPEED: 10,
+  ENEMY_SPEED: 2,
+  POWERUP_CHANCE: 0.1
+};
+
+// 太空射击游戏常量
+export const SPACE_SHOOTER_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 800,
+  PLAYER_SIZE: 30,
+  BULLET_SIZE: 8,
+  ENEMY_SIZE: 25,
+  POWERUP_SIZE: 20,
+  INITIAL_SPEED: 6,
+  BULLET_SPEED: 12,
+  ENEMY_SPEED: 3
+};
+
+// 坦克大战游戏常量
+export const TANK_BATTLE_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 600,
+  TANK_SIZE: 40,
+  BULLET_SIZE: 8,
+  BRICK_SIZE: 30,
+  INITIAL_SPEED: 3,
+  BULLET_SPEED: 8,
+  ENEMY_SPEED: 2
+};
+
+// 泡泡龙游戏常量
+export const BUBBLE_SHOOTER_CONSTANTS = {
+  CANVAS_WIDTH: 480,
+  CANVAS_HEIGHT: 640,
+  BUBBLE_RADIUS: 20,
+  GRID_COLS: 11,
+  GRID_ROWS: 12,
+  COLORS: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe']
+};
+
+// 僵尸射击游戏常量
+export const ZOMBIE_SHOOTER_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  PLAYER_SIZE: 40,
+  ZOMBIE_SIZE: 35,
+  BULLET_SIZE: 8,
+  INITIAL_SPEED: 5,
+  BULLET_SPEED: 10,
+  ZOMBIE_SPEED: 1.5
+};
+
+// 大富翁游戏常量
+export const MONOPOLY_CONSTANTS = {
+  CANVAS_WIDTH: 700,
+  CANVAS_HEIGHT: 700,
+  CELL_SIZE: 60,
+  DICE_SIZE: 40,
+  INITIAL_MONEY: 1000
+};
+
+// 开心农场游戏常量
+export const HAPPY_FARM_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  GRID_SIZE: 8,
+  CELL_SIZE: 60,
+  GROW_TIME: 5000
+};
+
+// 烹饪大师游戏常量
+export const COOKING_MASTER_CONSTANTS = {
+  CANVAS_WIDTH: 700,
+  CANVAS_HEIGHT: 500,
+  STOVE_SIZE: 100,
+  PAN_SIZE: 80,
+  INGREDIENT_SIZE: 30,
+  COOK_TIME: 3000
+};
+
+// 商店大师游戏常量
+export const SHOP_MASTER_CONSTANTS = {
+  CANVAS_WIDTH: 700,
+  CANVAS_HEIGHT: 500,
+  SHELF_WIDTH: 80,
+  SHELF_HEIGHT: 40,
+  ITEM_SIZE: 30
+};
+
+// 切水果游戏常量
+export const FRUIT_NINJA_CONSTANTS = {
+  CANVAS_WIDTH: 500,
+  CANVAS_HEIGHT: 700,
+  FRUIT_SIZE: 50,
+  BLADE_LENGTH: 100,
+  FRUIT_SPEED: 8,
+  SPAWN_INTERVAL: 500
+};
+
+// 打地鼠游戏常量
+export const WHACK_A_MOLE_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 500,
+  HOLE_SIZE: 80,
+  MOLE_SIZE: 60,
+  HIT_WINDOW: 1000,
+  SPAWN_INTERVAL: 800
+};
+
+// 颜色匹配游戏常量
+export const COLOR_MATCH_CONSTANTS = {
+  CANVAS_WIDTH: 500,
+  CANVAS_HEIGHT: 600,
+  GRID_SIZE: 4,
+  TILE_SIZE: 80,
+  TIME_LIMIT: 60
+};
+
+// 脑力测试游戏常量
+export const BRAIN_TEST_CONSTANTS = {
+  CANVAS_WIDTH: 500,
+  CANVAS_HEIGHT: 700,
+  QUESTION_COUNT: 10,
+  TIME_LIMIT: 120
+};
+
+// 中国象棋游戏常量
+export const CHESS_CONSTANTS = {
+  CANVAS_WIDTH: 560,
+  CANVAS_HEIGHT: 620,
+  CELL_SIZE: 56,
+  PIECE_SIZE: 48
+};
+
+// 五子棋游戏常量
+export const GOBANG_CONSTANTS = {
+  CANVAS_WIDTH: 560,
+  CANVAS_HEIGHT: 560,
+  GRID_SIZE: 15,
+  CELL_SIZE: 36,
+  WIN_COUNT: 5
+};
+
+// 飞行棋游戏常量
+export const LUDO_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 600,
+  CELL_SIZE: 30,
+  PIECE_SIZE: 25,
+  DICE_SIZE: 40
+};
+
 export const STORAGE_KEYS = {
   GAME_2048: 'mouyu_game_2048',
   TETRIS: 'mouyu_tetris',
@@ -352,7 +535,27 @@ export const STORAGE_KEYS = {
   COOP_RUN: 'mouyu_cooprun',
   TETRIS_BATTLE: 'mouyu_tetrisbattle',
   BUNNY_HUNTER: 'mouyu_bunnyhunter',
-  PINBALL_DUO: 'mouyu_pinballduo'
+  PINBALL_DUO: 'mouyu_pinballduo',
+  // 射击飞行类
+  THUNDER: 'mouyu_thunder',
+  SPACE_SHOOTER: 'mouyu_spaceshooter',
+  TANK_BATTLE: 'mouyu_tankbattle',
+  BUBBLE_SHOOTER: 'mouyu_bubbleshooter',
+  ZOMBIE_SHOOTER: 'mouyu_zombieshooter',
+  // 策略经营类
+  MONOPOLY: 'mouyu_monopoly',
+  HAPPY_FARM: 'mouyu_happyfarm',
+  COOKING_MASTER: 'mouyu_cookingmaster',
+  SHOP_MASTER: 'mouyu_shopmaster',
+  // 敏捷反应类
+  FRUIT_NINJA: 'mouyu_fruitninja',
+  WHACK_A_MOLE: 'mouyu_whackamole',
+  COLOR_MATCH: 'mouyu_colormatch',
+  BRAIN_TEST: 'mouyu_braintest',
+  // 棋牌休闲类
+  CHESS: 'mouyu_chess',
+  GOBANG: 'mouyu_gobang',
+  LUDO: 'mouyu_ludo'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -678,5 +881,121 @@ export const GAMES_LIST: GameInfo[] = [
     description: '双人合作弹珠台，配合让弹珠弹得更高！',
     icon: '🎱',
     controls: ['P1: Q/E 挡板', 'P2: O/P 挡板', '空格 开始']
+  },
+  // 射击飞行类
+  {
+    id: GAME_IDS.THUNDER,
+    name: '雷电',
+    description: '经典竖版飞行射击，躲避子弹击落敌机！',
+    icon: '⚡',
+    controls: ['← → 移动', '空格 发射']
+  },
+  {
+    id: GAME_IDS.SPACE_SHOOTER,
+    name: '太空射击',
+    description: '在太空中驾驶飞船消灭外星入侵者！',
+    icon: '🚀',
+    controls: ['鼠标移动', '点击发射']
+  },
+  {
+    id: GAME_IDS.TANK_BATTLE,
+    name: '坦克大战',
+    description: '驾驶坦克摧毁敌方基地！',
+    icon: '🎖',
+    controls: ['WASD 移动', '空格 发射']
+  },
+  {
+    id: GAME_IDS.BUBBLE_SHOOTER,
+    name: '泡泡龙',
+    description: '射击泡泡匹配消除！',
+    icon: '🫧',
+    controls: ['鼠标瞄准', '点击发射']
+  },
+  {
+    id: GAME_IDS.ZOMBIE_SHOOTER,
+    name: '僵尸射击',
+    description: '在僵尸围城中生存并消灭僵尸！',
+    icon: '🧟',
+    controls: ['WASD 移动', '鼠标瞄准', '点击射击']
+  },
+  // 策略经营类
+  {
+    id: GAME_IDS.MONOPOLY,
+    name: '大富翁',
+    description: '经典掷骰子经营游戏，买地盖房！',
+    icon: '🏰',
+    controls: ['鼠标点击', '掷骰子移动']
+  },
+  {
+    id: GAME_IDS.HAPPY_FARM,
+    name: '开心农场',
+    description: '种植蔬菜水果，收获卖钱！',
+    icon: '🌾',
+    controls: ['鼠标点击', '种植浇水']
+  },
+  {
+    id: GAME_IDS.COOKING_MASTER,
+    name: '烹饪大师',
+    description: '按照订单烹饪美食！',
+    icon: '🍳',
+    controls: ['鼠标点击', '选择食材']
+  },
+  {
+    id: GAME_IDS.SHOP_MASTER,
+    name: '商店大师',
+    description: '经营商店满足顾客需求！',
+    icon: '🏪',
+    controls: ['鼠标点击', '上架商品']
+  },
+  // 敏捷反应类
+  {
+    id: GAME_IDS.FRUIT_NINJA,
+    name: '切水果',
+    description: '滑动切割飞出的水果！',
+    icon: '🍉',
+    controls: ['鼠标滑动切割']
+  },
+  {
+    id: GAME_IDS.WHACK_A_MOLE,
+    name: '打地鼠',
+    description: '快速敲击冒出的地鼠！',
+    icon: '🐹',
+    controls: ['鼠标点击', '敲击地鼠']
+  },
+  {
+    id: GAME_IDS.COLOR_MATCH,
+    name: '颜色匹配',
+    description: '快速匹配相同颜色的方块！',
+    icon: '🎨',
+    controls: ['鼠标点击', '快速匹配']
+  },
+  {
+    id: GAME_IDS.BRAIN_TEST,
+    name: '脑力测试',
+    description: '回答各种脑筋急转弯问题！',
+    icon: '🧠',
+    controls: ['鼠标点击', '选择答案']
+  },
+  // 棋牌休闲类
+  {
+    id: GAME_IDS.CHESS,
+    name: '中国象棋',
+    description: '与AI对弈中国象棋！',
+    icon: '♟',
+    controls: ['鼠标点击', '移动棋子']
+  },
+  {
+    id: GAME_IDS.GOBANG,
+    name: '五子棋',
+    description: '经典五子棋，先连成五子获胜！',
+    icon: '⭕',
+    controls: ['鼠标点击', '放置棋子']
+  },
+  {
+    id: GAME_IDS.LUDO,
+    name: '飞行棋',
+    description: '经典飞行棋，掷骰子走棋！',
+    icon: '✈️',
+    controls: ['鼠标点击', '掷骰子移动']
   }
 ];
