@@ -126,6 +126,47 @@ export const GAME_IDS = {
   BOWLING_MASTER: 'bowlingmaster',
   PINBALL_PHYSICS: 'pinballphysics',
   CUT_ROPE: 'cutrope',
+  DOUDIZHU: 'doudizhu',
+  MAHJONG: 'mahjong',
+  TEXAS_POKER: 'texaspoker',
+  BLACKJACK: 'blackjack',
+  UNO_CARD: 'unocard',
+  // 卡牌策略类
+  CROSSWORD: 'crossword',
+  IDIOM_CHAIN: 'idiomchain',
+  WORD_SPELL: 'wordspell',
+  RIDDLE_GUESS: 'riddleguess',
+  TYPING_MASTER: 'typingmaster',
+  // 运动竞技类
+  PENALTY_KICK: 'penaltykick',
+  BASKETBALL_SHOOT: 'basketballshoot',
+  PING_PONG: 'pingpong',
+  BADMINTON: 'badminton',
+  BOXING: 'boxing',
+  // IO竞技类
+  SNAKE_IO: 'snakeio',
+  BALL_IO: 'ballio',
+  TERRITORY_IO: 'territoryio',
+  SWORD_IO: 'swordio',
+  DRIFT_IO: 'driftio',
+  // 点击放置类
+  CLICKER_MONEY: 'clickermoney',
+  FACTORY_TYCOON: 'factorytycoon',
+  DINO_EVOLUTION: 'dinoevolution',
+  SPACE_IDLE: 'spaceidle',
+  DUNGEON_IDLE: 'dungeonidle',
+  // 绘画创意类
+  DRAW_GUESS: 'drawguess',
+  COLORING_BOOK: 'coloringbook',
+  SIMPLE_DRAW: 'simpledraw',
+  EMOJI_MAKER: 'emojimaker',
+  SAND_ART: 'sandart',
+  // 生存冒险类
+  ISLAND_SURVIVAL: 'islandsurvival',
+  ZOMBIE_SURVIVAL: 'zombiesurvival',
+  FOREST_ADVENTURE: 'forestadventure',
+  MOUNTAIN_CLIMBER: 'mountainclimber',
+  HELICOPTER_ESCAPE: 'helicopterescape',
 };
 
 // Storage keys
@@ -221,6 +262,47 @@ export const STORAGE_KEYS = {
   BOWLING_MASTER: 'bowlingmaster_highscore',
   PINBALL_PHYSICS: 'pinballphysics_highscore',
   CUT_ROPE: 'cutrope_highscore',
+  DOUDIZHU: 'doudizhu_highscore',
+  MAHJONG: 'mahjong_highscore',
+  TEXAS_POKER: 'texaspoker_highscore',
+  BLACKJACK: 'blackjack_highscore',
+  UNO_CARD: 'uno_highscore',
+  // 卡牌策略类
+  CROSSWORD: 'crossword_highscore',
+  IDIOM_CHAIN: 'idiomchain_highscore',
+  WORD_SPELL: 'wordspell_highscore',
+  RIDDLE_GUESS: 'riddleguess_highscore',
+  TYPING_MASTER: 'typingmaster_highscore',
+  // 运动竞技类
+  PENALTY_KICK: 'penaltykick_highscore',
+  BASKETBALL_SHOOT: 'basketballshoot_highscore',
+  PING_PONG: 'pingpong_highscore',
+  BADMINTON: 'badminton_highscore',
+  BOXING: 'boxing_highscore',
+  // IO竞技类
+  SNAKE_IO: 'snakeio_highscore',
+  BALL_IO: 'ballio_highscore',
+  TERRITORY_IO: 'territoryio_highscore',
+  SWORD_IO: 'swordio_highscore',
+  DRIFT_IO: 'driftio_highscore',
+  // 点击放置类
+  CLICKER_MONEY: 'clickermoney_highscore',
+  FACTORY_TYCOON: 'factorytycoon_highscore',
+  DINO_EVOLUTION: 'dinoevolution_highscore',
+  SPACE_IDLE: 'spaceidle_highscore',
+  DUNGEON_IDLE: 'dungeonidle_highscore',
+  // 绘画创意类
+  DRAW_GUESS: 'drawguess_highscore',
+  COLORING_BOOK: 'coloringbook_highscore',
+  SIMPLE_DRAW: 'simpledraw_highscore',
+  EMOJI_MAKER: 'emojimaker_highscore',
+  SAND_ART: 'sandart_highscore',
+  // 生存冒险类
+  ISLAND_SURVIVAL: 'islandsurvival_highscore',
+  ZOMBIE_SURVIVAL: 'zombiesurvival_highscore',
+  FOREST_ADVENTURE: 'forestadventure_highscore',
+  MOUNTAIN_CLIMBER: 'mountainclimber_highscore',
+  HELICOPTER_ESCAPE: 'helicopterescape_highscore',
 };
 
 // All game constants
@@ -311,6 +393,48 @@ export const CUT_ROPE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 500 };
 export const LINKLINK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 8, CELL_SIZE: 60 };
 export const FINDDIFF_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, TOTAL_LEVELS: 5, DIFFERENCES_PER_LEVEL: 5 };
 export const ONESTROKE_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, NODE_RADIUS: 15 };
+// 卡牌策略类常量
+export const DOUDIZHU_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const MAHJONG_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const TEXAS_POKER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const BLACKJACK_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const UNO_CARD_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// 文字/词汇类常量
+export const CROSSWORD_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, GRID_SIZE: 15, CELL_SIZE: 35 };
+export const IDIOM_CHAIN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const WORD_SPELL_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const RIDDLE_GUESS_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const TYPING_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 400 };
+// 运动竞技类常量
+export const PENALTY_KICK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const BASKETBALL_SHOOT_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const PING_PONG_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 400 };
+export const BADMINTON_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 400 };
+export const BOXING_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+// IO竞技类常量
+export const SNAKE_IO_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const BALL_IO_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const TERRITORY_IO_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, GRID_SIZE: 40 };
+export const SWORD_IO_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const DRIFT_IO_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// 点击放置类常量
+export const CLICKER_MONEY_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const FACTORY_TYCOON_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const DINO_EVOLUTION_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const SPACE_IDLE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const DUNGEON_IDLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+// 绘画创意类常量
+export const DRAW_GUESS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const COLORING_BOOK_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const SIMPLE_DRAW_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const EMOJI_MAKER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 400 };
+export const SAND_ART_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+// 生存冒险类常量
+export const ISLAND_SURVIVAL_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const ZOMBIE_SURVIVAL_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const FOREST_ADVENTURE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const MOUNTAIN_CLIMBER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700 };
+export const HELICOPTER_ESCAPE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800 };
 export const TILE_COLORS = { 2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563', 32: '#f67c5f', 64: '#f65e3b', 128: '#edcf72', 256: '#edcc61', 512: '#edc850', 1024: '#edc53f', 2048: '#edc22e' };
 
 // Engine constants (aliases)
@@ -1078,6 +1202,47 @@ export const GAMES_LIST = [
   { id: 'bowlingmaster', name: '保龄球大师', category: 'physics', icon: '🎳', difficulty: 'medium' },
   { id: 'pinballphysics', name: '弹球物理', category: 'physics', icon: '🎱', difficulty: 'medium' },
   { id: 'cutrope', name: '切割绳子', category: 'physics', icon: '✂️', difficulty: 'medium' },
+  { id: 'doudizhu', name: '斗地主', category: 'card', icon: '🎴', difficulty: 'medium' },
+  { id: 'mahjong', name: '国粹麻将', category: 'card', icon: '🀄', difficulty: 'hard' },
+  { id: 'texaspoker', name: '德州扑克', category: 'card', icon: '🃏', difficulty: 'hard' },
+  { id: 'blackjack', name: '二十一点', category: 'card', icon: '♠️', difficulty: 'medium' },
+  { id: 'unocard', name: 'UNO卡牌', category: 'card', icon: '🎴', difficulty: 'easy' },
+  // 文字/词汇类
+  { id: 'crossword', name: '填字游戏', category: 'word', icon: '🔤', difficulty: 'medium' },
+  { id: 'idiomchain', name: '成语接龙', category: 'word', icon: '📜', difficulty: 'medium' },
+  { id: 'wordspell', name: '单词拼写', category: 'word', icon: '🔠', difficulty: 'easy' },
+  { id: 'riddleguess', name: '猜谜语', category: 'word', icon: '❓', difficulty: 'easy' },
+  { id: 'typingmaster', name: '打字练习', category: 'word', icon: '⌨️', difficulty: 'easy' },
+  // 运动竞技类
+  { id: 'penaltykick', name: '点球大战', category: 'sports', icon: '⚽', difficulty: 'easy' },
+  { id: 'basketballshoot', name: '投篮高手', category: 'sports', icon: '🏀', difficulty: 'medium' },
+  { id: 'pingpong', name: '乒乓球', category: 'sports', icon: '🏓', difficulty: 'medium' },
+  { id: 'badminton', name: '羽毛球', category: 'sports', icon: '🏸', difficulty: 'medium' },
+  { id: 'boxing', name: '拳击', category: 'sports', icon: '🥊', difficulty: 'hard' },
+  // IO竞技类
+  { id: 'snakeio', name: '蛇蛇大作战', category: 'io', icon: '🐍', difficulty: 'easy' },
+  { id: 'ballio', name: '球球大作战', category: 'io', icon: '🔵', difficulty: 'easy' },
+  { id: 'territoryio', name: '领地占领', category: 'io', icon: '📐', difficulty: 'medium' },
+  { id: 'swordio', name: '刀剑大乱斗', category: 'io', icon: '⚔️', difficulty: 'hard' },
+  { id: 'driftio', name: '赛车漂移', category: 'io', icon: '🏎️', difficulty: 'medium' },
+  // 点击放置类
+  { id: 'clickermoney', name: '点击赚钱', category: 'idle', icon: '💵', difficulty: 'easy' },
+  { id: 'factorytycoon', name: '工厂大亨', category: 'idle', icon: '🏭', difficulty: 'medium' },
+  { id: 'dinoevolution', name: '恐龙进化', category: 'idle', icon: '🦕', difficulty: 'easy' },
+  { id: 'spaceidle', name: '太空探索', category: 'idle', icon: '🚀', difficulty: 'medium' },
+  { id: 'dungeonidle', name: '地下城放置', category: 'idle', icon: '⚔️', difficulty: 'medium' },
+  // 绘画创意类
+  { id: 'drawguess', name: '你画我猜', category: 'creative', icon: '🎨', difficulty: 'easy' },
+  { id: 'coloringbook', name: '填色本', category: 'creative', icon: '🖍️', difficulty: 'easy' },
+  { id: 'simpledraw', name: '简笔画', category: 'creative', icon: '✏️', difficulty: 'easy' },
+  { id: 'emojimaker', name: '表情制作', category: 'creative', icon: '😀', difficulty: 'easy' },
+  { id: 'sandart', name: '沙画', category: 'creative', icon: '🏖️', difficulty: 'medium' },
+  // 生存冒险类
+  { id: 'islandsurvival', name: '荒岛求生', category: 'survival', icon: '🏝️', difficulty: 'hard' },
+  { id: 'zombiesurvival', name: '末日生存', category: 'survival', icon: '🧟', difficulty: 'hard' },
+  { id: 'forestadventure', name: '森林冒险', category: 'survival', icon: '🌲', difficulty: 'medium' },
+  { id: 'mountainclimber', name: '登山者', category: 'survival', icon: '🧗', difficulty: 'hard' },
+  { id: 'helicopterescape', name: '直升机逃生', category: 'survival', icon: '🚁', difficulty: 'medium' },
 ];
 
 // Game constants for compatibility

@@ -317,3 +317,67 @@ export const PHYSICS_GAMES = [
     path: './CutRope'
   }
 ] as const;
+
+// DouDiZhu exports
+export { DouDiZhuEngine } from './DouDiZhu/engine';
+export { default as DouDiZhu } from './DouDiZhu/DouDiZhu';
+
+// Mahjong exports
+export { MahjongEngine } from './Mahjong/engine';
+export { default as Mahjong } from './Mahjong/Mahjong';
+
+// TexasPoker exports
+export { TexasPokerEngine } from './TexasPoker/engine';
+export { default as TexasPoker } from './TexasPoker/TexasPoker';
+
+// Blackjack exports
+export { BlackjackEngine } from './Blackjack/engine';
+export { default as Blackjack } from './Blackjack/Blackjack';
+
+// UnoCard exports
+export { UnoEngine } from './UnoCard/engine';
+export { default as UnoCard } from './UnoCard/UnoCard';
+
+// Card Games list
+export const CARD_GAMES = [
+  {
+    id: 'doudizhu',
+    name: 'DouDiZhu',
+    nameCn: '斗地主',
+    component: 'DouDiZhu',
+    engine: 'DouDiZhuEngine',
+    path: './DouDiZhu'
+  },
+  {
+    id: 'mahjong',
+    name: 'Mahjong',
+    nameCn: '国粹麻将',
+    component: 'Mahjong',
+    engine: 'MahjongEngine',
+    path: './Mahjong'
+  },
+  {
+    id: 'texaspoker',
+    name: 'TexasPoker',
+    nameCn: '德州扑克',
+    component: 'TexasPoker',
+    engine: 'TexasPokerEngine',
+    path: './TexasPoker'
+  },
+  {
+    id: 'blackjack',
+    name: 'Blackjack',
+    nameCn: '二十一点',
+    component: 'Blackjack',
+    engine: 'BlackjackEngine',
+    path: './Blackjack'
+  },
+  {
+    id: 'unocard',
+    name: 'UnoCard',
+    nameCn: 'UNO卡牌',
+    component: 'UnoCard',
+    engine: 'UnoEngine',
+    path: './UnoCard'
+  }
+] as const;

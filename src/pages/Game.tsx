@@ -100,6 +100,44 @@ import DoodleJump from '../games/DoodleJump/DoodleJump';
 import BowlingMaster from '../games/BowlingMaster/BowlingMaster';
 import PinballPhysics from '../games/PinballPhysics/PinballPhysics';
 import CutRope from '../games/CutRope/CutRope';
+import DouDiZhu from '../games/DouDiZhu/DouDiZhu';
+import Mahjong from '../games/Mahjong/Mahjong';
+import TexasPoker from '../games/TexasPoker/TexasPoker';
+import Blackjack from '../games/Blackjack/Blackjack';
+import UnoCard from '../games/UnoCard/UnoCard';
+// 文字/词汇类
+import Crossword from '../games/Crossword/Crossword';
+import IdiomChain from '../games/IdiomChain/IdiomChain';
+import WordSpell from '../games/WordSpell/WordSpell';
+import RiddleGuess from '../games/RiddleGuess/RiddleGuess';
+import TypingMaster from '../games/TypingMaster/TypingMaster';
+// 运动竞技类
+import PenaltyKick from '../games/PenaltyKick/PenaltyKickGame';
+import BasketballShoot from '../games/BasketballShoot/BasketballShootGame';
+// IO竞技类
+import SnakeIO from '../games/SnakeIO/SnakeIO';
+import BallIO from '../games/BallIO/BallIO';
+import TerritoryIO from '../games/TerritoryIO/TerritoryIO';
+import SwordIO from '../games/SwordIO/SwordIO';
+import DriftIO from '../games/DriftIO/DriftIO';
+// 点击放置类
+import ClickerMoney from '../games/ClickerMoney/ClickerMoney';
+import FactoryTycoon from '../games/FactoryTycoon/FactoryTycoon';
+import DinoEvolution from '../games/DinoEvolution/DinoEvolution';
+import SpaceIdle from '../games/SpaceIdle/SpaceIdle';
+import DungeonIdle from '../games/DungeonIdle/DungeonIdle';
+// 绘画创意类
+import DrawGuess from '../games/DrawGuess/DrawGuess';
+import ColoringBook from '../games/ColoringBook/ColoringBook';
+import SimpleDraw from '../games/SimpleDraw/SimpleDraw';
+import EmojiMaker from '../games/EmojiMaker/EmojiMaker';
+import SandArt from '../games/SandArt/SandArt';
+// 生存冒险类
+import IslandSurvival from '../games/IslandSurvival/IslandSurvivalGame';
+import ZombieSurvival from '../games/ZombieSurvival/ZombieSurvivalGame';
+import ForestAdventure from '../games/ForestAdventure/ForestAdventureGame';
+import MountainClimber from '../games/MountainClimber/MountainClimberGame';
+import HelicopterEscape from '../games/HelicopterEscape/HelicopterEscapeGame';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -430,6 +468,76 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <PinballPhysics />;
       case GAME_IDS.CUT_ROPE:
         return <CutRope />;
+      case GAME_IDS.DOUDIZHU:
+        return <DouDiZhu />;
+      case GAME_IDS.MAHJONG:
+        return <Mahjong />;
+      case GAME_IDS.TEXAS_POKER:
+        return <TexasPoker />;
+      case GAME_IDS.BLACKJACK:
+        return <Blackjack />;
+      case GAME_IDS.UNO_CARD:
+        return <UnoCard />;
+      // 文字/词汇类
+      case GAME_IDS.CROSSWORD:
+        return <Crossword />;
+      case GAME_IDS.IDIOM_CHAIN:
+        return <IdiomChain />;
+      case GAME_IDS.WORD_SPELL:
+        return <WordSpell />;
+      case GAME_IDS.RIDDLE_GUESS:
+        return <RiddleGuess />;
+      case GAME_IDS.TYPING_MASTER:
+        return <TypingMaster />;
+      // 运动竞技类
+      case GAME_IDS.PENALTY_KICK:
+        return <PenaltyKick />;
+      case GAME_IDS.BASKETBALL_SHOOT:
+        return <BasketballShoot />;
+      // IO竞技类
+      case GAME_IDS.SNAKE_IO:
+        return <SnakeIO />;
+      case GAME_IDS.BALL_IO:
+        return <BallIO />;
+      case GAME_IDS.TERRITORY_IO:
+        return <TerritoryIO />;
+      case GAME_IDS.SWORD_IO:
+        return <SwordIO />;
+      case GAME_IDS.DRIFT_IO:
+        return <DriftIO />;
+      // 点击放置类
+      case GAME_IDS.CLICKER_MONEY:
+        return <ClickerMoney />;
+      case GAME_IDS.FACTORY_TYCOON:
+        return <FactoryTycoon />;
+      case GAME_IDS.DINO_EVOLUTION:
+        return <DinoEvolution />;
+      case GAME_IDS.SPACE_IDLE:
+        return <SpaceIdle />;
+      case GAME_IDS.DUNGEON_IDLE:
+        return <DungeonIdle />;
+      // 绘画创意类
+      case GAME_IDS.DRAW_GUESS:
+        return <DrawGuess />;
+      case GAME_IDS.COLORING_BOOK:
+        return <ColoringBook />;
+      case GAME_IDS.SIMPLE_DRAW:
+        return <SimpleDraw />;
+      case GAME_IDS.EMOJI_MAKER:
+        return <EmojiMaker />;
+      case GAME_IDS.SAND_ART:
+        return <SandArt />;
+      // 生存冒险类
+      case GAME_IDS.ISLAND_SURVIVAL:
+        return <IslandSurvival />;
+      case GAME_IDS.ZOMBIE_SURVIVAL:
+        return <ZombieSurvival />;
+      case GAME_IDS.FOREST_ADVENTURE:
+        return <ForestAdventure />;
+      case GAME_IDS.MOUNTAIN_CLIMBER:
+        return <MountainClimber />;
+      case GAME_IDS.HELICOPTER_ESCAPE:
+        return <HelicopterEscape />;
       default:
         return (
           <motion.div
