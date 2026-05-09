@@ -58,6 +58,48 @@ import BrainTest from '../games/BrainTest/BrainTest';
 import Chess from '../games/Chess/Chess';
 import Gobang from '../games/Gobang/Gobang';
 import Ludo from '../games/Ludo/Ludo';
+// 塔防策略类
+import TowerDefense from '../games/TowerDefense/TowerDefense';
+import CatapultDefense from '../games/CatapultDefense/CatapultDefense';
+import MagicTower from '../games/MagicTower/MagicTower';
+import DesertWar from '../games/DesertWar/DesertWar';
+import IceAgeDefense from '../games/IceAgeDefense/IceAgeDefense';
+// 音乐节奏类
+import RhythmMaster from '../games/RhythmMaster/RhythmMaster';
+import DJMixer from '../games/DJMixer/DJMixer';
+import PianoTiles from '../games/PianoTiles/PianoTiles';
+import BeatRacer from '../games/BeatRacer/BeatRacer';
+import MusicHero from '../games/MusicHero/MusicHero';
+// 消除类扩展
+import CandyCrush from '../games/CandyCrush/CandyCrush';
+import GemBlast from '../games/GemBlast/GemBlast';
+import BubblePop from '../games/BubblePop/BubblePop';
+import CookieMatch from '../games/CookieMatch/CookieMatch';
+import AnimalMatch from '../games/AnimalMatch/AnimalMatch';
+// 格斗对战类
+import PixelFighter from '../games/PixelFighter/PixelFighter';
+import BrawlStars from '../games/BrawlStars/BrawlStars';
+import KarateChamp from '../games/KarateChamp/KarateChamp';
+import SamuraiSlash from '../games/SamuraiSlash/SamuraiSlash';
+import WrestleMania from '../games/WrestleMania/WrestleMania';
+// 益智解谜类
+import HuarongDao from '../games/HuarongDao/HuarongDao';
+import NumberSlide from '../games/NumberSlide/NumberSlide';
+import PipeConnect from '../games/PipeConnect/PipeConnect';
+import MemoryMatch from '../games/MemoryMatch/MemoryMatch';
+import WordSearch from '../games/WordSearch/WordSearch';
+// 养成收集类
+import VirtualPet from '../games/VirtualPet/VirtualPet';
+import FishTank from '../games/FishTank/FishTank';
+import GardenGarden from '../games/GardenGarden/GardenGarden';
+import CookieBakery from '../games/CookieBakery/CookieBakery';
+import PokeMon from '../games/PokeMon/PokeMon';
+// 物理益智类
+import AngryBirds from '../games/AngryBirds/AngryBirds';
+import DoodleJump from '../games/DoodleJump/DoodleJump';
+import BowlingMaster from '../games/BowlingMaster/BowlingMaster';
+import PinballPhysics from '../games/PinballPhysics/PinballPhysics';
+import CutRope from '../games/CutRope/CutRope';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -311,6 +353,83 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <Gobang />;
       case GAME_IDS.LUDO:
         return <Ludo />;
+      // 塔防策略类
+      case GAME_IDS.TOWER_DEFENSE:
+        return <TowerDefense />;
+      case GAME_IDS.CATAPULT_DEFENSE:
+        return <CatapultDefense />;
+      case GAME_IDS.MAGIC_TOWER:
+        return <MagicTower />;
+      case GAME_IDS.DESERT_WAR:
+        return <DesertWar />;
+      case GAME_IDS.ICE_AGE_DEFENSE:
+        return <IceAgeDefense />;
+      // 音乐节奏类
+      case GAME_IDS.RHYTHM_MASTER:
+        return <RhythmMaster />;
+      case GAME_IDS.DJ_MIXER:
+        return <DJMixer />;
+      case GAME_IDS.PIANO_TILES:
+        return <PianoTiles />;
+      case GAME_IDS.BEAT_RACER:
+        return <BeatRacer />;
+      case GAME_IDS.MUSIC_HERO:
+        return <MusicHero />;
+      // 消除类扩展
+      case GAME_IDS.CANDY_CRUSH:
+        return <CandyCrush />;
+      case GAME_IDS.GEM_BLAST:
+        return <GemBlast />;
+      case GAME_IDS.BUBBLE_POP:
+        return <BubblePop />;
+      case GAME_IDS.COOKIE_MATCH:
+        return <CookieMatch />;
+      case GAME_IDS.ANIMAL_MATCH:
+        return <AnimalMatch />;
+      // 格斗对战类
+      case GAME_IDS.PIXEL_FIGHTER:
+        return <PixelFighter />;
+      case GAME_IDS.BRAWL_STARS:
+        return <BrawlStars />;
+      case GAME_IDS.KARATE_CHAMP:
+        return <KarateChamp />;
+      case GAME_IDS.SAMURAI_SLASH:
+        return <SamuraiSlash />;
+      case GAME_IDS.WRESTLE_MANIA:
+        return <WrestleMania />;
+      // 益智解谜类
+      case GAME_IDS.HUARONG_DAO:
+        return <HuarongDao />;
+      case GAME_IDS.NUMBER_SLIDE:
+        return <NumberSlide />;
+      case GAME_IDS.PIPE_CONNECT:
+        return <PipeConnect />;
+      case GAME_IDS.MEMORY_MATCH:
+        return <MemoryMatch />;
+      case GAME_IDS.WORD_SEARCH:
+        return <WordSearch />;
+      // 养成收集类
+      case GAME_IDS.VIRTUAL_PET:
+        return <VirtualPet />;
+      case GAME_IDS.FISH_TANK:
+        return <FishTank />;
+      case GAME_IDS.GARDEN_GARDEN:
+        return <GardenGarden />;
+      case GAME_IDS.COOKIE_BAKERY:
+        return <CookieBakery />;
+      case GAME_IDS.POKEMON:
+        return <PokeMon />;
+      // 物理益智类
+      case GAME_IDS.ANGRY_BIRDS:
+        return <AngryBirds />;
+      case GAME_IDS.DOODLE_JUMP:
+        return <DoodleJump />;
+      case GAME_IDS.BOWLING_MASTER:
+        return <BowlingMaster />;
+      case GAME_IDS.PINBALL_PHYSICS:
+        return <PinballPhysics />;
+      case GAME_IDS.CUT_ROPE:
+        return <CutRope />;
       default:
         return (
           <motion.div

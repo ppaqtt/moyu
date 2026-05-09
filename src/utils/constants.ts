@@ -1,3 +1,39 @@
+export const NEON_COLORS = {
+  primary: '#00ffff',
+  secondary: '#ff00ff',
+  accent: '#ffff00',
+  success: '#00ff00',
+  warning: '#ff8800',
+  danger: '#ff0044',
+  background: '#0a0a1a',
+  surface: '#1a1a2e',
+  text: '#ffffff',
+  textDim: '#888888',
+  perfect: '#00ffff',
+  great: '#00ff00',
+  good: '#ffff00',
+  miss: '#ff0044',
+  neonPink: '#ff6b9d',
+  neonCyan: '#00d2ff',
+  neonPurple: '#a855f7',
+  neonBlue: '#3b82f6',
+  neonGreen: '#22c55e',
+  gold: '#ffd700',
+  white: '#ffffff',
+  darkPurple: 'rgba(26, 26, 46, 0.8)',
+};
+
+export const GAME_CONFIG = {
+  perfectScore: 100,
+  greatScore: 75,
+  goodScore: 50,
+  missScore: 0,
+  perfectWindow: 50,
+  greatWindow: 100,
+  goodWindow: 150,
+};
+
+// Game IDs
 export const GAME_IDS = {
   GAME_2048: '2048',
   TETRIS: 'tetris',
@@ -11,7 +47,7 @@ export const GAME_IDS = {
   FIRE_ICE: 'fireice',
   GOLD_MINER: 'goldminer',
   PVZ: 'pvz',
-  SKETCHOUT: 'sketchup',
+  SKETCHOUT: 'sketchout',
   FLAPPY_BIRD: 'flappybird',
   PACMAN: 'pacman',
   STICKMAN_HOOK: 'stickmanhook',
@@ -19,983 +55,1037 @@ export const GAME_IDS = {
   TEMPLE_RUN: 'templerun',
   ONEVONE: 'onevone',
   CROSSCODE: 'crosscode',
-  // 经典益智类
   ZUMA: 'zuma',
   LINKLINK: 'linklink',
   SOKOBAN: 'sokoban',
   FINDDIFF: 'finddiff',
   ONESTROKE: 'onestroke',
-  // 休闲竞技类
   PINBALL: 'pinball',
   BOWLING: 'bowling',
   BILLIARDS: 'billiards',
   RINGTOSS: 'ringtoss',
   ENHANCED_BREAKOUT: 'enhancedbreakout',
-  // 跑酷躲避类
   SKIING: 'skiing',
   DANCING_LINE: 'dancingline',
   SUBWAY2: 'subway2',
   CLIFF_RUNNER: 'cliffrunner',
   SPEED_ESCAPE: 'speedescape',
-  // 双人合作类
   COOP_RUN: 'cooprun',
   TETRIS_BATTLE: 'tetrisbattle',
   SNAKE_DUO: 'snakeduo',
   BUNNY_HUNTER: 'bunnyhunter',
   PINBALL_DUO: 'pinballduo',
-  // 射击飞行类
   THUNDER: 'thunder',
   SPACE_SHOOTER: 'spaceshooter',
   TANK_BATTLE: 'tankbattle',
   BUBBLE_SHOOTER: 'bubbleshooter',
   ZOMBIE_SHOOTER: 'zombieshooter',
-  // 策略经营类
   MONOPOLY: 'monopoly',
   HAPPY_FARM: 'happyfarm',
   COOKING_MASTER: 'cookingmaster',
   SHOP_MASTER: 'shopmaster',
-  // 敏捷反应类
   FRUIT_NINJA: 'fruitninja',
   WHACK_A_MOLE: 'whackamole',
   COLOR_MATCH: 'colormatch',
   BRAIN_TEST: 'braintest',
-  // 棋牌休闲类
   CHESS: 'chess',
   GOBANG: 'gobang',
-  LUDO: 'ludo'
-} as const;
-
-export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
-
-export const GAME_2048_CONSTANTS = {
-  GRID_SIZE: 4,
-  TILE_SIZE: 100,
-  CANVAS_SIZE: 400,
-  GAP: 12
+  LUDO: 'ludo',
+  TOWER_DEFENSE: 'towerdefense',
+  CATAPULT_DEFENSE: 'catapultdefense',
+  MAGIC_TOWER: 'magictower',
+  DESERT_WAR: 'desertwar',
+  ICE_AGE_DEFENSE: 'iceagedefense',
+  RHYTHM_MASTER: 'rhythmmaster',
+  DJ_MIXER: 'djmixer',
+  PIANO_TILES: 'pianotiles',
+  BEAT_RACER: 'beatracer',
+  MUSIC_HERO: 'musichero',
+  CANDY_CRUSH: 'candycrush',
+  GEM_BLAST: 'gemblast',
+  BUBBLE_POP: 'bubblepop',
+  COOKIE_MATCH: 'cookiismatch',
+  ANIMAL_MATCH: 'animalmatch',
+  PIXEL_FIGHTER: 'pixelfighter',
+  BRAWL_STARS: 'brawlstars',
+  KARATE_CHAMP: 'karatechamp',
+  SAMURAI_SLASH: 'samuraislash',
+  WRESTLE_MANIA: 'wrestlemania',
+  HUARONG_DAO: 'huarongdao',
+  NUMBER_SLIDE: 'numberslide',
+  PIPE_CONNECT: 'pipeconnect',
+  MEMORY_MATCH: 'memorymatch',
+  WORD_SEARCH: 'wordsearch',
+  VIRTUAL_PET: 'virtualpet',
+  FISH_TANK: 'fishtank',
+  GARDEN_GARDEN: 'gardengarden',
+  COOKIE_BAKERY: 'cookiebakery',
+  POKEMON: 'pokemon',
+  ANGRY_BIRDS: 'angrybirds',
+  DOODLE_JUMP: 'doodlejump',
+  BOWLING_MASTER: 'bowlingmaster',
+  PINBALL_PHYSICS: 'pinballphysics',
+  CUT_ROPE: 'cutrope',
 };
 
-export const TETRIS_CONSTANTS = {
-  BOARD_WIDTH: 10,
-  BOARD_HEIGHT: 20,
-  CELL_SIZE: 30,
-  INITIAL_SPEED: 1000,
-  SPEED_INCREMENT: 0.9,
-  LINES_PER_LEVEL: 10
-};
-
-export const SNAKE_CONSTANTS = {
-  GRID_SIZE: 20,
-  CANVAS_SIZE: 400,
-  INITIAL_SPEED: 150,
-  SPEED_INCREMENT: 10
-};
-
-export const SNAKE_DUO_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  GRID_SIZE: 20,
-  INITIAL_SPEED: 120,
-  SPEED_INCREMENT: 5,
-  FOOD_SCORE: 10,
-  TIME_BONUS: 1
-};
-
-export const BOUNCE_CONSTANTS = {
-  CANVAS_WIDTH: 480,
-  CANVAS_HEIGHT: 640,
-  PADDLE_WIDTH: 100,
-  PADDLE_HEIGHT: 15,
-  BALL_RADIUS: 10,
-  BALL_SPEED: 5,
-  BRICK_ROWS: 5,
-  BRICK_COLS: 8,
-  BRICK_HEIGHT: 25,
-  BRICK_GAP: 4
-};
-
-export const FUSION_CONSTANTS = {
-  GRID_SIZE: 4,
-  TILE_SIZE: 100,
-  CANVAS_WIDTH: 400,
-  CANVAS_HEIGHT: 500,
-  GAP: 12,
-  DROP_INTERVAL: 3000,
-  SPECIAL_INTERVAL: 20000
-};
-
-// 祖玛游戏常量
-export const ZUMA_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  BALL_RADIUS: 15,
-  CURVE_RADIUS: 250,
-  PATH_SPEED: 2,
-  SHOOT_SPEED: 8,
-  COLORS: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe']
-};
-
-// 连连看游戏常量
-export const LINKLINK_CONSTANTS = {
-  GRID_COLS: 10,
-  GRID_ROWS: 8,
-  TILE_WIDTH: 50,
-  TILE_HEIGHT: 50,
-  ICON_TYPES: 20
-};
-
-// 推箱子游戏常量
-export const SOKOBAN_CONSTANTS = {
-  GRID_SIZE: 10,
-  CELL_SIZE: 50,
-  LEVELS: 5
-};
-
-// 找不同游戏常量
-export const FINDDIFF_CONSTANTS = {
-  GRID_COLS: 4,
-  GRID_ROWS: 3,
-  DIFF_COUNT: 5,
-  TIME_LIMIT: 120
-};
-
-// 一笔画游戏常量
-export const ONESTROKE_CONSTANTS = {
-  NODE_COUNT: 9,
-  GRID_SIZE: 450,
-  CELL_SIZE: 50
-};
-
-// 弹珠台游戏常量
-export const PINBALL_CONSTANTS = {
-  CANVAS_WIDTH: 400,
-  CANVAS_HEIGHT: 700,
-  BALL_RADIUS: 8,
-  FLIPPER_LENGTH: 60,
-  FLIPPER_WIDTH: 12,
-  GRAVITY: 0.15,
-  BUMPER_RADIUS: 20
-};
-
-// 保龄球游戏常量
-export const BOWLING_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 400,
-  LANE_WIDTH: 200,
-  BALL_RADIUS: 12,
-  PIN_RADIUS: 8,
-  TOTAL_FRAMES: 10
-};
-
-// 台球游戏常量
-export const BILLIARDS_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 450,
-  BALL_RADIUS: 10,
-  POCKET_RADIUS: 18,
-  FRICTION: 0.985,
-  MIN_SPEED: 0.1
-};
-
-// 套圈圈游戏常量
-export const RINGTOSS_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 500,
-  RING_RADIUS: 25,
-  POLE_RADIUS: 8,
-  TOTAL_RINGS: 10,
-  THROW_POWER: 15
-};
-
-// 滑雪大冒险游戏常量
-export const SKIING_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 700,
-  PLAYER_SIZE: 30,
-  OBSTACLE_SIZE: 25,
-  INITIAL_SPEED: 5,
-  SPEED_INCREMENT: 0.2
-};
-
-// 跳舞的线游戏常量
-export const DANCING_LINE_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 500,
-  LINE_WIDTH: 8,
-  NODE_RADIUS: 15,
-  SEGMENT_LENGTH: 40
-};
-
-// 地铁跑酷2游戏常量
-export const SUBWAY2_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 800,
-  LANE_COUNT: 3,
-  PLAYER_WIDTH: 40,
-  PLAYER_HEIGHT: 60,
-  INITIAL_SPEED: 6,
-  SPEED_INCREMENT: 0.3
-};
-
-// 悬崖跑酷游戏常量
-export const CLIFF_RUNNER_CONSTANTS = {
-  CANVAS_WIDTH: 700,
-  CANVAS_HEIGHT: 500,
-  PLAYER_SIZE: 35,
-  GROUND_HEIGHT: 50,
-  GRAVITY: 0.8,
-  JUMP_FORCE: -15
-};
-
-// 极速逃亡游戏常量
-export const SPEED_ESCAPE_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  PLAYER_SIZE: 30,
-  CAR_WIDTH: 40,
-  CAR_HEIGHT: 70,
-  INITIAL_SPEED: 5,
-  LANE_COUNT: 4
-};
-
-// 双人合作跑酷游戏常量
-export const COOP_RUN_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  PLAYER_WIDTH: 40,
-  PLAYER_HEIGHT: 60,
-  LANE_COUNT: 3,
-  GROUND_HEIGHT: 80,
-  GRAVITY: 0.6,
-  JUMP_FORCE: -14,
-  INITIAL_SPEED: 5,
-  SPEED_INCREMENT: 0.001,
-  MAX_SPEED: 12,
-  OBSTACLE_SPAWN_INTERVAL: 60,
-  COLLECTIBLE_SPAWN_INTERVAL: 120,
-  REVIVE_RANGE: 80,
-  REVIVE_TIME: 30,
-  DOUBLE_SCORE_RANGE: 100
-};
-
-// 兔子猎人游戏常量
-export const BUNNY_HUNTER_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  BUNNY_SIZE: 50,
-  BULLET_SPEED: 12,
-  BUNNY_SPAWN_INTERVAL: 1500,
-  GAME_DURATION: 60,
-  SCORE_HIT: 10,
-  SCORE_MISS: -5,
-  COOP_BONUS: 2,
-  TIME_BONUS_MULTIPLIER: 1
-};
-
-// 打砖块增强版游戏常量
-export const ENHANCED_BREAKOUT_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 700,
-  PADDLE_WIDTH: 100,
-  PADDLE_HEIGHT: 15,
-  BALL_RADIUS: 8,
-  BALL_SPEED: 5,
-  BRICK_ROWS: 8,
-  BRICK_COLS: 10,
-  BRICK_HEIGHT: 25,
-  BRICK_GAP: 3,
-  POWERUP_CHANCE: 0.15
-};
-
-// 双人弹珠台游戏常量
-export const PINBALL_DUO_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 700,
-  BALL_RADIUS: 12,
-  PADDLE_WIDTH: 100,
-  PADDLE_HEIGHT: 18,
-  GRAVITY: 0.25,
-  FRICTION: 0.995,
-  BUMPER_RADIUS: 25,
-  OBSTACLE_WIDTH: 120,
-  OBSTACLE_HEIGHT: 20,
-  SCORE_BUMPER_HIT: 50,
-  SCORE_PADDLE_HIT: 10,
-  SCORE_COMBO_MULTIPLIER: 1.5,
-  COMBO_DECAY_TIME: 2000,
-  TIME_SCORE_INTERVAL: 1000,
-  TIME_SCORE_AMOUNT: 5,
-  PADDLE_SPEED: 0.15,
-  BALL_MAX_SPEED: 18
-};
-
-// 雷电游戏常量
-export const THUNDER_CONSTANTS = {
-  CANVAS_WIDTH: 480,
-  CANVAS_HEIGHT: 700,
-  PLAYER_WIDTH: 40,
-  PLAYER_HEIGHT: 50,
-  BULLET_WIDTH: 6,
-  BULLET_HEIGHT: 15,
-  ENEMY_WIDTH: 35,
-  ENEMY_HEIGHT: 35,
-  INITIAL_SPEED: 5,
-  BULLET_SPEED: 10,
-  ENEMY_SPEED: 2,
-  POWERUP_CHANCE: 0.1
-};
-
-// 太空射击游戏常量
-export const SPACE_SHOOTER_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 800,
-  PLAYER_SIZE: 30,
-  BULLET_SIZE: 8,
-  ENEMY_SIZE: 25,
-  POWERUP_SIZE: 20,
-  INITIAL_SPEED: 6,
-  BULLET_SPEED: 12,
-  ENEMY_SPEED: 3
-};
-
-// 坦克大战游戏常量
-export const TANK_BATTLE_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 600,
-  TANK_SIZE: 40,
-  BULLET_SIZE: 8,
-  BRICK_SIZE: 30,
-  INITIAL_SPEED: 3,
-  BULLET_SPEED: 8,
-  ENEMY_SPEED: 2
-};
-
-// 泡泡龙游戏常量
-export const BUBBLE_SHOOTER_CONSTANTS = {
-  CANVAS_WIDTH: 480,
-  CANVAS_HEIGHT: 640,
-  BUBBLE_RADIUS: 20,
-  GRID_COLS: 11,
-  GRID_ROWS: 12,
-  COLORS: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe']
-};
-
-// 僵尸射击游戏常量
-export const ZOMBIE_SHOOTER_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  PLAYER_SIZE: 40,
-  ZOMBIE_SIZE: 35,
-  BULLET_SIZE: 8,
-  INITIAL_SPEED: 5,
-  BULLET_SPEED: 10,
-  ZOMBIE_SPEED: 1.5
-};
-
-// 大富翁游戏常量
-export const MONOPOLY_CONSTANTS = {
-  CANVAS_WIDTH: 700,
-  CANVAS_HEIGHT: 700,
-  CELL_SIZE: 60,
-  DICE_SIZE: 40,
-  INITIAL_MONEY: 1000
-};
-
-// 开心农场游戏常量
-export const HAPPY_FARM_CONSTANTS = {
-  CANVAS_WIDTH: 800,
-  CANVAS_HEIGHT: 600,
-  GRID_SIZE: 8,
-  CELL_SIZE: 60,
-  GROW_TIME: 5000
-};
-
-// 烹饪大师游戏常量
-export const COOKING_MASTER_CONSTANTS = {
-  CANVAS_WIDTH: 700,
-  CANVAS_HEIGHT: 500,
-  STOVE_SIZE: 100,
-  PAN_SIZE: 80,
-  INGREDIENT_SIZE: 30,
-  COOK_TIME: 3000
-};
-
-// 商店大师游戏常量
-export const SHOP_MASTER_CONSTANTS = {
-  CANVAS_WIDTH: 700,
-  CANVAS_HEIGHT: 500,
-  SHELF_WIDTH: 80,
-  SHELF_HEIGHT: 40,
-  ITEM_SIZE: 30
-};
-
-// 切水果游戏常量
-export const FRUIT_NINJA_CONSTANTS = {
-  CANVAS_WIDTH: 500,
-  CANVAS_HEIGHT: 700,
-  FRUIT_SIZE: 50,
-  BLADE_LENGTH: 100,
-  FRUIT_SPEED: 8,
-  SPAWN_INTERVAL: 500
-};
-
-// 打地鼠游戏常量
-export const WHACK_A_MOLE_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 500,
-  HOLE_SIZE: 80,
-  MOLE_SIZE: 60,
-  HIT_WINDOW: 1000,
-  SPAWN_INTERVAL: 800
-};
-
-// 颜色匹配游戏常量
-export const COLOR_MATCH_CONSTANTS = {
-  CANVAS_WIDTH: 500,
-  CANVAS_HEIGHT: 600,
-  GRID_SIZE: 4,
-  TILE_SIZE: 80,
-  TIME_LIMIT: 60
-};
-
-// 脑力测试游戏常量
-export const BRAIN_TEST_CONSTANTS = {
-  CANVAS_WIDTH: 500,
-  CANVAS_HEIGHT: 700,
-  QUESTION_COUNT: 10,
-  TIME_LIMIT: 120
-};
-
-// 中国象棋游戏常量
-export const CHESS_CONSTANTS = {
-  CANVAS_WIDTH: 560,
-  CANVAS_HEIGHT: 620,
-  CELL_SIZE: 56,
-  PIECE_SIZE: 48
-};
-
-// 五子棋游戏常量
-export const GOBANG_CONSTANTS = {
-  CANVAS_WIDTH: 560,
-  CANVAS_HEIGHT: 560,
-  GRID_SIZE: 15,
-  CELL_SIZE: 36,
-  WIN_COUNT: 5
-};
-
-// 飞行棋游戏常量
-export const LUDO_CONSTANTS = {
-  CANVAS_WIDTH: 600,
-  CANVAS_HEIGHT: 600,
-  CELL_SIZE: 30,
-  PIECE_SIZE: 25,
-  DICE_SIZE: 40
-};
-
+// Storage keys
 export const STORAGE_KEYS = {
-  GAME_2048: 'mouyu_game_2048',
-  TETRIS: 'mouyu_tetris',
-  SNAKE: 'mouyu_snake',
-  SNAKE_DUO: 'mouyu_snakeduo',
-  BOUNCE: 'mouyu_bounce',
-  FUSION_2048: 'mouyu_fusion',
-  MINESWEEPER: 'mouyu_minesweeper',
-  BEJEWEL: 'mouyu_bejeweled',
-  SUDOKU: 'mouyu_sudoku',
-  SUBWAY: 'mouyu_subway',
-  FIRE_ICE: 'mouyu_fireice',
-  GOLD_MINER: 'mouyu_goldminer',
-  PVZ: 'mouyu_pvz',
-  SKETCHOUT: 'mouyu_sketchup',
-  FLAPPY_BIRD: 'mouyu_flappybird',
-  PACMAN: 'mouyu_pacman',
-  STICKMAN_HOOK: 'mouyu_stickmanhook',
-  HEXGL: 'mouyu_hexgl',
-  TEMPLE_RUN: 'mouyu_templerun',
-  ONEVONE: 'mouyu_onevone',
-  CROSSCODE: 'mouyu_crosscode',
-  // 经典益智类
-  ZUMA: 'mouyu_zuma',
-  LINKLINK: 'mouyu_linklink',
-  SOKOBAN: 'mouyu_sokoban',
-  FINDDIFF: 'mouyu_finddiff',
-  ONESTROKE: 'mouyu_onestroke',
-  // 休闲竞技类
-  PINBALL: 'mouyu_pinball',
-  BOWLING: 'mouyu_bowling',
-  BILLIARDS: 'mouyu_billiards',
-  RINGTOSS: 'mouyu_ringtoss',
-  ENHANCED_BREAKOUT: 'mouyu_enhancedbreakout',
-  // 跑酷躲避类
-  SKIING: 'mouyu_skiing',
-  DANCING_LINE: 'mouyu_dancingline',
-  SUBWAY2: 'mouyu_subway2',
-  CLIFF_RUNNER: 'mouyu_cliffrunner',
-  SPEED_ESCAPE: 'mouyu_speedescape',
-  // 双人合作类
-  COOP_RUN: 'mouyu_cooprun',
-  TETRIS_BATTLE: 'mouyu_tetrisbattle',
-  BUNNY_HUNTER: 'mouyu_bunnyhunter',
-  PINBALL_DUO: 'mouyu_pinballduo',
-  // 射击飞行类
-  THUNDER: 'mouyu_thunder',
-  SPACE_SHOOTER: 'mouyu_spaceshooter',
-  TANK_BATTLE: 'mouyu_tankbattle',
-  BUBBLE_SHOOTER: 'mouyu_bubbleshooter',
-  ZOMBIE_SHOOTER: 'mouyu_zombieshooter',
-  // 策略经营类
-  MONOPOLY: 'mouyu_monopoly',
-  HAPPY_FARM: 'mouyu_happyfarm',
-  COOKING_MASTER: 'mouyu_cookingmaster',
-  SHOP_MASTER: 'mouyu_shopmaster',
-  // 敏捷反应类
-  FRUIT_NINJA: 'mouyu_fruitninja',
-  WHACK_A_MOLE: 'mouyu_whackamole',
-  COLOR_MATCH: 'mouyu_colormatch',
-  BRAIN_TEST: 'mouyu_braintest',
-  // 棋牌休闲类
-  CHESS: 'mouyu_chess',
-  GOBANG: 'mouyu_gobang',
-  LUDO: 'mouyu_ludo'
-} as const;
-
-export const TILE_COLORS: Record<number, string> = {
-  2: '#eee4da',
-  4: '#ede0c8',
-  8: '#f2b179',
-  16: '#f59563',
-  32: '#f67c5f',
-  64: '#f65e3b',
-  128: '#edcf72',
-  256: '#edcc61',
-  512: '#edc850',
-  1024: '#edc53f',
-  2048: '#edc22e',
-  4096: '#3c3a32',
-  8192: '#3c3a32'
+  GAME_2048: 'game_2048_highscore',
+  TETRIS: 'tetris_highscore',
+  SNAKE: 'snake_highscore',
+  BOUNCE: 'bounce_highscore',
+  FUSION_2048: 'fusion2048_highscore',
+  MINESWEEPER: 'minesweeper_highscore',
+  BEJEWEL: 'bejeweled_highscore',
+  SUDOKU: 'sudoku_highscore',
+  SUBWAY: 'subway_highscore',
+  FIRE_ICE: 'fireice_highscore',
+  GOLD_MINER: 'goldminer_highscore',
+  PVZ: 'pvz_highscore',
+  SKETCHOUT: 'sketchout_highscore',
+  FLAPPY_BIRD: 'flappybird_highscore',
+  PACMAN: 'pacman_highscore',
+  STICKMAN_HOOK: 'stickmanhook_highscore',
+  HEXGL: 'hexgl_highscore',
+  TEMPLE_RUN: 'templerun_highscore',
+  ONEVONE: 'onevone_highscore',
+  CROSSCODE: 'crosscode_highscore',
+  ZUMA: 'zuma_highscore',
+  LINKLINK: 'linklink_highscore',
+  SOKOBAN: 'sokoban_highscore',
+  FINDDIFF: 'finddiff_highscore',
+  ONESTROKE: 'onestroke_highscore',
+  PINBALL: 'pinball_highscore',
+  BOWLING: 'bowling_highscore',
+  BILLIARDS: 'billiards_highscore',
+  RINGTOSS: 'ringtoss_highscore',
+  ENHANCED_BREAKOUT: 'enhancedbreakout_highscore',
+  SKIING: 'skiing_highscore',
+  DANCING_LINE: 'dancingline_highscore',
+  SUBWAY2: 'subway2_highscore',
+  CLIFF_RUNNER: 'cliffrunner_highscore',
+  SPEED_ESCAPE: 'speedescape_highscore',
+  COOP_RUN: 'cooprun_highscore',
+  TETRIS_BATTLE: 'tetrisbattle_highscore',
+  SNAKE_DUO: 'snakeduo_highscore',
+  BUNNY_HUNTER: 'bunnyhunter_highscore',
+  PINBALL_DUO: 'pinballduo_highscore',
+  THUNDER: 'thunder_highscore',
+  SPACE_SHOOTER: 'spaceshooter_highscore',
+  TANK_BATTLE: 'tankbattle_highscore',
+  BUBBLE_SHOOTER: 'bubbleshooter_highscore',
+  ZOMBIE_SHOOTER: 'zombieshooter_highscore',
+  MONOPOLY: 'monopoly_highscore',
+  HAPPY_FARM: 'happyfarm_highscore',
+  COOKING_MASTER: 'cookingmaster_highscore',
+  SHOP_MASTER: 'shopmaster_highscore',
+  FRUIT_NINJA: 'fruitninja_highscore',
+  WHACK_A_MOLE: 'whackamole_highscore',
+  COLOR_MATCH: 'colormatch_highscore',
+  BRAIN_TEST: 'braintest_highscore',
+  CHESS: 'chess_highscore',
+  GOBANG: 'gobang_highscore',
+  LUDO: 'ludo_highscore',
+  TOWER_DEFENSE: 'towerdefense_highscore',
+  CATAPULT_DEFENSE: 'catapultdefense_highscore',
+  MAGIC_TOWER: 'magictower_highscore',
+  DESERT_WAR: 'desertwar_highscore',
+  ICE_AGE_DEFENSE: 'iceagedefense_highscore',
+  RHYTHM_MASTER: 'rhythmmaster_highscore',
+  DJ_MIXER: 'djmixer_highscore',
+  PIANO_TILES: 'pianotiles_highscore',
+  BEAT_RACER: 'beatracer_highscore',
+  MUSIC_HERO: 'musichero_highscore',
+  CANDY_CRUSH: 'candycrush_highscore',
+  GEM_BLAST: 'gemblast_highscore',
+  BUBBLE_POP: 'bubblepop_highscore',
+  COOKIE_MATCH: 'cookiismatch_highscore',
+  ANIMAL_MATCH: 'animalmatch_highscore',
+  PIXEL_FIGHTER: 'pixelfighter_highscore',
+  BRAWL_STARS: 'brawlstars_highscore',
+  KARATE_CHAMP: 'karatechamp_highscore',
+  SAMURAI_SLASH: 'samuraislash_highscore',
+  WRESTLE_MANIA: 'wrestlemania_highscore',
+  HUARONG_DAO: 'huarongdao_highscore',
+  NUMBER_SLIDE: 'numberslide_highscore',
+  PIPE_CONNECT: 'pipeconnect_highscore',
+  MEMORY_MATCH: 'memorymatch_highscore',
+  WORD_SEARCH: 'wordsearch_highscore',
+  VIRTUAL_PET: 'virtualpet_highscore',
+  FISH_TANK: 'fishtank_highscore',
+  GARDEN_GARDEN: 'gardengarden_highscore',
+  COOKIE_BAKERY: 'cookiebakery_highscore',
+  POKEMON: 'pokemon_highscore',
+  ANGRY_BIRDS: 'angrybirds_highscore',
+  DOODLE_JUMP: 'doodlejump_highscore',
+  BOWLING_MASTER: 'bowlingmaster_highscore',
+  PINBALL_PHYSICS: 'pinballphysics_highscore',
+  CUT_ROPE: 'cutrope_highscore',
 };
 
-export const NEON_COLORS = {
-  primary: '#0f0f1a',
-  secondary: '#1a1a2e',
-  accent: '#6c5ce7',
-  neonPink: '#ff6b9d',
-  neonBlue: '#00d2ff',
-  neonCyan: '#00d2ff',
-  neonPurple: '#a855f7',
-  neonGreen: '#39ff14',
-  gold: '#ffd700',
-  white: '#ffffff',
-  darkPurple: '#1a1a2e',
-  cardBg: 'rgba(26, 26, 46, 0.8)',
-  glassBg: 'rgba(255, 255, 255, 0.05)'
-};
+// All game constants
+export const GAME_2048_CONSTANTS = { GRID_SIZE: 4, CELL_SIZE: 80, GAP: 10 };
+export const FUSION_CONSTANTS = { GRID_SIZE: 6, CELL_SIZE: 70, GAP: 8, CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const TETRIS_CONSTANTS = { BOARD_WIDTH: 10, BOARD_HEIGHT: 20, CELL_SIZE: 30 };
+export const SNAKE_CONSTANTS = { CELL_SIZE: 20, INITIAL_LENGTH: 3, SPEED: 150 };
+export const MINESWEEPER_CONSTANTS = { ROWS: 16, COLS: 16, MINE_COUNT: 40 };
+export const BEJEWEL_CONSTANTS = { GRID_SIZE: 8, CELL_SIZE: 50 };
+export const SUDOKU_CONSTANTS = { GRID_SIZE: 9, CELL_SIZE: 50 };
+export const FIRE_ICE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500 };
+export const GOLD_MINER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const FLAPPY_BIRD_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, GRAVITY: 0.25, JUMP_FORCE: -6 };
+export const PACMAN_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 620, CELL_SIZE: 28 };
+export const STICKMAN_HOOK_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700 };
+export const HEXGL_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const TEMPLE_RUN_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
+export const ONEVONE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const CROSSCODE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const ZUMA_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const SOKOBAN_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, CELL_SIZE: 50 };
+export const RINGTOSS_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
+export const SKIING_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
+export const SPEED_ESCAPE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
+export const SPACE_SHOOTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800 };
+export const ZOMBIE_SHOOTER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const FISH_TANK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const PINBALL_DUO_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700 };
+export const BUNNY_HUNTER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500 };
+export const TETRIS_BATTLE_CONSTANTS = { BOARD_WIDTH: 10, BOARD_HEIGHT: 20, CELL_SIZE: 25 };
+export const SNAKE_DUO_CONSTANTS = { CELL_SIZE: 20, SPEED: 150 };
+export const TANK_BATTLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const VIRTUAL_PET_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const POKEMON_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const BRAWL_STARS_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const PIXEL_FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const KARATE_CHAMP_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const SAMURAI_SLASH_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const WRESTLE_MANIA_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const NUMBER_SLIDE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 400, GRID_SIZE: 4, CELL_SIZE: 100 };
+export const PIPE_CONNECT_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, GRID_SIZE: 5, CELL_SIZE: 100 };
+export const MEMORY_MATCH_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 480, GRID_SIZE: 4 };
+export const WORD_SEARCH_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, GRID_SIZE: 10 };
+export const RHYTHM_MASTER_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, LANES: 5, NOTE_SIZE: 60, FALL_SPEED: 5 };
+export const DJ_MIXER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_COLS: 8, GRID_ROWS: 4 };
+export const PIANO_TILES_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, LANES: 4, TILE_HEIGHT: 120 };
+export const BEAT_RACER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, CAR_WIDTH: 50, CAR_HEIGHT: 80 };
+export const MUSIC_HERO_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, LANES: 4, NOTE_SIZE: 50 };
+export const BOWLING_MASTER_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, LANE_LENGTH: 500 };
+export const ANGRY_BIRDS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const DOODLE_JUMP_CONSTANTS = { CANVAS_WIDTH: 300, CANVAS_HEIGHT: 600, JUMP_VELOCITY: -15, GRAVITY: 0.5 };
+export const PINBALL_PHYSICS_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, GRAVITY: 0.2 };
+export const BUBBLE_POP_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 640, BUBBLE_RADIUS: 25 };
+export const COOKIE_MATCH_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 480, GRID_SIZE: 8, CELL_SIZE: 60 };
+export const ANIMAL_MATCH_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 480, GRID_SIZE: 8, CELL_SIZE: 60 };
+export const COOKIE_BAKERY_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
+export const GARDEN_GARDEN_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, GRID_SIZE: 5, CELL_SIZE: 100 };
+export const BUBBLE_SHOOTER_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 640, BUBBLE_RADIUS: 20, ROWS: 12, COLS: 11 };
+export const BILLIARDS_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500, BALL_RADIUS: 12, FRICTION: 0.985 };
+export const BOUNCE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, PADDLE_WIDTH: 80, BALL_RADIUS: 10 };
+export const BOWLING_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, BALL_RADIUS: 15, PIN_RADIUS: 8 };
+export const PINBALL_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, FLIPPER_WIDTH: 80, BALL_RADIUS: 10 };
+export const ENHANCED_BREAKOUT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, PADDLE_WIDTH: 100, BALL_RADIUS: 8 };
+export const DANCING_LINE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, LINE_WIDTH: 8 };
+export const CLIFF_RUNNER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, PLAYER_SIZE: 40, GRAVITY: 0.5, JUMP_FORCE: -12 };
+export const COOP_RUN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400, PLAYER_SIZE: 30, SPEED: 3 };
+export const HUARONG_DAO_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 500, CELL_SIZE: 100 };
+export const THUNDER_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, PLAYER_HEIGHT: 50, BULLET_WIDTH: 6, BULLET_HEIGHT: 15 };
+export const MONOPOLY_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 700, SPACE_SIZE: 70, INITIAL_MONEY: 1500 };
+export const HAPPY_FARM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50 };
+export const COOKING_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const SHOP_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const FRUIT_NINJA_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, SPAWN_INTERVAL: 800, GRAVITY: 0.3 };
+export const WHACK_A_MOLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_COLS: 3, GRID_ROWS: 3, HOLE_SIZE: 80, GAME_DURATION: 30 };
+export const COLOR_MATCH_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, GRID_SIZE: 5, TILE_SIZE: 80, GAME_DURATION: 60 };
+export const BRAIN_TEST_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, TOTAL_QUESTIONS: 10, TIME_LIMIT: 120 };
+export const CHESS_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 620, CELL_SIZE: 70 };
+export const GOBANG_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 15, CELL_SIZE: 35 };
+export const LUDO_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 25 };
+export const TOWER_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 40, INITIAL_MONEY: 200, INITIAL_LIVES: 20 };
+export const CATAPULT_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50, INITIAL_MONEY: 300 };
+export const MAGIC_TOWER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 40, MANA_MAX: 100, INITIAL_MONEY: 200 };
+export const DESERT_WAR_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50, INITIAL_MONEY: 250 };
+export const ICE_AGE_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 40, INITIAL_MONEY: 200 };
+export const CANDY_CRUSH_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 480, GRID_SIZE: 8, CELL_SIZE: 60 };
+export const GEM_BLAST_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 480, GRID_SIZE: 8, CELL_SIZE: 60 };
+export const CUT_ROPE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 500 };
+export const LINKLINK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 8, CELL_SIZE: 60 };
+export const FINDDIFF_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, TOTAL_LEVELS: 5, DIFFERENCES_PER_LEVEL: 5 };
+export const ONESTROKE_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500, NODE_RADIUS: 15 };
+export const TILE_COLORS = { 2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563', 32: '#f67c5f', 64: '#f65e3b', 128: '#edcf72', 256: '#edcc61', 512: '#edc850', 1024: '#edc53f', 2048: '#edc22e' };
 
-export interface GameInfo {
-  id: GameId;
-  name: string;
-  description: string;
-  icon: string;
-  controls: string[];
-}
+// Engine constants (aliases)
+export const TETRIS_ENGINE_CONSTANTS = TETRIS_CONSTANTS;
+export const SNAKE_ENGINE_CONSTANTS = SNAKE_CONSTANTS;
+export const MINESWEEPER_ENGINE_CONSTANTS = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_ENGINE_CONSTANTS = BEJEWEL_CONSTANTS;
+export const SUDOKU_ENGINE_CONSTANTS = SUDOKU_CONSTANTS;
+export const FIRE_ICE_ENGINE_CONSTANTS = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_ENGINE_CONSTANTS = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_ENGINE_CONSTANTS = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_ENGINE_CONSTANTS = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_ENGINE_CONSTANTS = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_ENGINE_CONSTANTS = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_ENGINE_CONSTANTS = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_ENGINE_CONSTANTS = ONEVONE_CONSTANTS;
+export const CROSSCODE_ENGINE_CONSTANTS = CROSSCODE_CONSTANTS;
+export const ZUMA_ENGINE_CONSTANTS = ZUMA_CONSTANTS;
+export const SOKOBAN_ENGINE_CONSTANTS = SOKOBAN_CONSTANTS;
+export const RINGTOSS_ENGINE_CONSTANTS = RINGTOSS_CONSTANTS;
+export const SKIING_ENGINE_CONSTANTS = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_ENGINE_CONSTANTS = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS = SNAKE_DUO_CONSTANTS;
+export const BILLIARDS_ENGINE_CONSTANTS = BILLIARDS_CONSTANTS;
+export const BOUNCE_ENGINE_CONSTANTS = BOUNCE_CONSTANTS;
+export const BOWLING_ENGINE_CONSTANTS = BOWLING_CONSTANTS;
+export const PINBALL_ENGINE_CONSTANTS = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_ENGINE_CONSTANTS = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_ENGINE_CONSTANTS = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_ENGINE_CONSTANTS = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_ENGINE_CONSTANTS = COOP_RUN_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS = HUARONG_DAO_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS = ICE_AGE_DEFENSE_CONSTANTS;
+export const RHYTHM_MASTER_ENGINE_CONSTANTS = RHYTHM_MASTER_CONSTANTS;
+export const DJ_MIXER_ENGINE_CONSTANTS = DJ_MIXER_CONSTANTS;
+export const PIANO_TILES_ENGINE_CONSTANTS = PIANO_TILES_CONSTANTS;
+export const BEAT_RACER_ENGINE_CONSTANTS = BEAT_RACER_CONSTANTS;
+export const MUSIC_HERO_ENGINE_CONSTANTS = MUSIC_HERO_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS = GEM_BLAST_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS = ANIMAL_MATCH_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS = CUT_ROPE_CONSTANTS;
+export const PIXEL_FIGHTER_ENGINE_CONSTANTS = PIXEL_FIGHTER_CONSTANTS;
+export const BRAWL_STARS_ENGINE_CONSTANTS = BRAWL_STARS_CONSTANTS;
+export const KARATE_CHAMP_ENGINE_CONSTANTS = KARATE_CHAMP_CONSTANTS;
+export const SAMURAI_SLASH_ENGINE_CONSTANTS = SAMURAI_SLASH_CONSTANTS;
+export const WRESTLE_MANIA_ENGINE_CONSTANTS = WRESTLE_MANIA_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS = VIRTUAL_PET_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS = POKEMON_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS = BUBBLE_SHOOTER_CONSTANTS;
 
-export const GAMES_LIST: GameInfo[] = [
-  {
-    id: GAME_IDS.GAME_2048,
-    name: '2048',
-    description: '滑动合并数字，达到2048！',
-    icon: '⬡',
-    controls: ['方向键滑动', 'WASD键']
-  },
-  {
-    id: GAME_IDS.TETRIS,
-    name: '俄罗斯方块',
-    description: '经典童年回忆，消行得分！',
-    icon: '▣',
-    controls: ['← → 移动', '↑ 旋转', '↓ 加速下落', '空格 立即下落']
-  },
-  {
-    id: GAME_IDS.SNAKE,
-    name: '贪吃蛇',
-    description: '控制蛇吃掉食物，越长越好！',
-    icon: '🐍',
-    controls: ['方向键控制方向']
-  },
-  {
-    id: GAME_IDS.BOUNCE,
-    name: '弹跳球',
-    description: '反弹球打碎砖块，闯过关卡！',
-    icon: '●',
-    controls: ['鼠标/触摸 控制球拍']
-  },
-  {
-    id: GAME_IDS.FUSION_2048,
-    name: '2048融合',
-    description: '融合俄罗斯方块与2048的创新玩法！',
-    icon: '✨',
-    controls: ['← → 移动', '↑ 旋转', '↓ 加速下落']
-  },
-  {
-    id: GAME_IDS.MINESWEEPER,
-    name: '扫雷',
-    description: '经典扫雷，点击揭示方块找出所有地雷！',
-    icon: '💣',
-    controls: ['左键点击揭示', '右键标记地雷']
-  },
-  {
-    id: GAME_IDS.BEJEWEL,
-    name: '宝石迷阵',
-    description: '交换宝石匹配消除，挑战高分！',
-    icon: '💎',
-    controls: ['点击选中', '点击相邻交换']
-  },
-  {
-    id: GAME_IDS.SUDOKU,
-    name: '数独',
-    description: '经典数字谜题，填入1-9完成挑战！',
-    icon: '🔢',
-    controls: ['点击选择格子', '点击数字填入']
-  },
-  {
-    id: GAME_IDS.SUBWAY,
-    name: '地铁跑酷',
-    description: '无限跑酷，躲避障碍收集金币！',
-    icon: '🏃',
-    controls: ['← → 换道', '↑ 跳', '↓ 滑']
-  },
-  {
-    id: GAME_IDS.FIRE_ICE,
-    name: '森林冰火人',
-    description: '双人合作闯关，两种角色配合通关！',
-    icon: '🔥',
-    controls: ['火人: WASD', '冰人: 方向键']
-  },
-  {
-    id: GAME_IDS.GOLD_MINER,
-    name: '黄金矿工',
-    description: '操控爪子挖掘金矿，积累财富！',
-    icon: '⛏',
-    controls: ['鼠标控制方向', '点击释放爪子']
-  },
-  {
-    id: GAME_IDS.PVZ,
-    name: '植物大战僵尸',
-    description: '布置植物防线，抵御僵尸入侵！',
-    icon: '🌻',
-    controls: ['鼠标点击选择植物', '点击草坪种植']
-  },
-  {
-    id: GAME_IDS.SKETCHOUT,
-    name: '弹射对战',
-    description: '物理弹射对战，与对手一决高下！',
-    icon: '💥',
-    controls: ['← → 调整角度', '空格 蓄力发射']
-  },
-  {
-    id: GAME_IDS.FLAPPY_BIRD,
-    name: 'Flappy Bird',
-    description: '点击让小鸟飞翔，穿过管道得分！',
-    icon: '🐦',
-    controls: ['点击或空格 飞行']
-  },
-  {
-    id: GAME_IDS.PACMAN,
-    name: '吃豆人',
-    description: '经典吃豆人，吃光豆子躲避幽灵！',
-    icon: '🟡',
-    controls: ['方向键或WASD移动']
-  },
-  {
-    id: GAME_IDS.STICKMAN_HOOK,
-    name: 'Stickman Hook',
-    description: '抓住钩子摇摆前进，挑战最远距离！',
-    icon: '🦸',
-    controls: ['空格/W按住抓住', '松手释放']
-  },
-  {
-    id: GAME_IDS.HEXGL,
-    name: 'HexGL赛车',
-    description: 'WebGL极速赛车，躲避障碍完成圈数！',
-    icon: '🏎',
-    controls: ['← → 移动', '↑ 加速', '↓ 减速']
-  },
-  {
-    id: GAME_IDS.TEMPLE_RUN,
-    name: '神庙逃亡',
-    description: '在古老神庙中跑酷躲避障碍！',
-    icon: '🏛',
-    controls: ['← → 换道', '↑ 跳', '↓ 滑']
-  },
-  {
-    id: GAME_IDS.ONEVONE,
-    name: '1v1对战',
-    description: '双人同屏射击对战，谁是最后的赢家！',
-    icon: '🎯',
-    controls: ['P1: WASD移动 F射击', 'P2: 方向键移动 空格射击']
-  },
-  {
-    id: GAME_IDS.CROSSCODE,
-    name: 'CrossCode',
-    description: '复古像素风动作RPG，升级打怪！',
-    icon: '⚔',
-    controls: ['← → 移动', '空格 跳跃', 'J 攻击']
-  },
-  // 经典益智类
-  {
-    id: GAME_IDS.ZUMA,
-    name: '祖玛',
-    description: '画球射击，匹配消除三个以上同色球！',
-    icon: '🔮',
-    controls: ['鼠标瞄准', '点击发射']
-  },
-  {
-    id: GAME_IDS.LINKLINK,
-    name: '连连看',
-    description: '找到相同的图案，用线连接消除！',
-    icon: '🔗',
-    controls: ['点击选中', '点击相邻连接']
-  },
-  {
-    id: GAME_IDS.SOKOBAN,
-    name: '推箱子',
-    description: '推动箱子到目标位置，完成关卡！',
-    icon: '📦',
-    controls: ['方向键移动']
-  },
-  {
-    id: GAME_IDS.FINDDIFF,
-    name: '找不同',
-    description: '找出两幅图中的不同之处！',
-    icon: '🔍',
-    controls: ['点击标记不同']
-  },
-  {
-    id: GAME_IDS.ONESTROKE,
-    name: '一笔画',
-    description: '一笔画完所有线条，不重复不间断！',
-    icon: '✏️',
-    controls: ['点击节点', '依次连接不重复']
-  },
-  // 休闲竞技类
-  {
-    id: GAME_IDS.PINBALL,
-    name: '弹珠台',
-    description: '经典弹珠台，控制挡板弹射得分！',
-    icon: '🎱',
-    controls: ['← → 控制挡板', '空格 发射弹珠']
-  },
-  {
-    id: GAME_IDS.BOWLING,
-    name: '保龄球',
-    description: '瞄准投球，全中Strike！',
-    icon: '🎳',
-    controls: ['鼠标调整方向', '点击蓄力投球']
-  },
-  {
-    id: GAME_IDS.BILLIARDS,
-    name: '台球',
-    description: '经典8球台球，精准击球入袋！',
-    icon: '🎱',
-    controls: ['鼠标瞄准', '点击蓄力击球']
-  },
-  {
-    id: GAME_IDS.RINGTOSS,
-    name: '套圈圈',
-    description: '瞄准目标套圈，挑战最高分！',
-    icon: '⭕',
-    controls: ['鼠标调整角度力度', '点击投掷']
-  },
-  {
-    id: GAME_IDS.ENHANCED_BREAKOUT,
-    name: '打砖块增强版',
-    description: '带道具和技能的增强版打砖块！',
-    icon: '🧱',
-    controls: ['鼠标控制球拍', '空格发射球']
-  },
-  // 跑酷躲避类
-  {
-    id: GAME_IDS.SKIING,
-    name: '滑雪大冒险',
-    description: '极速下坡滑雪，躲避障碍物！',
-    icon: '⛷',
-    controls: ['← → 滑行', '↑ 跳', '↓ 加速']
-  },
-  {
-    id: GAME_IDS.DANCING_LINE,
-    name: '跳舞的线',
-    description: '跟随音乐节奏，让线条穿过障碍！',
-    icon: '💃',
-    controls: ['← → 移动', '空格 跳转']
-  },
-  {
-    id: GAME_IDS.SUBWAY2,
-    name: '地铁跑酷2',
-    description: '新版地铁跑酷，收集金币躲避火车！',
-    icon: '🚇',
-    controls: ['← → 换道', '↑ 跳', '↓ 滑']
-  },
-  {
-    id: GAME_IDS.CLIFF_RUNNER,
-    name: '悬崖跑酷',
-    description: '悬崖边奔跑跳跃，惊险刺激！',
-    icon: '🏔',
-    controls: ['空格 跳跃', '↓ 下滑']
-  },
-  {
-    id: GAME_IDS.SPEED_ESCAPE,
-    name: '极速逃亡',
-    description: '疯狂驾驶，躲避追车极限逃亡！',
-    icon: '🚗',
-    controls: ['← → 换道', '↑ 加速', '↓ 刹车']
-  },
-  {
-    id: GAME_IDS.COOP_RUN,
-    name: '双人跑酷',
-    description: '双人合作跑酷，配合躲避障碍！',
-    icon: '🤝',
-    controls: ['P1: WASD', 'P2: 方向键', 'E 复活队友']
-  },
-  {
-    id: GAME_IDS.TETRIS_BATTLE,
-    name: '俄罗斯方块对战',
-    description: '双人俄罗斯方块对战，消行给对方加惩罚！',
-    icon: '🧱',
-    controls: ['P1: A/D/W/S', 'P2: 方向键']
-  },
-  {
-    id: GAME_IDS.SNAKE_DUO,
-    name: '双人贪吃蛇',
-    description: '双人贪吃蛇对战，最后存活获胜！',
-    icon: '🐍',
-    controls: ['P1: WASD', 'P2: 方向键']
-  },
-  {
-    id: GAME_IDS.BUNNY_HUNTER,
-    name: '兔子猎人',
-    description: '双人合作射击从天而降的兔子！',
-    icon: '🐰',
-    controls: ['P1: A/D/W', 'P2: 方向键']
-  },
-  {
-    id: GAME_IDS.PINBALL_DUO,
-    name: '双人弹珠台',
-    description: '双人合作弹珠台，配合让弹珠弹得更高！',
-    icon: '🎱',
-    controls: ['P1: Q/E 挡板', 'P2: O/P 挡板', '空格 开始']
-  },
-  // 射击飞行类
-  {
-    id: GAME_IDS.THUNDER,
-    name: '雷电',
-    description: '经典竖版飞行射击，躲避子弹击落敌机！',
-    icon: '⚡',
-    controls: ['← → 移动', '空格 发射']
-  },
-  {
-    id: GAME_IDS.SPACE_SHOOTER,
-    name: '太空射击',
-    description: '在太空中驾驶飞船消灭外星入侵者！',
-    icon: '🚀',
-    controls: ['鼠标移动', '点击发射']
-  },
-  {
-    id: GAME_IDS.TANK_BATTLE,
-    name: '坦克大战',
-    description: '驾驶坦克摧毁敌方基地！',
-    icon: '🎖',
-    controls: ['WASD 移动', '空格 发射']
-  },
-  {
-    id: GAME_IDS.BUBBLE_SHOOTER,
-    name: '泡泡龙',
-    description: '射击泡泡匹配消除！',
-    icon: '🫧',
-    controls: ['鼠标瞄准', '点击发射']
-  },
-  {
-    id: GAME_IDS.ZOMBIE_SHOOTER,
-    name: '僵尸射击',
-    description: '在僵尸围城中生存并消灭僵尸！',
-    icon: '🧟',
-    controls: ['WASD 移动', '鼠标瞄准', '点击射击']
-  },
-  // 策略经营类
-  {
-    id: GAME_IDS.MONOPOLY,
-    name: '大富翁',
-    description: '经典掷骰子经营游戏，买地盖房！',
-    icon: '🏰',
-    controls: ['鼠标点击', '掷骰子移动']
-  },
-  {
-    id: GAME_IDS.HAPPY_FARM,
-    name: '开心农场',
-    description: '种植蔬菜水果，收获卖钱！',
-    icon: '🌾',
-    controls: ['鼠标点击', '种植浇水']
-  },
-  {
-    id: GAME_IDS.COOKING_MASTER,
-    name: '烹饪大师',
-    description: '按照订单烹饪美食！',
-    icon: '🍳',
-    controls: ['鼠标点击', '选择食材']
-  },
-  {
-    id: GAME_IDS.SHOP_MASTER,
-    name: '商店大师',
-    description: '经营商店满足顾客需求！',
-    icon: '🏪',
-    controls: ['鼠标点击', '上架商品']
-  },
-  // 敏捷反应类
-  {
-    id: GAME_IDS.FRUIT_NINJA,
-    name: '切水果',
-    description: '滑动切割飞出的水果！',
-    icon: '🍉',
-    controls: ['鼠标滑动切割']
-  },
-  {
-    id: GAME_IDS.WHACK_A_MOLE,
-    name: '打地鼠',
-    description: '快速敲击冒出的地鼠！',
-    icon: '🐹',
-    controls: ['鼠标点击', '敲击地鼠']
-  },
-  {
-    id: GAME_IDS.COLOR_MATCH,
-    name: '颜色匹配',
-    description: '快速匹配相同颜色的方块！',
-    icon: '🎨',
-    controls: ['鼠标点击', '快速匹配']
-  },
-  {
-    id: GAME_IDS.BRAIN_TEST,
-    name: '脑力测试',
-    description: '回答各种脑筋急转弯问题！',
-    icon: '🧠',
-    controls: ['鼠标点击', '选择答案']
-  },
-  // 棋牌休闲类
-  {
-    id: GAME_IDS.CHESS,
-    name: '中国象棋',
-    description: '与AI对弈中国象棋！',
-    icon: '♟',
-    controls: ['鼠标点击', '移动棋子']
-  },
-  {
-    id: GAME_IDS.GOBANG,
-    name: '五子棋',
-    description: '经典五子棋，先连成五子获胜！',
-    icon: '⭕',
-    controls: ['鼠标点击', '放置棋子']
-  },
-  {
-    id: GAME_IDS.LUDO,
-    name: '飞行棋',
-    description: '经典飞行棋，掷骰子走棋！',
-    icon: '✈️',
-    controls: ['鼠标点击', '掷骰子移动']
-  }
+// Numbered variants
+export const TETRIS_CONSTANTS_2 = TETRIS_CONSTANTS;
+export const SNAKE_CONSTANTS_2 = SNAKE_CONSTANTS;
+export const MINESWEEPER_CONSTANTS_2 = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_CONSTANTS_2 = BEJEWEL_CONSTANTS;
+export const SUDOKU_CONSTANTS_2 = SUDOKU_CONSTANTS;
+export const FIRE_ICE_CONSTANTS_2 = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_CONSTANTS_2 = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_CONSTANTS_2 = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_CONSTANTS_2 = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_CONSTANTS_2 = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_CONSTANTS_2 = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_CONSTANTS_2 = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_CONSTANTS_2 = ONEVONE_CONSTANTS;
+export const CROSSCODE_CONSTANTS_2 = CROSSCODE_CONSTANTS;
+export const ZUMA_CONSTANTS_2 = ZUMA_CONSTANTS;
+export const SOKOBAN_CONSTANTS_2 = SOKOBAN_CONSTANTS;
+export const RINGTOSS_CONSTANTS_2 = RINGTOSS_CONSTANTS;
+export const SKIING_CONSTANTS_2 = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_CONSTANTS_2 = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_2 = SPACE_SHOOTER_CONSTANTS;
+export const ZOMBIE_SHOOTER_CONSTANTS_2 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_CONSTANTS_2 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_CONSTANTS_2 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_CONSTANTS_2 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_CONSTANTS_2 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_CONSTANTS_2 = SNAKE_DUO_CONSTANTS;
+export const TANK_BATTLE_CONSTANTS_2 = TANK_BATTLE_CONSTANTS;
+export const BILLIARDS_CONSTANTS_2 = BILLIARDS_CONSTANTS;
+export const BOUNCE_CONSTANTS_2 = BOUNCE_CONSTANTS;
+export const BOWLING_CONSTANTS_2 = BOWLING_CONSTANTS;
+export const PINBALL_CONSTANTS_2 = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_CONSTANTS_2 = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_CONSTANTS_2 = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_CONSTANTS_2 = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_CONSTANTS_2 = COOP_RUN_CONSTANTS;
+export const HUARONG_DAO_CONSTANTS_2 = HUARONG_DAO_CONSTANTS;
+export const THUNDER_CONSTANTS_2 = THUNDER_CONSTANTS;
+export const MONOPOLY_CONSTANTS_2 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_CONSTANTS_2 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_CONSTANTS_2 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_CONSTANTS_2 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_CONSTANTS_2 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_CONSTANTS_2 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_CONSTANTS_2 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_CONSTANTS_2 = BRAIN_TEST_CONSTANTS;
+export const CHESS_CONSTANTS_2 = CHESS_CONSTANTS;
+export const GOBANG_CONSTANTS_2 = GOBANG_CONSTANTS;
+export const LUDO_CONSTANTS_2 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_CONSTANTS_2 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_CONSTANTS_2 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_CONSTANTS_2 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_CONSTANTS_2 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_CONSTANTS_2 = ICE_AGE_DEFENSE_CONSTANTS;
+export const RHYTHM_MASTER_CONSTANTS_2 = RHYTHM_MASTER_CONSTANTS;
+export const DJ_MIXER_CONSTANTS_2 = DJ_MIXER_CONSTANTS;
+export const PIANO_TILES_CONSTANTS_2 = PIANO_TILES_CONSTANTS;
+export const BEAT_RACER_CONSTANTS_2 = BEAT_RACER_CONSTANTS;
+export const MUSIC_HERO_CONSTANTS_2 = MUSIC_HERO_CONSTANTS;
+export const CANDY_CRUSH_CONSTANTS_2 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_CONSTANTS_2 = GEM_BLAST_CONSTANTS;
+export const BUBBLE_POP_CONSTANTS_2 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_CONSTANTS_2 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_CONSTANTS_2 = ANIMAL_MATCH_CONSTANTS;
+export const BOWLING_MASTER_CONSTANTS_2 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_CONSTANTS_2 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_CONSTANTS_2 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_CONSTANTS_2 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_CONSTANTS_2 = CUT_ROPE_CONSTANTS;
+export const PIXEL_FIGHTER_CONSTANTS_2 = PIXEL_FIGHTER_CONSTANTS;
+export const BRAWL_STARS_CONSTANTS_2 = BRAWL_STARS_CONSTANTS;
+export const KARATE_CHAMP_CONSTANTS_2 = KARATE_CHAMP_CONSTANTS;
+export const SAMURAI_SLASH_CONSTANTS_2 = SAMURAI_SLASH_CONSTANTS;
+export const WRESTLE_MANIA_CONSTANTS_2 = WRESTLE_MANIA_CONSTANTS;
+export const NUMBER_SLIDE_CONSTANTS_2 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_CONSTANTS_2 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_CONSTANTS_2 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_CONSTANTS_2 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_CONSTANTS_2 = VIRTUAL_PET_CONSTANTS;
+export const GARDEN_GARDEN_CONSTANTS_2 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_CONSTANTS_2 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_CONSTANTS_2 = POKEMON_CONSTANTS;
+export const BUBBLE_SHOOTER_CONSTANTS_2 = BUBBLE_SHOOTER_CONSTANTS;
+
+// Engine constants with _2 suffix
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_2 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_2 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_2 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_2 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_2 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_2 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_2 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_2 = SNAKE_DUO_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_2 = BUBBLE_SHOOTER_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS_2 = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS_2 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS_2 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS_2 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS_2 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS_2 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS_2 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS_2 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS_2 = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS_2 = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS_2 = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS_2 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS_2 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS_2 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS_2 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS_2 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS_2 = ICE_AGE_DEFENSE_CONSTANTS;
+export const RHYTHM_MASTER_ENGINE_CONSTANTS_2 = RHYTHM_MASTER_CONSTANTS;
+export const DJ_MIXER_ENGINE_CONSTANTS_2 = DJ_MIXER_CONSTANTS;
+export const PIANO_TILES_ENGINE_CONSTANTS_2 = PIANO_TILES_CONSTANTS;
+export const BEAT_RACER_ENGINE_CONSTANTS_2 = BEAT_RACER_CONSTANTS;
+export const MUSIC_HERO_ENGINE_CONSTANTS_2 = MUSIC_HERO_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS_2 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS_2 = GEM_BLAST_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_2 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_2 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_2 = ANIMAL_MATCH_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_2 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_2 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_2 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_2 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_2 = CUT_ROPE_CONSTANTS;
+export const PIXEL_FIGHTER_ENGINE_CONSTANTS_2 = PIXEL_FIGHTER_CONSTANTS;
+export const BRAWL_STARS_ENGINE_CONSTANTS_2 = BRAWL_STARS_CONSTANTS;
+export const KARATE_CHAMP_ENGINE_CONSTANTS_2 = KARATE_CHAMP_CONSTANTS;
+export const SAMURAI_SLASH_ENGINE_CONSTANTS_2 = SAMURAI_SLASH_CONSTANTS;
+export const WRESTLE_MANIA_ENGINE_CONSTANTS_2 = WRESTLE_MANIA_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_2 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_2 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_2 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_2 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_2 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_2 = VIRTUAL_PET_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_2 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_2 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_2 = POKEMON_CONSTANTS;
+export const HUARONG_DAO_CONSTANTS_3 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_CONSTANTS_3 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_CONSTANTS_3 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_CONSTANTS_3 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_CONSTANTS_3 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_CONSTANTS_3 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_CONSTANTS_3 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_CONSTANTS_3 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_CONSTANTS_3 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_CONSTANTS_3 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_CONSTANTS_3 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_CONSTANTS_3 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_CONSTANTS_3 = ANIMAL_MATCH_CONSTANTS;
+export const BUBBLE_SHOOTER_CONSTANTS_3 = BUBBLE_SHOOTER_CONSTANTS;
+export const BILLIARDS_CONSTANTS_3 = BILLIARDS_CONSTANTS;
+export const BOUNCE_CONSTANTS_3 = BOUNCE_CONSTANTS;
+export const BOWLING_CONSTANTS_3 = BOWLING_CONSTANTS;
+export const PINBALL_CONSTANTS_3 = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_CONSTANTS_3 = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_CONSTANTS_3 = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_CONSTANTS_3 = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_CONSTANTS_3 = COOP_RUN_CONSTANTS;
+export const TETRIS_CONSTANTS_3 = TETRIS_CONSTANTS;
+export const SNAKE_CONSTANTS_3 = SNAKE_CONSTANTS;
+export const MINESWEEPER_CONSTANTS_3 = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_CONSTANTS_3 = BEJEWEL_CONSTANTS;
+export const SUDOKU_CONSTANTS_3 = SUDOKU_CONSTANTS;
+export const FIRE_ICE_CONSTANTS_3 = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_CONSTANTS_3 = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_CONSTANTS_3 = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_CONSTANTS_3 = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_CONSTANTS_3 = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_CONSTANTS_3 = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_CONSTANTS_3 = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_CONSTANTS_3 = ONEVONE_CONSTANTS;
+export const CROSSCODE_CONSTANTS_3 = CROSSCODE_CONSTANTS;
+export const ZUMA_CONSTANTS_3 = ZUMA_CONSTANTS;
+export const SOKOBAN_CONSTANTS_3 = SOKOBAN_CONSTANTS;
+export const RINGTOSS_CONSTANTS_3 = RINGTOSS_CONSTANTS;
+export const SKIING_CONSTANTS_3 = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_CONSTANTS_3 = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_3 = SPACE_SHOOTER_CONSTANTS;
+export const ZOMBIE_SHOOTER_CONSTANTS_3 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_CONSTANTS_4 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_CONSTANTS_3 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_CONSTANTS_3 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_CONSTANTS_3 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_CONSTANTS_3 = SNAKE_DUO_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_4 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_CONSTANTS_3 = TANK_BATTLE_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_3 = BUBBLE_SHOOTER_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS_3 = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS_3 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS_3 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS_3 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS_3 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS_3 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS_3 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS_3 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS_3 = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS_3 = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS_3 = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS_3 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS_3 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS_3 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS_3 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS_3 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS_3 = ICE_AGE_DEFENSE_CONSTANTS;
+export const RHYTHM_MASTER_ENGINE_CONSTANTS_3 = RHYTHM_MASTER_CONSTANTS;
+export const DJ_MIXER_ENGINE_CONSTANTS_3 = DJ_MIXER_CONSTANTS;
+export const PIANO_TILES_ENGINE_CONSTANTS_3 = PIANO_TILES_CONSTANTS;
+export const BEAT_RACER_ENGINE_CONSTANTS_3 = BEAT_RACER_CONSTANTS;
+export const MUSIC_HERO_ENGINE_CONSTANTS_3 = MUSIC_HERO_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS_3 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS_3 = GEM_BLAST_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_3 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_3 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_3 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_3 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_3 = CUT_ROPE_CONSTANTS;
+export const PIXEL_FIGHTER_ENGINE_CONSTANTS_3 = PIXEL_FIGHTER_CONSTANTS;
+export const BRAWL_STARS_ENGINE_CONSTANTS_3 = BRAWL_STARS_CONSTANTS;
+export const KARATE_CHAMP_ENGINE_CONSTANTS_3 = KARATE_CHAMP_CONSTANTS;
+export const SAMURAI_SLASH_ENGINE_CONSTANTS_3 = SAMURAI_SLASH_CONSTANTS;
+export const WRESTLE_MANIA_ENGINE_CONSTANTS_3 = WRESTLE_MANIA_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_3 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_3 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_3 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_3 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_3 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_3 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_3 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_3 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_3 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_3 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_3 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_3 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_3 = ANIMAL_MATCH_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_4 = BUBBLE_SHOOTER_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_3 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_3 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_3 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_3 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_3 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_3 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_3 = ZOMBIE_SHOOTER_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_4 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_4 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_4 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_4 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_4 = CUT_ROPE_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_4 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_4 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_4 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_4 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_4 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_4 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_4 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_4 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_4 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_4 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_4 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_4 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_4 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_4 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_4 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_4 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_4 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_4 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_4 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_4 = ZOMBIE_SHOOTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_5 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_5 = DOODLE_JUMP_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_5 = BOWLING_MASTER_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_5 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_5 = CUT_ROPE_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_5 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_5 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_5 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_5 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_5 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_5 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_5 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_5 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_5 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_5 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_5 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_5 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_5 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_5 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_5 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_5 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_5 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_5 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_5 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_5 = ZOMBIE_SHOOTER_CONSTANTS;
+export const BUBBLE_SHOOTER_CONSTANTS_4 = BUBBLE_SHOOTER_CONSTANTS;
+export const BILLIARDS_CONSTANTS_4 = BILLIARDS_CONSTANTS;
+export const BOUNCE_CONSTANTS_4 = BOUNCE_CONSTANTS;
+export const BOWLING_CONSTANTS_4 = BOWLING_CONSTANTS;
+export const PINBALL_CONSTANTS_4 = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_CONSTANTS_4 = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_CONSTANTS_4 = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_CONSTANTS_4 = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_CONSTANTS_4 = COOP_RUN_CONSTANTS;
+export const TETRIS_CONSTANTS_4 = TETRIS_CONSTANTS;
+export const SNAKE_CONSTANTS_4 = SNAKE_CONSTANTS;
+export const MINESWEEPER_CONSTANTS_4 = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_CONSTANTS_4 = BEJEWEL_CONSTANTS;
+export const SUDOKU_CONSTANTS_4 = SUDOKU_CONSTANTS;
+export const FIRE_ICE_CONSTANTS_4 = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_CONSTANTS_4 = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_CONSTANTS_4 = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_CONSTANTS_4 = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_CONSTANTS_4 = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_CONSTANTS_4 = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_CONSTANTS_4 = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_CONSTANTS_4 = ONEVONE_CONSTANTS;
+export const CROSSCODE_CONSTANTS_4 = CROSSCODE_CONSTANTS;
+export const ZUMA_CONSTANTS_4 = ZUMA_CONSTANTS;
+export const SOKOBAN_CONSTANTS_4 = SOKOBAN_CONSTANTS;
+export const RINGTOSS_CONSTANTS_4 = RINGTOSS_CONSTANTS;
+export const SKIING_CONSTANTS_4 = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_CONSTANTS_4 = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_5 = SPACE_SHOOTER_CONSTANTS;
+export const ZOMBIE_SHOOTER_CONSTANTS_4 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_CONSTANTS_5 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_CONSTANTS_4 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_CONSTANTS_4 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_CONSTANTS_4 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_CONSTANTS_4 = SNAKE_DUO_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_6 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_CONSTANTS_4 = TANK_BATTLE_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_5 = BUBBLE_SHOOTER_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS_4 = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS_4 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS_4 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS_4 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS_4 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS_4 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS_4 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS_4 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS_4 = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS_4 = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS_4 = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS_4 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS_4 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS_4 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS_4 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS_4 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS_4 = ICE_AGE_DEFENSE_CONSTANTS;
+export const RHYTHM_MASTER_ENGINE_CONSTANTS_4 = RHYTHM_MASTER_CONSTANTS;
+export const DJ_MIXER_ENGINE_CONSTANTS_4 = DJ_MIXER_CONSTANTS;
+export const PIANO_TILES_ENGINE_CONSTANTS_4 = PIANO_TILES_CONSTANTS;
+export const BEAT_RACER_ENGINE_CONSTANTS_4 = BEAT_RACER_CONSTANTS;
+export const MUSIC_HERO_ENGINE_CONSTANTS_4 = MUSIC_HERO_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS_4 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS_4 = GEM_BLAST_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_6 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_6 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_6 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_6 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_6 = CUT_ROPE_CONSTANTS;
+export const PIXEL_FIGHTER_ENGINE_CONSTANTS_4 = PIXEL_FIGHTER_CONSTANTS;
+export const BRAWL_STARS_ENGINE_CONSTANTS_4 = BRAWL_STARS_CONSTANTS;
+export const KARATE_CHAMP_ENGINE_CONSTANTS_4 = KARATE_CHAMP_CONSTANTS;
+export const SAMURAI_SLASH_ENGINE_CONSTANTS_4 = SAMURAI_SLASH_CONSTANTS;
+export const WRESTLE_MANIA_ENGINE_CONSTANTS_4 = WRESTLE_MANIA_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_6 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_6 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_6 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_6 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_6 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_6 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_6 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_6 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_6 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_6 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_6 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_6 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_6 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_6 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_6 = ZOMBIE_SHOOTER_CONSTANTS;
+export const BUBBLE_SHOOTER_CONSTANTS_5 = BUBBLE_SHOOTER_CONSTANTS;
+export const BILLIARDS_CONSTANTS_5 = BILLIARDS_CONSTANTS;
+export const BOUNCE_CONSTANTS_5 = BOUNCE_CONSTANTS;
+export const BOWLING_CONSTANTS_5 = BOWLING_CONSTANTS;
+export const PINBALL_CONSTANTS_5 = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_CONSTANTS_5 = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_CONSTANTS_5 = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_CONSTANTS_5 = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_CONSTANTS_5 = COOP_RUN_CONSTANTS;
+export const TETRIS_CONSTANTS_5 = TETRIS_CONSTANTS;
+export const SNAKE_CONSTANTS_5 = SNAKE_CONSTANTS;
+export const MINESWEEPER_CONSTANTS_5 = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_CONSTANTS_5 = BEJEWEL_CONSTANTS;
+export const SUDOKU_CONSTANTS_5 = SUDOKU_CONSTANTS;
+export const FIRE_ICE_CONSTANTS_5 = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_CONSTANTS_5 = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_CONSTANTS_5 = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_CONSTANTS_5 = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_CONSTANTS_5 = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_CONSTANTS_5 = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_CONSTANTS_5 = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_CONSTANTS_5 = ONEVONE_CONSTANTS;
+export const CROSSCODE_CONSTANTS_5 = CROSSCODE_CONSTANTS;
+export const ZUMA_CONSTANTS_5 = ZUMA_CONSTANTS;
+export const SOKOBAN_CONSTANTS_5 = SOKOBAN_CONSTANTS;
+export const RINGTOSS_CONSTANTS_5 = RINGTOSS_CONSTANTS;
+export const SKIING_CONSTANTS_5 = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_CONSTANTS_5 = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_7 = SPACE_SHOOTER_CONSTANTS;
+export const ZOMBIE_SHOOTER_CONSTANTS_5 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_CONSTANTS_6 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_CONSTANTS_5 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_CONSTANTS_5 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_CONSTANTS_5 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_CONSTANTS_5 = SNAKE_DUO_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_8 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_CONSTANTS_5 = TANK_BATTLE_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_6 = BUBBLE_SHOOTER_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS_5 = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS_5 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS_5 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS_5 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS_5 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS_5 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS_5 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS_5 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS_5 = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS_5 = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS_5 = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS_5 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS_5 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS_5 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS_5 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS_5 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS_5 = ICE_AGE_DEFENSE_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS_5 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS_5 = GEM_BLAST_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_7 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_7 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_7 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_7 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_7 = CUT_ROPE_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_6 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_6 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_6 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_6 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_6 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_7 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_7 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_7 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_7 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_7 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_7 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_7 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_7 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_7 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_7 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_7 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_7 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_7 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_7 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_7 = ZOMBIE_SHOOTER_CONSTANTS;
+export const BUBBLE_SHOOTER_CONSTANTS_6 = BUBBLE_SHOOTER_CONSTANTS;
+export const BILLIARDS_CONSTANTS_6 = BILLIARDS_CONSTANTS;
+export const BOUNCE_CONSTANTS_6 = BOUNCE_CONSTANTS;
+export const BOWLING_CONSTANTS_6 = BOWLING_CONSTANTS;
+export const PINBALL_CONSTANTS_6 = PINBALL_CONSTANTS;
+export const ENHANCED_BREAKOUT_CONSTANTS_6 = ENHANCED_BREAKOUT_CONSTANTS;
+export const DANCING_LINE_CONSTANTS_6 = DANCING_LINE_CONSTANTS;
+export const CLIFF_RUNNER_CONSTANTS_6 = CLIFF_RUNNER_CONSTANTS;
+export const COOP_RUN_CONSTANTS_6 = COOP_RUN_CONSTANTS;
+export const TETRIS_CONSTANTS_6 = TETRIS_CONSTANTS;
+export const SNAKE_CONSTANTS_6 = SNAKE_CONSTANTS;
+export const MINESWEEPER_CONSTANTS_6 = MINESWEEPER_CONSTANTS;
+export const BEJEWEL_CONSTANTS_6 = BEJEWEL_CONSTANTS;
+export const SUDOKU_CONSTANTS_6 = SUDOKU_CONSTANTS;
+export const FIRE_ICE_CONSTANTS_6 = FIRE_ICE_CONSTANTS;
+export const GOLD_MINER_CONSTANTS_6 = GOLD_MINER_CONSTANTS;
+export const FLAPPY_BIRD_CONSTANTS_6 = FLAPPY_BIRD_CONSTANTS;
+export const PACMAN_CONSTANTS_6 = PACMAN_CONSTANTS;
+export const STICKMAN_HOOK_CONSTANTS_6 = STICKMAN_HOOK_CONSTANTS;
+export const HEXGL_CONSTANTS_6 = HEXGL_CONSTANTS;
+export const TEMPLE_RUN_CONSTANTS_6 = TEMPLE_RUN_CONSTANTS;
+export const ONEVONE_CONSTANTS_6 = ONEVONE_CONSTANTS;
+export const CROSSCODE_CONSTANTS_6 = CROSSCODE_CONSTANTS;
+export const ZUMA_CONSTANTS_6 = ZUMA_CONSTANTS;
+export const SOKOBAN_CONSTANTS_6 = SOKOBAN_CONSTANTS;
+export const RINGTOSS_CONSTANTS_6 = RINGTOSS_CONSTANTS;
+export const SKIING_CONSTANTS_6 = SKIING_CONSTANTS;
+export const SPEED_ESCAPE_CONSTANTS_6 = SPEED_ESCAPE_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_9 = SPACE_SHOOTER_CONSTANTS;
+export const ZOMBIE_SHOOTER_CONSTANTS_6 = ZOMBIE_SHOOTER_CONSTANTS;
+export const FISH_TANK_CONSTANTS_7 = FISH_TANK_CONSTANTS;
+export const PINBALL_DUO_CONSTANTS_6 = PINBALL_DUO_CONSTANTS;
+export const BUNNY_HUNTER_CONSTANTS_6 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_CONSTANTS_6 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_CONSTANTS_6 = SNAKE_DUO_CONSTANTS;
+export const SPACE_SHOOTER_CONSTANTS_10 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_CONSTANTS_6 = TANK_BATTLE_CONSTANTS;
+export const BUBBLE_SHOOTER_ENGINE_CONSTANTS_7 = BUBBLE_SHOOTER_CONSTANTS;
+export const THUNDER_ENGINE_CONSTANTS_6 = THUNDER_CONSTANTS;
+export const MONOPOLY_ENGINE_CONSTANTS_6 = MONOPOLY_CONSTANTS;
+export const HAPPY_FARM_ENGINE_CONSTANTS_6 = HAPPY_FARM_CONSTANTS;
+export const COOKING_MASTER_ENGINE_CONSTANTS_6 = COOKING_MASTER_CONSTANTS;
+export const SHOP_MASTER_ENGINE_CONSTANTS_6 = SHOP_MASTER_CONSTANTS;
+export const FRUIT_NINJA_ENGINE_CONSTANTS_6 = FRUIT_NINJA_CONSTANTS;
+export const WHACK_A_MOLE_ENGINE_CONSTANTS_6 = WHACK_A_MOLE_CONSTANTS;
+export const COLOR_MATCH_ENGINE_CONSTANTS_6 = COLOR_MATCH_CONSTANTS;
+export const BRAIN_TEST_ENGINE_CONSTANTS_6 = BRAIN_TEST_CONSTANTS;
+export const CHESS_ENGINE_CONSTANTS_6 = CHESS_CONSTANTS;
+export const GOBANG_ENGINE_CONSTANTS_6 = GOBANG_CONSTANTS;
+export const LUDO_ENGINE_CONSTANTS_6 = LUDO_CONSTANTS;
+export const TOWER_DEFENSE_ENGINE_CONSTANTS_6 = TOWER_DEFENSE_CONSTANTS;
+export const CATAPULT_DEFENSE_ENGINE_CONSTANTS_6 = CATAPULT_DEFENSE_CONSTANTS;
+export const MAGIC_TOWER_ENGINE_CONSTANTS_6 = MAGIC_TOWER_CONSTANTS;
+export const DESERT_WAR_ENGINE_CONSTANTS_6 = DESERT_WAR_CONSTANTS;
+export const ICE_AGE_DEFENSE_ENGINE_CONSTANTS_6 = ICE_AGE_DEFENSE_CONSTANTS;
+export const CANDY_CRUSH_ENGINE_CONSTANTS_6 = CANDY_CRUSH_CONSTANTS;
+export const GEM_BLAST_ENGINE_CONSTANTS_6 = GEM_BLAST_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_8 = BOWLING_MASTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_8 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_8 = DOODLE_JUMP_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_8 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_8 = CUT_ROPE_CONSTANTS;
+export const HUARONG_DAO_ENGINE_CONSTANTS_7 = HUARONG_DAO_CONSTANTS;
+export const NUMBER_SLIDE_ENGINE_CONSTANTS_7 = NUMBER_SLIDE_CONSTANTS;
+export const PIPE_CONNECT_ENGINE_CONSTANTS_7 = PIPE_CONNECT_CONSTANTS;
+export const MEMORY_MATCH_ENGINE_CONSTANTS_7 = MEMORY_MATCH_CONSTANTS;
+export const WORD_SEARCH_ENGINE_CONSTANTS_7 = WORD_SEARCH_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_8 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_8 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_8 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_8 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_8 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_8 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_8 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_8 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_8 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_8 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_8 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_8 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_8 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_8 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_8 = ZOMBIE_SHOOTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_9 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_9 = DOODLE_JUMP_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_9 = BOWLING_MASTER_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_9 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_9 = CUT_ROPE_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_9 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_9 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_9 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_9 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_9 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_9 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_9 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_9 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_9 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_9 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_9 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_9 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_9 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_9 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_9 = ZOMBIE_SHOOTER_CONSTANTS;
+export const ANGRY_BIRDS_ENGINE_CONSTANTS_10 = ANGRY_BIRDS_CONSTANTS;
+export const DOODLE_JUMP_ENGINE_CONSTANTS_10 = DOODLE_JUMP_CONSTANTS;
+export const BOWLING_MASTER_ENGINE_CONSTANTS_10 = BOWLING_MASTER_CONSTANTS;
+export const PINBALL_PHYSICS_ENGINE_CONSTANTS_10 = PINBALL_PHYSICS_CONSTANTS;
+export const CUT_ROPE_ENGINE_CONSTANTS_10 = CUT_ROPE_CONSTANTS;
+export const VIRTUAL_PET_ENGINE_CONSTANTS_10 = VIRTUAL_PET_CONSTANTS;
+export const FISH_TANK_ENGINE_CONSTANTS_10 = FISH_TANK_CONSTANTS;
+export const GARDEN_GARDEN_ENGINE_CONSTANTS_10 = GARDEN_GARDEN_CONSTANTS;
+export const COOKIE_BAKERY_ENGINE_CONSTANTS_10 = COOKIE_BAKERY_CONSTANTS;
+export const POKEMON_ENGINE_CONSTANTS_10 = POKEMON_CONSTANTS;
+export const BUBBLE_POP_ENGINE_CONSTANTS_10 = BUBBLE_POP_CONSTANTS;
+export const COOKIE_MATCH_ENGINE_CONSTANTS_10 = COOKIE_MATCH_CONSTANTS;
+export const ANIMAL_MATCH_ENGINE_CONSTANTS_10 = ANIMAL_MATCH_CONSTANTS;
+export const BUNNY_HUNTER_ENGINE_CONSTANTS_10 = BUNNY_HUNTER_CONSTANTS;
+export const TETRIS_BATTLE_ENGINE_CONSTANTS_10 = TETRIS_BATTLE_CONSTANTS;
+export const SNAKE_DUO_ENGINE_CONSTANTS_10 = SNAKE_DUO_CONSTANTS;
+export const PINBALL_DUO_ENGINE_CONSTANTS_10 = PINBALL_DUO_CONSTANTS;
+export const SPACE_SHOOTER_ENGINE_CONSTANTS_10 = SPACE_SHOOTER_CONSTANTS;
+export const TANK_BATTLE_ENGINE_CONSTANTS_10 = TANK_BATTLE_CONSTANTS;
+export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_10 = ZOMBIE_SHOOTER_CONSTANTS;
+
+// GAMES_LIST
+export const GAMES_LIST = [
+  { id: '2048', name: '2048', category: 'puzzle', icon: '🔢', difficulty: 'medium' },
+  { id: 'tetris', name: '俄罗斯方块', category: 'puzzle', icon: '🧱', difficulty: 'medium' },
+  { id: 'snake', name: '贪吃蛇', category: 'puzzle', icon: '🐍', difficulty: 'easy' },
+  { id: 'bounce', name: '弹球', category: 'puzzle', icon: '🏀', difficulty: 'easy' },
+  { id: 'fusion2048', name: '融合2048', category: 'puzzle', icon: '✨', difficulty: 'hard' },
+  { id: 'minesweeper', name: '扫雷', category: 'puzzle', icon: '💣', difficulty: 'medium' },
+  { id: 'bejeweled', name: '宝石迷阵', category: 'puzzle', icon: '💎', difficulty: 'medium' },
+  { id: 'sudoku', name: '数独', category: 'puzzle', icon: '🔢', difficulty: 'hard' },
+  { id: 'subway', name: '地铁跑酷', category: 'arcade', icon: '🚇', difficulty: 'easy' },
+  { id: 'fireice', name: '冰火人', category: 'arcade', icon: '❄️', difficulty: 'medium' },
+  { id: 'goldminer', name: '黄金矿工', category: 'arcade', icon: '⛏️', difficulty: 'easy' },
+  { id: 'pvz', name: '植物大战僵尸', category: 'arcade', icon: '🌻', difficulty: 'hard' },
+  { id: 'sketchout', name: 'Sketchout', category: 'arcade', icon: '✏️', difficulty: 'medium' },
+  { id: 'flappybird', name: 'Flappy Bird', category: 'arcade', icon: '🐦', difficulty: 'hard' },
+  { id: 'pacman', name: 'Pacman', category: 'arcade', icon: '👻', difficulty: 'medium' },
+  { id: 'stickmanhook', name: 'Stickman Hook', category: 'arcade', icon: '🪝', difficulty: 'hard' },
+  { id: 'hexgl', name: 'HexGL', category: 'arcade', icon: '🏎️', difficulty: 'hard' },
+  { id: 'templerun', name: 'Temple Run', category: 'arcade', icon: '🏃', difficulty: 'medium' },
+  { id: 'onevone', name: '1v1', category: 'arcade', icon: '⚔️', difficulty: 'hard' },
+  { id: 'crosscode', name: 'CrossCode', category: 'arcade', icon: '🌐', difficulty: 'hard' },
+  { id: 'zuma', name: '祖玛', category: 'puzzle', icon: '🐸', difficulty: 'hard' },
+  { id: 'linklink', name: '连连看', category: 'puzzle', icon: '🔗', difficulty: 'easy' },
+  { id: 'sokoban', name: '推箱子', category: 'puzzle', icon: '📦', difficulty: 'medium' },
+  { id: 'finddiff', name: '找茬', category: 'puzzle', icon: '🔍', difficulty: 'easy' },
+  { id: 'onestroke', name: '一笔画', category: 'puzzle', icon: '✏️', difficulty: 'medium' },
+  { id: 'pinball', name: '弹珠台', category: 'arcade', icon: '🎱', difficulty: 'medium' },
+  { id: 'bowling', name: '保龄球', category: 'arcade', icon: '🎳', difficulty: 'easy' },
+  { id: 'billiards', name: '台球', category: 'arcade', icon: '🎱', difficulty: 'medium' },
+  { id: 'ringtoss', name: '套圈', category: 'arcade', icon: '🎯', difficulty: 'easy' },
+  { id: 'enhancedbreakout', name: 'Breakout', category: 'arcade', icon: '🧱', difficulty: 'medium' },
+  { id: 'skiing', name: '滑雪大冒险', category: 'arcade', icon: '⛷️', difficulty: 'medium' },
+  { id: 'dancingline', name: '跳舞的线', category: 'arcade', icon: '💃', difficulty: 'hard' },
+  { id: 'subway2', name: '地铁跑酷2', category: 'arcade', icon: '🚇', difficulty: 'easy' },
+  { id: 'cliffrunner', name: '悬崖奔跑', category: 'arcade', icon: '🏔️', difficulty: 'hard' },
+  { id: 'speedescape', name: '极速逃脱', category: 'arcade', icon: '💨', difficulty: 'medium' },
+  { id: 'cooprun', name: '双人跑酷', category: 'co-op', icon: '🏃', difficulty: 'medium' },
+  { id: 'tetrisbattle', name: '俄罗斯方块对战', category: 'co-op', icon: '🧱', difficulty: 'hard' },
+  { id: 'snakeduo', name: '双人贪吃蛇', category: 'co-op', icon: '🐍', difficulty: 'medium' },
+  { id: 'bunnyhunter', name: '猎人射兔子', category: 'co-op', icon: '🐰', difficulty: 'easy' },
+  { id: 'pinballduo', name: '双人弹珠', category: 'co-op', icon: '🎱', difficulty: 'medium' },
+  { id: 'thunder', name: '雷电', category: 'shooting', icon: '⚡', difficulty: 'medium' },
+  { id: 'spaceshooter', name: '太空射击', category: 'shooting', icon: '🚀', difficulty: 'medium' },
+  { id: 'tankbattle', name: '坦克大战', category: 'shooting', icon: '🎖️', difficulty: 'hard' },
+  { id: 'bubbleshooter', name: '泡泡射击', category: 'shooting', icon: '🫧', difficulty: 'medium' },
+  { id: 'zombieshooter', name: '僵尸射击', category: 'shooting', icon: '🧟', difficulty: 'hard' },
+  { id: 'monopoly', name: '大富翁', category: 'strategy', icon: '💰', difficulty: 'medium' },
+  { id: 'happyfarm', name: '开心农场', category: 'strategy', icon: '🌾', difficulty: 'easy' },
+  { id: 'cookingmaster', name: '烹饪大师', category: 'strategy', icon: '🍳', difficulty: 'medium' },
+  { id: 'shopmaster', name: '商店大师', category: 'strategy', icon: '🏪', difficulty: 'medium' },
+  { id: 'fruitninja', name: '水果忍者', category: 'reaction', icon: '🍎', difficulty: 'hard' },
+  { id: 'whackamole', name: '打地鼠', category: 'reaction', icon: '🐹', difficulty: 'easy' },
+  { id: 'colormatch', name: '颜色匹配', category: 'reaction', icon: '🎨', difficulty: 'medium' },
+  { id: 'braintest', name: '脑力测试', category: 'reaction', icon: '🧠', difficulty: 'medium' },
+  { id: 'chess', name: '中国象棋', category: 'board', icon: '♟️', difficulty: 'hard' },
+  { id: 'gobang', name: '五子棋', category: 'board', icon: '⭕', difficulty: 'medium' },
+  { id: 'ludo', name: '飞行棋', category: 'board', icon: '🎲', difficulty: 'easy' },
+  { id: 'towerdefense', name: '经典塔防', category: 'tower', icon: '🏰', difficulty: 'medium' },
+  { id: 'catapultdefense', name: '弹射塔防', category: 'tower', icon: '💥', difficulty: 'medium' },
+  { id: 'magictower', name: '魔法塔防', category: 'tower', icon: '🔮', difficulty: 'hard' },
+  { id: 'desertwar', name: '沙漠战争', category: 'tower', icon: '🏜️', difficulty: 'hard' },
+  { id: 'iceagedefense', name: '冰时代塔防', category: 'tower', icon: '❄️', difficulty: 'medium' },
+  { id: 'rhythmmaster', name: '节奏大师', category: 'rhythm', icon: '🎵', difficulty: 'hard' },
+  { id: 'djmixer', name: 'DJ混音', category: 'rhythm', icon: '🎧', difficulty: 'medium' },
+  { id: 'pianotiles', name: '钢琴块', category: 'rhythm', icon: '🎹', difficulty: 'hard' },
+  { id: 'beatracer', name: '节拍赛车', category: 'rhythm', icon: '🏎️', difficulty: 'medium' },
+  { id: 'musichero', name: '音乐英雄', category: 'rhythm', icon: '🎸', difficulty: 'hard' },
+  { id: 'candycrush', name: '糖果传奇', category: 'match3', icon: '🍬', difficulty: 'medium' },
+  { id: 'gemblast', name: '宝石爆破', category: 'match3', icon: '💎', difficulty: 'medium' },
+  { id: 'bubblepop', name: '泡泡爆破', category: 'match3', icon: '🫧', difficulty: 'easy' },
+  { id: 'cookiismatch', name: '饼干消消乐', category: 'match3', icon: '🍪', difficulty: 'easy' },
+  { id: 'animalmatch', name: '动物消消乐', category: 'match3', icon: '🐱', difficulty: 'easy' },
+  { id: 'pixelfighter', name: '像素格斗', category: 'fighting', icon: '👊', difficulty: 'hard' },
+  { id: 'brawlstars', name: '乱斗明星', category: 'fighting', icon: '⭐', difficulty: 'medium' },
+  { id: 'karatechamp', name: '空手道冠军', category: 'fighting', icon: '🥋', difficulty: 'hard' },
+  { id: 'samuraislash', name: '武士斩击', category: 'fighting', icon: '⚔️', difficulty: 'hard' },
+  { id: 'wrestlemania', name: '摔跤狂热', category: 'fighting', icon: '🤼', difficulty: 'medium' },
+  { id: 'huarongdao', name: '华容道', category: 'puzzle2', icon: '🧩', difficulty: 'hard' },
+  { id: 'numberslide', name: '数字华容道', category: 'puzzle2', icon: '🔢', difficulty: 'medium' },
+  { id: 'pipeconnect', name: '水管连接', category: 'puzzle2', icon: '🔧', difficulty: 'medium' },
+  { id: 'memorymatch', name: '记忆翻牌', category: 'puzzle2', icon: '🃏', difficulty: 'easy' },
+  { id: 'wordsearch', name: '文字搜索', category: 'puzzle2', icon: '📝', difficulty: 'medium' },
+  { id: 'virtualpet', name: '虚拟宠物', category: '养成', icon: '🐾', difficulty: 'easy' },
+  { id: 'fishtank', name: '养鱼大亨', category: '养成', icon: '🐠', difficulty: 'easy' },
+  { id: 'gardengarden', name: '花园种花', category: '养成', icon: '🌸', difficulty: 'easy' },
+  { id: 'cookiebakery', name: '饼干面包店', category: '养成', icon: '🥐', difficulty: 'medium' },
+  { id: 'pokemon', name: '口袋妖怪', category: '养成', icon: '🎮', difficulty: 'medium' },
+  { id: 'angrybirds', name: '愤怒的小鸟', category: 'physics', icon: '🐦', difficulty: 'medium' },
+  { id: 'doodlejump', name: '涂鸦跳跃', category: 'physics', icon: '✏️', difficulty: 'hard' },
+  { id: 'bowlingmaster', name: '保龄球大师', category: 'physics', icon: '🎳', difficulty: 'medium' },
+  { id: 'pinballphysics', name: '弹球物理', category: 'physics', icon: '🎱', difficulty: 'medium' },
+  { id: 'cutrope', name: '切割绳子', category: 'physics', icon: '✂️', difficulty: 'medium' },
 ];
+
+// Game constants for compatibility
+export const GAME_CONSTANTS: Record<string, any> = {
+  DEFAULT_CANVAS_WIDTH: 600,
+  DEFAULT_CANVAS_HEIGHT: 500,
+  DEFAULT_GRID_SIZE: 8,
+  DEFAULT_CELL_SIZE: 50,
+  DEFAULT_GAME_DURATION: 60,
+  DEFAULT_ROUND_DURATION: 90,
+};

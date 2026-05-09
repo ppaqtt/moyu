@@ -1,75 +1,34 @@
 import { useEffect, useRef, useCallback } from 'react';
 
-interface UseGameLoopOptions {
-  callback: () => void;
-  delay: number;
-  enabled: boolean;
+export interface GameLoopCallback {
+  (deltaTime: number): void;
 }
 
-export function useGameLoop({ callback, delay, enabled }: UseGameLoopOptions) {
-  const savedCallback = useRef(callback);
-  const delayRef = useRef(delay);
-  const enabledRef = useRef(enabled);
+export function useGameLoop(callback: GameLoopCallback, isRunning: boolean) {
+  const requestRef = useRef<number>();
+  const previousTimeRef = useRef<number>();
+  const callbackRef = useRef(callback);
 
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
+  callbackRef.current = callback;
 
-  useEffect(() => {
-    delayRef.current = delay;
-  }, [delay]);
-
-  useEffect(() => {
-    enabledRef.current = enabled;
-  }, [enabled]);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    let id: number;
-    const tick = () => {
-      if (enabledRef.current) {
-        savedCallback.current();
-        id = window.setTimeout(tick, delayRef.current);
-      }
-    };
-
-    id = window.setTimeout(tick, delayRef.current);
-    return () => clearTimeout(id);
-  }, [enabled, delay]);
-}
-
-export function useRAFLoop(callback: () => void, enabled: boolean) {
-  const savedCallback = useRef(callback);
-  const rafIdRef = useRef<number | null>(null);
-  const lastTimeRef = useRef(0);
-
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    if (!enabled) {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
-      return;
+  const animate = useCallback((time: number) => {
+    if (previousTimeRef.current !== undefined) {
+      const deltaTime = time - previousTimeRef.current;
+      callbackRef.current(deltaTime);
     }
+    previousTimeRef.current = time;
+    requestRef.current = requestAnimationFrame(animate);
+  }, []);
 
-    const animate = (time: number) => {
-      if (time - lastTimeRef.current >= 16) {
-        savedCallback.current();
-        lastTimeRef.current = time;
-      }
-      rafIdRef.current = requestAnimationFrame(animate);
-    };
-
-    rafIdRef.current = requestAnimationFrame(animate);
+  useEffect(() => {
+    if (isRunning) {
+      previousTimeRef.current = undefined;
+      requestRef.current = requestAnimationFrame(animate);
+    }
     return () => {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
       }
     };
-  }, [enabled]);
+  }, [isRunning, animate]);
 }

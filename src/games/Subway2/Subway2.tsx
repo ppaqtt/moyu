@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useKeyboard } from '../../hooks/useKeyboard';
-import { useRAFLoop } from '../../hooks/useGameLoop';
+import { useGameLoop } from '../../hooks/useGameLoop';
 import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
 import { Subway2Engine, SUBWAY2_CONSTANTS, Obstacle } from './engine';
 
@@ -85,7 +85,7 @@ export default function Subway2() {
     }
   }, [endGame]);
 
-  useRAFLoop(handleTick, gameState === 'playing');
+  useGameLoop(handleTick, gameState === 'playing');
 
   useKeyboard({
     onArrowLeft: () => engineRef.current?.moveLeft(),
