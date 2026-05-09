@@ -32,6 +32,11 @@ import Bowling from '../games/Bowling/Bowling';
 import Billiards from '../games/Billiards/Billiards';
 import RingToss from '../games/RingToss/RingToss';
 import EnhancedBreakout from '../games/EnhancedBreakout/EnhancedBreakout';
+import Skiing from '../games/Skiing/Skiing';
+import DancingLine from '../games/DancingLine/DancingLine';
+import Subway2 from '../games/Subway2/Subway2';
+import CliffRunner from '../games/CliffRunner/CliffRunner';
+import SpeedEscape from '../games/SpeedEscape/SpeedEscape';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -233,6 +238,16 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <RingToss />;
       case GAME_IDS.ENHANCED_BREAKOUT:
         return <EnhancedBreakout />;
+      case GAME_IDS.SKIING:
+        return <Skiing />;
+      case GAME_IDS.DANCING_LINE:
+        return <DancingLine />;
+      case GAME_IDS.SUBWAY2:
+        return <Subway2 />;
+      case GAME_IDS.CLIFF_RUNNER:
+        return <CliffRunner />;
+      case GAME_IDS.SPEED_ESCAPE:
+        return <SpeedEscape />;
       default:
         return (
           <motion.div

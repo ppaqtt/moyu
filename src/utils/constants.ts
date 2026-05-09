@@ -30,7 +30,13 @@ export const GAME_IDS = {
   BOWLING: 'bowling',
   BILLIARDS: 'billiards',
   RINGTOSS: 'ringtoss',
-  ENHANCED_BREAKOUT: 'enhancedbreakout'
+  ENHANCED_BREAKOUT: 'enhancedbreakout',
+  // 跑酷躲避类
+  SKIING: 'skiing',
+  DANCING_LINE: 'dancingline',
+  SUBWAY2: 'subway2',
+  CLIFF_RUNNER: 'cliffrunner',
+  SPEED_ESCAPE: 'speedescape'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -164,6 +170,57 @@ export const RINGTOSS_CONSTANTS = {
   THROW_POWER: 15
 };
 
+// 滑雪大冒险游戏常量
+export const SKIING_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 700,
+  PLAYER_SIZE: 30,
+  OBSTACLE_SIZE: 25,
+  INITIAL_SPEED: 5,
+  SPEED_INCREMENT: 0.2
+};
+
+// 跳舞的线游戏常量
+export const DANCING_LINE_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 500,
+  LINE_WIDTH: 8,
+  NODE_RADIUS: 15,
+  SEGMENT_LENGTH: 40
+};
+
+// 地铁跑酷2游戏常量
+export const SUBWAY2_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 800,
+  LANE_COUNT: 3,
+  PLAYER_WIDTH: 40,
+  PLAYER_HEIGHT: 60,
+  INITIAL_SPEED: 6,
+  SPEED_INCREMENT: 0.3
+};
+
+// 悬崖跑酷游戏常量
+export const CLIFF_RUNNER_CONSTANTS = {
+  CANVAS_WIDTH: 700,
+  CANVAS_HEIGHT: 500,
+  PLAYER_SIZE: 35,
+  GROUND_HEIGHT: 50,
+  GRAVITY: 0.8,
+  JUMP_FORCE: -15
+};
+
+// 极速逃亡游戏常量
+export const SPEED_ESCAPE_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  PLAYER_SIZE: 30,
+  CAR_WIDTH: 40,
+  CAR_HEIGHT: 70,
+  INITIAL_SPEED: 5,
+  LANE_COUNT: 4
+};
+
 // 打砖块增强版游戏常量
 export const ENHANCED_BREAKOUT_CONSTANTS = {
   CANVAS_WIDTH: 600,
@@ -211,7 +268,13 @@ export const STORAGE_KEYS = {
   BOWLING: 'mouyu_bowling',
   BILLIARDS: 'mouyu_billiards',
   RINGTOSS: 'mouyu_ringtoss',
-  ENHANCED_BREAKOUT: 'mouyu_enhancedbreakout'
+  ENHANCED_BREAKOUT: 'mouyu_enhancedbreakout',
+  // 跑酷躲避类
+  SKIING: 'mouyu_skiing',
+  DANCING_LINE: 'mouyu_dancingline',
+  SUBWAY2: 'mouyu_subway2',
+  CLIFF_RUNNER: 'mouyu_cliffrunner',
+  SPEED_ESCAPE: 'mouyu_speedescape'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -466,5 +529,41 @@ export const GAMES_LIST: GameInfo[] = [
     description: '带道具和技能的增强版打砖块！',
     icon: '🧱',
     controls: ['鼠标控制球拍', '空格发射球']
+  },
+  // 跑酷躲避类
+  {
+    id: GAME_IDS.SKIING,
+    name: '滑雪大冒险',
+    description: '极速下坡滑雪，躲避障碍物！',
+    icon: '⛷',
+    controls: ['← → 滑行', '↑ 跳', '↓ 加速']
+  },
+  {
+    id: GAME_IDS.DANCING_LINE,
+    name: '跳舞的线',
+    description: '跟随音乐节奏，让线条穿过障碍！',
+    icon: '💃',
+    controls: ['← → 移动', '空格 跳转']
+  },
+  {
+    id: GAME_IDS.SUBWAY2,
+    name: '地铁跑酷2',
+    description: '新版地铁跑酷，收集金币躲避火车！',
+    icon: '🚇',
+    controls: ['← → 换道', '↑ 跳', '↓ 滑']
+  },
+  {
+    id: GAME_IDS.CLIFF_RUNNER,
+    name: '悬崖跑酷',
+    description: '悬崖边奔跑跳跃，惊险刺激！',
+    icon: '🏔',
+    controls: ['空格 跳跃', '↓ 下滑']
+  },
+  {
+    id: GAME_IDS.SPEED_ESCAPE,
+    name: '极速逃亡',
+    description: '疯狂驾驶，躲避追车极限逃亡！',
+    icon: '🚗',
+    controls: ['← → 换道', '↑ 加速', '↓ 刹车']
   }
 ];
