@@ -27,6 +27,11 @@ import LinkLink from '../games/LinkLink/LinkLink';
 import Sokoban from '../games/Sokoban/Sokoban';
 import FindDiff from '../games/FindDiff/FindDiff';
 import OneStroke from '../games/OneStroke/OneStroke';
+import Pinball from '../games/Pinball/Pinball';
+import Bowling from '../games/Bowling/Bowling';
+import Billiards from '../games/Billiards/Billiards';
+import RingToss from '../games/RingToss/RingToss';
+import EnhancedBreakout from '../games/EnhancedBreakout/EnhancedBreakout';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -218,6 +223,16 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <FindDiff />;
       case GAME_IDS.ONESTROKE:
         return <OneStroke />;
+      case GAME_IDS.PINBALL:
+        return <Pinball />;
+      case GAME_IDS.BOWLING:
+        return <Bowling />;
+      case GAME_IDS.BILLIARDS:
+        return <Billiards />;
+      case GAME_IDS.RINGTOSS:
+        return <RingToss />;
+      case GAME_IDS.ENHANCED_BREAKOUT:
+        return <EnhancedBreakout />;
       default:
         return (
           <motion.div

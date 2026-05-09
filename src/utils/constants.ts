@@ -24,7 +24,13 @@ export const GAME_IDS = {
   LINKLINK: 'linklink',
   SOKOBAN: 'sokoban',
   FINDDIFF: 'finddiff',
-  ONESTROKE: 'onestroke'
+  ONESTROKE: 'onestroke',
+  // 休闲竞技类
+  PINBALL: 'pinball',
+  BOWLING: 'bowling',
+  BILLIARDS: 'billiards',
+  RINGTOSS: 'ringtoss',
+  ENHANCED_BREAKOUT: 'enhancedbreakout'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -117,6 +123,62 @@ export const ONESTROKE_CONSTANTS = {
   CELL_SIZE: 50
 };
 
+// 弹珠台游戏常量
+export const PINBALL_CONSTANTS = {
+  CANVAS_WIDTH: 400,
+  CANVAS_HEIGHT: 700,
+  BALL_RADIUS: 8,
+  FLIPPER_LENGTH: 60,
+  FLIPPER_WIDTH: 12,
+  GRAVITY: 0.15,
+  BUMPER_RADIUS: 20
+};
+
+// 保龄球游戏常量
+export const BOWLING_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 400,
+  LANE_WIDTH: 200,
+  BALL_RADIUS: 12,
+  PIN_RADIUS: 8,
+  TOTAL_FRAMES: 10
+};
+
+// 台球游戏常量
+export const BILLIARDS_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 450,
+  BALL_RADIUS: 10,
+  POCKET_RADIUS: 18,
+  FRICTION: 0.985,
+  MIN_SPEED: 0.1
+};
+
+// 套圈圈游戏常量
+export const RINGTOSS_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 500,
+  RING_RADIUS: 25,
+  POLE_RADIUS: 8,
+  TOTAL_RINGS: 10,
+  THROW_POWER: 15
+};
+
+// 打砖块增强版游戏常量
+export const ENHANCED_BREAKOUT_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 700,
+  PADDLE_WIDTH: 100,
+  PADDLE_HEIGHT: 15,
+  BALL_RADIUS: 8,
+  BALL_SPEED: 5,
+  BRICK_ROWS: 8,
+  BRICK_COLS: 10,
+  BRICK_HEIGHT: 25,
+  BRICK_GAP: 3,
+  POWERUP_CHANCE: 0.15
+};
+
 export const STORAGE_KEYS = {
   GAME_2048: 'mouyu_game_2048',
   TETRIS: 'mouyu_tetris',
@@ -143,7 +205,13 @@ export const STORAGE_KEYS = {
   LINKLINK: 'mouyu_linklink',
   SOKOBAN: 'mouyu_sokoban',
   FINDDIFF: 'mouyu_finddiff',
-  ONESTROKE: 'mouyu_onestroke'
+  ONESTROKE: 'mouyu_onestroke',
+  // 休闲竞技类
+  PINBALL: 'mouyu_pinball',
+  BOWLING: 'mouyu_bowling',
+  BILLIARDS: 'mouyu_billiards',
+  RINGTOSS: 'mouyu_ringtoss',
+  ENHANCED_BREAKOUT: 'mouyu_enhancedbreakout'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -362,5 +430,41 @@ export const GAMES_LIST: GameInfo[] = [
     description: '一笔画完所有线条，不重复不间断！',
     icon: '✏️',
     controls: ['点击节点', '依次连接不重复']
+  },
+  // 休闲竞技类
+  {
+    id: GAME_IDS.PINBALL,
+    name: '弹珠台',
+    description: '经典弹珠台，控制挡板弹射得分！',
+    icon: '🎱',
+    controls: ['← → 控制挡板', '空格 发射弹珠']
+  },
+  {
+    id: GAME_IDS.BOWLING,
+    name: '保龄球',
+    description: '瞄准投球，全中Strike！',
+    icon: '🎳',
+    controls: ['鼠标调整方向', '点击蓄力投球']
+  },
+  {
+    id: GAME_IDS.BILLIARDS,
+    name: '台球',
+    description: '经典8球台球，精准击球入袋！',
+    icon: '🎱',
+    controls: ['鼠标瞄准', '点击蓄力击球']
+  },
+  {
+    id: GAME_IDS.RINGTOSS,
+    name: '套圈圈',
+    description: '瞄准目标套圈，挑战最高分！',
+    icon: '⭕',
+    controls: ['鼠标调整角度力度', '点击投掷']
+  },
+  {
+    id: GAME_IDS.ENHANCED_BREAKOUT,
+    name: '打砖块增强版',
+    description: '带道具和技能的增强版打砖块！',
+    icon: '🧱',
+    controls: ['鼠标控制球拍', '空格发射球']
   }
 ];
