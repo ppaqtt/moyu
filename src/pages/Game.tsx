@@ -141,6 +141,30 @@ import ZombieSurvival from '../games/ZombieSurvival/ZombieSurvivalGame';
 import ForestAdventure from '../games/ForestAdventure/ForestAdventureGame';
 import MountainClimber from '../games/MountainClimber/MountainClimberGame';
 import HelicopterEscape from '../games/HelicopterEscape/HelicopterEscapeGame';
+// 双人合作类
+import CoopSokoban from '../games/CoopSokoban/CoopSokoban';
+import CoopMaze from '../games/CoopMaze/CoopMaze';
+import CoopBreakout from '../games/CoopBreakout/CoopBreakout';
+import CoopFruitCatch from '../games/CoopFruitCatch/CoopFruitCatch';
+import CoopBounce from '../games/CoopBounce/CoopBounce';
+// 策略经营类
+import SpaceTrader from '../games/SpaceTrader/SpaceTrader';
+import RestaurantTycoon from '../games/RestaurantTycoon/RestaurantTycoon';
+import HotelEmpire from '../games/HotelEmpire/HotelEmpire';
+import OilTycoon from '../games/OilTycoon/OilTycoon';
+import HospitalManage from '../games/HospitalManage/HospitalManage';
+// 反应类
+import QuickMemory from '../games/QuickMemory/QuickMemory';
+import QuickReflex from '../games/QuickReflex/QuickReflex';
+import ColorDetect from '../games/ColorDetect/ColorDetect';
+import RhythmTap from '../games/RhythmTap/RhythmTap';
+import TraceLight from '../games/TraceLight/TraceLight';
+// 棋类
+import HopChess from '../games/HopChess/HopChess';
+import InternationalChess from '../games/InternationalChess/InternationalChess';
+import MilitaryChess from '../games/MilitaryChess/MilitaryChess';
+import AnimalChess from '../games/AnimalChess/AnimalChess';
+import NumberPuzzle from '../games/NumberPuzzle/NumberPuzzle';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -547,6 +571,50 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <MountainClimber />;
       case GAME_IDS.HELICOPTER_ESCAPE:
         return <HelicopterEscape />;
+      // 双人合作类
+      case GAME_IDS.COOP_SOKOBAN:
+        return <CoopSokoban />;
+      case GAME_IDS.COOP_MAZE:
+        return <CoopMaze />;
+      case GAME_IDS.COOP_BREAKOUT:
+        return <CoopBreakout />;
+      case GAME_IDS.COOP_FRUIT_CATCH:
+        return <CoopFruitCatch />;
+      case GAME_IDS.COOP_BOUNCE:
+        return <CoopBounce />;
+      // 策略经营类
+      case GAME_IDS.SPACE_TRADER:
+        return <SpaceTrader />;
+      case GAME_IDS.RESTAURANT_TYCOON:
+        return <RestaurantTycoon />;
+      case GAME_IDS.HOTEL_EMPIRE:
+        return <HotelEmpire />;
+      case GAME_IDS.OIL_TYCOON:
+        return <OilTycoon />;
+      case GAME_IDS.HOSPITAL_MANAGE:
+        return <HospitalManage />;
+      // 反应类
+      case GAME_IDS.QUICK_MEMORY:
+        return <QuickMemory />;
+      case GAME_IDS.QUICK_REFLEX:
+        return <QuickReflex />;
+      case GAME_IDS.COLOR_DETECT:
+        return <ColorDetect />;
+      case GAME_IDS.RHYTHM_TAP:
+        return <RhythmTap />;
+      case GAME_IDS.TRACE_LIGHT:
+        return <TraceLight />;
+      // 棋类
+      case GAME_IDS.HOP_CHESS:
+        return <HopChess />;
+      case GAME_IDS.INTERNATIONAL_CHESS:
+        return <InternationalChess />;
+      case GAME_IDS.MILITARY_CHESS:
+        return <MilitaryChess />;
+      case GAME_IDS.ANIMAL_CHESS:
+        return <AnimalChess />;
+      case GAME_IDS.NUMBER_PUZZLE:
+        return <NumberPuzzle />;
       default:
         return (
           <motion.div

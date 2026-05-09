@@ -84,13 +84,28 @@ export const GAME_IDS = {
   HAPPY_FARM: 'happyfarm',
   COOKING_MASTER: 'cookingmaster',
   SHOP_MASTER: 'shopmaster',
+  SPACE_TRADER: 'spacetrader',
+  RESTAURANT_TYCOON: 'restauranttycoon',
+  HOTEL_EMPIRE: 'hotelempire',
+  OIL_TYCOON: 'oiltycoon',
+  HOSPITAL_MANAGE: 'hospitalmanage',
   FRUIT_NINJA: 'fruitninja',
   WHACK_A_MOLE: 'whackamole',
   COLOR_MATCH: 'colormatch',
   BRAIN_TEST: 'braintest',
+  QUICK_MEMORY: 'quickmemory',
+  QUICK_REFLEX: 'quickreflex',
+  COLOR_DETECT: 'colordetect',
+  RHYTHM_TAP: 'rhythmtap',
+  TRACE_LIGHT: 'tracelight',
   CHESS: 'chess',
   GOBANG: 'gobang',
   LUDO: 'ludo',
+  HOP_CHESS: 'hopchess',
+  INT_CHESS: 'intchess',
+  MILITARY_CHESS: 'militarychess',
+  ANIMAL_CHESS: 'animalchess',
+  NUMBER_PUZZLE: 'numberpuzzle',
   TOWER_DEFENSE: 'towerdefense',
   CATAPULT_DEFENSE: 'catapultdefense',
   MAGIC_TOWER: 'magictower',
@@ -167,6 +182,12 @@ export const GAME_IDS = {
   FOREST_ADVENTURE: 'forestadventure',
   MOUNTAIN_CLIMBER: 'mountainclimber',
   HELICOPTER_ESCAPE: 'helicopterescape',
+  // 双人合作类
+  COOP_SOKOBAN: 'coopsokoban',
+  COOP_MAZE: 'coopmaze',
+  COOP_BREAKOUT: 'coopbreakout',
+  COOP_FRUIT_CATCH: 'coopfruitcatch',
+  COOP_BOUNCE: 'coopbounce',
 };
 
 // Storage keys
@@ -220,13 +241,28 @@ export const STORAGE_KEYS = {
   HAPPY_FARM: 'happyfarm_highscore',
   COOKING_MASTER: 'cookingmaster_highscore',
   SHOP_MASTER: 'shopmaster_highscore',
+  SPACE_TRADER: 'spacetrader_highscore',
+  RESTAURANT_TYCOON: 'restauranttycoon_highscore',
+  HOTEL_EMPIRE: 'hotelempire_highscore',
+  OIL_TYCOON: 'oiltycoon_highscore',
+  HOSPITAL_MANAGE: 'hospitalmanage_highscore',
   FRUIT_NINJA: 'fruitninja_highscore',
   WHACK_A_MOLE: 'whackamole_highscore',
   COLOR_MATCH: 'colormatch_highscore',
   BRAIN_TEST: 'braintest_highscore',
+  QUICK_MEMORY: 'quickmemory_highscore',
+  QUICK_REFLEX: 'quickreflex_highscore',
+  COLOR_DETECT: 'colordetect_highscore',
+  RHYTHM_TAP: 'rhythmtap_highscore',
+  TRACE_LIGHT: 'tracelight_highscore',
   CHESS: 'chess_highscore',
   GOBANG: 'gobang_highscore',
   LUDO: 'ludo_highscore',
+  HOP_CHESS: 'hopchess_highscore',
+  INT_CHESS: 'intchess_highscore',
+  MILITARY_CHESS: 'militarychess_highscore',
+  ANIMAL_CHESS: 'animalchess_highscore',
+  NUMBER_PUZZLE: 'numberpuzzle_highscore',
   TOWER_DEFENSE: 'towerdefense_highscore',
   CATAPULT_DEFENSE: 'catapultdefense_highscore',
   MAGIC_TOWER: 'magictower_highscore',
@@ -303,6 +339,12 @@ export const STORAGE_KEYS = {
   FOREST_ADVENTURE: 'forestadventure_highscore',
   MOUNTAIN_CLIMBER: 'mountainclimber_highscore',
   HELICOPTER_ESCAPE: 'helicopterescape_highscore',
+  // 双人合作类
+  COOP_SOKOBAN: 'coopsokoban_highscore',
+  COOP_MAZE: 'coopmaze_highscore',
+  COOP_BREAKOUT: 'coopbreakout_highscore',
+  COOP_FRUIT_CATCH: 'coopfruitcatch_highscore',
+  COOP_BOUNCE: 'coopbounce_highscore',
 };
 
 // All game constants
@@ -375,6 +417,11 @@ export const MONOPOLY_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 700, SPACE
 export const HAPPY_FARM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50 };
 export const COOKING_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
 export const SHOP_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const SPACE_TRADER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const RESTAURANT_TYCOON_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const HOTEL_EMPIRE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const OIL_TYCOON_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const HOSPITAL_MANAGE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
 export const FRUIT_NINJA_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, SPAWN_INTERVAL: 800, GRAVITY: 0.3 };
 export const WHACK_A_MOLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_COLS: 3, GRID_ROWS: 3, HOLE_SIZE: 80, GAME_DURATION: 30 };
 export const COLOR_MATCH_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, GRID_SIZE: 5, TILE_SIZE: 80, GAME_DURATION: 60 };
@@ -382,6 +429,11 @@ export const BRAIN_TEST_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, TOT
 export const CHESS_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 620, CELL_SIZE: 70 };
 export const GOBANG_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 15, CELL_SIZE: 35 };
 export const LUDO_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 25 };
+export const HOP_CHESS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 620, BOARD_SIZE: 13, CELL_SIZE: 45, PIECE_SIZE: 36 };
+export const INT_CHESS_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, BOARD_SIZE: 8, CELL_SIZE: 70, PIECE_SIZE: 56 };
+export const MILITARY_CHESS_CONSTANTS = { CANVAS_WIDTH: 640, CANVAS_HEIGHT: 700, GRID_ROWS: 12, GRID_COLS: 11, CELL_WIDTH: 55, CELL_HEIGHT: 55, PIECE_SIZE: 44 };
+export const ANIMAL_CHESS_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 480, GRID_SIZE: 7, CELL_SIZE: 55, PIECE_SIZE: 44 };
+export const NUMBER_PUZZLE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 440, GRID_SIZE: 4, CELL_SIZE: 100, GAP: 4 };
 export const TOWER_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 40, INITIAL_MONEY: 200, INITIAL_LIVES: 20 };
 export const CATAPULT_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50, INITIAL_MONEY: 300 };
 export const MAGIC_TOWER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 40, MANA_MAX: 100, INITIAL_MONEY: 200 };
@@ -435,6 +487,12 @@ export const ZOMBIE_SURVIVAL_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600
 export const FOREST_ADVENTURE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
 export const MOUNTAIN_CLIMBER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700 };
 export const HELICOPTER_ESCAPE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800 };
+// 双人合作类常量
+export const COOP_SOKOBAN_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, CELL_SIZE: 50 };
+export const COOP_MAZE_CONSTANTS = { CANVAS_WIDTH: 570, CANVAS_HEIGHT: 440, CELL_SIZE: 40 };
+export const COOP_BREAKOUT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, PADDLE_WIDTH: 120, PADDLE_HEIGHT: 15, BALL_RADIUS: 10 };
+export const COOP_FRUIT_CATCH_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, BASKET_WIDTH: 100, BASKET_HEIGHT: 60, FRUIT_RADIUS: 25 };
+export const COOP_BOUNCE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, PLATFORM_WIDTH: 120, PLATFORM_HEIGHT: 15, BALL_RADIUS: 12 };
 export const TILE_COLORS = { 2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563', 32: '#f67c5f', 64: '#f65e3b', 128: '#edcf72', 256: '#edcc61', 512: '#edc850', 1024: '#edc53f', 2048: '#edc22e' };
 
 // Engine constants (aliases)
@@ -1151,6 +1209,11 @@ export const GAMES_LIST = [
   { id: 'snakeduo', name: '双人贪吃蛇', category: 'co-op', icon: '🐍', difficulty: 'medium' },
   { id: 'bunnyhunter', name: '猎人射兔子', category: 'co-op', icon: '🐰', difficulty: 'easy' },
   { id: 'pinballduo', name: '双人弹珠', category: 'co-op', icon: '🎱', difficulty: 'medium' },
+  { id: 'coopsokoban', name: '双人华容道', category: 'co-op', icon: '📦', difficulty: 'medium' },
+  { id: 'coopmaze', name: '双人迷宫', category: 'co-op', icon: '🧩', difficulty: 'easy' },
+  { id: 'coopbreakout', name: '双人打砖块', category: 'co-op', icon: '🧱', difficulty: 'medium' },
+  { id: 'coopfruitcatch', name: '双人接水果', category: 'co-op', icon: '🍎', difficulty: 'easy' },
+  { id: 'coopbounce', name: '双人弹球', category: 'co-op', icon: '⚽', difficulty: 'medium' },
   { id: 'thunder', name: '雷电', category: 'shooting', icon: '⚡', difficulty: 'medium' },
   { id: 'spaceshooter', name: '太空射击', category: 'shooting', icon: '🚀', difficulty: 'medium' },
   { id: 'tankbattle', name: '坦克大战', category: 'shooting', icon: '🎖️', difficulty: 'hard' },
@@ -1160,13 +1223,28 @@ export const GAMES_LIST = [
   { id: 'happyfarm', name: '开心农场', category: 'strategy', icon: '🌾', difficulty: 'easy' },
   { id: 'cookingmaster', name: '烹饪大师', category: 'strategy', icon: '🍳', difficulty: 'medium' },
   { id: 'shopmaster', name: '商店大师', category: 'strategy', icon: '🏪', difficulty: 'medium' },
+  { id: 'spacetrader', name: '星际贸易', category: 'strategy', icon: '🚀', difficulty: 'medium' },
+  { id: 'restauranttycoon', name: '餐厅大亨', category: 'strategy', icon: '🍽️', difficulty: 'medium' },
+  { id: 'hotelempire', name: '酒店帝国', category: 'strategy', icon: '🏨', difficulty: 'medium' },
+  { id: 'oiltycoon', name: '油田大亨', category: 'strategy', icon: '🏭', difficulty: 'medium' },
+  { id: 'hospitalmanage', name: '医院经营', category: 'strategy', icon: '🏥', difficulty: 'medium' },
   { id: 'fruitninja', name: '水果忍者', category: 'reaction', icon: '🍎', difficulty: 'hard' },
   { id: 'whackamole', name: '打地鼠', category: 'reaction', icon: '🐹', difficulty: 'easy' },
   { id: 'colormatch', name: '颜色匹配', category: 'reaction', icon: '🎨', difficulty: 'medium' },
   { id: 'braintest', name: '脑力测试', category: 'reaction', icon: '🧠', difficulty: 'medium' },
+  { id: 'quickmemory', name: '快速记忆', category: 'reaction', icon: '🧩', difficulty: 'medium' },
+  { id: 'quickreflex', name: '瞬间反应', category: 'reaction', icon: '⚡', difficulty: 'hard' },
+  { id: 'colordetect', name: '颜色识别', category: 'reaction', icon: '🎨', difficulty: 'medium' },
+  { id: 'rhythmtap', name: '节奏点击', category: 'reaction', icon: '🎵', difficulty: 'hard' },
+  { id: 'tracelight', name: '追踪光点', category: 'reaction', icon: '✨', difficulty: 'medium' },
   { id: 'chess', name: '中国象棋', category: 'board', icon: '♟️', difficulty: 'hard' },
   { id: 'gobang', name: '五子棋', category: 'board', icon: '⭕', difficulty: 'medium' },
   { id: 'ludo', name: '飞行棋', category: 'board', icon: '🎲', difficulty: 'easy' },
+  { id: 'hopchess', name: '跳棋', category: 'board', icon: '🔴', difficulty: 'medium' },
+  { id: 'intchess', name: '国际象棋', category: 'board', icon: '♚', difficulty: 'hard' },
+  { id: 'militarychess', name: '军棋', category: 'board', icon: '🎖️', difficulty: 'hard' },
+  { id: 'animalchess', name: '斗兽棋', category: 'board', icon: '🦁', difficulty: 'medium' },
+  { id: 'numberpuzzle', name: '数字推盘', category: 'board', icon: '🔢', difficulty: 'medium' },
   { id: 'towerdefense', name: '经典塔防', category: 'tower', icon: '🏰', difficulty: 'medium' },
   { id: 'catapultdefense', name: '弹射塔防', category: 'tower', icon: '💥', difficulty: 'medium' },
   { id: 'magictower', name: '魔法塔防', category: 'tower', icon: '🔮', difficulty: 'hard' },

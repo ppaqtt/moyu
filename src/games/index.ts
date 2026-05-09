@@ -1,3 +1,23 @@
+// QuickMemory exports
+export { QuickMemoryEngine } from './QuickMemory/engine';
+export { default as QuickMemory } from './QuickMemory/QuickMemory';
+
+// QuickReflex exports
+export { QuickReflexEngine } from './QuickReflex/engine';
+export { default as QuickReflex } from './QuickReflex/QuickReflex';
+
+// ColorDetect exports
+export { ColorDetectEngine } from './ColorDetect/engine';
+export { default as ColorDetect } from './ColorDetect/ColorDetect';
+
+// RhythmTap exports
+export { RhythmTapEngine } from './RhythmTap/engine';
+export { default as RhythmTap } from './RhythmTap/RhythmTap';
+
+// TraceLight exports
+export { TraceLightEngine } from './TraceLight/engine';
+export { default as TraceLight } from './TraceLight/TraceLight';
+
 // CandyCrush exports
 export { CandyCrushEngine } from './CandyCrush/engine';
 export { default as CandyCrush } from './CandyCrush/CandyCrush';
@@ -79,6 +99,146 @@ export const MATCH3_GAMES = [
     component: 'AnimalMatch',
     engine: 'AnimalMatchEngine',
     path: './AnimalMatch'
+  }
+] as const;
+
+// CoopSokoban exports
+export { CoopSokobanEngine } from './CoopSokoban/engine';
+export { default as CoopSokoban } from './CoopSokoban/CoopSokoban';
+
+// CoopMaze exports
+export { CoopMazeEngine } from './CoopMaze/engine';
+export { default as CoopMaze } from './CoopMaze/CoopMaze';
+
+// CoopBreakout exports
+export { CoopBreakoutEngine } from './CoopBreakout/engine';
+export { default as CoopBreakout } from './CoopBreakout/CoopBreakout';
+
+// CoopFruitCatch exports
+export { CoopFruitCatchEngine } from './CoopFruitCatch/engine';
+export { default as CoopFruitCatch } from './CoopFruitCatch/CoopFruitCatch';
+
+// CoopBounce exports
+export { CoopBounceEngine } from './CoopBounce/engine';
+export { default as CoopBounce } from './CoopBounce/CoopBounce';
+
+// Co-op Games list
+export const COOP_GAMES = [
+  {
+    id: 'coopsokoban',
+    name: 'CoopSokoban',
+    nameCn: '双人华容道',
+    component: 'CoopSokoban',
+    engine: 'CoopSokobanEngine',
+    path: './CoopSokoban'
+  },
+  {
+    id: 'coopmaze',
+    name: 'CoopMaze',
+    nameCn: '双人迷宫',
+    component: 'CoopMaze',
+    engine: 'CoopMazeEngine',
+    path: './CoopMaze'
+  },
+  {
+    id: 'coopbreakout',
+    name: 'CoopBreakout',
+    nameCn: '双人打砖块',
+    component: 'CoopBreakout',
+    engine: 'CoopBreakoutEngine',
+    path: './CoopBreakout'
+  },
+  {
+    id: 'coopfruitcatch',
+    name: 'CoopFruitCatch',
+    nameCn: '双人接水果',
+    component: 'CoopFruitCatch',
+    engine: 'CoopFruitCatchEngine',
+    path: './CoopFruitCatch'
+  },
+  {
+    id: 'coopbounce',
+    name: 'CoopBounce',
+    nameCn: '双人弹球',
+    component: 'CoopBounce',
+    engine: 'CoopBounceEngine',
+    path: './CoopBounce'
+  }
+] as const;
+
+// Reaction Games list
+export const REACTION_GAMES = [
+  {
+    id: 'fruitninja',
+    name: 'FruitNinja',
+    nameCn: '水果忍者',
+    component: 'FruitNinja',
+    engine: 'FruitNinjaEngine',
+    path: './FruitNinja'
+  },
+  {
+    id: 'whackamole',
+    name: 'WhackAMole',
+    nameCn: '打地鼠',
+    component: 'WhackAMole',
+    engine: 'WhackAMoleEngine',
+    path: './WhackAMole'
+  },
+  {
+    id: 'colormatch',
+    name: 'ColorMatch',
+    nameCn: '颜色匹配',
+    component: 'ColorMatch',
+    engine: 'ColorMatchEngine',
+    path: './ColorMatch'
+  },
+  {
+    id: 'braintest',
+    name: 'BrainTest',
+    nameCn: '脑力测试',
+    component: 'BrainTest',
+    engine: 'BrainTestEngine',
+    path: './BrainTest'
+  },
+  {
+    id: 'quickmemory',
+    name: 'QuickMemory',
+    nameCn: '快速记忆',
+    component: 'QuickMemory',
+    engine: 'QuickMemoryEngine',
+    path: './QuickMemory'
+  },
+  {
+    id: 'quickreflex',
+    name: 'QuickReflex',
+    nameCn: '瞬间反应',
+    component: 'QuickReflex',
+    engine: 'QuickReflexEngine',
+    path: './QuickReflex'
+  },
+  {
+    id: 'colordetect',
+    name: 'ColorDetect',
+    nameCn: '颜色识别',
+    component: 'ColorDetect',
+    engine: 'ColorDetectEngine',
+    path: './ColorDetect'
+  },
+  {
+    id: 'rhythmtap',
+    name: 'RhythmTap',
+    nameCn: '节奏点击',
+    component: 'RhythmTap',
+    engine: 'RhythmTapEngine',
+    path: './RhythmTap'
+  },
+  {
+    id: 'tracelight',
+    name: 'TraceLight',
+    nameCn: '追踪光点',
+    component: 'TraceLight',
+    engine: 'TraceLightEngine',
+    path: './TraceLight'
   }
 ] as const;
 
@@ -379,5 +539,165 @@ export const CARD_GAMES = [
     component: 'UnoCard',
     engine: 'UnoEngine',
     path: './UnoCard'
+  }
+] as const;
+
+// SpaceTrader exports
+export { SpaceTraderEngine } from './SpaceTrader/engine';
+export { default as SpaceTrader } from './SpaceTrader/SpaceTrader';
+
+// RestaurantTycoon exports
+export { RestaurantTycoonEngine } from './RestaurantTycoon/engine';
+export { default as RestaurantTycoon } from './RestaurantTycoon/RestaurantTycoon';
+
+// HotelEmpire exports
+export { HotelEmpireEngine } from './HotelEmpire/engine';
+export { default as HotelEmpire } from './HotelEmpire/HotelEmpire';
+
+// OilTycoon exports
+export { OilTycoonEngine } from './OilTycoon/engine';
+export { default as OilTycoon } from './OilTycoon/OilTycoon';
+
+// HospitalManage exports
+export { HospitalManageEngine } from './HospitalManage/engine';
+export { default as HospitalManage } from './HospitalManage/HospitalManage';
+
+// Strategy Games list
+export const STRATEGY_GAMES = [
+  {
+    id: 'monopoly',
+    name: 'Monopoly',
+    nameCn: '大富翁',
+    component: 'Monopoly',
+    engine: 'MonopolyEngine',
+    path: './Monopoly'
+  },
+  {
+    id: 'happyfarm',
+    name: 'HappyFarm',
+    nameCn: '开心农场',
+    component: 'HappyFarm',
+    engine: 'HappyFarmEngine',
+    path: './HappyFarm'
+  },
+  {
+    id: 'cookingmaster',
+    name: 'CookingMaster',
+    nameCn: '烹饪大师',
+    component: 'CookingMaster',
+    engine: 'CookingMasterEngine',
+    path: './CookingMaster'
+  },
+  {
+    id: 'shopmaster',
+    name: 'ShopMaster',
+    nameCn: '商店大师',
+    component: 'ShopMaster',
+    engine: 'ShopMasterEngine',
+    path: './ShopMaster'
+  },
+  {
+    id: 'spacetrader',
+    name: 'SpaceTrader',
+    nameCn: '星际贸易',
+    component: 'SpaceTrader',
+    engine: 'SpaceTraderEngine',
+    path: './SpaceTrader'
+  },
+  {
+    id: 'restauranttycoon',
+    name: 'RestaurantTycoon',
+    nameCn: '餐厅大亨',
+    component: 'RestaurantTycoon',
+    engine: 'RestaurantTycoonEngine',
+    path: './RestaurantTycoon'
+  },
+  {
+    id: 'hotelempire',
+    name: 'HotelEmpire',
+    nameCn: '酒店帝国',
+    component: 'HotelEmpire',
+    engine: 'HotelEmpireEngine',
+    path: './HotelEmpire'
+  },
+  {
+    id: 'oiltycoon',
+    name: 'OilTycoon',
+    nameCn: '油田大亨',
+    component: 'OilTycoon',
+    engine: 'OilTycoonEngine',
+    path: './OilTycoon'
+  },
+  {
+    id: 'hospitalmanage',
+    name: 'HospitalManage',
+    nameCn: '医院经营',
+    component: 'HospitalManage',
+    engine: 'HospitalManageEngine',
+    path: './HospitalManage'
+  }
+] as const;
+
+// HopChess exports
+export { HopChessEngine } from './HopChess/engine';
+export { default as HopChess } from './HopChess/HopChess';
+
+// InternationalChess exports
+export { IntChessEngine } from './InternationalChess/engine';
+export { default as InternationalChess } from './InternationalChess/InternationalChess';
+
+// MilitaryChess exports
+export { MilitaryChessEngine } from './MilitaryChess/engine';
+export { default as MilitaryChess } from './MilitaryChess/MilitaryChess';
+
+// AnimalChess exports
+export { AnimalChessEngine } from './AnimalChess/engine';
+export { default as AnimalChess } from './AnimalChess/AnimalChess';
+
+// NumberPuzzle exports
+export { NumberPuzzleEngine } from './NumberPuzzle/engine';
+export { default as NumberPuzzle } from './NumberPuzzle/NumberPuzzle';
+
+// Board Games list
+export const BOARD_GAMES = [
+  {
+    id: 'hopchess',
+    name: 'HopChess',
+    nameCn: '跳棋',
+    component: 'HopChess',
+    engine: 'HopChessEngine',
+    path: './HopChess'
+  },
+  {
+    id: 'intchess',
+    name: 'InternationalChess',
+    nameCn: '国际象棋',
+    component: 'InternationalChess',
+    engine: 'IntChessEngine',
+    path: './InternationalChess'
+  },
+  {
+    id: 'militarychess',
+    name: 'MilitaryChess',
+    nameCn: '军棋',
+    component: 'MilitaryChess',
+    engine: 'MilitaryChessEngine',
+    path: './MilitaryChess'
+  },
+  {
+    id: 'animalchess',
+    name: 'AnimalChess',
+    nameCn: '斗兽棋',
+    component: 'AnimalChess',
+    engine: 'AnimalChessEngine',
+    path: './AnimalChess'
+  },
+  {
+    id: 'numberpuzzle',
+    name: 'NumberPuzzle',
+    nameCn: '数字推盘',
+    component: 'NumberPuzzle',
+    engine: 'NumberPuzzleEngine',
+    path: './NumberPuzzle'
   }
 ] as const;
