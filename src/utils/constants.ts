@@ -18,7 +18,13 @@ export const GAME_IDS = {
   HEXGL: 'hexgl',
   TEMPLE_RUN: 'templerun',
   ONEVONE: 'onevone',
-  CROSSCODE: 'crosscode'
+  CROSSCODE: 'crosscode',
+  // 经典益智类
+  ZUMA: 'zuma',
+  LINKLINK: 'linklink',
+  SOKOBAN: 'sokoban',
+  FINDDIFF: 'finddiff',
+  ONESTROKE: 'onestroke'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -69,6 +75,48 @@ export const FUSION_CONSTANTS = {
   SPECIAL_INTERVAL: 20000
 };
 
+// 祖玛游戏常量
+export const ZUMA_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  BALL_RADIUS: 15,
+  CURVE_RADIUS: 250,
+  PATH_SPEED: 2,
+  SHOOT_SPEED: 8,
+  COLORS: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe']
+};
+
+// 连连看游戏常量
+export const LINKLINK_CONSTANTS = {
+  GRID_COLS: 10,
+  GRID_ROWS: 8,
+  TILE_WIDTH: 50,
+  TILE_HEIGHT: 50,
+  ICON_TYPES: 20
+};
+
+// 推箱子游戏常量
+export const SOKOBAN_CONSTANTS = {
+  GRID_SIZE: 10,
+  CELL_SIZE: 50,
+  LEVELS: 5
+};
+
+// 找不同游戏常量
+export const FINDDIFF_CONSTANTS = {
+  GRID_COLS: 4,
+  GRID_ROWS: 3,
+  DIFF_COUNT: 5,
+  TIME_LIMIT: 120
+};
+
+// 一笔画游戏常量
+export const ONESTROKE_CONSTANTS = {
+  NODE_COUNT: 9,
+  GRID_SIZE: 450,
+  CELL_SIZE: 50
+};
+
 export const STORAGE_KEYS = {
   GAME_2048: 'mouyu_game_2048',
   TETRIS: 'mouyu_tetris',
@@ -89,7 +137,13 @@ export const STORAGE_KEYS = {
   HEXGL: 'mouyu_hexgl',
   TEMPLE_RUN: 'mouyu_templerun',
   ONEVONE: 'mouyu_onevone',
-  CROSSCODE: 'mouyu_crosscode'
+  CROSSCODE: 'mouyu_crosscode',
+  // 经典益智类
+  ZUMA: 'mouyu_zuma',
+  LINKLINK: 'mouyu_linklink',
+  SOKOBAN: 'mouyu_sokoban',
+  FINDDIFF: 'mouyu_finddiff',
+  ONESTROKE: 'mouyu_onestroke'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -272,5 +326,41 @@ export const GAMES_LIST: GameInfo[] = [
     description: '复古像素风动作RPG，升级打怪！',
     icon: '⚔',
     controls: ['← → 移动', '空格 跳跃', 'J 攻击']
+  },
+  // 经典益智类
+  {
+    id: GAME_IDS.ZUMA,
+    name: '祖玛',
+    description: '画球射击，匹配消除三个以上同色球！',
+    icon: '🔮',
+    controls: ['鼠标瞄准', '点击发射']
+  },
+  {
+    id: GAME_IDS.LINKLINK,
+    name: '连连看',
+    description: '找到相同的图案，用线连接消除！',
+    icon: '🔗',
+    controls: ['点击选中', '点击相邻连接']
+  },
+  {
+    id: GAME_IDS.SOKOBAN,
+    name: '推箱子',
+    description: '推动箱子到目标位置，完成关卡！',
+    icon: '📦',
+    controls: ['方向键移动']
+  },
+  {
+    id: GAME_IDS.FINDDIFF,
+    name: '找不同',
+    description: '找出两幅图中的不同之处！',
+    icon: '🔍',
+    controls: ['点击标记不同']
+  },
+  {
+    id: GAME_IDS.ONESTROKE,
+    name: '一笔画',
+    description: '一笔画完所有线条，不重复不间断！',
+    icon: '✏️',
+    controls: ['点击节点', '依次连接不重复']
   }
 ];

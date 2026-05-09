@@ -22,6 +22,11 @@ import HexGL from '../games/HexGL/HexGL';
 import TempleRun from '../games/TempleRun/TempleRun';
 import OneVOne from '../games/OneVOne/OneVOne';
 import CrossCode from '../games/CrossCode/CrossCode';
+import Zuma from '../games/Zuma/Zuma';
+import LinkLink from '../games/LinkLink/LinkLink';
+import Sokoban from '../games/Sokoban/Sokoban';
+import FindDiff from '../games/FindDiff/FindDiff';
+import OneStroke from '../games/OneStroke/OneStroke';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -203,6 +208,16 @@ function GameContainer({ gameId }: GameContainerProps) {
             onExit={handleExit}
           />
         );
+      case GAME_IDS.ZUMA:
+        return <Zuma />;
+      case GAME_IDS.LINKLINK:
+        return <LinkLink />;
+      case GAME_IDS.SOKOBAN:
+        return <Sokoban />;
+      case GAME_IDS.FINDDIFF:
+        return <FindDiff />;
+      case GAME_IDS.ONESTROKE:
+        return <OneStroke />;
       default:
         return (
           <motion.div
