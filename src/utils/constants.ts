@@ -36,7 +36,13 @@ export const GAME_IDS = {
   DANCING_LINE: 'dancingline',
   SUBWAY2: 'subway2',
   CLIFF_RUNNER: 'cliffrunner',
-  SPEED_ESCAPE: 'speedescape'
+  SPEED_ESCAPE: 'speedescape',
+  // 双人合作类
+  COOP_RUN: 'cooprun',
+  TETRIS_BATTLE: 'tetrisbattle',
+  SNAKE_DUO: 'snakeduo',
+  BUNNY_HUNTER: 'bunnyhunter',
+  PINBALL_DUO: 'pinballduo'
 } as const;
 
 export type GameId = typeof GAME_IDS[keyof typeof GAME_IDS];
@@ -62,6 +68,16 @@ export const SNAKE_CONSTANTS = {
   CANVAS_SIZE: 400,
   INITIAL_SPEED: 150,
   SPEED_INCREMENT: 10
+};
+
+export const SNAKE_DUO_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  GRID_SIZE: 20,
+  INITIAL_SPEED: 120,
+  SPEED_INCREMENT: 5,
+  FOOD_SCORE: 10,
+  TIME_BONUS: 1
 };
 
 export const BOUNCE_CONSTANTS = {
@@ -221,6 +237,40 @@ export const SPEED_ESCAPE_CONSTANTS = {
   LANE_COUNT: 4
 };
 
+// 双人合作跑酷游戏常量
+export const COOP_RUN_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  PLAYER_WIDTH: 40,
+  PLAYER_HEIGHT: 60,
+  LANE_COUNT: 3,
+  GROUND_HEIGHT: 80,
+  GRAVITY: 0.6,
+  JUMP_FORCE: -14,
+  INITIAL_SPEED: 5,
+  SPEED_INCREMENT: 0.001,
+  MAX_SPEED: 12,
+  OBSTACLE_SPAWN_INTERVAL: 60,
+  COLLECTIBLE_SPAWN_INTERVAL: 120,
+  REVIVE_RANGE: 80,
+  REVIVE_TIME: 30,
+  DOUBLE_SCORE_RANGE: 100
+};
+
+// 兔子猎人游戏常量
+export const BUNNY_HUNTER_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  BUNNY_SIZE: 50,
+  BULLET_SPEED: 12,
+  BUNNY_SPAWN_INTERVAL: 1500,
+  GAME_DURATION: 60,
+  SCORE_HIT: 10,
+  SCORE_MISS: -5,
+  COOP_BONUS: 2,
+  TIME_BONUS_MULTIPLIER: 1
+};
+
 // 打砖块增强版游戏常量
 export const ENHANCED_BREAKOUT_CONSTANTS = {
   CANVAS_WIDTH: 600,
@@ -236,10 +286,33 @@ export const ENHANCED_BREAKOUT_CONSTANTS = {
   POWERUP_CHANCE: 0.15
 };
 
+// 双人弹珠台游戏常量
+export const PINBALL_DUO_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 700,
+  BALL_RADIUS: 12,
+  PADDLE_WIDTH: 100,
+  PADDLE_HEIGHT: 18,
+  GRAVITY: 0.25,
+  FRICTION: 0.995,
+  BUMPER_RADIUS: 25,
+  OBSTACLE_WIDTH: 120,
+  OBSTACLE_HEIGHT: 20,
+  SCORE_BUMPER_HIT: 50,
+  SCORE_PADDLE_HIT: 10,
+  SCORE_COMBO_MULTIPLIER: 1.5,
+  COMBO_DECAY_TIME: 2000,
+  TIME_SCORE_INTERVAL: 1000,
+  TIME_SCORE_AMOUNT: 5,
+  PADDLE_SPEED: 0.15,
+  BALL_MAX_SPEED: 18
+};
+
 export const STORAGE_KEYS = {
   GAME_2048: 'mouyu_game_2048',
   TETRIS: 'mouyu_tetris',
   SNAKE: 'mouyu_snake',
+  SNAKE_DUO: 'mouyu_snakeduo',
   BOUNCE: 'mouyu_bounce',
   FUSION_2048: 'mouyu_fusion',
   MINESWEEPER: 'mouyu_minesweeper',
@@ -274,7 +347,12 @@ export const STORAGE_KEYS = {
   DANCING_LINE: 'mouyu_dancingline',
   SUBWAY2: 'mouyu_subway2',
   CLIFF_RUNNER: 'mouyu_cliffrunner',
-  SPEED_ESCAPE: 'mouyu_speedescape'
+  SPEED_ESCAPE: 'mouyu_speedescape',
+  // 双人合作类
+  COOP_RUN: 'mouyu_cooprun',
+  TETRIS_BATTLE: 'mouyu_tetrisbattle',
+  BUNNY_HUNTER: 'mouyu_bunnyhunter',
+  PINBALL_DUO: 'mouyu_pinballduo'
 } as const;
 
 export const TILE_COLORS: Record<number, string> = {
@@ -565,5 +643,40 @@ export const GAMES_LIST: GameInfo[] = [
     description: '疯狂驾驶，躲避追车极限逃亡！',
     icon: '🚗',
     controls: ['← → 换道', '↑ 加速', '↓ 刹车']
+  },
+  {
+    id: GAME_IDS.COOP_RUN,
+    name: '双人跑酷',
+    description: '双人合作跑酷，配合躲避障碍！',
+    icon: '🤝',
+    controls: ['P1: WASD', 'P2: 方向键', 'E 复活队友']
+  },
+  {
+    id: GAME_IDS.TETRIS_BATTLE,
+    name: '俄罗斯方块对战',
+    description: '双人俄罗斯方块对战，消行给对方加惩罚！',
+    icon: '🧱',
+    controls: ['P1: A/D/W/S', 'P2: 方向键']
+  },
+  {
+    id: GAME_IDS.SNAKE_DUO,
+    name: '双人贪吃蛇',
+    description: '双人贪吃蛇对战，最后存活获胜！',
+    icon: '🐍',
+    controls: ['P1: WASD', 'P2: 方向键']
+  },
+  {
+    id: GAME_IDS.BUNNY_HUNTER,
+    name: '兔子猎人',
+    description: '双人合作射击从天而降的兔子！',
+    icon: '🐰',
+    controls: ['P1: A/D/W', 'P2: 方向键']
+  },
+  {
+    id: GAME_IDS.PINBALL_DUO,
+    name: '双人弹珠台',
+    description: '双人合作弹珠台，配合让弹珠弹得更高！',
+    icon: '🎱',
+    controls: ['P1: Q/E 挡板', 'P2: O/P 挡板', '空格 开始']
   }
 ];

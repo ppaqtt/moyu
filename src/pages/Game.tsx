@@ -37,6 +37,11 @@ import DancingLine from '../games/DancingLine/DancingLine';
 import Subway2 from '../games/Subway2/Subway2';
 import CliffRunner from '../games/CliffRunner/CliffRunner';
 import SpeedEscape from '../games/SpeedEscape/SpeedEscape';
+import CoopRun from '../games/CoopRun/CoopRun';
+import TetrisBattle from '../games/TetrisBattle/TetrisBattle';
+import SnakeDuo from '../games/SnakeDuo/SnakeDuo';
+import BunnyHunter from '../games/BunnyHunter/BunnyHunter';
+import PinballDuo from '../games/PinballDuo/PinballDuo';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -248,6 +253,16 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <CliffRunner />;
       case GAME_IDS.SPEED_ESCAPE:
         return <SpeedEscape />;
+      case GAME_IDS.COOP_RUN:
+        return <CoopRun />;
+      case GAME_IDS.TETRIS_BATTLE:
+        return <TetrisBattle />;
+      case GAME_IDS.SNAKE_DUO:
+        return <SnakeDuo />;
+      case GAME_IDS.BUNNY_HUNTER:
+        return <BunnyHunter />;
+      case GAME_IDS.PINBALL_DUO:
+        return <PinballDuo />;
       default:
         return (
           <motion.div
