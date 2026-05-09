@@ -114,6 +114,9 @@ import TypingMaster from '../games/TypingMaster/TypingMaster';
 // 运动竞技类
 import PenaltyKick from '../games/PenaltyKick/PenaltyKickGame';
 import BasketballShoot from '../games/BasketballShoot/BasketballShootGame';
+import PingPong from '../games/PingPong/PingPong';
+import Badminton from '../games/Badminton/Badminton';
+import Boxing from '../games/Boxing/Boxing';
 // IO竞技类
 import SnakeIO from '../games/SnakeIO/SnakeIO';
 import BallIO from '../games/BallIO/BallIO';
@@ -494,6 +497,12 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <PenaltyKick />;
       case GAME_IDS.BASKETBALL_SHOOT:
         return <BasketballShoot />;
+      case GAME_IDS.PING_PONG:
+        return <PingPong />;
+      case GAME_IDS.BADMINTON:
+        return <Badminton />;
+      case GAME_IDS.BOXING:
+        return <Boxing />;
       // IO竞技类
       case GAME_IDS.SNAKE_IO:
         return <SnakeIO />;
