@@ -80,6 +80,16 @@ export const GAME_IDS = {
   TANK_BATTLE: 'tankbattle',
   BUBBLE_SHOOTER: 'bubbleshooter',
   ZOMBIE_SHOOTER: 'zombieshooter',
+  LASER_DEFENSE: 'laserdefense',
+  SPACE_CARRIER: 'spacecarrier',
+  JET_UPGRADE: 'jetupgrade',
+  MISSILE_COMMAND: 'missilecommand',
+  SPACE_PIRATE: 'spacepirate',
+  WW2_AIRWAR: 'ww2airwar',
+  APACHE_ATTACK: 'apacheattack',
+  ALIEN_INVASION: 'alieninvasion',
+  DOGFIGHT: 'dogfight',
+  FLAK_TOWER: 'flaktower',
   MONOPOLY: 'monopoly',
   HAPPY_FARM: 'happyfarm',
   COOKING_MASTER: 'cookingmaster',
@@ -237,6 +247,16 @@ export const STORAGE_KEYS = {
   TANK_BATTLE: 'tankbattle_highscore',
   BUBBLE_SHOOTER: 'bubbleshooter_highscore',
   ZOMBIE_SHOOTER: 'zombieshooter_highscore',
+  LASER_DEFENSE: 'laserdefense_highscore',
+  SPACE_CARRIER: 'spacecarrier_highscore',
+  JET_UPGRADE: 'jetupgrade_highscore',
+  MISSILE_COMMAND: 'missilecommand_highscore',
+  SPACE_PIRATE: 'spacepirate_highscore',
+  WW2_AIRWAR: 'ww2airwar_highscore',
+  APACHE_ATTACK: 'apacheattack_highscore',
+  ALIEN_INVASION: 'alieninvasion_highscore',
+  DOGFIGHT: 'dogfight_highscore',
+  FLAK_TOWER: 'flaktower_highscore',
   MONOPOLY: 'monopoly_highscore',
   HAPPY_FARM: 'happyfarm_highscore',
   COOKING_MASTER: 'cookingmaster_highscore',
@@ -371,6 +391,11 @@ export const SKIING_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
 export const SPEED_ESCAPE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
 export const SPACE_SHOOTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800 };
 export const ZOMBIE_SHOOTER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const LASER_DEFENSE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 700 };
+export const SPACE_CARRIER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const JET_UPGRADE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800 };
+export const MISSILE_COMMAND_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 700 };
+export const SPACE_PIRATE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
 export const FISH_TANK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
 export const PINBALL_DUO_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700 };
 export const BUNNY_HUNTER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500 };
@@ -413,6 +438,11 @@ export const CLIFF_RUNNER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, P
 export const COOP_RUN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400, PLAYER_SIZE: 30, SPEED: 3 };
 export const HUARONG_DAO_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 500, CELL_SIZE: 100 };
 export const THUNDER_CONSTANTS = { CANVAS_WIDTH: 480, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, PLAYER_HEIGHT: 50, BULLET_WIDTH: 6, BULLET_HEIGHT: 15 };
+export const WW2AIRWAR_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, PLAYER_HEIGHT: 50, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_WIDTH: 35, ENEMY_HEIGHT: 40 };
+export const APACHE_ATTACK_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, HELI_WIDTH: 50, HELI_HEIGHT: 60, BULLET_WIDTH: 4, BULLET_HEIGHT: 10, TARGET_WIDTH: 30, TARGET_HEIGHT: 30 };
+export const ALIEN_INVASION_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, PLAYER_HEIGHT: 50, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ALIEN_WIDTH: 35, ALIEN_HEIGHT: 35 };
+export const DOGFIGHT_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, PLANE_SIZE: 20 };
+export const FLAK_TOWER_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, TOWER_X: 250, TOWER_Y: 500, TOWER_RADIUS: 40 };
 export const MONOPOLY_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 700, SPACE_SIZE: 70, INITIAL_MONEY: 1500 };
 export const HAPPY_FARM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, GRID_SIZE: 50 };
 export const COOKING_MASTER_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
@@ -518,6 +548,11 @@ export const SPEED_ESCAPE_ENGINE_CONSTANTS = SPEED_ESCAPE_CONSTANTS;
 export const SPACE_SHOOTER_ENGINE_CONSTANTS = SPACE_SHOOTER_CONSTANTS;
 export const TANK_BATTLE_ENGINE_CONSTANTS = TANK_BATTLE_CONSTANTS;
 export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS = ZOMBIE_SHOOTER_CONSTANTS;
+export const LASER_DEFENSE_ENGINE_CONSTANTS = LASER_DEFENSE_CONSTANTS;
+export const SPACE_CARRIER_ENGINE_CONSTANTS = SPACE_CARRIER_CONSTANTS;
+export const JET_UPGRADE_ENGINE_CONSTANTS = JET_UPGRADE_CONSTANTS;
+export const MISSILE_COMMAND_ENGINE_CONSTANTS = MISSILE_COMMAND_CONSTANTS;
+export const SPACE_PIRATE_ENGINE_CONSTANTS = SPACE_PIRATE_CONSTANTS;
 export const FISH_TANK_ENGINE_CONSTANTS = FISH_TANK_CONSTANTS;
 export const PINBALL_DUO_ENGINE_CONSTANTS = PINBALL_DUO_CONSTANTS;
 export const BUNNY_HUNTER_ENGINE_CONSTANTS = BUNNY_HUNTER_CONSTANTS;
@@ -533,6 +568,11 @@ export const CLIFF_RUNNER_ENGINE_CONSTANTS = CLIFF_RUNNER_CONSTANTS;
 export const COOP_RUN_ENGINE_CONSTANTS = COOP_RUN_CONSTANTS;
 export const HUARONG_DAO_ENGINE_CONSTANTS = HUARONG_DAO_CONSTANTS;
 export const THUNDER_ENGINE_CONSTANTS = THUNDER_CONSTANTS;
+export const WW2AIRWAR_ENGINE_CONSTANTS = WW2AIRWAR_CONSTANTS;
+export const APACHE_ATTACK_ENGINE_CONSTANTS = APACHE_ATTACK_CONSTANTS;
+export const ALIEN_INVASION_ENGINE_CONSTANTS = ALIEN_INVASION_CONSTANTS;
+export const DOGFIGHT_ENGINE_CONSTANTS = DOGFIGHT_CONSTANTS;
+export const FLAK_TOWER_ENGINE_CONSTANTS = FLAK_TOWER_CONSTANTS;
 export const MONOPOLY_ENGINE_CONSTANTS = MONOPOLY_CONSTANTS;
 export const HAPPY_FARM_ENGINE_CONSTANTS = HAPPY_FARM_CONSTANTS;
 export const COOKING_MASTER_ENGINE_CONSTANTS = COOKING_MASTER_CONSTANTS;
@@ -1219,6 +1259,16 @@ export const GAMES_LIST = [
   { id: 'tankbattle', name: '坦克大战', category: 'shooting', icon: '🎖️', difficulty: 'hard' },
   { id: 'bubbleshooter', name: '泡泡射击', category: 'shooting', icon: '🫧', difficulty: 'medium' },
   { id: 'zombieshooter', name: '僵尸射击', category: 'shooting', icon: '🧟', difficulty: 'hard' },
+  { id: 'laserdefense', name: '激光防御', category: 'shooting', icon: '⚡', difficulty: 'medium' },
+  { id: 'spacecarrier', name: '太空母舰', category: 'shooting', icon: '🚀', difficulty: 'hard' },
+  { id: 'jetupgrade', name: '战机升级', category: 'shooting', icon: '✈️', difficulty: 'medium' },
+  { id: 'missilecommand', name: '导弹拦截', category: 'shooting', icon: '🎯', difficulty: 'medium' },
+  { id: 'spacepirate', name: '星际海盗', category: 'shooting', icon: '🏴‍☠️', difficulty: 'hard' },
+  { id: 'ww2airwar', name: '二战空战', category: 'shooting', icon: '✈️', difficulty: 'hard' },
+  { id: 'apacheattack', name: '武装直升机', category: 'shooting', icon: '🚁', difficulty: 'hard' },
+  { id: 'alieninvasion', name: '宇宙入侵', category: 'shooting', icon: '👽', difficulty: 'medium' },
+  { id: 'dogfight', name: '飞机大战', category: 'shooting', icon: '🛩️', difficulty: 'hard' },
+  { id: 'flaktower', name: '防空炮塔', category: 'shooting', icon: '🎯', difficulty: 'medium' },
   { id: 'monopoly', name: '大富翁', category: 'strategy', icon: '💰', difficulty: 'medium' },
   { id: 'happyfarm', name: '开心农场', category: 'strategy', icon: '🌾', difficulty: 'easy' },
   { id: 'cookingmaster', name: '烹饪大师', category: 'strategy', icon: '🍳', difficulty: 'medium' },

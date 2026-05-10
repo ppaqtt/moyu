@@ -47,6 +47,17 @@ import SpaceShooter from '../games/SpaceShooter/SpaceShooter';
 import TankBattle from '../games/TankBattle/TankBattle';
 import BubbleShooter from '../games/BubbleShooter/BubbleShooter';
 import ZombieShooter from '../games/ZombieShooter/ZombieShooter';
+// 射击类扩展
+import WW2Airwar from '../games/WW2Airwar/WW2Airwar';
+import ApacheAttack from '../games/ApacheAttack/ApacheAttack';
+import AlienInvasion from '../games/AlienInvasion/AlienInvasion';
+import Dogfight from '../games/Dogfight/Dogfight';
+import FlakTower from '../games/FlakTower/FlakTower';
+import LaserDefense from '../games/LaserDefense/LaserDefense';
+import SpaceCarrier from '../games/SpaceCarrier/SpaceCarrier';
+import JetUpgrade from '../games/JetUpgrade/JetUpgrade';
+import MissileCommand from '../games/MissileCommand/MissileCommand';
+import SpacePirate from '../games/SpacePirate/SpacePirate';
 import Monopoly from '../games/Monopoly/Monopoly';
 import HappyFarm from '../games/HappyFarm/HappyFarm';
 import CookingMaster from '../games/CookingMaster/CookingMaster';
@@ -396,6 +407,27 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <BubbleShooter />;
       case GAME_IDS.ZOMBIE_SHOOTER:
         return <ZombieShooter />;
+      // 射击类扩展
+      case GAME_IDS.WW2_AIRWAR:
+        return <WW2Airwar />;
+      case GAME_IDS.APACHE_ATTACK:
+        return <ApacheAttack />;
+      case GAME_IDS.ALIEN_INVASION:
+        return <AlienInvasion />;
+      case GAME_IDS.DOGFIGHT:
+        return <Dogfight />;
+      case GAME_IDS.FLAK_TOWER:
+        return <FlakTower />;
+      case GAME_IDS.LASER_DEFENSE:
+        return <LaserDefense />;
+      case GAME_IDS.SPACE_CARRIER:
+        return <SpaceCarrier />;
+      case GAME_IDS.JET_UPGRADE:
+        return <JetUpgrade />;
+      case GAME_IDS.MISSILE_COMMAND:
+        return <MissileCommand />;
+      case GAME_IDS.SPACE_PIRATE:
+        return <SpacePirate />;
       case GAME_IDS.MONOPOLY:
         return <Monopoly />;
       case GAME_IDS.HAPPY_FARM:
