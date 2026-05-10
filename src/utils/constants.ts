@@ -150,6 +150,10 @@ export const GAME_IDS = {
   DOODLE_JUMP: 'doodlejump',
   BOWLING_MASTER: 'bowlingmaster',
   PINBALL_PHYSICS: 'pinballphysics',
+  PINBALL_MASTER: 'pinballmaster',
+  EIGHT_BALL_POOL: 'eightballpool',
+  NINE_BALL: 'nineball',
+  SNOOKER: 'snooker',
   CUT_ROPE: 'cutrope',
   DOUDIZHU: 'doudizhu',
   MAHJONG: 'mahjong',
@@ -210,6 +214,51 @@ export const GAME_IDS = {
   STARFIGHTER: 'starfighter',
   AAMISSILE: 'aamissile',
   SQUADRON: 'squadron',
+  // 节奏对战类
+  BEAT_BATTLE: 'beatbattle',
+  MUSIC_FIGHTER: 'musicfighter',
+  DJ_BATTLE: 'djbattle',
+  BEAT_RUN: 'beatrun',
+  // 桌游合集类
+  LUDO2: 'ludo2',
+  MONOPOLY2: 'monopoly2',
+  WEREWOLF: 'werewolf',
+  THREE_KINGDOMS: 'threekingdoms',
+  GERMAN_WHISTLE: 'germanwhistle',
+  // 物理模拟类
+  MARBLE_MAZE: 'marblemaze',
+  BLOCK_BUILDER: 'blockbuilder',
+  WATER_PHYSICS: 'waterphysics',
+  CRASH_LAB: 'crashlab',
+  // 创意工具类
+  PIXEL_CANVAS: 'pixelcanvas',
+  GIF_MAKER: 'gifmaker',
+  MEME_CREATOR: 'memecreator',
+  CODE_ART: 'codeart',
+  // 文字冒险类
+  STORY_CHOICE: 'storychoice',
+  TEXT_DUNGEON: 'textdungeon',
+  DETECTIVE_TEXT: 'detectivetext',
+  LOVE_STORY: 'lovestory',
+  // 弹幕射击类
+  BULLET_HEAVEN: 'bulletheaven',
+  RAIDEN_ENHANCED: 'raidenenhanced',
+  GEOMETRY_WARS: 'geometrywars',
+  SPACE_BULLET: 'spacebullet',
+  // 放置挂机类增强
+  IDLE_FARM: 'idlefarm',
+  IDLE_MINER: 'idlemmer',
+  IDLE_RACING: 'idleracing',
+  // 休闲运动类
+  BOWLING_MASTER2: 'bowlingmaster2',
+  ICE_HOCKEY: 'icehockey',
+  SKATEBOARDING: 'skateboarding',
+  SURFING: 'surfing',
+  // 社交休闲类
+  TRUTH_DARE: 'truthdare',
+  DRAW_GUESS2: 'drawguess2',
+  SPY_GAME: 'spygame',
+  QUIZ_RELAY: 'quizrelay',
 };
 
 // Storage keys
@@ -329,6 +378,10 @@ export const STORAGE_KEYS = {
   DOODLE_JUMP: 'doodlejump_highscore',
   BOWLING_MASTER: 'bowlingmaster_highscore',
   PINBALL_PHYSICS: 'pinballphysics_highscore',
+  PINBALL_MASTER: 'pinballmaster_highscore',
+  EIGHT_BALL_POOL: 'eightballpool_highscore',
+  NINE_BALL: 'nineball_highscore',
+  SNOOKER: 'snooker_highscore',
   CUT_ROPE: 'cutrope_highscore',
   DOUDIZHU: 'doudizhu_highscore',
   MAHJONG: 'mahjong_highscore',
@@ -456,6 +509,10 @@ export const BILLIARDS_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500, BALL
 export const BOUNCE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, PADDLE_WIDTH: 80, BALL_RADIUS: 10 };
 export const BOWLING_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, BALL_RADIUS: 15, PIN_RADIUS: 8 };
 export const PINBALL_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, FLIPPER_WIDTH: 80, BALL_RADIUS: 10 };
+export const PINBALL_MASTER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, BALL_RADIUS: 10, GRAVITY: 0.3 };
+export const EIGHT_BALL_POOL_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500, BALL_RADIUS: 12, POCKET_RADIUS: 22 };
+export const NINE_BALL_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500, BALL_RADIUS: 12, POCKET_RADIUS: 22 };
+export const SNOOKER_CONSTANTS = { CANVAS_WIDTH: 900, CANVAS_HEIGHT: 500, BALL_RADIUS: 10, POCKET_RADIUS: 18 };
 export const ENHANCED_BREAKOUT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500, PADDLE_WIDTH: 100, BALL_RADIUS: 8 };
 export const DANCING_LINE_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 700, LINE_WIDTH: 8 };
 export const CLIFF_RUNNER_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600, PLAYER_SIZE: 40, GRAVITY: 0.5, JUMP_FORCE: -12 };
@@ -1353,6 +1410,10 @@ export const GAMES_LIST = [
   { id: 'doodlejump', name: '涂鸦跳跃', category: 'physics', icon: '✏️', difficulty: 'hard' },
   { id: 'bowlingmaster', name: '保龄球大师', category: 'physics', icon: '🎳', difficulty: 'medium' },
   { id: 'pinballphysics', name: '弹球物理', category: 'physics', icon: '🎱', difficulty: 'medium' },
+  { id: 'pinballmaster', name: '弹珠台大师', category: 'physics', icon: '🎱', difficulty: 'hard' },
+  { id: 'eightballpool', name: '8球台球', category: 'physics', icon: '🎱', difficulty: 'medium' },
+  { id: 'nineball', name: '9球挑战', category: 'physics', icon: '🎱', difficulty: 'medium' },
+  { id: 'snooker', name: '斯诺克', category: 'physics', icon: '🎱', difficulty: 'hard' },
   { id: 'cutrope', name: '切割绳子', category: 'physics', icon: '✂️', difficulty: 'medium' },
   { id: 'doudizhu', name: '斗地主', category: 'card', icon: '🎴', difficulty: 'medium' },
   { id: 'mahjong', name: '国粹麻将', category: 'card', icon: '🀄', difficulty: 'hard' },
@@ -1406,6 +1467,51 @@ export const GAMES_LIST = [
   { id: 'starfighter', name: '星际战机', category: 'shooting', icon: '🚀', difficulty: 'hard' },
   { id: 'aamissile', name: '防空导弹', category: 'shooting', icon: '🎯', difficulty: 'medium' },
   { id: 'squadron', name: '战机编队', category: 'shooting', icon: '✈️', difficulty: 'hard' },
+  // 节奏对战类
+  { id: 'beatbattle', name: '节拍对战', category: 'rhythm', icon: '⚔️', difficulty: 'hard' },
+  { id: 'musicfighter', name: '音乐格斗', category: 'rhythm', icon: '👊', difficulty: 'hard' },
+  { id: 'djbattle', name: 'DJ Battle', category: 'rhythm', icon: '🎧', difficulty: 'hard' },
+  { id: 'beatrun', name: '节拍跑酷', category: 'rhythm', icon: '🏃', difficulty: 'hard' },
+  // 桌游合集类
+  { id: 'ludo2', name: '飞行棋2', category: 'board', icon: '🎲', difficulty: 'easy' },
+  { id: 'monopoly2', name: '大富翁2', category: 'board', icon: '💰', difficulty: 'medium' },
+  { id: 'werewolf', name: '狼人杀', category: 'board', icon: '🐺', difficulty: 'hard' },
+  { id: 'threekingdoms', name: '三国杀', category: 'board', icon: '⚔️', difficulty: 'hard' },
+  { id: 'germanwhistle', name: '德国心脏病', category: 'board', icon: '🔔', difficulty: 'easy' },
+  // 物理模拟类
+  { id: 'marblemaze', name: '弹珠迷宫', category: 'physics', icon: '🎱', difficulty: 'medium' },
+  { id: 'blockbuilder', name: '积木搭建', category: 'physics', icon: '🧱', difficulty: 'medium' },
+  { id: 'waterphysics', name: '水物理', category: 'physics', icon: '💧', difficulty: 'medium' },
+  { id: 'crashlab', name: '碰撞实验室', category: 'physics', icon: '⚗️', difficulty: 'medium' },
+  // 创意工具类
+  { id: 'pixelcanvas', name: '像素画板', category: 'creative', icon: '🎨', difficulty: 'easy' },
+  { id: 'gifmaker', name: 'GIF制作', category: 'creative', icon: '🎬', difficulty: 'easy' },
+  { id: 'memecreator', name: '表情包DIY', category: 'creative', icon: '😀', difficulty: 'easy' },
+  { id: 'codeart', name: '代码艺术', category: 'creative', icon: '💻', difficulty: 'medium' },
+  // 文字冒险类
+  { id: 'storychoice', name: '剧情选择', category: 'adventure', icon: '📖', difficulty: 'medium' },
+  { id: 'textdungeon', name: '文字地牢', category: 'adventure', icon: '🏰', difficulty: 'medium' },
+  { id: 'detectivetext', name: '悬疑推理', category: 'adventure', icon: '🔍', difficulty: 'hard' },
+  { id: 'lovestory', name: '恋爱养成', category: 'adventure', icon: '💕', difficulty: 'easy' },
+  // 弹幕射击类
+  { id: 'bulletheaven', name: '弹幕天堂', category: 'shooting', icon: '✨', difficulty: 'hard' },
+  { id: 'raidenenhanced', name: '雷电增强', category: 'shooting', icon: '⚡', difficulty: 'hard' },
+  { id: 'geometrywars', name: '几何战争', category: 'shooting', icon: '🔷', difficulty: 'hard' },
+  { id: 'spacebullet', name: '太空弹幕', category: 'shooting', icon: '🚀', difficulty: 'hard' },
+  // 放置挂机类增强
+  { id: 'idlefarm', name: '放置农场', category: 'idle', icon: '🌾', difficulty: 'easy' },
+  { id: 'idlemmer', name: '放置矿工', category: 'idle', icon: '⛏️', difficulty: 'easy' },
+  { id: 'idleracing', name: '放置赛车', category: 'idle', icon: '🏎️', difficulty: 'easy' },
+  // 休闲运动类
+  { id: 'bowlingmaster2', name: '保龄球大师', category: 'sports', icon: '🎳', difficulty: 'medium' },
+  { id: 'icehockey', name: '冰上曲棍球', category: 'sports', icon: '🏒', difficulty: 'medium' },
+  { id: 'skateboarding', name: '花样滑板', category: 'sports', icon: '🛹', difficulty: 'hard' },
+  { id: 'surfing', name: '冲浪', category: 'sports', icon: '🏄', difficulty: 'medium' },
+  // 社交休闲类
+  { id: 'truthdare', name: '真心话大冒险', category: 'social', icon: '🎭', difficulty: 'easy' },
+  { id: 'drawguess2', name: '你画我猜2', category: 'social', icon: '🎨', difficulty: 'easy' },
+  { id: 'spygame', name: '谁是卧底', category: 'social', icon: '🕵️', difficulty: 'medium' },
+  { id: 'quizrelay', name: '接力问答', category: 'social', icon: '🏆', difficulty: 'easy' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
@@ -1476,4 +1582,23 @@ export const GAME_CONSTANTS: Record<string, any> = {
   DEFAULT_CELL_SIZE: 50,
   DEFAULT_GAME_DURATION: 60,
   DEFAULT_ROUND_DURATION: 90,
+};
+
+// Beat Battle Games constants
+export const BEAT_BATTLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 700, LANES: 6, NOTE_SIZE: 45, FALL_SPEED: 0.35 };
+export const MUSIC_FIGHTER_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, NOTE_SIZE: 50, FALL_SPEED: 0.4 };
+export const DJ_BATTLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 700, LANES: 8, NOTE_SIZE: 45, FALL_SPEED: 0.35, BPM: 128 };
+export const BEAT_RUN_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, LANES: 5, PLAYER_SIZE: 40, SPEED: 5, BPM: 120 };
+
+export const BEAT_BATTLE_ENGINE_CONSTANTS = BEAT_BATTLE_CONSTANTS;
+export const MUSIC_FIGHTER_ENGINE_CONSTANTS = MUSIC_FIGHTER_CONSTANTS;
+export const DJ_BATTLE_ENGINE_CONSTANTS = DJ_BATTLE_CONSTANTS;
+export const BEAT_RUN_ENGINE_CONSTANTS = BEAT_RUN_CONSTANTS;
+
+// Ludo2 constants
+export const LUDO2_CONSTANTS = {
+  CANVAS_WIDTH: 700,
+  CANVAS_HEIGHT: 700,
+  CELL_SIZE: 28,
+  BOARD_SIZE: 4,
 };

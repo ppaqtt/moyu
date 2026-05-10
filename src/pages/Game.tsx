@@ -218,6 +218,52 @@ import MusicPlayer from '../games/MusicPlayer/MusicPlayer';
 import BeatMetronome from '../games/BeatMetronome/BeatMetronome';
 import ComposeBasic from '../games/ComposeBasic/ComposeBasic';
 import WhiteNoise from '../games/WhiteNoise/WhiteNoise';
+// 桌游合集类
+import Ludo2 from '../games/Ludo2/Ludo2';
+import Monopoly2 from '../games/Monopoly2/Monopoly2';
+import Werewolf from '../games/Werewolf/Werewolf';
+import ThreeKingdoms from '../games/ThreeKingdoms/ThreeKingdoms';
+import GermanWhistle from '../games/GermanWhistle/GermanWhistle';
+// 弹珠台/台球增强类
+import PinballMaster from '../games/PinballMaster/PinballMaster';
+import EightBallPool from '../games/EightBallPool/EightBallPool';
+import NineBall from '../games/NineBall/NineBall';
+import Snooker from '../games/Snooker/Snooker';
+// 物理模拟类
+import MarbleMaze from '../games/MarbleMaze/MarbleMaze';
+import BlockBuilder from '../games/BlockBuilder/BlockBuilder';
+import WaterPhysics from '../games/WaterPhysics/WaterPhysics';
+import CrashLab from '../games/CrashLab/CrashLab';
+// 创意工具类
+import PixelCanvas from '../games/PixelCanvas/PixelCanvas';
+import GifMaker from '../games/GifMaker/GifMaker';
+import MemeCreator from '../games/MemeCreator/MemeCreator';
+import CodeArt from '../games/CodeArt/CodeArt';
+// 文字冒险类
+import StoryChoice from '../games/StoryChoice/StoryChoice';
+import TextDungeon from '../games/TextDungeon/TextDungeon';
+import DetectiveText from '../games/DetectiveText/DetectiveText';
+import LoveStory from '../games/LoveStory/LoveStory';
+// 弹幕射击类
+import BulletHeaven from '../games/BulletHeaven/BulletHeaven';
+import RaidenEnhanced from '../games/RaidenEnhanced/RaidenEnhanced';
+import GeometryWars from '../games/GeometryWars/GeometryWars';
+import SpaceBullet from '../games/SpaceBullet/SpaceBullet';
+// 放置挂机类增强
+import IdleFarm from '../games/IdleFarm/IdleFarm';
+import IdleMiner from '../games/IdleMiner/IdleMiner';
+import IdleSpace from '../games/IdleSpace/IdleSpace';
+import IdleRacing from '../games/IdleRacing/IdleRacing';
+// 休闲运动类
+import BowlingMaster2 from '../games/BowlingMaster2/BowlingMaster2';
+import IceHockey from '../games/IceHockey/IceHockey';
+import Skateboarding from '../games/Skateboarding/Skateboarding';
+import Surfing from '../games/Surfing/Surfing';
+// 社交休闲类
+import TruthDare from '../games/TruthDare/TruthDare';
+import DrawGuess2 from '../games/DrawGuess2/DrawGuess2';
+import SpyGame from '../games/SpyGame/SpyGame';
+import QuizRelay from '../games/QuizRelay/QuizRelay';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -766,6 +812,87 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <AnimalChess />;
       case GAME_IDS.NUMBER_PUZZLE:
         return <NumberPuzzle />;
+      // 桌游合集类
+      case GAME_IDS.LUDO2:
+        return <Ludo2 />;
+      case GAME_IDS.MONOPOLY2:
+        return <Monopoly2 />;
+      case GAME_IDS.WEREWOLF:
+        return <Werewolf />;
+      case GAME_IDS.THREE_KINGDOMS:
+        return <ThreeKingdoms />;
+      case GAME_IDS.GERMAN_WHISTLE:
+        return <GermanWhistle />;
+      // 弹珠台/台球增强类
+      case GAME_IDS.PINBALL_MASTER:
+        return <PinballMaster />;
+      case GAME_IDS.EIGHT_BALL_POOL:
+        return <EightBallPool />;
+      case GAME_IDS.NINE_BALL:
+        return <NineBall />;
+      case GAME_IDS.SNOOKER:
+        return <Snooker />;
+      // 物理模拟类
+      case GAME_IDS.MARBLE_MAZE:
+        return <MarbleMaze />;
+      case GAME_IDS.BLOCK_BUILDER:
+        return <BlockBuilder />;
+      case GAME_IDS.WATER_PHYSICS:
+        return <WaterPhysics />;
+      case GAME_IDS.CRASH_LAB:
+        return <CrashLab />;
+      // 创意工具类
+      case GAME_IDS.PIXEL_CANVAS:
+        return <PixelCanvas />;
+      case GAME_IDS.GIF_MAKER:
+        return <GifMaker />;
+      case GAME_IDS.MEME_CREATOR:
+        return <MemeCreator />;
+      case GAME_IDS.CODE_ART:
+        return <CodeArt />;
+      // 文字冒险类
+      case GAME_IDS.STORY_CHOICE:
+        return <StoryChoice />;
+      case GAME_IDS.TEXT_DUNGEON:
+        return <TextDungeon />;
+      case GAME_IDS.DETECTIVE_TEXT:
+        return <DetectiveText />;
+      case GAME_IDS.LOVE_STORY:
+        return <LoveStory />;
+      // 弹幕射击类
+      case GAME_IDS.BULLET_HEAVEN:
+        return <BulletHeaven />;
+      case GAME_IDS.RAIDEN_ENHANCED:
+        return <RaidenEnhanced />;
+      case GAME_IDS.GEOMETRY_WARS:
+        return <GeometryWars />;
+      case GAME_IDS.SPACE_BULLET:
+        return <SpaceBullet />;
+      // 放置挂机类增强
+      case GAME_IDS.IDLE_FARM:
+        return <IdleFarm />;
+      case GAME_IDS.IDLE_MINER:
+        return <IdleMiner />;
+      case GAME_IDS.IDLE_RACING:
+        return <IdleRacing />;
+      // 休闲运动类
+      case GAME_IDS.BOWLING_MASTER2:
+        return <BowlingMaster2 />;
+      case GAME_IDS.ICE_HOCKEY:
+        return <IceHockey />;
+      case GAME_IDS.SKATEBOARDING:
+        return <Skateboarding />;
+      case GAME_IDS.SURFING:
+        return <Surfing />;
+      // 社交休闲类
+      case GAME_IDS.TRUTH_DARE:
+        return <TruthDare />;
+      case GAME_IDS.DRAW_GUESS2:
+        return <DrawGuess2 />;
+      case GAME_IDS.SPY_GAME:
+        return <SpyGame />;
+      case GAME_IDS.QUIZ_RELAY:
+        return <QuizRelay />;
       default:
         return (
           <motion.div

@@ -33,7 +33,7 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
   private gridSize: number = 3;
   private moves: number = 0;
   private startTime: number = 0;
-  private isComplete: boolean = false;
+  private gameCompleted: boolean = false;
   private currentImage: number = 0;
   
   private readonly images = [
@@ -50,7 +50,7 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
     this.pieces = [];
     this.moves = 0;
     this.startTime = Date.now();
-    this.isComplete = false;
+    this.gameCompleted = false;
 
     let id = 0;
     for (let y = 0; y < gridSize; y++) {
@@ -145,7 +145,7 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
   }
 
   public isComplete(): boolean {
-    return this.completed;
+    return this.gameCompleted;
   }
 
   public getImages(): string[] {

@@ -102,6 +102,58 @@ export const MATCH3_GAMES = [
   }
 ] as const;
 
+// BeatBattle exports
+export { BeatBattleEngine } from './BeatBattle/engine';
+export { default as BeatBattle } from './BeatBattle/BeatBattle';
+
+// MusicFighter exports
+export { MusicFighterEngine } from './MusicFighter/engine';
+export { default as MusicFighter } from './MusicFighter/MusicFighter';
+
+// DJBattle exports
+export { DJBattleEngine } from './DJBattle/engine';
+export { default as DJBattle } from './DJBattle/DJBattle';
+
+// BeatRun exports
+export { BeatRunEngine } from './BeatRun/engine';
+export { default as BeatRun } from './BeatRun/BeatRun';
+
+// Beat Battle Games list
+export const BEAT_BATTLE_GAMES = [
+  {
+    id: 'beatbattle',
+    name: 'BeatBattle',
+    nameCn: '节拍对战',
+    component: 'BeatBattle',
+    engine: 'BeatBattleEngine',
+    path: './BeatBattle'
+  },
+  {
+    id: 'musicfighter',
+    name: 'MusicFighter',
+    nameCn: '音乐格斗',
+    component: 'MusicFighter',
+    engine: 'MusicFighterEngine',
+    path: './MusicFighter'
+  },
+  {
+    id: 'djbattle',
+    name: 'DJBattle',
+    nameCn: 'DJ Battle',
+    component: 'DJBattle',
+    engine: 'DJBattleEngine',
+    path: './DJBattle'
+  },
+  {
+    id: 'beatrun',
+    name: 'BeatRun',
+    nameCn: '节拍跑酷',
+    component: 'BeatRun',
+    engine: 'BeatRunEngine',
+    path: './BeatRun'
+  }
+] as const;
+
 // CoopSokoban exports
 export { CoopSokobanEngine } from './CoopSokoban/engine';
 export { default as CoopSokoban } from './CoopSokoban/CoopSokoban';
@@ -429,6 +481,22 @@ export { default as BowlingMaster } from './BowlingMaster/BowlingMaster';
 // PinballPhysics exports
 export { PinballPhysicsEngine } from './PinballPhysics/engine';
 export { default as PinballPhysics } from './PinballPhysics/PinballPhysics';
+
+// PinballMaster exports
+export { PinballMasterEngine } from './PinballMaster/engine';
+export { default as PinballMaster } from './PinballMaster/PinballMaster';
+
+// EightBallPool exports
+export { EightBallPoolEngine } from './EightBallPool/engine';
+export { default as EightBallPool } from './EightBallPool/EightBallPool';
+
+// NineBall exports
+export { NineBallEngine } from './NineBall/engine';
+export { default as NineBall } from './NineBall/NineBall';
+
+// Snooker exports
+export { SnookerEngine } from './Snooker/engine';
+export { default as Snooker } from './Snooker/Snooker';
 
 // CutRope exports
 export { CutRopeEngine } from './CutRope/engine';
@@ -999,5 +1067,256 @@ export const FLIGHT_SHOOTER_GAMES = [
     component: 'Squadron',
     engine: 'SquadronEngine',
     path: './Squadron'
+  }
+] as const;
+
+// Creative Tools Games exports - 创意工具类
+export { PixelCanvasEngine } from './PixelCanvas/engine';
+export { default as PixelCanvas } from './PixelCanvas/PixelCanvas';
+
+export { GifMakerEngine } from './GifMaker/engine';
+export { default as GifMaker } from './GifMaker/GifMaker';
+
+export { MemeMakerEngine } from './MemeCreator/engine';
+export { default as MemeCreator } from './MemeCreator/MemeCreator';
+
+export { CodeArtEngine } from './CodeArt/engine';
+export { default as CodeArt } from './CodeArt/CodeArt';
+
+// Creative Tools Games list
+export const CREATIVE_TOOLS_GAMES = [
+  {
+    id: 'pixelcanvas',
+    name: 'PixelCanvas',
+    nameCn: '像素画板',
+    component: 'PixelCanvas',
+    engine: 'PixelCanvasEngine',
+    path: './PixelCanvas'
+  },
+  {
+    id: 'gifmaker',
+    name: 'GifMaker',
+    nameCn: 'GIF制作',
+    component: 'GifMaker',
+    engine: 'GifMakerEngine',
+    path: './GifMaker'
+  },
+  {
+    id: 'memecreator',
+    name: 'MemeCreator',
+    nameCn: '表情包DIY',
+    component: 'MemeCreator',
+    engine: 'MemeMakerEngine',
+    path: './MemeCreator'
+  },
+  {
+    id: 'codeart',
+    name: 'CodeArt',
+    nameCn: '代码艺术',
+    component: 'CodeArt',
+    engine: 'CodeArtEngine',
+    path: './CodeArt'
+  }
+] as const;
+
+// Monopoly2 exports
+export { Monopoly2Engine } from './Monopoly2/engine';
+export { default as Monopoly2 } from './Monopoly2/Monopoly2';
+
+// Werewolf exports
+export { WerewolfEngine } from './Werewolf/engine';
+export { default as Werewolf } from './Werewolf/Werewolf';
+
+// ThreeKingdoms exports
+export { ThreeKingdomsEngine } from './ThreeKingdoms/engine';
+export { default as ThreeKingdoms } from './ThreeKingdoms/ThreeKingdoms';
+
+// GermanWhistle exports
+export { GermanWhistleEngine } from './GermanWhistle/engine';
+export { default as GermanWhistle } from './GermanWhistle/GermanWhistle';
+
+// Board Games expanded list
+export const BOARD_GAMES_EXPANDED = [
+  {
+    id: 'monopoly2',
+    name: 'Monopoly2',
+    nameCn: '大富翁2',
+    component: 'Monopoly2',
+    engine: 'Monopoly2Engine',
+    path: './Monopoly2'
+  },
+  {
+    id: 'werewolf',
+    name: 'Werewolf',
+    nameCn: '狼人杀',
+    component: 'Werewolf',
+    engine: 'WerewolfEngine',
+    path: './Werewolf'
+  },
+  {
+    id: 'threekingdoms',
+    name: 'ThreeKingdoms',
+    nameCn: '三国杀',
+    component: 'ThreeKingdoms',
+    engine: 'ThreeKingdomsEngine',
+    path: './ThreeKingdoms'
+  },
+  {
+    id: 'germanwhistle',
+    name: 'GermanWhistle',
+    nameCn: '德国心脏病',
+    component: 'GermanWhistle',
+    engine: 'GermanWhistleEngine',
+    path: './GermanWhistle'
+  }
+] as const;
+
+// Idle Games exports - 放置挂机类
+export { useFarmEngine } from './IdleFarm/engine';
+export { default as IdleFarm } from './IdleFarm/IdleFarm';
+
+export { useMinerEngine } from './IdleMiner/engine';
+export { default as IdleMiner } from './IdleMiner/IdleMiner';
+
+export { useSpaceEngine } from './IdleSpace/engine';
+export { default as IdleSpace } from './IdleSpace/IdleSpace';
+
+export { useRacingEngine } from './IdleRacing/engine';
+export { default as IdleRacing } from './IdleRacing/IdleRacing';
+
+// Idle Games list
+export const IDLE_GAMES = [
+  {
+    id: 'idlefarm',
+    name: 'IdleFarm',
+    nameCn: '放置农场',
+    component: 'IdleFarm',
+    engine: 'useFarmEngine',
+    path: './IdleFarm'
+  },
+  {
+    id: 'idleminer',
+    name: 'IdleMiner',
+    nameCn: '放置矿工',
+    component: 'IdleMiner',
+    engine: 'useMinerEngine',
+    path: './IdleMiner'
+  },
+  {
+    id: 'idlespace',
+    name: 'IdleSpace',
+    nameCn: '星际探索',
+    component: 'IdleSpace',
+    engine: 'useSpaceEngine',
+    path: './IdleSpace'
+  },
+  {
+    id: 'idleracing',
+    name: 'IdleRacing',
+    nameCn: '放置赛车',
+    component: 'IdleRacing',
+    engine: 'useRacingEngine',
+    path: './IdleRacing'
+  }
+] as const;
+
+// Text Adventure Games exports - 文字冒险类
+export { StoryChoiceEngine } from './StoryChoice/engine';
+export { default as StoryChoice } from './StoryChoice/StoryChoice';
+
+export { TextDungeonEngine } from './TextDungeon/engine';
+export { default as TextDungeon } from './TextDungeon/TextDungeon';
+
+export { DetectiveTextEngine } from './DetectiveText/engine';
+export { default as DetectiveText } from './DetectiveText/DetectiveText';
+
+export { LoveStoryEngine } from './LoveStory/engine';
+export { default as LoveStory } from './LoveStory/LoveStory';
+
+// Text Adventure Games list
+export const TEXT_ADVENTURE_GAMES = [
+  {
+    id: 'storychoice',
+    name: 'StoryChoice',
+    nameCn: '剧情选择',
+    component: 'StoryChoice',
+    engine: 'StoryChoiceEngine',
+    path: './StoryChoice'
+  },
+  {
+    id: 'textdungeon',
+    name: 'TextDungeon',
+    nameCn: '文字地牢',
+    component: 'TextDungeon',
+    engine: 'TextDungeonEngine',
+    path: './TextDungeon'
+  },
+  {
+    id: 'detectivetext',
+    name: 'DetectiveText',
+    nameCn: '悬疑推理',
+    component: 'DetectiveText',
+    engine: 'DetectiveTextEngine',
+    path: './DetectiveText'
+  },
+  {
+    id: 'lovestory',
+    name: 'LoveStory',
+    nameCn: '恋爱养成',
+    component: 'LoveStory',
+    engine: 'LoveStoryEngine',
+    path: './LoveStory'
+  }
+] as const;
+
+// TruthDare exports
+export { TruthDareEngine } from './TruthDare/engine';
+export { default as TruthDare } from './TruthDare/TruthDare';
+
+// DrawGuess2 exports
+export { DrawGuess2Engine } from './DrawGuess2/engine';
+export { default as DrawGuess2 } from './DrawGuess2/DrawGuess2';
+
+// SpyGame exports
+export { SpyGameEngine } from './SpyGame/engine';
+export { default as SpyGame } from './SpyGame/SpyGame';
+
+// QuizRelay exports
+export { QuizRelayEngine } from './QuizRelay/engine';
+export { default as QuizRelay } from './QuizRelay/QuizRelay';
+
+// Social Games list
+export const SOCIAL_GAMES = [
+  {
+    id: 'truthdare',
+    name: 'TruthDare',
+    nameCn: '真心话大冒险',
+    component: 'TruthDare',
+    engine: 'TruthDareEngine',
+    path: './TruthDare'
+  },
+  {
+    id: 'drawguess2',
+    name: 'DrawGuess2',
+    nameCn: '你画我猜2',
+    component: 'DrawGuess2',
+    engine: 'DrawGuess2Engine',
+    path: './DrawGuess2'
+  },
+  {
+    id: 'spygame',
+    name: 'SpyGame',
+    nameCn: '谁是卧底',
+    component: 'SpyGame',
+    engine: 'SpyGameEngine',
+    path: './SpyGame'
+  },
+  {
+    id: 'quizrelay',
+    name: 'QuizRelay',
+    nameCn: '接力问答',
+    component: 'QuizRelay',
+    engine: 'QuizRelayEngine',
+    path: './QuizRelay'
   }
 ] as const;
