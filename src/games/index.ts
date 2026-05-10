@@ -701,3 +701,303 @@ export const BOARD_GAMES = [
     path: './NumberPuzzle'
   }
 ] as const;
+
+// Kids Games exports - 儿童益智类
+export { JigsawKidsEngine } from './JigsawKids/engine';
+export { default as JigsawKids } from './JigsawKids/JigsawKids';
+
+export { MathKidsEngine } from './MathKids/engine';
+export { default as MathKids } from './MathKids/MathKids';
+
+export { KidsColoringEngine } from './KidsColoring/engine';
+export { default as KidsColoring } from './KidsColoring/KidsColoring';
+
+export { StarMatchEngine } from './StarMatch/engine';
+export { default as StarMatch } from './StarMatch/StarMatch';
+
+export { PetLinkEngine } from './PetLink/engine';
+export { default as PetLink } from './PetLink/PetLink';
+
+// Kids Games list
+export const KIDS_GAMES = [
+  {
+    id: 'jigsawkids',
+    name: 'JigsawKids',
+    nameCn: '拼图乐园',
+    component: 'JigsawKids',
+    engine: 'JigsawKidsEngine',
+    path: './JigsawKids'
+  },
+  {
+    id: 'mathkids',
+    name: 'MathKids',
+    nameCn: '数学练习',
+    component: 'MathKids',
+    engine: 'MathKidsEngine',
+    path: './MathKids'
+  },
+  {
+    id: 'kidscoloring',
+    name: 'KidsColoring',
+    nameCn: '儿童涂色',
+    component: 'KidsColoring',
+    engine: 'KidsColoringEngine',
+    path: './KidsColoring'
+  },
+  {
+    id: 'starmatch',
+    name: 'StarMatch',
+    nameCn: '星星配对',
+    component: 'StarMatch',
+    engine: 'StarMatchEngine',
+    path: './StarMatch'
+  },
+  {
+    id: 'petlink',
+    name: 'PetLink',
+    nameCn: '宠物连连看',
+    component: 'PetLink',
+    engine: 'PetLinkEngine',
+    path: './PetLink'
+  }
+] as const;
+
+// Puzzle Escape Games exports - 解谜逃脱类
+export { CodeBreakEngine } from './CodeBreak/engine';
+export { default as CodeBreak } from './CodeBreak/CodeBreak';
+
+export { KeyUnlockEngine } from './KeyUnlock/engine';
+export { default as KeyUnlock } from './KeyUnlock/KeyUnlock';
+
+export { RoomEscapeEngine } from './RoomEscape/engine';
+export { default as RoomEscape } from './RoomEscape/RoomEscape';
+
+export { SokobanPlusEngine } from './SokobanPlus/engine';
+export { default as SokobanPlus } from './SokobanPlus/SokobanPlus';
+
+export { PatternSlideEngine } from './PatternSlide/engine';
+export { default as PatternSlide } from './PatternSlide/PatternSlide';
+
+// Puzzle Escape Games list
+export const PUZZLE_ESCAPE_GAMES = [
+  {
+    id: 'codebreak',
+    name: 'CodeBreak',
+    nameCn: '密码破译',
+    component: 'CodeBreak',
+    engine: 'CodeBreakEngine',
+    path: './CodeBreak'
+  },
+  {
+    id: 'keyunlock',
+    name: 'KeyUnlock',
+    nameCn: '钥匙解锁',
+    component: 'KeyUnlock',
+    engine: 'KeyUnlockEngine',
+    path: './KeyUnlock'
+  },
+  {
+    id: 'roomescape',
+    name: 'RoomEscape',
+    nameCn: '密室逃脱',
+    component: 'RoomEscape',
+    engine: 'RoomEscapeEngine',
+    path: './RoomEscape'
+  },
+  {
+    id: 'sokobanplus',
+    name: 'SokobanPlus',
+    nameCn: '推箱子进阶',
+    component: 'SokobanPlus',
+    engine: 'SokobanPlusEngine',
+    path: './SokobanPlus'
+  },
+  {
+    id: 'patternslide',
+    name: 'PatternSlide',
+    nameCn: '图案华容道',
+    component: 'PatternSlide',
+    engine: 'PatternSlideEngine',
+    path: './PatternSlide'
+  }
+] as const;
+
+// Rhythm Music Games exports - 音游扩展类
+export { BeatMasterEngine } from './BeatMaster/engine';
+export { default as BeatMaster } from './BeatMaster/BeatMaster';
+
+export { DrumSimulatorEngine } from './DrumSimulator/engine';
+export { default as DrumSimulator } from './DrumSimulator/DrumSimulator';
+
+export { KaraokeEngine } from './Karaoke/engine';
+export { default as Karaoke } from './Karaoke/Karaoke';
+
+export { SynthPlayEngine } from './SynthPlay/engine';
+export { default as SynthPlay } from './SynthPlay/SynthPlay';
+
+export { MixMasterEngine } from './MixMaster/engine';
+export { default as MixMaster } from './MixMaster/MixMaster';
+
+// Rhythm Music Games list
+export const RHYTHM_MUSIC_GAMES = [
+  {
+    id: 'beatmaster',
+    name: 'BeatMaster',
+    nameCn: '节拍大师',
+    component: 'BeatMaster',
+    engine: 'BeatMasterEngine',
+    path: './BeatMaster'
+  },
+  {
+    id: 'drumsimulator',
+    name: 'DrumSimulator',
+    nameCn: '架子鼓模拟',
+    component: 'DrumSimulator',
+    engine: 'DrumSimulatorEngine',
+    path: './DrumSimulator'
+  },
+  {
+    id: 'karaoke',
+    name: 'Karaoke',
+    nameCn: '卡拉OK练习',
+    component: 'Karaoke',
+    engine: 'KaraokeEngine',
+    path: './Karaoke'
+  },
+  {
+    id: 'synthplay',
+    name: 'SynthPlay',
+    nameCn: '电子琴模拟',
+    component: 'SynthPlay',
+    engine: 'SynthPlayEngine',
+    path: './SynthPlay'
+  },
+  {
+    id: 'mixmaster',
+    name: 'MixMaster',
+    nameCn: '混音大师',
+    component: 'MixMaster',
+    engine: 'MixMasterEngine',
+    path: './MixMaster'
+  }
+] as const;
+
+// Simulation Tycoon Games exports - 模拟经营类
+export { HouseDesignEngine } from './HouseDesign/engine';
+export { default as HouseDesign } from './HouseDesign/HouseDesign';
+
+export { CarRepairEngine } from './CarRepair/engine';
+export { default as CarRepair } from './CarRepair/CarRepair';
+
+export { SuperMarketEngine } from './SuperMarket/engine';
+export { default as SuperMarket } from './SuperMarket/SuperMarket';
+
+export { ArtGalleryEngine } from './ArtGallery/engine';
+export { default as ArtGallery } from './ArtGallery/ArtGallery';
+
+export { GameCenterEngine } from './GameCenter/engine';
+export { default as GameCenter } from './GameCenter/GameCenter';
+
+// Simulation Tycoon Games list
+export const SIMULATION_TYCOON_GAMES = [
+  {
+    id: 'housedesign',
+    name: 'HouseDesign',
+    nameCn: '房屋设计',
+    component: 'HouseDesign',
+    engine: 'HouseDesignEngine',
+    path: './HouseDesign'
+  },
+  {
+    id: 'carrepair',
+    name: 'CarRepair',
+    nameCn: '汽车维修',
+    component: 'CarRepair',
+    engine: 'CarRepairEngine',
+    path: './CarRepair'
+  },
+  {
+    id: 'supermarket',
+    name: 'SuperMarket',
+    nameCn: '超市大亨',
+    component: 'SuperMarket',
+    engine: 'SuperMarketEngine',
+    path: './SuperMarket'
+  },
+  {
+    id: 'artgallery',
+    name: 'ArtGallery',
+    nameCn: '画廊经营',
+    component: 'ArtGallery',
+    engine: 'ArtGalleryEngine',
+    path: './ArtGallery'
+  },
+  {
+    id: 'gamecenter',
+    name: 'GameCenter',
+    nameCn: '游戏厅',
+    component: 'GameCenter',
+    engine: 'GameCenterEngine',
+    path: './GameCenter'
+  }
+] as const;
+
+// Flight Shooter Games exports - 飞行射击类
+export { WW2FighterEngine } from './WW2Fighter/engine';
+export { default as WW2Fighter } from './WW2Fighter/WW2Fighter';
+
+export { HeliCombatEngine } from './HeliCombat/engine';
+export { default as HeliCombat } from './HeliCombat/HeliCombat';
+
+export { StarFighterEngine } from './StarFighter/engine';
+export { default as StarFighter } from './StarFighter/StarFighter';
+
+export { AAMissileEngine } from './AAMissile/engine';
+export { default as AAMissile } from './AAMissile/AAMissile';
+
+export { SquadronEngine } from './Squadron/engine';
+export { default as Squadron } from './Squadron/Squadron';
+
+// Flight Shooter Games list
+export const FLIGHT_SHOOTER_GAMES = [
+  {
+    id: 'ww2fighter',
+    name: 'WW2Fighter',
+    nameCn: '二战空战扩展',
+    component: 'WW2Fighter',
+    engine: 'WW2FighterEngine',
+    path: './WW2Fighter'
+  },
+  {
+    id: 'helicombat',
+    name: 'HeliCombat',
+    nameCn: '直升机战斗',
+    component: 'HeliCombat',
+    engine: 'HeliCombatEngine',
+    path: './HeliCombat'
+  },
+  {
+    id: 'starfighter',
+    name: 'StarFighter',
+    nameCn: '星际战机',
+    component: 'StarFighter',
+    engine: 'StarFighterEngine',
+    path: './StarFighter'
+  },
+  {
+    id: 'aamissile',
+    name: 'AAMissile',
+    nameCn: '防空导弹',
+    component: 'AAMissile',
+    engine: 'AAMissileEngine',
+    path: './AAMissile'
+  },
+  {
+    id: 'squadron',
+    name: 'Squadron',
+    nameCn: '战机编队',
+    component: 'Squadron',
+    engine: 'SquadronEngine',
+    path: './Squadron'
+  }
+] as const;

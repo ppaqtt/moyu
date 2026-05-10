@@ -198,6 +198,18 @@ export const GAME_IDS = {
   COOP_BREAKOUT: 'coopbreakout',
   COOP_FRUIT_CATCH: 'coopfruitcatch',
   COOP_BOUNCE: 'coopbounce',
+  // 跑酷闯关类
+  CITY_PARKOUR: 'cityparkour',
+  LAVA_RUN: 'lavarun',
+  ICE_RUN: 'icerun',
+  WATER_RUN: 'waterrun',
+  SPACE_ESCAPE: 'spaceescape',
+  // 飞行射击类
+  WW2FIGHTER: 'ww2fighter',
+  HELICOMBAT: 'helicombat',
+  STARFIGHTER: 'starfighter',
+  AAMISSILE: 'aamissile',
+  SQUADRON: 'squadron',
 };
 
 // Storage keys
@@ -365,6 +377,18 @@ export const STORAGE_KEYS = {
   COOP_BREAKOUT: 'coopbreakout_highscore',
   COOP_FRUIT_CATCH: 'coopfruitcatch_highscore',
   COOP_BOUNCE: 'coopbounce_highscore',
+  // 跑酷闯关类
+  CITY_PARKOUR: 'cityparkour_highscore',
+  LAVA_RUN: 'lavarun_highscore',
+  ICE_RUN: 'icerun_highscore',
+  WATER_RUN: 'waterrun_highscore',
+  SPACE_ESCAPE: 'spaceescape_highscore',
+  // 飞行射击类
+  WW2FIGHTER: 'ww2fighter_highscore',
+  HELICOMBAT: 'helicombat_highscore',
+  STARFIGHTER: 'starfighter_highscore',
+  AAMISSILE: 'aamissile_highscore',
+  SQUADRON: 'squadron_highscore',
 };
 
 // All game constants
@@ -1371,7 +1395,78 @@ export const GAMES_LIST = [
   { id: 'forestadventure', name: '森林冒险', category: 'survival', icon: '🌲', difficulty: 'medium' },
   { id: 'mountainclimber', name: '登山者', category: 'survival', icon: '🧗', difficulty: 'hard' },
   { id: 'helicopterescape', name: '直升机逃生', category: 'survival', icon: '🚁', difficulty: 'medium' },
+  // 跑酷闯关类
+  { id: 'cityparkour', name: '城市跑酷', category: 'parkour', icon: '🏙️', difficulty: 'medium' },
+  { id: 'lavarun', name: '熔岩冲刺', category: 'parkour', icon: '🌋', difficulty: 'hard' },
+  { id: 'icerun', name: '冰雪冲刺', category: 'parkour', icon: '❄️', difficulty: 'medium' },
+  { id: 'waterrun', name: '激流勇进', category: 'parkour', icon: '🌊', difficulty: 'medium' },
+  { id: 'spaceescape', name: '太空逃亡', category: 'parkour', icon: '🚀', difficulty: 'hard' },
+  { id: 'ww2fighter', name: '二战空战扩展', category: 'shooting', icon: '✈️', difficulty: 'hard' },
+  { id: 'helicombat', name: '直升机战斗', category: 'shooting', icon: '🚁', difficulty: 'hard' },
+  { id: 'starfighter', name: '星际战机', category: 'shooting', icon: '🚀', difficulty: 'hard' },
+  { id: 'aamissile', name: '防空导弹', category: 'shooting', icon: '🎯', difficulty: 'medium' },
+  { id: 'squadron', name: '战机编队', category: 'shooting', icon: '✈️', difficulty: 'hard' },
 ];
+
+export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
+export const HELICOMBAT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 60, PLAYER_HEIGHT: 70, ENEMY_SIZE: 35, BULLET_WIDTH: 4, BULLET_HEIGHT: 10, ROCKET_WIDTH: 8, ROCKET_HEIGHT: 16 };
+export const STARFIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 8, BULLET_HEIGHT: 16 };
+export const AAMISSILE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, MISSILE_SPEED: 12, ENEMY_MISSILE_SPEED: 6, TARGET_SIZE: 40 };
+export const SQUADRON_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, MEMBER_SIZE: 35, FORMATION_COUNT: 5, BULLET_WIDTH: 4, BULLET_HEIGHT: 12, ENEMY_SIZE: 35 };
+
+export const WW2FIGHTER_ENGINE_CONSTANTS = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_ENGINE_CONSTANTS = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_ENGINE_CONSTANTS = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_ENGINE_CONSTANTS = AAMISSILE_CONSTANTS;
+export const SQUADRON_ENGINE_CONSTANTS = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_CONSTANTS_2 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_CONSTANTS_2 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_CONSTANTS_2 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_CONSTANTS_2 = AAMISSILE_CONSTANTS;
+export const SQUADRON_CONSTANTS_2 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_ENGINE_CONSTANTS_2 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_ENGINE_CONSTANTS_2 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_ENGINE_CONSTANTS_2 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_ENGINE_CONSTANTS_2 = AAMISSILE_CONSTANTS;
+export const SQUADRON_ENGINE_CONSTANTS_2 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_CONSTANTS_3 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_CONSTANTS_3 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_CONSTANTS_3 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_CONSTANTS_3 = AAMISSILE_CONSTANTS;
+export const SQUADRON_CONSTANTS_3 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_ENGINE_CONSTANTS_3 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_ENGINE_CONSTANTS_3 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_ENGINE_CONSTANTS_3 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_ENGINE_CONSTANTS_3 = AAMISSILE_CONSTANTS;
+export const SQUADRON_ENGINE_CONSTANTS_3 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_CONSTANTS_4 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_CONSTANTS_4 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_CONSTANTS_4 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_CONSTANTS_4 = AAMISSILE_CONSTANTS;
+export const SQUADRON_CONSTANTS_4 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_ENGINE_CONSTANTS_4 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_ENGINE_CONSTANTS_4 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_ENGINE_CONSTANTS_4 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_ENGINE_CONSTANTS_4 = AAMISSILE_CONSTANTS;
+export const SQUADRON_ENGINE_CONSTANTS_4 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_CONSTANTS_5 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_CONSTANTS_5 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_CONSTANTS_5 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_CONSTANTS_5 = AAMISSILE_CONSTANTS;
+export const SQUADRON_CONSTANTS_5 = SQUADRON_CONSTANTS;
+
+export const WW2FIGHTER_ENGINE_CONSTANTS_5 = WW2FIGHTER_CONSTANTS;
+export const HELICOMBAT_ENGINE_CONSTANTS_5 = HELICOMBAT_CONSTANTS;
+export const STARFIGHTER_ENGINE_CONSTANTS_5 = STARFIGHTER_CONSTANTS;
+export const AAMISSILE_ENGINE_CONSTANTS_5 = AAMISSILE_CONSTANTS;
+export const SQUADRON_ENGINE_CONSTANTS_5 = SQUADRON_CONSTANTS;
 
 // Game constants for compatibility
 export const GAME_CONSTANTS: Record<string, any> = {

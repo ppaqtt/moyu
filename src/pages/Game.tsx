@@ -176,6 +176,48 @@ import InternationalChess from '../games/InternationalChess/InternationalChess';
 import MilitaryChess from '../games/MilitaryChess/MilitaryChess';
 import AnimalChess from '../games/AnimalChess/AnimalChess';
 import NumberPuzzle from '../games/NumberPuzzle/NumberPuzzle';
+// 跑酷闯关类
+import CityParkour from '../games/CityParkour/CityParkour';
+import LavaRun from '../games/LavaRun/LavaRun';
+import IceRun from '../games/IceRun/IceRun';
+import WaterRun from '../games/WaterRun/WaterRun';
+import SpaceEscape from '../games/SpaceEscape/SpaceEscape';
+// 音游扩展类
+import BeatMaster from '../games/BeatMaster/BeatMaster';
+import DrumSimulator from '../games/DrumSimulator/DrumSimulator';
+import Karaoke from '../games/Karaoke/Karaoke';
+import SynthPlay from '../games/SynthPlay/SynthPlay';
+import MixMaster from '../games/MixMaster/MixMaster';
+// 模拟经营类
+import HouseDesign from '../games/HouseDesign/HouseDesign';
+import CarRepair from '../games/CarRepair/CarRepair';
+import SuperMarket from '../games/SuperMarket/SuperMarket';
+import ArtGallery from '../games/ArtGallery/ArtGallery';
+import GameCenter from '../games/GameCenter/GameCenter';
+// 儿童益智类
+import JigsawKids from '../games/JigsawKids/JigsawKids';
+import MathKids from '../games/MathKids/MathKids';
+import KidsColoring from '../games/KidsColoring/KidsColoring';
+import StarMatch from '../games/StarMatch/StarMatch';
+import PetLink from '../games/PetLink/PetLink';
+// 解谜逃脱类
+import CodeBreak from '../games/CodeBreak/CodeBreak';
+import KeyUnlock from '../games/KeyUnlock/KeyUnlock';
+import RoomEscape from '../games/RoomEscape/RoomEscape';
+import SokobanPlus from '../games/SokobanPlus/SokobanPlus';
+import PatternSlide from '../games/PatternSlide/PatternSlide';
+// 飞行射击类
+import WW2Fighter from '../games/WW2Fighter/WW2Fighter';
+import HeliCombat from '../games/HeliCombat/HeliCombat';
+import StarFighter from '../games/StarFighter/StarFighter';
+import AAMissile from '../games/AAMissile/AAMissile';
+import Squadron from '../games/Squadron/Squadron';
+// 音乐休闲类
+import GuessSong from '../games/GuessSong/GuessSong';
+import MusicPlayer from '../games/MusicPlayer/MusicPlayer';
+import BeatMetronome from '../games/BeatMetronome/BeatMetronome';
+import ComposeBasic from '../games/ComposeBasic/ComposeBasic';
+import WhiteNoise from '../games/WhiteNoise/WhiteNoise';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -450,6 +492,83 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <Gobang />;
       case GAME_IDS.LUDO:
         return <Ludo />;
+      // 跑酷闯关类
+      case GAME_IDS.CITY_PARKOUR:
+        return <CityParkour />;
+      case GAME_IDS.LAVA_RUN:
+        return <LavaRun />;
+      case GAME_IDS.ICE_RUN:
+        return <IceRun />;
+      case GAME_IDS.WATER_RUN:
+        return <WaterRun />;
+      case GAME_IDS.SPACE_ESCAPE:
+        return <SpaceEscape />;
+      // 音游扩展类
+      case GAME_IDS.BEAT_MASTER:
+        return <BeatMaster />;
+      case GAME_IDS.DRUM_SIMULATOR:
+        return <DrumSimulator />;
+      case GAME_IDS.KARAOKE:
+        return <Karaoke />;
+      case GAME_IDS.SYNTH_PLAY:
+        return <SynthPlay />;
+      case GAME_IDS.MIX_MASTER:
+        return <MixMaster />;
+      // 模拟经营类
+      case GAME_IDS.HOUSE_DESIGN:
+        return <HouseDesign />;
+      case GAME_IDS.CAR_REPAIR:
+        return <CarRepair />;
+      case GAME_IDS.SUPER_MARKET:
+        return <SuperMarket />;
+      case GAME_IDS.ART_GALLERY:
+        return <ArtGallery />;
+      case GAME_IDS.GAME_CENTER:
+        return <GameCenter />;
+      // 儿童益智类
+      case GAME_IDS.JIGSAW_KIDS:
+        return <JigsawKids />;
+      case GAME_IDS.MATH_KIDS:
+        return <MathKids />;
+      case GAME_IDS.KIDS_COLORING:
+        return <KidsColoring />;
+      case GAME_IDS.STAR_MATCH:
+        return <StarMatch />;
+      case GAME_IDS.PET_LINK:
+        return <PetLink />;
+      // 解谜逃脱类
+      case GAME_IDS.CODE_BREAK:
+        return <CodeBreak />;
+      case GAME_IDS.KEY_UNLOCK:
+        return <KeyUnlock />;
+      case GAME_IDS.ROOM_ESCAPE:
+        return <RoomEscape />;
+      case GAME_IDS.SOKOBAN_PLUS:
+        return <SokobanPlus />;
+      case GAME_IDS.PATTERN_SLIDE:
+        return <PatternSlide />;
+      // 飞行射击类
+      case GAME_IDS.WW2_FIGHTER:
+        return <WW2Fighter />;
+      case GAME_IDS.HELI_COMBAT:
+        return <HeliCombat />;
+      case GAME_IDS.STAR_FIGHTER:
+        return <StarFighter />;
+      case GAME_IDS.AA_MISSILE:
+        return <AAMissile />;
+      case GAME_IDS.SQUADRON:
+        return <Squadron />;
+      // 音乐休闲类
+      case GAME_IDS.GUESS_SONG:
+        return <GuessSong />;
+      case GAME_IDS.MUSIC_PLAYER:
+        return <MusicPlayer />;
+      case GAME_IDS.BEAT_METRONOME:
+        return <BeatMetronome />;
+      case GAME_IDS.COMPOSE_BASIC:
+        return <ComposeBasic />;
+      case GAME_IDS.WHITE_NOISE:
+        return <WhiteNoise />;
       // 塔防策略类
       case GAME_IDS.TOWER_DEFENSE:
         return <TowerDefense />;
