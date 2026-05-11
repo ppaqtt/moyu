@@ -259,6 +259,55 @@ export const GAME_IDS = {
   DRAW_GUESS2: 'drawguess2',
   SPY_GAME: 'spygame',
   QUIZ_RELAY: 'quizrelay',
+  // AI对战类
+  TICTACTOE_MASTER: 'tictactoemaster',
+  GOBANG_AI: 'gobangai',
+  CHINESE_CHESS_AI: 'chinesechessai',
+  CHESS_AI: 'chessai',
+  COLORREACTION: 'colorreaction',
+  NUMBERKEYS: 'numberkeys',
+  LEFTRIGHTCHOICE: 'leftrightchoice',
+  FLASHCLICK: 'flashclick',
+  // 音乐创作类
+  BEAT_EDITOR: 'beateditor',
+  CHORD_PROGRESSION: 'chordprogression',
+  MELODY_SYNTH: 'melodysynth',
+  BEAT_BOX: 'beatbox',
+  // 迷宫逃脱类
+  RANDOM_MAZE: 'randommaze',
+  MAZE_3D: 'maze3d',
+  MAZE_PUZZLE: 'mazepuzzle',
+  MAZE_CHASE: 'mazechase',
+  // 视觉错觉类
+  FIND_DIFFERENCE_PRO: 'finddifferencepro',
+  HIDDEN_PICTURE: 'hiddenpicture',
+  VISION_TRACK: 'visiontrack',
+  ILLUSION_ART: 'illusionart',
+  // 编程学习类
+  ROBOT_PROGRAM: 'robotprogram',
+  LOGISTICS_PROGRAM: 'logisticsprogram',
+  CIRCUIT_CONNECT: 'circuitconnect',
+  LOGIC_PROGRAM: 'logicprogram',
+  // 怀旧经典类
+  SNAKE_REMAKE: 'snakeremake',
+  TETRIS_99: 'tetris99',
+  DUCK_HUNT: 'duckhunt',
+  BOMBER_MAN: 'bomberman',
+  // 数学挑战类
+  SPEED_MATH: 'speedmath',
+  SUDOKU_VARIANTS: 'sudokuvariants',
+  NUMBER_MATCH: 'numbermatch',
+  MATH_MAZE: 'mathmaze',
+  // 语言学习类
+  WORD_MEMORY: 'wordmemory',
+  IDIOM_CHAIN_PRO: 'idiomchainpro',
+  TRANSLATE_CHALLENGE: 'translatechallenge',
+  TYPING_ADVANCE: 'typingadvance',
+  // 节日主题类
+  SPRING_FESTIVAL: 'springfestival',
+  CHRISTMAS_GIFT: 'christmasgift',
+  MID_AUTUMN: 'midautumn',
+  HOLIDAY_JIGSAW: 'holidayjigsaw',
 };
 
 // Storage keys
@@ -442,6 +491,15 @@ export const STORAGE_KEYS = {
   STARFIGHTER: 'starfighter_highscore',
   AAMISSILE: 'aamissile_highscore',
   SQUADRON: 'squadron_highscore',
+  // AI对战类
+  TICTACTOE_MASTER: 'tictactoemaster_highscore',
+  GOBANG_AI: 'gobangai_highscore',
+  CHINESE_CHESS_AI: 'chinesechessai_highscore',
+  CHESS_AI: 'chessai_highscore',
+  COLORREACTION: 'colorreaction_highscore',
+  NUMBERKEYS: 'numberkeys_highscore',
+  LEFTRIGHTCHOICE: 'leftrightchoice_highscore',
+  FLASHCLICK: 'flashclick_highscore',
 };
 
 // All game constants
@@ -1512,6 +1570,56 @@ export const GAMES_LIST = [
   { id: 'drawguess2', name: '你画我猜2', category: 'social', icon: '🎨', difficulty: 'easy' },
   { id: 'spygame', name: '谁是卧底', category: 'social', icon: '🕵️', difficulty: 'medium' },
   { id: 'quizrelay', name: '接力问答', category: 'social', icon: '🏆', difficulty: 'easy' },
+  // AI对抗类
+  { id: 'tictactoemaster', name: '井字棋大师', category: 'ai', icon: '⭕', difficulty: 'medium' },
+  { id: 'gobangai', name: '五子棋AI', category: 'ai', icon: '⚫', difficulty: 'hard' },
+  { id: 'chinesechessai', name: '象棋AI', category: 'ai', icon: '🀄', difficulty: 'hard' },
+  { id: 'chessai', name: '国际象棋AI', category: 'ai', icon: '♔', difficulty: 'hard' },
+  // 音乐创作类
+  { id: 'beateditor', name: '节奏编辑器', category: 'music', icon: '🎹', difficulty: 'medium' },
+  { id: 'chordprogression', name: '和弦进行器', category: 'music', icon: '🎵', difficulty: 'medium' },
+  { id: 'melodysynth', name: '旋律合成器', category: 'music', icon: '🎶', difficulty: 'medium' },
+  { id: 'beatbox', name: '节拍盒子', category: 'music', icon: '🥁', difficulty: 'medium' },
+  // 迷宫逃脱类
+  { id: 'randommaze', name: '随机迷宫', category: 'maze', icon: '🧩', difficulty: 'medium' },
+  { id: 'maze3d', name: '3D迷宫', category: 'maze', icon: '🏛️', difficulty: 'hard' },
+  { id: 'mazepuzzle', name: '迷宫解谜', category: 'maze', icon: '🔐', difficulty: 'medium' },
+  { id: 'mazechase', name: '迷宫追逐', category: 'maze', icon: '👻', difficulty: 'hard' },
+  // 视觉错觉类
+  { id: 'finddifferencepro', name: '找不同增强版', category: 'visual', icon: '🔍', difficulty: 'medium' },
+  { id: 'hiddenpicture', name: '隐藏图片', category: 'visual', icon: '🎯', difficulty: 'medium' },
+  { id: 'visiontrack', name: '视觉追踪', category: 'visual', icon: '👁️', difficulty: 'medium' },
+  { id: 'illusionart', name: '错觉绘画', category: 'visual', icon: '🎨', difficulty: 'easy' },
+  // 编程学习类
+  { id: 'robotprogram', name: '机器人编程', category: 'coding', icon: '🤖', difficulty: 'medium' },
+  { id: 'logisticsprogram', name: '物流编程', category: 'coding', icon: '🚚', difficulty: 'medium' },
+  { id: 'circuitconnect', name: '电路连接', category: 'coding', icon: '⚡', difficulty: 'medium' },
+  { id: 'logicprogram', name: '逻辑编程', category: 'coding', icon: '🧠', difficulty: 'hard' },
+  // 怀旧经典类
+  { id: 'snakeremake', name: '贪吃蛇复刻', category: 'retro', icon: '🐍', difficulty: 'easy' },
+  { id: 'tetris99', name: '俄罗斯方块', category: 'retro', icon: '🧱', difficulty: 'medium' },
+  { id: 'duckhunt', name: '打鸭子', category: 'retro', icon: '🦆', difficulty: 'medium' },
+  { id: 'bomberman', name: '炸弹人', category: 'retro', icon: '💣', difficulty: 'medium' },
+  // 数学挑战类
+  { id: 'speedmath', name: '速算大师', category: 'math', icon: '➕', difficulty: 'medium' },
+  { id: 'sudokuvariants', name: '数独变种', category: 'math', icon: '🔢', difficulty: 'medium' },
+  { id: 'numbermatch', name: '数字消消', category: 'math', icon: '🔢', difficulty: 'easy' },
+  { id: 'mathmaze', name: '数学迷宫', category: 'math', icon: '🧮', difficulty: 'medium' },
+  // 反应训练类
+  { id: 'colorreaction', name: '颜色反应', category: 'reaction', icon: '🎨', difficulty: 'easy' },
+  { id: 'numberkeys', name: '数字按键', category: 'reaction', icon: '🔢', difficulty: 'easy' },
+  { id: 'leftrightchoice', name: '左右抉择', category: 'reaction', icon: '⬅️➡️', difficulty: 'easy' },
+  { id: 'flashclick', name: '闪烁点击', category: 'reaction', icon: '👆', difficulty: 'medium' },
+  // 语言学习类
+  { id: 'wordmemory', name: '单词记忆', category: 'language', icon: '📚', difficulty: 'easy' },
+  { id: 'idiomchainpro', name: '成语接龙增强版', category: 'language', icon: '📖', difficulty: 'medium' },
+  { id: 'translatechallenge', name: '翻译挑战', category: 'language', icon: '🌍', difficulty: 'medium' },
+  { id: 'typingadvance', name: '打字进阶', category: 'language', icon: '⌨️', difficulty: 'medium' },
+  // 节日主题类
+  { id: 'springfestival', name: '春节爆竹', category: 'holiday', icon: '🧨', difficulty: 'easy' },
+  { id: 'christmasgift', name: '圣诞礼物', category: 'holiday', icon: '🎄', difficulty: 'easy' },
+  { id: 'midautumn', name: '中秋月饼', category: 'holiday', icon: '🥮', difficulty: 'easy' },
+  { id: 'holidayjigsaw', name: '节日拼图', category: 'holiday', icon: '🧩', difficulty: 'easy' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
@@ -1602,3 +1710,105 @@ export const LUDO2_CONSTANTS = {
   CELL_SIZE: 28,
   BOARD_SIZE: 4,
 };
+
+// AI对战游戏常量
+export const TICTACTOE_MASTER_CONSTANTS = {
+  CANVAS_WIDTH: 500,
+  CANVAS_HEIGHT: 500,
+  GRID_SIZE: 3,
+  CELL_SIZE: 150,
+};
+
+export const GOBANG_AI_CONSTANTS = {
+  CANVAS_WIDTH: 560,
+  CANVAS_HEIGHT: 560,
+  GRID_SIZE: 15,
+  CELL_SIZE: 35,
+  WIN_COUNT: 5,
+};
+
+export const CHINESE_CHESS_AI_CONSTANTS = {
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 660,
+  GRID_COLS: 9,
+  GRID_ROWS: 10,
+  CELL_SIZE: 60,
+};
+
+export const CHESS_AI_CONSTANTS = {
+  CANVAS_WIDTH: 560,
+  CANVAS_HEIGHT: 560,
+  BOARD_SIZE: 8,
+  CELL_SIZE: 70,
+};
+
+export const TICTACTOE_MASTER_ENGINE_CONSTANTS = TICTACTOE_MASTER_CONSTANTS;
+export const GOBANG_AI_ENGINE_CONSTANTS = GOBANG_AI_CONSTANTS;
+export const CHINESE_CHESS_AI_ENGINE_CONSTANTS = CHINESE_CHESS_AI_CONSTANTS;
+export const CHESS_AI_ENGINE_CONSTANTS = CHESS_AI_CONSTANTS;
+
+// 视觉错觉类游戏 ID
+export const FIND_DIFFERENCE_PRO_ID = 'finddifferencepro';
+export const HIDDEN_PICTURE_ID = 'hiddenpicture';
+export const VISION_TRACK_ID = 'visiontrack';
+export const ILLUSION_ART_ID = 'illusionart';
+
+// 添加到 GAME_IDS
+// 更新 GAME_IDS 以包含新游戏
+GAME_IDS.FIND_DIFFERENCE_PRO = FIND_DIFFERENCE_PRO_ID;
+GAME_IDS.HIDDEN_PICTURE = HIDDEN_PICTURE_ID;
+GAME_IDS.VISION_TRACK = VISION_TRACK_ID;
+GAME_IDS.ILLUSION_ART = ILLUSION_ART_ID;
+
+// 存储键
+export const STORAGE_KEYS_FIND_DIFFERENCE_PRO = 'finddifferencepro_highscore';
+export const STORAGE_KEYS_HIDDEN_PICTURE = 'hiddenpicture_highscore';
+export const STORAGE_KEYS_VISION_TRACK = 'visiontrack_highscore';
+export const STORAGE_KEYS_ILLUSION_ART = 'illusionart_highscore';
+
+// 游戏常量
+export const FIND_DIFFERENCE_PRO_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  DIFFERENCES_PER_LEVEL: 8,
+  LEVELS: 5,
+  TIME_LIMIT: 90,
+};
+
+export const HIDDEN_PICTURE_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  ITEMS_PER_LEVEL: 6,
+  LEVELS: 5,
+  TIME_LIMIT: 60,
+};
+
+export const VISION_TRACK_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  TARGET_SPEED: 3,
+  TARGET_COUNT: 3,
+  LEVELS: 5,
+  TIME_LIMIT: 30,
+};
+
+export const ILLUSION_ART_CONSTANTS = {
+  CANVAS_WIDTH: 800,
+  CANVAS_HEIGHT: 600,
+  BRUSH_SIZES: [5, 10, 20, 30],
+  COLORS: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+};
+
+// 引擎常量别名
+export const FIND_DIFFERENCE_PRO_ENGINE_CONSTANTS = FIND_DIFFERENCE_PRO_CONSTANTS;
+export const HIDDEN_PICTURE_ENGINE_CONSTANTS = HIDDEN_PICTURE_CONSTANTS;
+export const VISION_TRACK_ENGINE_CONSTANTS = VISION_TRACK_CONSTANTS;
+export const ILLUSION_ART_ENGINE_CONSTANTS = ILLUSION_ART_CONSTANTS;
+
+// 添加到 GAMES_LIST
+GAMES_LIST.push(
+  { id: FIND_DIFFERENCE_PRO_ID, name: '找不同增强版', category: 'visual', icon: '🔍', difficulty: 'hard' },
+  { id: HIDDEN_PICTURE_ID, name: '隐藏图片', category: 'visual', icon: '🖼️', difficulty: 'medium' },
+  { id: VISION_TRACK_ID, name: '视觉追踪', category: 'visual', icon: '👁️', difficulty: 'medium' },
+  { id: ILLUSION_ART_ID, name: '错觉绘画', category: 'creative', icon: '🎨', difficulty: 'easy' }
+);

@@ -265,6 +265,56 @@ import DrawGuess2 from '../games/DrawGuess2/DrawGuess2';
 import SpyGame from '../games/SpyGame/SpyGame';
 import QuizRelay from '../games/QuizRelay/QuizRelay';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
+// AI对抗类
+import TicTacToeMaster from '../games/TicTacToeMaster/TicTacToeMaster';
+import GobangAI from '../games/GobangAI/GobangAI';
+import ChineseChessAI from '../games/ChineseChessAI/ChineseChessAI';
+import ChessAI from '../games/ChessAI/ChessAI';
+// 反应训练类
+import ColorReaction from '../games/ColorReaction/ColorReaction';
+import NumberKeys from '../games/NumberKeys/NumberKeys';
+import LeftRightChoice from '../games/LeftRightChoice/LeftRightChoice';
+import FlashClick from '../games/FlashClick/FlashClick';
+// 数学挑战类
+import SpeedMath from '../games/SpeedMath/SpeedMath';
+import SudokuVariants from '../games/SudokuVariants/SudokuVariants';
+import NumberMatch from '../games/NumberMatch/NumberMatch';
+import MathMaze from '../games/MathMaze/MathMaze';
+// 语言学习类
+import WordMemory from '../games/WordMemory/WordMemory';
+import IdiomChainPro from '../games/IdiomChainPro/IdiomChainPro';
+import TranslateChallenge from '../games/TranslateChallenge/TranslateChallenge';
+import TypingAdvance from '../games/TypingAdvance/TypingAdvance';
+// 音乐创作类
+import BeatEditor from '../games/BeatEditor/BeatEditor';
+import ChordProgression from '../games/ChordProgression/ChordProgression';
+import MelodySynth from '../games/MelodySynth/MelodySynth';
+import BeatBox from '../games/BeatBox/BeatBox';
+// 迷宫逃脱类
+import RandomMaze from '../games/RandomMaze/RandomMaze';
+import Maze3D from '../games/Maze3D/Maze3D';
+import MazePuzzle from '../games/MazePuzzle/MazePuzzle';
+import MazeChase from '../games/MazeChase/MazeChase';
+// 视觉错觉类
+import FindDifferencePro from '../games/FindDifferencePro/FindDifferencePro';
+import HiddenPicture from '../games/HiddenPicture/HiddenPicture';
+import VisionTrack from '../games/VisionTrack/VisionTrack';
+import IllusionArt from '../games/IllusionArt/IllusionArt';
+// 编程学习类
+import RobotProgram from '../games/RobotProgram/RobotProgram';
+import LogisticsProgram from '../games/LogisticsProgram/LogisticsProgram';
+import CircuitConnect from '../games/CircuitConnect/CircuitConnect';
+import LogicProgram from '../games/LogicProgram/LogicProgram';
+// 怀旧经典类
+import SnakeRemake from '../games/SnakeRemake/SnakeRemake';
+import Tetris99 from '../games/Tetris99/Tetris99';
+import DuckHunt from '../games/DuckHunt/DuckHunt';
+import BomberMan from '../games/BomberMan/BomberMan';
+// 节日主题类
+import SpringFestival from '../games/SpringFestival/SpringFestival';
+import ChristmasGift from '../games/ChristmasGift/ChristmasGift';
+import MidAutumn from '../games/MidAutumn/MidAutumn';
+import HolidayJigsaw from '../games/HolidayJigsaw/HolidayJigsaw';
 
 interface GameContainerProps {
   gameId: string;
@@ -893,6 +943,96 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <SpyGame />;
       case GAME_IDS.QUIZ_RELAY:
         return <QuizRelay />;
+      // 视觉错觉类
+      case GAME_IDS.FIND_DIFFERENCE_PRO:
+        return <FindDifferencePro />;
+      case GAME_IDS.HIDDEN_PICTURE:
+        return <HiddenPicture />;
+      case GAME_IDS.VISION_TRACK:
+        return <VisionTrack />;
+      case GAME_IDS.ILLUSION_ART:
+        return <IllusionArt />;
+      // AI对抗类
+      case GAME_IDS.TICTACTOE_MASTER:
+        return <TicTacToeMaster />;
+      case GAME_IDS.GOBANG_AI:
+        return <GobangAI />;
+      case GAME_IDS.CHINESE_CHESS_AI:
+        return <ChineseChessAI />;
+      case GAME_IDS.CHESS_AI:
+        return <ChessAI />;
+      // 反应训练类
+      case GAME_IDS.COLORREACTION:
+        return <ColorReaction />;
+      case GAME_IDS.NUMBERKEYS:
+        return <NumberKeys />;
+      case GAME_IDS.LEFTRIGHTCHOICE:
+        return <LeftRightChoice />;
+      case GAME_IDS.FLASHCLICK:
+        return <FlashClick />;
+      // 数学挑战类
+      case GAME_IDS.SPEED_MATH:
+        return <SpeedMath />;
+      case GAME_IDS.SUDOKU_VARIANTS:
+        return <SudokuVariants />;
+      case GAME_IDS.NUMBER_MATCH:
+        return <NumberMatch />;
+      case GAME_IDS.MATH_MAZE:
+        return <MathMaze />;
+      // 语言学习类
+      case GAME_IDS.WORD_MEMORY:
+        return <WordMemory />;
+      case GAME_IDS.IDIOM_CHAIN_PRO:
+        return <IdiomChainPro />;
+      case GAME_IDS.TRANSLATE_CHALLENGE:
+        return <TranslateChallenge />;
+      case GAME_IDS.TYPING_ADVANCE:
+        return <TypingAdvance />;
+      // 音乐创作类
+      case GAME_IDS.BEAT_EDITOR:
+        return <BeatEditor />;
+      case GAME_IDS.CHORD_PROGRESSION:
+        return <ChordProgression />;
+      case GAME_IDS.MELODY_SYNTH:
+        return <MelodySynth />;
+      case GAME_IDS.BEAT_BOX:
+        return <BeatBox />;
+      // 迷宫逃脱类
+      case GAME_IDS.RANDOM_MAZE:
+        return <RandomMaze />;
+      case GAME_IDS.MAZE_3D:
+        return <Maze3D />;
+      case GAME_IDS.MAZE_PUZZLE:
+        return <MazePuzzle />;
+      case GAME_IDS.MAZE_CHASE:
+        return <MazeChase />;
+      // 编程学习类
+      case GAME_IDS.ROBOT_PROGRAM:
+        return <RobotProgram />;
+      case GAME_IDS.LOGISTICS_PROGRAM:
+        return <LogisticsProgram />;
+      case GAME_IDS.CIRCUIT_CONNECT:
+        return <CircuitConnect />;
+      case GAME_IDS.LOGIC_PROGRAM:
+        return <LogicProgram />;
+      // 怀旧经典类
+      case GAME_IDS.SNAKE_REMAKE:
+        return <SnakeRemake />;
+      case GAME_IDS.TETRIS_99:
+        return <Tetris99 />;
+      case GAME_IDS.DUCK_HUNT:
+        return <DuckHunt />;
+      case GAME_IDS.BOMBER_MAN:
+        return <BomberMan />;
+      // 节日主题类
+      case GAME_IDS.SPRING_FESTIVAL:
+        return <SpringFestival />;
+      case GAME_IDS.CHRISTMAS_GIFT:
+        return <ChristmasGift />;
+      case GAME_IDS.MID_AUTUMN:
+        return <MidAutumn />;
+      case GAME_IDS.HOLIDAY_JIGSAW:
+        return <HolidayJigsaw />;
       default:
         return (
           <motion.div

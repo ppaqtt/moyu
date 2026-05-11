@@ -1,3 +1,13 @@
+// Classic Retro Games
+export { SnakeRemakeEngine } from './SnakeRemake/engine';
+export { default as SnakeRemake } from './SnakeRemake/SnakeRemake';
+export { Tetris99Engine } from './Tetris99/engine';
+export { default as Tetris99 } from './Tetris99/Tetris99';
+export { DuckHuntEngine } from './DuckHunt/engine';
+export { default as DuckHunt } from './DuckHunt/DuckHunt';
+export { BomberManEngine } from './BomberMan/engine';
+export { default as BomberMan } from './BomberMan/BomberMan';
+
 // QuickMemory exports
 export { QuickMemoryEngine } from './QuickMemory/engine';
 export { default as QuickMemory } from './QuickMemory/QuickMemory';
@@ -17,6 +27,22 @@ export { default as RhythmTap } from './RhythmTap/RhythmTap';
 // TraceLight exports
 export { TraceLightEngine } from './TraceLight/engine';
 export { default as TraceLight } from './TraceLight/TraceLight';
+
+// ColorReaction exports
+export { ColorReactionEngine } from './ColorReaction/engine';
+export { default as ColorReaction } from './ColorReaction/ColorReaction';
+
+// NumberKeys exports
+export { NumberKeysEngine } from './NumberKeys/engine';
+export { default as NumberKeys } from './NumberKeys/NumberKeys';
+
+// LeftRightChoice exports
+export { LeftRightChoiceEngine } from './LeftRightChoice/engine';
+export { default as LeftRightChoice } from './LeftRightChoice/LeftRightChoice';
+
+// FlashClick exports
+export { FlashClickEngine } from './FlashClick/engine';
+export { default as FlashClick } from './FlashClick/FlashClick';
 
 // CandyCrush exports
 export { CandyCrushEngine } from './CandyCrush/engine';
@@ -291,6 +317,38 @@ export const REACTION_GAMES = [
     component: 'TraceLight',
     engine: 'TraceLightEngine',
     path: './TraceLight'
+  },
+  {
+    id: 'colorreaction',
+    name: 'ColorReaction',
+    nameCn: '颜色反应',
+    component: 'ColorReaction',
+    engine: 'ColorReactionEngine',
+    path: './ColorReaction'
+  },
+  {
+    id: 'numberkeys',
+    name: 'NumberKeys',
+    nameCn: '数字按键',
+    component: 'NumberKeys',
+    engine: 'NumberKeysEngine',
+    path: './NumberKeys'
+  },
+  {
+    id: 'leftrightchoice',
+    name: 'LeftRightChoice',
+    nameCn: '左右抉择',
+    component: 'LeftRightChoice',
+    engine: 'LeftRightChoiceEngine',
+    path: './LeftRightChoice'
+  },
+  {
+    id: 'flashclick',
+    name: 'FlashClick',
+    nameCn: '闪烁点击',
+    component: 'FlashClick',
+    engine: 'FlashClickEngine',
+    path: './FlashClick'
   }
 ] as const;
 
@@ -830,6 +888,55 @@ export const KIDS_GAMES = [
   }
 ] as const;
 
+// Math Challenge Games exports - 数学挑战类
+export { SpeedMathEngine } from './SpeedMath/engine';
+export { default as SpeedMath } from './SpeedMath/SpeedMath';
+
+export { SudokuVariantsEngine } from './SudokuVariants/engine';
+export { default as SudokuVariants } from './SudokuVariants/SudokuVariants';
+
+export { NumberMatchEngine } from './NumberMatch/engine';
+export { default as NumberMatch } from './NumberMatch/NumberMatch';
+
+export { MathMazeEngine } from './MathMaze/engine';
+export { default as MathMaze } from './MathMaze/MathMaze';
+
+// Math Challenge Games list
+export const MATH_CHALLENGE_GAMES = [
+  {
+    id: 'speedmath',
+    name: 'SpeedMath',
+    nameCn: '速算大师',
+    component: 'SpeedMath',
+    engine: 'SpeedMathEngine',
+    path: './SpeedMath'
+  },
+  {
+    id: 'sudokuvariants',
+    name: 'SudokuVariants',
+    nameCn: '数独变种',
+    component: 'SudokuVariants',
+    engine: 'SudokuVariantsEngine',
+    path: './SudokuVariants'
+  },
+  {
+    id: 'numbermatch',
+    name: 'NumberMatch',
+    nameCn: '数字消消',
+    component: 'NumberMatch',
+    engine: 'NumberMatchEngine',
+    path: './NumberMatch'
+  },
+  {
+    id: 'mathmaze',
+    name: 'MathMaze',
+    nameCn: '数学迷宫',
+    component: 'MathMaze',
+    engine: 'MathMazeEngine',
+    path: './MathMaze'
+  }
+] as const;
+
 // Puzzle Escape Games exports - 解谜逃脱类
 export { CodeBreakEngine } from './CodeBreak/engine';
 export { default as CodeBreak } from './CodeBreak/CodeBreak';
@@ -1318,5 +1425,251 @@ export const SOCIAL_GAMES = [
     component: 'QuizRelay',
     engine: 'QuizRelayEngine',
     path: './QuizRelay'
+  }
+] as const;
+
+// Language Learning Games exports - 语言学习类
+export { TypingMasterEngine } from './TypingMaster/engine';
+export { default as TypingMaster } from './TypingMaster/TypingMaster';
+
+export { IdiomChainEngine } from './IdiomChain/engine';
+export { default as IdiomChain } from './IdiomChain/IdiomChain';
+
+export { WordSpellEngine } from './WordSpell/engine';
+export { default as WordSpell } from './WordSpell/WordSpell';
+
+export { CrosswordEngine } from './Crossword/engine';
+export { default as Crossword } from './Crossword/Crossword';
+
+export { WordMemoryEngine } from './WordMemory/engine';
+export { default as WordMemory } from './WordMemory/WordMemory';
+
+export { IdiomChainProEngine } from './IdiomChainPro/engine';
+export { default as IdiomChainPro } from './IdiomChainPro/IdiomChainPro';
+
+export { TranslateChallengeEngine } from './TranslateChallenge/engine';
+export { default as TranslateChallenge } from './TranslateChallenge/TranslateChallenge';
+
+export { TypingAdvanceEngine } from './TypingAdvance/engine';
+export { default as TypingAdvance } from './TypingAdvance/TypingAdvance';
+
+// Language Learning Games list
+export const LANGUAGE_LEARNING_GAMES = [
+  {
+    id: 'typingmaster',
+    name: 'TypingMaster',
+    nameCn: '打字大师',
+    component: 'TypingMaster',
+    engine: 'TypingMasterEngine',
+    path: './TypingMaster'
+  },
+  {
+    id: 'idiomchain',
+    name: 'IdiomChain',
+    nameCn: '成语接龙',
+    component: 'IdiomChain',
+    engine: 'IdiomChainEngine',
+    path: './IdiomChain'
+  },
+  {
+    id: 'wordspell',
+    name: 'WordSpell',
+    nameCn: '单词拼写',
+    component: 'WordSpell',
+    engine: 'WordSpellEngine',
+    path: './WordSpell'
+  },
+  {
+    id: 'crossword',
+    name: 'Crossword',
+    nameCn: '填字游戏',
+    component: 'Crossword',
+    engine: 'CrosswordEngine',
+    path: './Crossword'
+  },
+  {
+    id: 'wordmemory',
+    name: 'WordMemory',
+    nameCn: '单词记忆',
+    component: 'WordMemory',
+    engine: 'WordMemoryEngine',
+    path: './WordMemory'
+  },
+  {
+    id: 'idiomchainpro',
+    name: 'IdiomChainPro',
+    nameCn: '成语接龙增强',
+    component: 'IdiomChainPro',
+    engine: 'IdiomChainProEngine',
+    path: './IdiomChainPro'
+  },
+  {
+    id: 'translatechallenge',
+    name: 'TranslateChallenge',
+    nameCn: '翻译挑战',
+    component: 'TranslateChallenge',
+    engine: 'TranslateChallengeEngine',
+    path: './TranslateChallenge'
+  },
+  {
+    id: 'typingadvance',
+    name: 'TypingAdvance',
+    nameCn: '打字进阶',
+    component: 'TypingAdvance',
+    engine: 'TypingAdvanceEngine',
+    path: './TypingAdvance'
+  }
+] as const;
+
+// TicTacToeMaster exports
+export { TicTacToeMasterEngine } from './TicTacToeMaster/engine';
+export { default as TicTacToeMaster } from './TicTacToeMaster/TicTacToeMaster';
+
+// GobangAI exports
+export { GobangAIEngine } from './GobangAI/engine';
+export { default as GobangAI } from './GobangAI/GobangAI';
+
+// ChineseChessAI exports
+export { ChineseChessAIEngine } from './ChineseChessAI/engine';
+export { default as ChineseChessAI } from './ChineseChessAI/ChineseChessAI';
+
+// ChessAI exports
+export { ChessAIEngine } from './ChessAI/engine';
+export { default as ChessAI } from './ChessAI/ChessAI';
+
+// AI对抗类 Games list
+export const AI_BATTLE_GAMES = [
+  {
+    id: 'tictactoemaster',
+    name: 'TicTacToeMaster',
+    nameCn: '井字棋大师',
+    component: 'TicTacToeMaster',
+    engine: 'TicTacToeMasterEngine',
+    path: './TicTacToeMaster'
+  },
+  {
+    id: 'gobangai',
+    name: 'GobangAI',
+    nameCn: '五子棋AI',
+    component: 'GobangAI',
+    engine: 'GobangAIEngine',
+    path: './GobangAI'
+  },
+  {
+    id: 'chinesechessai',
+    name: 'ChineseChessAI',
+    nameCn: '中国象棋AI',
+    component: 'ChineseChessAI',
+    engine: 'ChineseChessAIEngine',
+    path: './ChineseChessAI'
+  },
+  {
+    id: 'chessai',
+    name: 'ChessAI',
+    nameCn: '国际象棋AI',
+    component: 'ChessAI',
+    engine: 'ChessAIEngine',
+    path: './ChessAI'
+  }
+] as const;
+
+// RandomMaze exports
+export { RandomMazeEngine } from './RandomMaze/engine';
+export { default as RandomMaze } from './RandomMaze/RandomMaze';
+
+// Maze3D exports
+export { Maze3DEngine } from './Maze3D/engine';
+export { default as Maze3D } from './Maze3D/Maze3D';
+
+// MazePuzzle exports
+export { MazePuzzleEngine } from './MazePuzzle/engine';
+export { default as MazePuzzle } from './MazePuzzle/MazePuzzle';
+
+// MazeChase exports
+export { MazeChaseEngine } from './MazeChase/engine';
+export { default as MazeChase } from './MazeChase/MazeChase';
+
+// 迷宫逃脱类 Games list
+export const MAZE_ESCAPE_GAMES = [
+  {
+    id: 'randommaze',
+    name: 'RandomMaze',
+    nameCn: '随机迷宫',
+    component: 'RandomMaze',
+    engine: 'RandomMazeEngine',
+    path: './RandomMaze'
+  },
+  {
+    id: 'maze3d',
+    name: 'Maze3D',
+    nameCn: '3D迷宫',
+    component: 'Maze3D',
+    engine: 'Maze3DEngine',
+    path: './Maze3D'
+  },
+  {
+    id: 'mazepuzzle',
+    name: 'MazePuzzle',
+    nameCn: '迷宫解谜',
+    component: 'MazePuzzle',
+    engine: 'MazePuzzleEngine',
+    path: './MazePuzzle'
+  },
+  {
+    id: 'mazechaise',
+    name: 'MazeChase',
+    nameCn: '迷宫追逐',
+    component: 'MazeChase',
+    engine: 'MazeChaseEngine',
+    path: './MazeChase'
+  }
+] as const;
+
+// Visual Illusion Games exports - 视觉错觉类
+export { FindDifferenceProEngine } from './FindDifferencePro/engine';
+export { default as FindDifferencePro } from './FindDifferencePro/FindDifferencePro';
+
+export { HiddenPictureEngine } from './HiddenPicture/engine';
+export { default as HiddenPicture } from './HiddenPicture/HiddenPicture';
+
+export { VisionTrackEngine } from './VisionTrack/engine';
+export { default as VisionTrack } from './VisionTrack/VisionTrack';
+
+export { IllusionArtEngine } from './IllusionArt/engine';
+export { default as IllusionArt } from './IllusionArt/IllusionArt';
+
+// Visual Illusion Games list
+export const VISUAL_ILLUSION_GAMES = [
+  {
+    id: 'finddifferencepro',
+    name: 'FindDifferencePro',
+    nameCn: '找不同增强版',
+    component: 'FindDifferencePro',
+    engine: 'FindDifferenceProEngine',
+    path: './FindDifferencePro'
+  },
+  {
+    id: 'hiddenpicture',
+    name: 'HiddenPicture',
+    nameCn: '隐藏图片',
+    component: 'HiddenPicture',
+    engine: 'HiddenPictureEngine',
+    path: './HiddenPicture'
+  },
+  {
+    id: 'visiontrack',
+    name: 'VisionTrack',
+    nameCn: '视觉追踪',
+    component: 'VisionTrack',
+    engine: 'VisionTrackEngine',
+    path: './VisionTrack'
+  },
+  {
+    id: 'illusionart',
+    name: 'IllusionArt',
+    nameCn: '错觉绘画',
+    component: 'IllusionArt',
+    engine: 'IllusionArtEngine',
+    path: './IllusionArt'
   }
 ] as const;
