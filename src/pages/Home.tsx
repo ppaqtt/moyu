@@ -51,7 +51,7 @@ export default function Home() {
         >
           <span className="text-2xl">🎮</span>
           <span className="text-sm font-medium" style={{ color: NEON_COLORS.neonCyan }}>
-            17款精品游戏
+            {GAMES_LIST.length}款精品游戏
           </span>
         </motion.div>
 
@@ -189,13 +189,12 @@ export default function Home() {
                     className="text-sm mb-4 leading-relaxed"
                     style={{ color: 'rgba(255, 255, 255, 0.5)' }}
                   >
-                    {game.description}
+                    {game.description || `${game.category}类游戏`}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
-                    {game.controls.slice(0, 2).map((control, i) => (
+                    {game.difficulty && (
                       <span
-                        key={i}
                         className="text-xs px-2.5 py-1 rounded-lg font-medium"
                         style={{
                           backgroundColor: 'rgba(255, 255, 255, 0.08)',
@@ -203,9 +202,9 @@ export default function Home() {
                           border: '1px solid rgba(255, 255, 255, 0.1)'
                         }}
                       >
-                        {control}
+                        {game.difficulty === 'easy' ? '简单' : game.difficulty === 'medium' ? '中等' : '困难'}
                       </span>
-                    ))}
+                    )}
                   </div>
                 </div>
               </div>
