@@ -1,57 +1,116 @@
-# React + TypeScript + Vite
+# 🎮 摸鱼小游戏库
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于 React + TypeScript + Vite 构建的在线小游戏合集，包含 **357+ 款游戏**，涵盖益智、竞技、音乐、策略等多个类别。
 
-Currently, two official plugins are available:
+## ✨ 特性
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎯 **海量游戏**: 357+ 款精心挑选的小游戏
+- 📱 **响应式设计**: 支持桌面端和移动端
+- 🎨 **霓虹风格**: 炫酷的霓虹色彩主题
+- 💾 **本地存储**: 自动保存游戏进度和最高分
+- ⚡ **流畅体验**: 基于 Canvas 渲染，性能优秀
 
-## Expanding the ESLint configuration
+## 🎲 游戏类别
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| 类别 | 游戏数 | 代表游戏 |
+|------|--------|----------|
+| 🧩 益智解谜 | 14 | 2048、俄罗斯方块、贪吃蛇、数独 |
+| 🕹️ 街机经典 | 19 | 地铁跑酷、植物大战僵尸、Pacman |
+| 👥 双人合作 | 10 | 双人跑酷、双人贪吃蛇 |
+| 🚀 飞行射击 | 28 | 雷电、太空射击、弹幕天堂 |
+| 💰 策略经营 | 12 | 大富翁、开心农场、动物园大亨 |
+| 🏰 塔防游戏 | 10 | 王国保卫战、气球塔防 |
+| 💤 放置挂机 | 8 | 点击赚钱、工厂大亨、恐龙进化 |
+| ♟️ 桌游棋牌 | 12 | 中国象棋、五子棋、狼人杀 |
+| 🃏 卡牌游戏 | 10 | 斗地主、麻将、德州扑克 |
+| 👊 格斗对战 | 10 | 街头霸王、铁拳、功夫大师 |
+| 🌐 IO竞技 | 10 | 蛇蛇大作战、球球大作战 |
+| 🎵 音乐节奏 | 12 | 节奏大师、钢琴块、音乐英雄 |
+| 🎹 音乐创作 | 10 | 钢琴模拟器、吉他模拟器、鼓机 |
+| 🎯 反应训练 | 14 | 水果忍者、打地鼠、脑力测试 |
+| ➕ 数学挑战 | 10 | 速算大师、几何拼图、逻辑数学 |
+| 🎨 创意绘画 | 10 | 你画我猜、填色本、表情制作 |
+| 🔤 文字词汇 | 5 | 填字游戏、成语接龙、猜谜语 |
+| 📖 文字冒险 | 10 | 赛博朋克、奇幻冒险、悬疑探案 |
+| ⚙️ 物理模拟 | 13 | 愤怒的小鸟、弹珠台、台球 |
+| 🤖 AI对抗 | 10 | 井字棋大师、五子棋AI、黑白棋 |
+| 🧠 编程学习 | 10 | 图形编程、Python入门、算法可视化 |
+| 🔍 迷宫逃脱 | 10 | 地牢逃脱、神庙逃脱、镜屋 |
+| 👁️ 视觉错觉 | 10 | 光学错觉、立体图、色盲测试 |
+| 🎮 怀旧经典 | 10 | 太空侵略者、打砖块、乓 |
+| 🌍 语言学习 | 10 | 词汇量测试、语法练习、听力训练 |
+| 🎊 节日主题 | 10 | 春节爆竹、圣诞礼物、万圣节南瓜 |
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠️ 技术栈
+
+- **框架**: React 18 + TypeScript
+- **构建工具**: Vite 6
+- **样式**: TailwindCSS 3
+- **动画**: Framer Motion
+- **渲染**: Canvas API
+- **状态管理**: React Hooks + localStorage
+
+## 🚀 快速开始
+
+### 安装依赖
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 开发模式
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm run dev
 ```
+
+### 生产构建
+
+```bash
+npm run build
+```
+
+### 预览生产版本
+
+```bash
+npm run preview
+```
+
+## 📁 项目结构
+
+```
+src/
+├── components/          # React 组件
+│   ├── GameCard.tsx     # 游戏卡片
+│   ├── GameGrid.tsx     # 游戏网格布局
+│   └── ...
+├── games/               # 游戏目录
+│   ├── Game2048/       # 2048 游戏
+│   ├── Tetris/         # 俄罗斯方块
+│   ├── Snake/          # 贪吃蛇
+│   └── ...             # 更多游戏
+├── pages/              # 页面组件
+│   ├── Home.tsx        # 首页
+│   └── Game.tsx        # 游戏页面
+├── utils/              # 工具函数
+│   ├── constants.ts    # 游戏常量配置
+│   └── storage.ts      # 本地存储工具
+├── App.tsx             # 主应用
+├── main.tsx            # 入口文件
+└── index.css           # 全局样式
+```
+
+## 🎮 游戏玩法
+
+1. 打开首页，浏览游戏分类
+2. 点击游戏卡片进入游戏
+3. 按照游戏内提示进行操作
+4. 游戏结束后自动保存最高分
+
+## 📝 License
+
+MIT License
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
