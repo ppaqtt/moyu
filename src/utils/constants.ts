@@ -500,6 +500,91 @@ export const STORAGE_KEYS = {
   NUMBERKEYS: 'numberkeys_highscore',
   LEFTRIGHTCHOICE: 'leftrightchoice_highscore',
   FLASHCLICK: 'flashclick_highscore',
+  // 扩展游戏
+  COFFEESHOP: 'coffeeshop_highscore',
+  BAKERYTYCOON: 'bakerytycoon_highscore',
+  ZOOTYCOON: 'zootycoon_highscore',
+  KINGDOMRUSH: 'kingdomrush_highscore',
+  BLOONSTD: 'bloonstd_highscore',
+  PLANTSWAR: 'plantswar_highscore',
+  ZOMBIEDEFENSE: 'zombiedefense_highscore',
+  ELEMENTALTD: 'elementaltd_highscore',
+  SOLITAIRE: 'solitaire_highscore',
+  HEARTS: 'hearts_highscore',
+  SPADES: 'spades_highscore',
+  BRIDGE: 'bridge_highscore',
+  BACCARAT: 'baccarat_highscore',
+  STREETFIGHTER: 'streetfighter_highscore',
+  MORTALCOMBAT: 'mortalcombat_highscore',
+  TEKKEN: 'tekken_highscore',
+  BOXINGCHAMP: 'boxingchamp_highscore',
+  KUNGFUMASTER: 'kungfumaster_highscore',
+  SUMOWRESTLE: 'sumowrestle_highscore',
+  AGAR: 'agar_highscore',
+  SLITHER: 'slither_highscore',
+  DIEP: 'diep_highscore',
+  MOPE: 'mope_highscore',
+  STARVE: 'starve_highscore',
+  PIANOSIM: 'pianosim_highscore',
+  GUITARSIM: 'guitarsim_highscore',
+  DRUMMACHINE: 'drummachine_highscore',
+  MUSICSTUDIO: 'musicstudio_highscore',
+  VOCODER: 'vocoder_highscore',
+  SEQUENCER: 'sequencer_highscore',
+  CALCULATOR: 'calculator_highscore',
+  EQUATIONS: 'equations_highscore',
+  GEOMETRY: 'geometry_highscore',
+  LOGICMATH: 'logicmath_highscore',
+  TIMESTABLE: 'timestable_highscore',
+  FRACTIONS: 'fractions_highscore',
+  CYBERPUNK: 'cyberpunk_highscore',
+  FANTASY: 'fantasy_highscore',
+  SCIFI: 'scifi_highscore',
+  HORROR: 'horror_highscore',
+  MYSTERY: 'mystery_highscore',
+  ROMANCE: 'romance_highscore',
+  REVERSI: 'reversi_highscore',
+  CHECKERS: 'checkers_highscore',
+  BACKGAMMON: 'backgammon_highscore',
+  GOMOKU: 'gomoku_highscore',
+  OTHELLO: 'othello_highscore',
+  DOTSANDBOXES: 'dotsandboxes_highscore',
+  SCRATCH: 'scratch_highscore',
+  PYTHON: 'python_highscore',
+  ALGORITHM: 'algorithm_highscore',
+  WEBDEV: 'webdev_highscore',
+  GAMEDEV: 'gamedev_highscore',
+  DATABASE: 'database_highscore',
+  DUNGEONESCAPE: 'dungeonescape_highscore',
+  PRISONBREAK: 'prisonbreak_highscore',
+  TEMPLEESCAPE: 'templeescape_highscore',
+  SPACESTATION: 'spacestation_highscore',
+  UNDERWATER: 'underwater_highscore',
+  MIRRORROOM: 'mirrorroom_highscore',
+  OPTICALILLUSION: 'opticalillusion_highscore',
+  COLORBLIND: 'colorblind_highscore',
+  STEREOGRAM: 'stereogram_highscore',
+  MOTIONAFTEREFFECT: 'motionaftereffect_highscore',
+  IMPOSSIBLEOBJECTS: 'impossibleobjects_highscore',
+  AMBIGUOUSFIGURE: 'ambiguousfigure_highscore',
+  SPACEINVADERS: 'spaceinvaders_highscore',
+  ASTEROIDS: 'asteroids_highscore',
+  BREAKOUT: 'breakout_highscore',
+  PONG: 'pong_highscore',
+  FROGGER: 'frogger_highscore',
+  GALAGA: 'galaga_highscore',
+  VOCABULARY: 'vocabulary_highscore',
+  GRAMMAR: 'grammar_highscore',
+  LISTENING: 'listening_highscore',
+  SPEAKING: 'speaking_highscore',
+  READING: 'reading_highscore',
+  WRITING: 'writing_highscore',
+  HALLOWEEN: 'halloween_highscore',
+  VALENTINE: 'valentine_highscore',
+  DRAGONBOAT: 'dragonboat_highscore',
+  LANTERN: 'lantern_highscore',
+  LABORDAY: 'laborday_highscore',
+  NATIONALDAY: 'nationalday_highscore',
 };
 
 // All game constants
@@ -663,6 +748,107 @@ export const COOP_BREAKOUT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, 
 export const COOP_FRUIT_CATCH_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, BASKET_WIDTH: 100, BASKET_HEIGHT: 60, FRUIT_RADIUS: 25 };
 export const COOP_BOUNCE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, PLATFORM_WIDTH: 120, PLATFORM_HEIGHT: 15, BALL_RADIUS: 12 };
 export const TILE_COLORS = { 2: '#eee4da', 4: '#ede0c8', 8: '#f2b179', 16: '#f59563', 32: '#f67c5f', 64: '#f65e3b', 128: '#edcf72', 256: '#edcc61', 512: '#edc850', 1024: '#edc53f', 2048: '#edc22e' };
+
+// 扩展游戏常量
+// 策略经营类扩展
+export const COFFEESHOP_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const BAKERYTYCOON_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const ZOOTYCOON_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// 塔防游戏类扩展
+export const KINGDOMRUSH_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600, GRID_SIZE: 40, INITIAL_MONEY: 250 };
+export const BLOONSTD_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600, GRID_SIZE: 35 };
+export const PLANTSWAR_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600, GRID_SIZE: 40 };
+export const ZOMBIEDEFENSE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600, GRID_SIZE: 40 };
+export const ELEMENTALTD_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600, GRID_SIZE: 40 };
+// 卡牌游戏类扩展
+export const SOLITAIRE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 600 };
+export const HEARTS_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const SPADES_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const BRIDGE_CONSTANTS = { CANVAS_WIDTH: 900, CANVAS_HEIGHT: 600 };
+export const BACCARAT_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+// 格斗对战类扩展
+export const STREETFIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const MORTALCOMBAT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const TEKKEN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const BOXINGCHAMP_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const KUNGFUMASTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const SUMOWRESTLE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+// IO竞技类扩展
+export const AGAR_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const SLITHER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const DIEP_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const MOPE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const STARVE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// 音乐创作类扩展
+export const PIANOSIM_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 300 };
+export const GUITARSIM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const DRUMMACHINE_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 400 };
+export const MUSICSTUDIO_CONSTANTS = { CANVAS_WIDTH: 900, CANVAS_HEIGHT: 600 };
+export const VOCODER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const SEQUENCER_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 500 };
+// 数学挑战类扩展
+export const CALCULATOR_CONSTANTS = { CANVAS_WIDTH: 400, CANVAS_HEIGHT: 600 };
+export const EQUATIONS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const GEOMETRY_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const LOGICMATH_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const TIMESTABLE_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600 };
+export const FRACTIONS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+// 文字冒险类扩展
+export const CYBERPUNK_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const FANTASY_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const SCIFI_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const HORROR_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const MYSTERY_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const ROMANCE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// AI对抗类扩展
+export const REVERSI_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 8, CELL_SIZE: 70 };
+export const CHECKERS_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 8, CELL_SIZE: 70 };
+export const BACKGAMMON_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const GOMOKU_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 15, CELL_SIZE: 35 };
+export const OTHELLO_CONSTANTS = { CANVAS_WIDTH: 560, CANVAS_HEIGHT: 560, GRID_SIZE: 8, CELL_SIZE: 70 };
+export const DOTSANDBOXES_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, GRID_SIZE: 6, CELL_SIZE: 100 };
+// 编程学习类扩展
+export const SCRATCH_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const PYTHON_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const ALGORITHM_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const WEBDEV_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const GAMEDEV_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const DATABASE_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+// 迷宫逃脱类扩展
+export const DUNGEONESCAPE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const PRISONBREAK_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const TEMPLEESCAPE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const SPACESTATION_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const UNDERWATER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const MIRRORROOM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+// 视觉错觉类扩展
+export const OPTICALILLUSION_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const COLORBLIND_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const STEREOGRAM_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const MOTIONAFTEREFFECT_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const IMPOSSIBLEOBJECTS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const AMBIGUOUSFIGURE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+// 怀旧经典类扩展
+export const SPACEINVADERS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, ENEMY_WIDTH: 30, ENEMY_HEIGHT: 25 };
+export const ASTEROIDS_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const BREAKOUT_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 600, PADDLE_WIDTH: 80, BALL_RADIUS: 8 };
+export const PONG_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 400, PADDLE_WIDTH: 15, PADDLE_HEIGHT: 80, BALL_RADIUS: 10 };
+export const FROGGER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600, CELL_SIZE: 40 };
+export const GALAGA_CONSTANTS = { CANVAS_WIDTH: 500, CANVAS_HEIGHT: 700, PLAYER_WIDTH: 40, ENEMY_WIDTH: 30 };
+// 语言学习类扩展
+export const VOCABULARY_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const GRAMMAR_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+export const LISTENING_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const SPEAKING_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 400 };
+export const READING_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
+export const WRITING_CONSTANTS = { CANVAS_WIDTH: 700, CANVAS_HEIGHT: 500 };
+// 节日主题类扩展
+export const HALLOWEEN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const VALENTINE_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const DRAGONBOAT_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 400 };
+export const LANTERN_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 500 };
+export const LABORDAY_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 600 };
+export const NATIONALDAY_CONSTANTS = { CANVAS_WIDTH: 800, CANVAS_HEIGHT: 600 };
 
 // Engine constants (aliases)
 export const TETRIS_ENGINE_CONSTANTS = TETRIS_CONSTANTS;
@@ -1620,6 +1806,105 @@ export const GAMES_LIST = [
   { id: 'christmasgift', name: '圣诞礼物', category: 'holiday', icon: '🎄', difficulty: 'easy' },
   { id: 'midautumn', name: '中秋月饼', category: 'holiday', icon: '🥮', difficulty: 'easy' },
   { id: 'holidayjigsaw', name: '节日拼图', category: 'holiday', icon: '🧩', difficulty: 'easy' },
+  // 策略经营类扩展
+  { id: 'coffeeshop', name: '咖啡店经营', category: 'strategy', icon: '☕', difficulty: 'medium' },
+  { id: 'bakerytycoon', name: '面包店大亨', category: 'strategy', icon: '🥐', difficulty: 'medium' },
+  { id: 'zootycoon', name: '动物园大亨', category: 'strategy', icon: '🦁', difficulty: 'medium' },
+  // 塔防游戏类扩展
+  { id: 'kingdomrush', name: '王国保卫战', category: 'tower', icon: '🏰', difficulty: 'hard' },
+  { id: 'bloonstd', name: '气球塔防', category: 'tower', icon: '🎈', difficulty: 'medium' },
+  { id: 'plantswar', name: '植物战争', category: 'tower', icon: '🌻', difficulty: 'medium' },
+  { id: 'zombiedefense', name: '僵尸防线', category: 'tower', icon: '🧟', difficulty: 'hard' },
+  { id: 'elementaltd', name: '元素塔防', category: 'tower', icon: '🔥', difficulty: 'hard' },
+  // 卡牌游戏类扩展
+  { id: 'solitaire', name: '纸牌接龙', category: 'card', icon: '🃏', difficulty: 'easy' },
+  { id: 'hearts', name: '红心大战', category: 'card', icon: '❤️', difficulty: 'medium' },
+  { id: 'spades', name: '黑桃皇后', category: 'card', icon: '♠️', difficulty: 'medium' },
+  { id: 'bridge', name: '桥牌', category: 'card', icon: '🌉', difficulty: 'hard' },
+  { id: 'baccarat', name: '百家乐', category: 'card', icon: '🎰', difficulty: 'medium' },
+  // 格斗对战类扩展
+  { id: 'streetfighter', name: '街头霸王', category: 'fighting', icon: '🥊', difficulty: 'hard' },
+  { id: 'mortalcombat', name: '真人快打', category: 'fighting', icon: '💀', difficulty: 'hard' },
+  { id: 'tekken', name: '铁拳', category: 'fighting', icon: '👊', difficulty: 'hard' },
+  { id: 'boxingchamp', name: '拳击冠军', category: 'fighting', icon: '🥊', difficulty: 'medium' },
+  { id: 'kungfumaster', name: '功夫大师', category: 'fighting', icon: '🐉', difficulty: 'hard' },
+  { id: 'sumowrestle', name: '相扑大战', category: 'fighting', icon: '🤼', difficulty: 'medium' },
+  // IO竞技类扩展
+  { id: 'agar', name: '细胞吞噬', category: 'io', icon: '🔵', difficulty: 'easy' },
+  { id: 'slither', name: '蛇蛇争霸', category: 'io', icon: '🐍', difficulty: 'easy' },
+  { id: 'diep', name: '坦克进化', category: 'io', icon: '💥', difficulty: 'medium' },
+  { id: 'mope', name: '动物进化', category: 'io', icon: '🐾', difficulty: 'medium' },
+  { id: 'starve', name: '荒野求生', category: 'io', icon: '🏕️', difficulty: 'hard' },
+  // 音乐创作类扩展
+  { id: 'pianosim', name: '钢琴模拟器', category: 'music', icon: '🎹', difficulty: 'medium' },
+  { id: 'guitarsim', name: '吉他模拟器', category: 'music', icon: '🎸', difficulty: 'medium' },
+  { id: 'drummachine', name: '鼓机', category: 'music', icon: '🥁', difficulty: 'medium' },
+  { id: 'musicstudio', name: '音乐工作室', category: 'music', icon: '🎧', difficulty: 'hard' },
+  { id: 'vocoder', name: '声码器', category: 'music', icon: '🎤', difficulty: 'hard' },
+  { id: 'sequencer', name: '音序器', category: 'music', icon: '🎚️', difficulty: 'hard' },
+  // 数学挑战类扩展
+  { id: 'calculator', name: '计算器挑战', category: 'math', icon: '🧮', difficulty: 'easy' },
+  { id: 'equations', name: '方程求解', category: 'math', icon: '📐', difficulty: 'hard' },
+  { id: 'geometry', name: '几何拼图', category: 'math', icon: '📏', difficulty: 'medium' },
+  { id: 'logicmath', name: '逻辑数学', category: 'math', icon: '🧩', difficulty: 'hard' },
+  { id: 'timestable', name: '乘法表', category: 'math', icon: '✖️', difficulty: 'easy' },
+  { id: 'fractions', name: '分数运算', category: 'math', icon: '½', difficulty: 'medium' },
+  // 文字冒险类扩展
+  { id: 'cyberpunk', name: '赛博朋克', category: 'adventure', icon: '🤖', difficulty: 'hard' },
+  { id: 'fantasy', name: '奇幻冒险', category: 'adventure', icon: '🐉', difficulty: 'medium' },
+  { id: 'scifi', name: '科幻故事', category: 'adventure', icon: '🚀', difficulty: 'medium' },
+  { id: 'horror', name: '恐怖故事', category: 'adventure', icon: '👻', difficulty: 'hard' },
+  { id: 'mystery', name: '悬疑探案', category: 'adventure', icon: '🔎', difficulty: 'hard' },
+  { id: 'romance', name: '浪漫故事', category: 'adventure', icon: '💕', difficulty: 'easy' },
+  // AI对抗类扩展
+  { id: 'reversi', name: '黑白棋', category: 'ai', icon: '⚫', difficulty: 'medium' },
+  { id: 'checkers', name: '跳棋AI', category: 'ai', icon: '🔴', difficulty: 'medium' },
+  { id: 'backgammon', name: '双陆棋', category: 'ai', icon: '🎲', difficulty: 'hard' },
+  { id: 'gomoku', name: '五子棋Pro', category: 'ai', icon: '⚪', difficulty: 'hard' },
+  { id: 'othello', name: '奥赛罗', category: 'ai', icon: '⚫', difficulty: 'medium' },
+  { id: 'dotsandboxes', name: '点格棋', category: 'ai', icon: '⬜', difficulty: 'easy' },
+  // 编程学习类扩展
+  { id: 'scratch', name: '图形编程', category: 'coding', icon: '🐱', difficulty: 'easy' },
+  { id: 'python', name: 'Python入门', category: 'coding', icon: '🐍', difficulty: 'medium' },
+  { id: 'algorithm', name: '算法可视化', category: 'coding', icon: '📊', difficulty: 'hard' },
+  { id: 'webdev', name: '网页开发', category: 'coding', icon: '🌐', difficulty: 'medium' },
+  { id: 'gamedev', name: '游戏开发', category: 'coding', icon: '🎮', difficulty: 'hard' },
+  { id: 'database', name: '数据库设计', category: 'coding', icon: '🗄️', difficulty: 'hard' },
+  // 迷宫逃脱类扩展
+  { id: 'dungeonescape', name: '地牢逃脱', category: 'maze', icon: '⚔️', difficulty: 'hard' },
+  { id: 'prisonbreak', name: '越狱', category: 'maze', icon: '🔒', difficulty: 'hard' },
+  { id: 'templeescape', name: '神庙逃脱', category: 'maze', icon: '🏛️', difficulty: 'medium' },
+  { id: 'spacestation', name: '空间站', category: 'maze', icon: '🛸', difficulty: 'hard' },
+  { id: 'underwater', name: '海底迷宫', category: 'maze', icon: '🐠', difficulty: 'medium' },
+  { id: 'mirrorroom', name: '镜屋', category: 'maze', icon: '🪞', difficulty: 'hard' },
+  // 视觉错觉类扩展
+  { id: 'opticalillusion', name: '光学错觉', category: 'visual', icon: '👁️', difficulty: 'medium' },
+  { id: 'colorblind', name: '色盲测试', category: 'visual', icon: '🎨', difficulty: 'easy' },
+  { id: 'stereogram', name: '立体图', category: 'visual', icon: '🔮', difficulty: 'medium' },
+  { id: 'motionaftereffect', name: '运动后效', category: 'visual', icon: '🌀', difficulty: 'easy' },
+  { id: 'impossibleobjects', name: '不可能图形', category: 'visual', icon: '🔲', difficulty: 'medium' },
+  { id: 'ambiguousfigure', name: '歧义图形', category: 'visual', icon: '🎭', difficulty: 'medium' },
+  // 怀旧经典类扩展
+  { id: 'spaceinvaders', name: '太空侵略者', category: 'retro', icon: '👾', difficulty: 'medium' },
+  { id: 'asteroids', name: '小行星', category: 'retro', icon: '☄️', difficulty: 'medium' },
+  { id: 'breakout', name: '打砖块', category: 'retro', icon: '🧱', difficulty: 'easy' },
+  { id: 'pong', name: '乓', category: 'retro', icon: '🏓', difficulty: 'easy' },
+  { id: 'frogger', name: '青蛙过河', category: 'retro', icon: '🐸', difficulty: 'medium' },
+  { id: 'galaga', name: '大蜜蜂', category: 'retro', icon: '🐝', difficulty: 'hard' },
+  // 语言学习类扩展
+  { id: 'vocabulary', name: '词汇量测试', category: 'language', icon: '📚', difficulty: 'medium' },
+  { id: 'grammar', name: '语法练习', category: 'language', icon: '✍️', difficulty: 'medium' },
+  { id: 'listening', name: '听力训练', category: 'language', icon: '👂', difficulty: 'medium' },
+  { id: 'speaking', name: '口语练习', category: 'language', icon: '🗣️', difficulty: 'hard' },
+  { id: 'reading', name: '阅读理解', category: 'language', icon: '📖', difficulty: 'medium' },
+  { id: 'writing', name: '写作练习', category: 'language', icon: '✏️', difficulty: 'hard' },
+  // 节日主题类扩展
+  { id: 'halloween', name: '万圣节南瓜', category: 'holiday', icon: '🎃', difficulty: 'easy' },
+  { id: 'valentine', name: '情人节爱心', category: 'holiday', icon: '💝', difficulty: 'easy' },
+  { id: 'dragonboat', name: '端午龙舟', category: 'holiday', icon: '🐉', difficulty: 'medium' },
+  { id: 'lantern', name: '元宵灯谜', category: 'holiday', icon: '🏮', difficulty: 'medium' },
+  { id: 'laborday', name: '劳动节', category: 'holiday', icon: '👷', difficulty: 'easy' },
+  { id: 'nationalday', name: '国庆庆典', category: 'holiday', icon: '🇨🇳', difficulty: 'easy' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
