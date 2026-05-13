@@ -642,8 +642,20 @@ function GamePage() {
       <div className="min-h-screen flex items-center justify-center">
         <ParticleBg />
         <div className="relative z-10 text-center p-8">
-          <div className="text-6xl mb-4">⏳</div>
-          <h1 className="text-3xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>正在加载游戏...</h1>
+          <div className="text-6xl mb-4">⚠️</div>
+          <h1 className="text-3xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>游戏加载失败</h1>
+          <p className="text-lg mb-6" style={{ color: NEON_COLORS.textDim }}>请稍后再试，或返回首页选择其他游戏</p>
+          <motion.button 
+            onClick={handleExit} 
+            className="px-6 py-3 rounded-xl font-bold"
+            style={{ 
+              background: `linear-gradient(135deg, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`, 
+              color: '#ffffff' 
+            }}
+            whileHover={{ scale: 1.05 }}
+          >
+            返回首页
+          </motion.button>
         </div>
       </div>
     );
