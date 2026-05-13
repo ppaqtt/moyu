@@ -2341,11 +2341,3 @@ export const FIND_DIFFERENCE_PRO_ENGINE_CONSTANTS = FIND_DIFFERENCE_PRO_CONSTANT
 export const HIDDEN_PICTURE_ENGINE_CONSTANTS = HIDDEN_PICTURE_CONSTANTS;
 export const VISION_TRACK_ENGINE_CONSTANTS = VISION_TRACK_CONSTANTS;
 export const ILLUSION_ART_ENGINE_CONSTANTS = ILLUSION_ART_CONSTANTS;
-
-// 添加到 GAMES_LIST
-GAMES_LIST.push(
-  { id: FIND_DIFFERENCE_PRO_ID, name: '找不同增强版', category: 'visual', icon: '🔍', difficulty: 'hard' },
-  { id: HIDDEN_PICTURE_ID, name: '隐藏图片', category: 'visual', icon: '🖼️', difficulty: 'medium' },
-  { id: VISION_TRACK_ID, name: '视觉追踪', category: 'visual', icon: '👁️', difficulty: 'medium' },
-  { id: ILLUSION_ART_ID, name: '错觉绘画', category: 'creative', icon: '🎨', difficulty: 'easy' }
-);
