@@ -588,7 +588,7 @@ export const STORAGE_KEYS = {
 };
 
 // All game constants
-export const GAME_2048_CONSTANTS = { GRID_SIZE: 4, CELL_SIZE: 80, GAP: 10 };
+export const GAME_2048_CONSTANTS = { GRID_SIZE: 3, TILE_SIZE: 100, GAP: 12, CANVAS_SIZE: 336 };
 export const FUSION_CONSTANTS = { GRID_SIZE: 6, CELL_SIZE: 70, GAP: 8, CANVAS_WIDTH: 500, CANVAS_HEIGHT: 500 };
 export const TETRIS_CONSTANTS = { BOARD_WIDTH: 10, BOARD_HEIGHT: 20, CELL_SIZE: 30 };
 export const SNAKE_CONSTANTS = { CELL_SIZE: 20, INITIAL_LENGTH: 3, SPEED: 150 };
@@ -1906,7 +1906,7 @@ export const GAMES_LIST = [
   { id: 'laborday', name: '劳动节', category: 'holiday', icon: '👷', difficulty: 'easy' },
   { id: 'nationalday', name: '国庆庆典', category: 'holiday', icon: '🇨🇳', difficulty: 'easy' },
   // 模拟养成类扩展
-  { id: 'factorytycoon', name: '工业大亨', category: 'simulation', icon: '🏭', difficulty: 'medium' },
+  { id: 'industrialtycoon', name: '工业大亨', category: 'simulation', icon: '🏭', difficulty: 'medium' },
   { id: 'banktycoon', name: '银行大亨', category: 'simulation', icon: '🏦', difficulty: 'medium' },
   { id: 'citybuilder', name: '城市建造者', category: 'simulation', icon: '🏗️', difficulty: 'hard' },
   { id: 'housebuilder', name: '房屋建造者', category: 'simulation', icon: '🏘️', difficulty: 'medium' },
@@ -2341,11 +2341,3 @@ export const FIND_DIFFERENCE_PRO_ENGINE_CONSTANTS = FIND_DIFFERENCE_PRO_CONSTANT
 export const HIDDEN_PICTURE_ENGINE_CONSTANTS = HIDDEN_PICTURE_CONSTANTS;
 export const VISION_TRACK_ENGINE_CONSTANTS = VISION_TRACK_CONSTANTS;
 export const ILLUSION_ART_ENGINE_CONSTANTS = ILLUSION_ART_CONSTANTS;
-
-// 添加到 GAMES_LIST
-GAMES_LIST.push(
-  { id: FIND_DIFFERENCE_PRO_ID, name: '找不同增强版', category: 'visual', icon: '🔍', difficulty: 'hard' },
-  { id: HIDDEN_PICTURE_ID, name: '隐藏图片', category: 'visual', icon: '🖼️', difficulty: 'medium' },
-  { id: VISION_TRACK_ID, name: '视觉追踪', category: 'visual', icon: '👁️', difficulty: 'medium' },
-  { id: ILLUSION_ART_ID, name: '错觉绘画', category: 'creative', icon: '🎨', difficulty: 'easy' }
-);

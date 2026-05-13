@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
-import UpdateLog from '../components/UpdateLog';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
 const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
@@ -87,6 +86,28 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
       <ParticleBg />
+
+      <motion.div
+        className="absolute top-6 right-6 z-20"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <motion.button
+          onClick={() => navigate('/updates')}
+          className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+          style={{
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
+            color: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(168, 85, 247, 0.3)',
+            backdropFilter: 'blur(10px)'
+          }}
+          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+        >
+          📝 更新日志
+        </motion.button>
+      </motion.div>
 
       <motion.div
         className="text-center mb-10 relative z-10"
@@ -277,8 +298,6 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
-
-      <UpdateLog />
 
       <motion.footer
         className="mt-16 text-center relative z-10 w-full px-4"
