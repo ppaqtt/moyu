@@ -278,24 +278,148 @@ export default function Home() {
       </div>
 
       <motion.footer
-        className="mt-16 text-center relative z-10"
+        className="mt-16 text-center relative z-10 w-full px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
       >
         <div
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full"
+          className="max-w-4xl mx-auto rounded-3xl p-8 backdrop-blur-xl"
           style={{
-            background: 'rgba(255, 255, 255, 0.05)',
+            background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 26, 0.9))',
             border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)'
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
         >
-          <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>© 2024</span>
-          <span style={{ color: NEON_COLORS.neonPink }}>•</span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>摸鱼小游戏</span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>适合工作间隙放松</span>
+          <div className="footer-content">
+            <motion.div
+              className="footer-logo text-3xl font-black mb-4"
+              style={{
+                background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 0 20px rgba(255, 107, 157, 0.3)'
+              }}
+            >
+              摸鱼小游戏
+            </motion.div>
+
+            <p className="footer-desc text-lg mb-6" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              工作累了？来放松一下 ✨ 精选647款小游戏，让你在工作间隙轻松摸鱼放松身心
+            </p>
+
+            <div className="social-links flex justify-center gap-4 mb-8">
+              <a
+                href="https://github.com/ppaqtt"
+                className="social-icon w-12 h-12 rounded-2xl flex items-center justify-center text-2xl transition-all duration-300"
+                title="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(6, 182, 212, 0.3))';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 107, 157, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 107, 157, 0.5)';
+                  e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                }}
+              >
+                🐙
+              </a>
+              <a
+                href="mailto:ppkjgzs@qq.com"
+                className="social-icon w-12 h-12 rounded-2xl flex items-center justify-center text-2xl transition-all duration-300"
+                title="邮箱"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3))';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)';
+                  e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                }}
+              >
+                📧
+              </a>
+            </div>
+
+            <div className="footer-bottom pt-6 border-t border-white/10">
+              <div className="footer-links flex flex-wrap justify-center items-center gap-3 text-sm mb-3" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
+                <span>
+                  由
+                  <a
+                    href="https://ppkjgzs.top"
+                    className="footer-link mx-1 hover:opacity-100 transition-opacity"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: NEON_COLORS.neonCyan }}
+                  >
+                    平平的小破站
+                  </a>
+                  制作
+                </span>
+                <span className="divider" style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
+                <span>
+                  使用
+                  <span className="tech mx-1" style={{ color: NEON_COLORS.neonPink }}>React</span>
+                  ,
+                  <span className="tech mx-1" style={{ color: NEON_COLORS.neonPink }}>TypeScript</span>
+                  和
+                  <span className="tech mx-1" style={{ color: NEON_COLORS.neonCyan }}>Vite</span>
+                  构建
+                </span>
+              </div>
+              <p className="text-sm mb-2" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
+                © 2025 摸鱼小游戏 版权所有
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-xs">
+                <a
+                  href="https://beian.miit.gov.cn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icp-record hover:opacity-100 transition-opacity"
+                  style={{ color: 'rgba(255, 255, 255, 0.5)' }}
+                >
+                  浙ICP备2025194709号-2
+                </a>
+                <a
+                  href="https://beian.mps.gov.cn/#/query/webSearch?code=13020202000680"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icp-record hover:opacity-100 transition-opacity"
+                  style={{ color: 'rgba(255, 255, 255, 0.5)' }}
+                >
+                  冀公网安备13020202000680号
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.footer>
     </div>
