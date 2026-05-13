@@ -4,30 +4,84 @@ import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
-const CATEGORIES = [
-  { id: 'all', name: '全部', icon: '🎮', color: '#a855f7' },
-  { id: 'puzzle', name: '经典益智', icon: '🧩', color: '#06b6d4' },
-  { id: 'arcade', name: '休闲竞技', icon: '🏃', color: '#22c55e' },
-  { id: 'retro', name: '怀旧联机', icon: '🔥', color: '#f97316' },
-  { id: 'premium', name: '高分神作', icon: '⭐', color: '#eab308' },
-  { id: 'classic', name: '经典休闲', icon: '✨', color: '#ec4899' }
-];
+const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
+  'all': { name: '全部', icon: '🎮', color: '#a855f7' },
+  'puzzle': { name: '益智解谜', icon: '🧩', color: '#06b6d4' },
+  'arcade': { name: '街机经典', icon: '🕹️', color: '#22c55e' },
+  'co-op': { name: '双人合作', icon: '👥', color: '#ec4899' },
+  'shooting': { name: '飞行射击', icon: '🚀', color: '#ef4444' },
+  'strategy': { name: '策略经营', icon: '💰', color: '#f59e0b' },
+  'tower': { name: '塔防游戏', icon: '🏰', color: '#8b5cf6' },
+  'idle': { name: '放置挂机', icon: '💤', color: '#10b981' },
+  'board': { name: '桌游棋牌', icon: '♟️', color: '#3b82f6' },
+  'card': { name: '卡牌游戏', icon: '🃏', color: '#06b6d4' },
+  'fighting': { name: '格斗对战', icon: '👊', color: '#f97316' },
+  'io': { name: 'IO竞技', icon: '🌐', color: '#84cc16' },
+  'rhythm': { name: '音乐节奏', icon: '🎵', color: '#ec4899' },
+  'music': { name: '音乐创作', icon: '🎹', color: '#6366f1' },
+  'reaction': { name: '反应训练', icon: '🎯', color: '#f59e0b' },
+  'math': { name: '数学挑战', icon: '➕', color: '#06b6d4' },
+  'creative': { name: '创意工具', icon: '🎨', color: '#ec4899' },
+  'match3': { name: '消除游戏', icon: '💎', color: '#a855f7' },
+  'physics': { name: '物理模拟', icon: '⚙️', color: '#22c55e' },
+  '养成': { name: '养成游戏', icon: '🐾', color: '#f472b6' },
+  'sports': { name: '运动竞技', icon: '🏃', color: '#3b82f6' },
+  'survival': { name: '生存冒险', icon: '🏆', color: '#f97316' },
+  'parkour': { name: '跑酷闯关', icon: '🏃', color: '#06b6d4' },
+  'word': { name: '文字词汇', icon: '🔤', color: '#8b5cf6' },
+  'adventure': { name: '文字冒险', icon: '📖', color: '#f59e0b' },
+  'ai': { name: 'AI对抗', icon: '🧠', color: '#06b6d4' },
+  'coding': { name: '编程学习', icon: '💻', color: '#22c55e' },
+  'maze': { name: '迷宫逃脱', icon: '🗺️', color: '#f97316' },
+  'visual': { name: '视觉错觉', icon: '👁️', color: '#ec4899' },
+  'retro': { name: '怀旧经典', icon: '🕹️', color: '#f59e0b' },
+  'language': { name: '语言学习', icon: '🌍', color: '#3b82f6' },
+  'holiday': { name: '节日主题', icon: '🎉', color: '#ef4444' },
+  'simulation': { name: '模拟经营', icon: '🏭', color: '#84cc16' },
+  'multiplayer': { name: '多人对战', icon: '🎮', color: '#a855f7' },
+  'escape': { name: '密室逃脱', icon: '🚪', color: '#f97316' },
+  'story': { name: '互动剧情', icon: '📖', color: '#ec4899' },
+  'party': { name: '派对游戏', icon: '🎪', color: '#f59e0b' },
+  'pixel': { name: '像素风格', icon: '👾', color: '#22c55e' },
+  'aibattle': { name: 'AI合作对战', icon: '🤖', color: '#06b6d4' },
+  'tech': { name: '科技未来', icon: '🔬', color: '#6366f1' },
+  'life': { name: '生活实用', icon: '📋', color: '#10b981' },
+  'social': { name: '社交休闲', icon: '👥', color: '#ec4899' },
+  'education': { name: '教育科普', icon: '🧪', color: '#3b82f6' },
+  'career': { name: '职业体验', icon: '👨‍🍳', color: '#f97316' },
+  'animal': { name: '动物题材', icon: '🐕', color: '#f472b6' },
+  'cooking': { name: '美食料理', icon: '🍔', color: '#ef4444' },
+  'driving': { name: '交通驾驶', icon: '🚗', color: '#22c55e' },
+  'craft': { name: '手工制作', icon: '🎨', color: '#ec4899' },
+  'puzzle2': { name: '解谜游戏', icon: '🧩', color: '#a855f7' },
+};
 
-const GAME_CATEGORIES: Record<string, string[]> = {
-  puzzle: ['2048', 'tetris', 'snake', 'minesweeper', 'bejeweled', 'sudoku'],
-  arcade: ['subway', 'templerun', 'stickmanhook'],
-  retro: ['fireice', 'goldminer', 'pvz'],
-  premium: ['sketchup', 'hexgl', 'onevone', 'crosscode'],
-  classic: ['bounce', 'fusion2048', 'flappybird', 'pacman']
+const getAllCategories = () => {
+  const categoryCounts: Record<string, number> = {};
+  GAMES_LIST.forEach(game => {
+    categoryCounts[game.category] = (categoryCounts[game.category] || 0) + 1;
+  });
+  
+  return [{ id: 'all', ...CATEGORY_INFO['all'], count: GAMES_LIST.length }]
+    .concat(
+      Object.entries(categoryCounts)
+        .map(([id, count]) => ({
+          id,
+          ...(CATEGORY_INFO[id] || { name: id, icon: '🎮', color: '#a855f7' }),
+          count
+        }))
+        .sort((a, b) => b.count - a.count)
+    );
 };
 
 export default function Home() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const categories = getAllCategories();
 
   const filteredGames = selectedCategory === 'all'
     ? GAMES_LIST
-    : GAMES_LIST.filter(game => GAME_CATEGORIES[selectedCategory]?.includes(game.id));
+    : GAMES_LIST.filter(game => game.category === selectedCategory);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
@@ -93,7 +147,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        {CATEGORIES.map((cat, index) => (
+        {categories.map((cat, index) => (
           <motion.button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
@@ -116,7 +170,7 @@ export default function Home() {
             <span className="text-xs px-2 py-0.5 rounded-full" style={{
               backgroundColor: selectedCategory === cat.id ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.1)'
             }}>
-              {cat.id === 'all' ? GAMES_LIST.length : GAME_CATEGORIES[cat.id]?.length || 0}
+              {cat.count}
             </span>
           </motion.button>
         ))}
