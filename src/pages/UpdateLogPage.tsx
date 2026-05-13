@@ -35,7 +35,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     date: '2026年5月13日',
     title: '大规模游戏库扩展',
     icon: '🎮',
@@ -83,7 +83,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 5,
+    id: 7,
     date: '2026年5月10日',
     title: '核心功能完善',
     icon: '🔧',
@@ -97,7 +97,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 6,
+    id: 8,
     date: '2026年5月9日',
     title: '项目初始化',
     icon: '🚀',
