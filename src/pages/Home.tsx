@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
-import UpdateLog from '../components/UpdateLog';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
 const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
@@ -140,6 +139,27 @@ export default function Home() {
         >
           工作累了? 来放松一下 ✨
         </motion.p>
+
+        <motion.div
+          className="mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <motion.button
+            onClick={() => navigate('/updates')}
+            className="px-6 py-3 rounded-2xl font-semibold flex items-center gap-2"
+            style={{
+              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
+              color: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(168, 85, 247, 0.3)'
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+          >
+            📝 查看更新日志
+          </motion.button>
+        </motion.div>
       </motion.div>
 
       <motion.div
@@ -277,8 +297,6 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
-
-      <UpdateLog />
 
       <motion.footer
         className="mt-16 text-center relative z-10 w-full px-4"
