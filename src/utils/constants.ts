@@ -2126,6 +2126,31 @@ export const GAMES_LIST = [
   { id: 'soapmaking', name: '手工皂', category: 'craft', icon: '🧼', difficulty: 'easy' },
   { id: 'jewelry', name: '珠宝制作', category: 'craft', icon: '💍', difficulty: 'hard' },
   { id: 'leather', name: '皮革工艺', category: 'craft', icon: '👜', difficulty: 'medium' },
+  // 放置挂机类扩展
+  { id: 'idlefishing', name: '放置钓鱼', category: 'idle', icon: '🎣', difficulty: 'easy' },
+  { id: 'idlemining2', name: '放置采矿2', category: 'idle', icon: '⛏️', difficulty: 'easy' },
+  { id: 'idlebreeding', name: '放置养殖', category: 'idle', icon: '🐄', difficulty: 'easy' },
+  { id: 'idleforest', name: '放置森林', category: 'idle', icon: '🌳', difficulty: 'easy' },
+  { id: 'idlespacestation', name: '放置太空站', category: 'idle', icon: '🚀', difficulty: 'medium' },
+  // 3D视觉类扩展
+  { id: 'bowling3d', name: '3D保龄球', category: '3d', icon: '🎳', difficulty: 'medium' },
+  { id: 'pinball3d', name: '3D弹珠台', category: '3d', icon: '🎱', difficulty: 'hard' },
+  { id: 'pool3d', name: '3D台球', category: '3d', icon: '🎱', difficulty: 'hard' },
+  // AI对战类扩展
+  { id: 'aimahjong', name: 'AI麻将', category: 'aibattle', icon: '🀄', difficulty: 'hard' },
+  { id: 'aipoker', name: 'AI扑克', category: 'aibattle', icon: '🃏', difficulty: 'hard' },
+  { id: 'ai2048', name: 'AI 2048', category: 'aibattle', icon: '🔢', difficulty: 'medium' },
+  { id: 'airockpaperscissors', name: 'AI猜拳', category: 'aibattle', icon: '✊', difficulty: 'easy' },
+  // 跑酷闯关类扩展
+  { id: 'ninjaparkour', name: '忍者跑酷', category: 'parkour', icon: '🥷', difficulty: 'hard' },
+  { id: 'sakuraparkour', name: '樱花跑酷', category: 'parkour', icon: '🌸', difficulty: 'medium' },
+  { id: 'neonparkour', name: '霓虹跑酷', category: 'parkour', icon: '🌃', difficulty: 'hard' },
+  { id: 'snowparkour', name: '雪山跑酷', category: 'parkour', icon: '🏔️', difficulty: 'hard' },
+  { id: 'beachparkour', name: '海滩跑酷', category: 'parkour', icon: '🏖️', difficulty: 'medium' },
+  // 双人合作类扩展
+  { id: 'cooptetris', name: '双人俄罗斯方块', category: 'co-op', icon: '🧱', difficulty: 'hard' },
+  { id: 'coopshooting', name: '双人射击', category: 'co-op', icon: '🔫', difficulty: 'hard' },
+  { id: 'coopskiing', name: '双人滑雪', category: 'co-op', icon: '⛷️', difficulty: 'medium' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
