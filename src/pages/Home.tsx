@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
+import UpdateLog from '../components/UpdateLog';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
 const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
@@ -276,6 +277,8 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
+
+      <UpdateLog />
 
       <motion.footer
         className="mt-16 text-center relative z-10 w-full px-4"
