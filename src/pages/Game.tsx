@@ -29,7 +29,6 @@ import OneStroke from '../games/OneStroke/OneStroke';
 import Pinball from '../games/Pinball/Pinball';
 import Bowling from '../games/Bowling/Bowling';
 import Billiards from '../games/Billiards/Billiards';
-import BlockBuilder from '../games/BlockBuilder/BlockBuilder';
 import RingToss from '../games/RingToss/RingToss';
 import EnhancedBreakout from '../games/EnhancedBreakout/EnhancedBreakout';
 import Skiing from '../games/Skiing/Skiing';
@@ -37,6 +36,10 @@ import DancingLine from '../games/DancingLine/DancingLine';
 import Subway2 from '../games/Subway2/Subway2';
 import CliffRunner from '../games/CliffRunner/CliffRunner';
 import SpeedEscape from '../games/SpeedEscape/SpeedEscape';
+import DuckHunt from '../games/DuckHunt/DuckHunt';
+import BomberMan from '../games/BomberMan/BomberMan';
+import SnakeRemake from '../games/SnakeRemake/SnakeRemake';
+import Tetris99 from '../games/Tetris99/Tetris99';
 import SpaceShooter from '../games/SpaceShooter/SpaceShooter';
 import ZombieShooter from '../games/ZombieShooter/ZombieShooter';
 import TowerDefense from '../games/TowerDefense/TowerDefense';
@@ -74,6 +77,7 @@ import InternationalChess from '../games/InternationalChess/InternationalChess';
 import Gobang from '../games/Gobang/Gobang';
 import PingPong from '../games/PingPong/PingPong';
 import Badminton from '../games/Badminton/Badminton';
+import Soccer from '../games/Soccer/Soccer';
 import BasketballShoot from '../games/BasketballShoot/BasketballShootGame';
 import PenaltyKick from '../games/PenaltyKick/PenaltyKickGame';
 import Boxing from '../games/Boxing/Boxing';
@@ -93,11 +97,13 @@ import OilTycoon from '../games/OilTycoon/OilTycoon';
 import CookingMaster from '../games/CookingMaster/CookingMaster';
 import ShopMaster from '../games/ShopMaster/ShopMaster';
 import WhackAMole from '../games/WhackAMole/WhackAMole';
+import CatchFruit from '../games/CatchFruit/CatchFruit';
 import BallIO from '../games/BallIO/BallIO';
 import SnakeIO from '../games/SnakeIO/SnakeIO';
 import SwordIO from '../games/SwordIO/SwordIO';
 import TerritoryIO from '../games/TerritoryIO/TerritoryIO';
 import DriftIO from '../games/DriftIO/DriftIO';
+import BomberManIO from '../games/BomberMan/BomberMan';
 import SpaceIdle from '../games/SpaceIdle/SpaceIdle';
 import DungeonIdle from '../games/DungeonIdle/DungeonIdle';
 import DinoEvolution from '../games/DinoEvolution/DinoEvolution';
@@ -115,6 +121,11 @@ import SandArt from '../games/SandArt/SandArt';
 import ColoringBook from '../games/ColoringBook/ColoringBook';
 import TraceLight from '../games/TraceLight/TraceLight';
 import PipeConnect from '../games/PipeConnect/PipeConnect';
+import BlockPuzzle from '../games/BlockPuzzle/BlockPuzzle';
+import RobotProgram from '../games/RobotProgram/RobotProgram';
+import CircuitConnect from '../games/CircuitConnect/CircuitConnect';
+import LogicProgram from '../games/LogicProgram/LogicProgram';
+import LogisticsProgram from '../games/LogisticsProgram/LogisticsProgram';
 import WW2Fighter from '../games/WW2Fighter/WW2Fighter';
 import HeliCombat from '../games/HeliCombat/HeliCombat';
 import StarFighter from '../games/StarFighter/StarFighter';
@@ -130,9 +141,11 @@ import LaserDefense from '../games/LaserDefense/LaserDefense';
 import CatapultDefense from '../games/CatapultDefense/CatapultDefense';
 import IceAgeDefense from '../games/IceAgeDefense/IceAgeDefense';
 import TowerDefense2 from '../games/TowerDefense/TowerDefense';
+import DuckHuntClassic from '../games/DuckHunt/DuckHunt';
 import AlienInvasion from '../games/AlienInvasion/AlienInvasion';
 import JetUpgrade from '../games/JetUpgrade/JetUpgrade';
 import Thunder from '../games/Thunder/Thunder';
+import BeatMaster from '../games/BeatMaster/BeatMaster';
 import DrumSimulator from '../games/DrumSimulator/DrumSimulator';
 import Karaoke from '../games/Karaoke/Karaoke';
 import SynthPlay from '../games/SynthPlay/SynthPlay';
@@ -169,33 +182,39 @@ import IceHockey from '../games/IceHockey/IceHockey';
 import Skateboarding from '../games/Skateboarding/Skateboarding';
 import Surfing from '../games/Surfing/Surfing';
 import BowlingMaster2 from '../games/BowlingMaster2/BowlingMaster2';
-import BowlingMaster from '../games/BowlingMaster/BowlingMaster';
-import PinballPhysics from '../games/PinballPhysics/PinballPhysics';
-import MagicTower from '../games/MagicTower/MagicTower';
-import BrainTest from '../games/BrainTest/BrainTest';
-import DouDiZhu from '../games/DouDiZhu/DouDiZhu';
-import BeatBattle from '../games/BeatBattle/BeatBattle';
-import MusicFighter from '../games/MusicFighter/MusicFighter';
-import DJBattle from '../games/DJBattle/DJBattle';
-import BeatRun from '../games/BeatRun/BeatRun';
-import HospitalManage from '../games/HospitalManage/HospitalManage';
-import FruitNinja from '../games/FruitNinja/FruitNinja';
-import ClickerMoney from '../games/ClickerMoney/ClickerMoney';
-import DrawGuess from '../games/DrawGuess/DrawGuess';
-import CoopRun from '../games/CoopRun/CoopRun';
-import TetrisBattle from '../games/TetrisBattle/TetrisBattle';
-import SnakeDuo from '../games/SnakeDuo/SnakeDuo';
-import BunnyHunter from '../games/BunnyHunter/BunnyHunter';
-import PinballDuo from '../games/PinballDuo/PinballDuo';
-import CoopSokoban from '../games/CoopSokoban/CoopSokoban';
-import CoopMaze from '../games/CoopMaze/CoopMaze';
-import CoopBreakout from '../games/CoopBreakout/CoopBreakout';
-import CoopFruitCatch from '../games/CoopFruitCatch/CoopFruitCatch';
-import CoopBounce from '../games/CoopBounce/CoopBounce';
-import TankBattle from '../games/TankBattle/TankBattle';
-import AnimalMatch from '../games/AnimalMatch/AnimalMatch';
-import BrawlStars from '../games/BrawlStars/BrawlStars';
-import PokeMon from '../games/PokeMon/PokeMon';
+import TruthDare from '../games/TruthDare/TruthDare';
+import DrawGuess2 from '../games/DrawGuess2/DrawGuess2';
+import SpyGame from '../games/SpyGame/SpyGame';
+import QuizRelay from '../games/QuizRelay/QuizRelay';
+import Ludo2 from '../games/Ludo2/Ludo2';
+import Monopoly2 from '../games/Monopoly2/Monopoly2';
+import Werewolf from '../games/Werewolf/Werewolf';
+import ThreeKingdoms from '../games/ThreeKingdoms/ThreeKingdoms';
+import GermanWhistle from '../games/GermanWhistle/GermanWhistle';
+import PinballMaster from '../games/PinballMaster/PinballMaster';
+import EightBallPool from '../games/EightBallPool/EightBallPool';
+import NineBall from '../games/NineBall/NineBall';
+import Snooker from '../games/Snooker/Snooker';
+import MarbleMaze from '../games/MarbleMaze/MarbleMaze';
+import BlockBuilder from '../games/BlockBuilder/BlockBuilder';
+import WaterPhysics from '../games/WaterPhysics/WaterPhysics';
+import CrashLab from '../games/CrashLab/CrashLab';
+import PixelCanvas from '../games/PixelCanvas/PixelCanvas';
+import GifMaker from '../games/GifMaker/GifMaker';
+import MemeCreator from '../games/MemeCreator/MemeCreator';
+import CodeArt from '../games/CodeArt/CodeArt';
+import StoryChoice from '../games/StoryChoice/StoryChoice';
+import TextDungeon from '../games/TextDungeon/TextDungeon';
+import DetectiveText from '../games/DetectiveText/DetectiveText';
+import LoveStory from '../games/LoveStory/LoveStory';
+import BulletHeaven from '../games/BulletHeaven/BulletHeaven';
+import RaidenEnhanced from '../games/RaidenEnhanced/RaidenEnhanced';
+import GeometryWars from '../games/GeometryWars/GeometryWars';
+import SpaceBullet from '../games/SpaceBullet/SpaceBullet';
+import IdleFarm from '../games/IdleFarm/IdleFarm';
+import IdleMiner from '../games/IdleMiner/IdleMiner';
+import IdleSpace from '../games/IdleSpace/IdleSpace';
+import IdleRacing from '../games/IdleRacing/IdleRacing';
 import { GAME_IDS, NEON_COLORS } from '../utils/constants';
 
 interface GameContainerProps {
@@ -404,233 +423,7 @@ function GameContainer({ gameId }: GameContainerProps) {
         return <SpyGame />;
       case GAME_IDS.QUIZ_RELAY:
         return <QuizRelay />;
-      case GAME_IDS.THUNDER:
-        return <Thunder onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MONOPOLY:
-        return <Monopoly onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CHESS:
-        return <Chess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.GOBANG:
-        return <Gobang onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MAHJONG:
-        return <Mahjong onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.INTERNATIONAL_CHESS:
-        return <InternationalChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MILITARY_CHESS:
-        return <MilitaryChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ANIMAL_CHESS:
-        return <AnimalChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HOP_CHESS:
-        return <HopChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BOWLING_MASTER:
-        return <BowlingMaster onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.PINBALL_PHYSICS:
-        return <PinballPhysics onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MAGIC_TOWER:
-        return <MagicTower onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CATAPULT_DEFENSE:
-        return <CatapultDefense onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DESERT_WAR:
-        return <DesertWar onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ICE_AGE_DEFENSE:
-        return <IceAgeDefense onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SPACE_CARRIER:
-        return <SpaceCarrier onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SPACE_PIRATE:
-        return <SpacePirate onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MISSILE_COMMAND:
-        return <MissileCommand onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DOGFIGHT:
-        return <Dogfight onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.APACHE_ATTACK:
-        return <ApacheAttack onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.FLAK_TOWER:
-        return <FlakTower onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.LASER_DEFENSE:
-        return <LaserDefense onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.JET_UPGRADE:
-        return <JetUpgrade onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ALIEN_INVASION:
-        return <AlienInvasion onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WW2FIGHTER:
-        return <WW2Fighter onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HELICOMBAT:
-        return <HeliCombat onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.STARFIGHTER:
-        return <StarFighter onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.AAMISSILE:
-        return <AAMissile onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SQUADRON:
-        return <Squadron onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DJ_MIXER:
-        return <DJMixer onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BEAT_RACER:
-        return <BeatRacer onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MUSIC_HERO:
-        return <MusicHero onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CANDY_CRUSH:
-        return <CandyCrush onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.GEM_BLAST:
-        return <GemBlast onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BUBBLE_POP:
-        return <BubblePop onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COOKIE_MATCH:
-        return <CookieMatch onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ANIMAL_MATCH:
-        return <AnimalMatch onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.PIXEL_FIGHTER:
-        return <PixelFighter onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BRAWL_STARS:
-        return <BrawlStars onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.KARATE_CHAMP:
-        return <KarateChamp onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SAMURAI_SLASH:
-        return <SamuraiSlash onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WRESTLE_MANIA:
-        return <WrestleMania onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.PIPE_CONNECT:
-        return <PipeConnect onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WORD_SEARCH:
-        return <WordSearch onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.VIRTUAL_PET:
-        return <VirtualPet onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.FISH_TANK:
-        return <FishTank onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.GARDEN_GARDEN:
-        return <GardenGarden onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COOKIE_BAKERY:
-        return <CookieBakery onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.POKEMON:
-        return <PokeMon onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BOWLING_MASTER2:
-        return <BowlingMaster2 onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DOODLE_JUMP:
-        return <DoodleJump onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CUT_ROPE:
-        return <CutRope onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DOUDIZHU:
-        return <DouDiZhu onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.TEXAS_POKER:
-        return <TexasPoker onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BLACKJACK:
-        return <Blackjack onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.UNO_CARD:
-        return <UnoCard onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CROSSWORD:
-        return <Crossword onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.IDIOM_CHAIN:
-        return <IdiomChain onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WORD_SPELL:
-        return <WordSpell onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.RIDDLE_GUESS:
-        return <RiddleGuess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.TYPING_MASTER:
-        return <TypingMaster onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.PENALTY_KICK:
-        return <PenaltyKick onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BASKETBALL_SHOOT:
-        return <BasketballShoot onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.PING_PONG:
-        return <PingPong onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BADMINTON:
-        return <Badminton onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BOXING:
-        return <Boxing onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SNAKE_IO:
-        return <SnakeIO onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BALL_IO:
-        return <BallIO onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.TERRITORY_IO:
-        return <TerritoryIO onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SWORD_IO:
-        return <SwordIO onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DRIFT_IO:
-        return <DriftIO onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CLICKER_MONEY:
-        return <ClickerMoney onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.FACTORY_TYCOON:
-        return <FactoryTycoon onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DINO_EVOLUTION:
-        return <DinoEvolution onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SPACE_IDLE:
-        return <SpaceIdle onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DUNGEON_IDLE:
-        return <DungeonIdle onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DRAW_GUESS:
-        return <DrawGuess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COLORING_BOOK:
-        return <ColoringBook onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SIMPLE_DRAW:
-        return <SimpleDraw onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.EMOJI_MAKER:
-        return <EmojiMaker onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SAND_ART:
-        return <SandArt onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.CITY_PARKOUR:
-        return <CityParkour onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.LAVA_RUN:
-        return <LavaRun onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ICE_RUN:
-        return <IceRun onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WATER_RUN:
-        return <WaterRun onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SPACE_ESCAPE:
-        return <SpaceEscape onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BEAT_BATTLE:
-        return <BeatBattle onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MUSIC_FIGHTER:
-        return <MusicFighter onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.DJ_BATTLE:
-        return <DJBattle onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BEAT_RUN:
-        return <BeatRun onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MONOPOLY:
-        return <Monopoly onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HAPPY_FARM:
-        return <HappyFarm onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COOKING_MASTER:
-        return <CookingMaster onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SHOP_MASTER:
-        return <ShopMaster onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.SPACE_TRADER:
-        return <SpaceTrader onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.RESTAURANT_TYCOON:
-        return <RestaurantTycoon onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HOTEL_EMPIRE:
-        return <HotelEmpire onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.OIL_TYCOON:
-        return <OilTycoon onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HOSPITAL_MANAGE:
-        return <HospitalManage onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.FRUIT_NINJA:
-        return <FruitNinja onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.WHACK_A_MOLE:
-        return <WhackAMole onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COLOR_MATCH:
-        return <ColorMatch onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BRAIN_TEST:
-        return <BrainTest onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.QUICK_MEMORY:
-        return <QuickMemory onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.QUICK_REFLEX:
-        return <QuickReflex onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.COLOR_DETECT:
-        return <ColorDetect onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.RHYTHM_TAP:
-        return <RhythmTap onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.TRACE_LIGHT:
-        return <TraceLight onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.HOP_CHESS:
-        return <HopChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.INT_CHESS:
-        return <InternationalChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.MILITARY_CHESS:
-        return <MilitaryChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.ANIMAL_CHESS:
-        return <AnimalChess onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-      case GAME_IDS.BUBBLE_SHOOTER:
-        return <BubbleShooter onScoreUpdate={handleScoreUpdate} onGameOver={handleGameOver} onExit={handleExit} />;
-                                                                              default:
+      default:
         return (
           <motion.div className="flex flex-col items-center justify-center min-h-screen" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
             <div className="p-8 rounded-3xl text-center backdrop-blur-xl" style={{ background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
