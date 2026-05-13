@@ -1633,7 +1633,7 @@ export const GAMES_LIST = [
   { id: 'candycrush', name: '糖果传奇', category: 'match3', icon: '🍬', difficulty: 'medium' },
   { id: 'gemblast', name: '宝石爆破', category: 'match3', icon: '💎', difficulty: 'medium' },
   { id: 'bubblepop', name: '泡泡爆破', category: 'match3', icon: '🫧', difficulty: 'easy' },
-  { id: 'cookiismatch', name: '饼干消消乐', category: 'match3', icon: '🍪', difficulty: 'easy' },
+  { id: 'cookiematch', name: '饼干消消乐', category: 'match3', icon: '🍪', difficulty: 'easy' },
   { id: 'animalmatch', name: '动物消消乐', category: 'match3', icon: '🐱', difficulty: 'easy' },
   { id: 'pixelfighter', name: '像素格斗', category: 'fighting', icon: '👊', difficulty: 'hard' },
   { id: 'brawlstars', name: '乱斗明星', category: 'fighting', icon: '⭐', difficulty: 'medium' },
@@ -1744,7 +1744,7 @@ export const GAMES_LIST = [
   { id: 'spacebullet', name: '太空弹幕', category: 'shooting', icon: '🚀', difficulty: 'hard' },
   // 放置挂机类增强
   { id: 'idlefarm', name: '放置农场', category: 'idle', icon: '🌾', difficulty: 'easy' },
-  { id: 'idlemmer', name: '放置矿工', category: 'idle', icon: '⛏️', difficulty: 'easy' },
+  { id: 'idleminer', name: '放置矿工', category: 'idle', icon: '⛏️', difficulty: 'easy' },
   { id: 'idleracing', name: '放置赛车', category: 'idle', icon: '🏎️', difficulty: 'easy' },
   // 休闲运动类
   { id: 'bowlingmaster2', name: '保龄球大师', category: 'sports', icon: '🎳', difficulty: 'medium' },
