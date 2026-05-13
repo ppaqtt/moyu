@@ -8,6 +8,21 @@ const UPDATE_LOGS = [
   {
     id: 1,
     date: '2026年5月13日',
+    title: '游戏体验优化与问题修复',
+    icon: '✨',
+    color: NEON_COLORS.neonCyan,
+    changes: [
+      '修复所有游戏拥有独立的游戏体验和逻辑',
+      '将2048游戏修改为3x3网格，更易上手',
+      '修复控制台重复key警告（删除重复的游戏push语句）',
+      '优化游戏加载系统，实现动态导入',
+      '修复factorytycoon重复ID问题',
+      '确保所有547款游戏可正常游玩',
+    ]
+  },
+  {
+    id: 2,
+    date: '2026年5月13日',
     title: '大规模游戏库扩展',
     icon: '🎮',
     color: NEON_COLORS.neonPink,
@@ -25,7 +40,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     date: '2026年5月12日',
     title: '游戏系统优化',
     icon: '⚡',
@@ -40,7 +55,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     date: '2026年5月11日',
     title: '界面设计升级',
     icon: '🎨',
@@ -54,7 +69,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     date: '2026年5月10日',
     title: '核心功能完善',
     icon: '🔧',
@@ -68,7 +83,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     date: '2026年5月9日',
     title: '项目初始化',
     icon: '🚀',
