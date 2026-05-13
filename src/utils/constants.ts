@@ -2151,6 +2151,12 @@ export const GAMES_LIST = [
   { id: 'cooptetris', name: '双人俄罗斯方块', category: 'co-op', icon: '🧱', difficulty: 'hard' },
   { id: 'coopshooting', name: '双人射击', category: 'co-op', icon: '🔫', difficulty: 'hard' },
   { id: 'coopskiing', name: '双人滑雪', category: 'co-op', icon: '⛷️', difficulty: 'medium' },
+  // 节奏音乐类扩展
+  { id: 'beatsaber', name: '节拍光剑', category: 'rhythm', icon: '⚔️', difficulty: 'hard' },
+  // 创意工具类扩展
+  { id: 'wordart', name: '文字艺术', category: 'creative', icon: '✍️', difficulty: 'easy' },
+  // 运动竞技类扩展
+  { id: 'golf', name: '高尔夫球', category: 'sports', icon: '⛳', difficulty: 'hard' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
