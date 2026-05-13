@@ -1906,7 +1906,7 @@ export const GAMES_LIST = [
   { id: 'laborday', name: '劳动节', category: 'holiday', icon: '👷', difficulty: 'easy' },
   { id: 'nationalday', name: '国庆庆典', category: 'holiday', icon: '🇨🇳', difficulty: 'easy' },
   // 模拟养成类扩展
-  { id: 'factorytycoon', name: '工业大亨', category: 'simulation', icon: '🏭', difficulty: 'medium' },
+  { id: 'industrialtycoon', name: '工业大亨', category: 'simulation', icon: '🏭', difficulty: 'medium' },
   { id: 'banktycoon', name: '银行大亨', category: 'simulation', icon: '🏦', difficulty: 'medium' },
   { id: 'citybuilder', name: '城市建造者', category: 'simulation', icon: '🏗️', difficulty: 'hard' },
   { id: 'housebuilder', name: '房屋建造者', category: 'simulation', icon: '🏘️', difficulty: 'medium' },
