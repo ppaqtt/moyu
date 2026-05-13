@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ParticleBg from '../components/ParticleBg';
@@ -56,9 +56,9 @@ const gameImports: Record<string, () => Promise<any>> = {
   'coloringbook': () => import('../games/ColoringBook/ColoringBook'),
   'composebasic': () => import('../games/ComposeBasic/ComposeBasic'),
   'cookiebakery': () => import('../games/CookieBakery/CookieBakery'),
-  'cookiematc h': () => import('../games/CookieMatch/CookieMatch'),
+  'cookiematch': () => import('../games/CookieMatch/CookieMatch'),
   'cookingmaster': () => import('../games/CookingMaster/CookingMaster'),
-  'co opbounce': () => import('../games/CoopBounce/CoopBounce'),
+  'coopbounce': () => import('../games/CoopBounce/CoopBounce'),
   'coopbreakout': () => import('../games/CoopBreakout/CoopBreakout'),
   'coopfruitcatch': () => import('../games/CoopFruitCatch/CoopFruitCatch'),
   'coopmaze': () => import('../games/CoopMaze/CoopMaze'),
@@ -68,12 +68,12 @@ const gameImports: Record<string, () => Promise<any>> = {
   'crosscode': () => import('../games/CrossCode/CrossCode'),
   'crossword': () => import('../games/Crossword/Crossword'),
   'cutrope': () => import('../games/CutRope/CutRope'),
-  'djbattle': () => import('../games/DJBattle/DJBattle'),
-  'djmixer': () => import('../games/DJMixer/DJMixer'),
   'dancingline': () => import('../games/DancingLine/DancingLine'),
   'desertwar': () => import('../games/DesertWar/DesertWar'),
   'detectivetext': () => import('../games/DetectiveText/DetectiveText'),
   'dinoevolution': () => import('../games/DinoEvolution/DinoEvolution'),
+  'djbattle': () => import('../games/DJBattle/DJBattle'),
+  'djmixer': () => import('../games/DJMixer/DJMixer'),
   'dogfight': () => import('../games/Dogfight/Dogfight'),
   'doodlejump': () => import('../games/DoodleJump/DoodleJump'),
   'doudizhu': () => import('../games/DouDiZhu/DouDiZhu'),
@@ -146,7 +146,7 @@ const gameImports: Record<string, () => Promise<any>> = {
   'monopoly2': () => import('../games/Monopoly2/Monopoly2'),
   'mountainclimber': () => import('../games/MountainClimber/MountainClimberGame'),
   'musicfighter': () => import('../games/MusicFighter/MusicFighter'),
-  'music hero': () => import('../games/MusicHero/MusicHero'),
+  'musichero': () => import('../games/MusicHero/MusicHero'),
   'musicplayer': () => import('../games/MusicPlayer/MusicPlayer'),
   'nineball': () => import('../games/NineBall/NineBall'),
   'numberpuzzle': () => import('../games/NumberPuzzle/NumberPuzzle'),
@@ -245,7 +245,6 @@ function GamePage() {
   const { id } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
   const [GameComponent, setGameComponent] = useState<React.ComponentType<any> | null>(null);
-  const [LazyComponent, setLazyComponent] = useState<React.LazyExoticComponent<any> | null>(null);
   
   const game = GAMES_LIST.find(g => g.id === id);
   
@@ -264,7 +263,11 @@ function GamePage() {
         try {
           const module = await gameImports[id]();
           const Component = module.default;
-          setGameComponent(() => Component);
+          if (Component) {
+            setGameComponent(() => Component);
+          } else {
+            setGameComponent(() => PlaceholderGame);
+          }
         } catch (error) {
           console.warn(`Failed to load game ${id}, using placeholder:`, error);
           setGameComponent(() => PlaceholderGame);
