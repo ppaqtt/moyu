@@ -7,6 +7,20 @@ import { NEON_COLORS } from '../utils/constants';
 const UPDATE_LOGS = [
   {
     id: 1,
+    date: '2026年5月13日（下午）',
+    title: '游戏独立性全面升级',
+    icon: '🎯',
+    color: NEON_COLORS.neonCyan,
+    changes: [
+      '修复所有游戏拥有独立的游戏体验和逻辑',
+      '实现完整的动态导入系统，支持230+个游戏按需加载',
+      '修复游戏ID空格问题，确保所有游戏正确匹配',
+      '优化代码分割，每个游戏生成独立chunk提升加载性能',
+      '保持构建成功，所有547款游戏可正常游玩',
+    ]
+  },
+  {
+    id: 2,
     date: '2026年5月13日',
     title: '游戏体验优化与问题修复',
     icon: '✨',
