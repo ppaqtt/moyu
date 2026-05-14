@@ -254,7 +254,10 @@ export class GameGoldMinerEngine {
         }
 
         this.claw.isRetracting = false;
-        this.generateCollectibles();
+        
+        if (this.collectibles.length === 0) {
+          this.generateCollectibles();
+        }
       }
     }
   }
