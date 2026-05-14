@@ -39,40 +39,43 @@ export default function Pacman({ onScoreUpdate, onGameOver, onExit }: PacmanProp
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case 'ArrowUp':
+      switch (e.key.toLowerCase()) {
+        case 'arrowup':
         case 'w':
-        case 'W':
           e.preventDefault();
+          e.stopPropagation();
           engine.setDirection('up');
           break;
-        case 'ArrowDown':
+        case 'arrowdown':
         case 's':
-        case 'S':
           e.preventDefault();
+          e.stopPropagation();
           engine.setDirection('down');
           break;
-        case 'ArrowLeft':
+        case 'arrowleft':
         case 'a':
-        case 'A':
           e.preventDefault();
+          e.stopPropagation();
           engine.setDirection('left');
           break;
-        case 'ArrowRight':
+        case 'arrowright':
         case 'd':
-        case 'D':
           e.preventDefault();
+          e.stopPropagation();
           engine.setDirection('right');
           break;
         case ' ':
+        case 'spacebar':
+        case 'space':
           e.preventDefault();
+          e.stopPropagation();
           engine.togglePause();
           break;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [engine]);
 
   const handleRestart = () => {
