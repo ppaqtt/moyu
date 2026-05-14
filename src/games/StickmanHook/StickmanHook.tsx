@@ -46,8 +46,9 @@ export default function StickmanHook({ onScoreUpdate, onGameOver, onExit }: Stic
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key.toLowerCase() === 'w' || e.key === 'ArrowUp') {
         e.preventDefault();
+        e.stopPropagation();
         if (!isStarted) {
           engine.start();
           setIsStarted(true);
@@ -57,17 +58,19 @@ export default function StickmanHook({ onScoreUpdate, onGameOver, onExit }: Stic
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key.toLowerCase() === 'w' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        e.stopPropagation();
         engine.release();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown, true);
+    window.addEventListener('keyup', handleKeyUp, true);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('keyup', handleKeyUp, true);
     };
   }, [engine, isStarted]);
 
