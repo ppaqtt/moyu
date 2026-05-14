@@ -60,8 +60,10 @@ export default function HexGL({ onScoreUpdate, onGameOver, onExit }: HexGLProps)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key);
-      if (!isStarted && (e.key === ' ' || e.key === 'Enter')) {
+      keysPressed.current.add(e.key.toLowerCase());
+      if (!isStarted && (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key === 'Enter')) {
         e.preventDefault();
+        e.stopPropagation();
         engine.start();
         setIsStarted(true);
       }
@@ -69,14 +71,15 @@ export default function HexGL({ onScoreUpdate, onGameOver, onExit }: HexGLProps)
 
     const handleKeyUp = (e: KeyboardEvent) => {
       keysPressed.current.delete(e.key);
+      keysPressed.current.delete(e.key.toLowerCase());
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown, true);
+    window.addEventListener('keyup', handleKeyUp, true);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('keyup', handleKeyUp, true);
     };
   }, [engine, isStarted]);
 
