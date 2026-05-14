@@ -7,6 +7,30 @@ import { NEON_COLORS } from '../utils/constants';
 const UPDATE_LOGS = [
   {
     id: 1,
+    date: '2026年5月14日（深夜）',
+    title: '键盘输入全面修复 - 404款游戏重获新生',
+    icon: '⌨️',
+    color: NEON_COLORS.neonCyan,
+    changes: [
+      '批量修复404个游戏文件的键盘事件监听器，添加捕获模式(true)',
+      '修复 FireIce（冰火人）- 键盘事件捕获模式',
+      '修复 FlappyBird（像素鸟）- 空格开始和飞行控制',
+      '修复 Pacman（吃豆人）- 方向键控制',
+      '修复 StickmanHook（火柴人钩子）- 空格抓取控制',
+      '修复 HexGL（赛车）- 方向键和加速控制',
+      '修复 TempleRun（神庙逃亡）- 换道、跳跃、滑行控制',
+      '修复 GoldMiner（黄金矿工）- 钩子发射和抓取逻辑',
+      '修复 Bejeweled（宝石迷阵）- 消除后生成新宝石',
+      '修复 Sudoku（数独）- 数字输入和验证逻辑',
+      '修复 Sketchout（炮台射击）- 炮台旋转和敌人AI追踪',
+      '修复 Snake（贪吃蛇）- 添加游戏常量和界面渲染',
+      '修复 Bounce（弹球）- 添加游戏常量',
+      '修复 Fusion2048 - 添加游戏常量',
+      '构建成功，所有游戏键盘输入正常响应',
+    ]
+  },
+  {
+    id: 2,
     date: '2026年5月14日',
     title: '游戏逻辑全面修复 - 10款经典游戏重获新生',
     icon: '🎮',
@@ -27,7 +51,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     date: '2026年5月13日（深夜）',
     title: '全部游戏独立化完成 - 541款游戏全部可游玩',
     icon: '🎮',
@@ -42,7 +66,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     date: '2026年5月13日（下午）',
     title: '游戏独立性全面升级',
     icon: '🎯',
@@ -56,7 +80,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 3,
+    id: 5,
     date: '2026年5月13日',
     title: '游戏体验优化与问题修复',
     icon: '✨',
@@ -71,7 +95,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 4,
+    id: 6,
     date: '2026年5月13日',
     title: '大规模游戏库扩展',
     icon: '🎮',
@@ -90,7 +114,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 5,
+    id: 7,
     date: '2026年5月12日',
     title: '游戏系统优化',
     icon: '⚡',
@@ -105,7 +129,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 6,
+    id: 8,
     date: '2026年5月11日',
     title: '界面设计升级',
     icon: '🎨',
@@ -119,7 +143,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 7,
+    id: 9,
     date: '2026年5月10日',
     title: '核心功能完善',
     icon: '🔧',
@@ -133,7 +157,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 8,
+    id: 10,
     date: '2026年5月9日',
     title: '项目初始化',
     icon: '🚀',
