@@ -3,202 +3,466 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { NEON_COLORS } from '../../utils/constants';
 
-const CANVAS_SIZE = 400;
-const GRID = 4;
-const CELL = 100;
-const PRIMARY = '#FF6B6B';
-const SECONDARY = '#4ECDC4';
+interface Piece {
+  id: number;
+  points: { x: number; y: number }[];
+  color: string;
+  x: number;
+  y: number;
+  rotation: number;
+  selected: boolean;
+}
+
+const BOARD_WIDTH = 400;
+const BOARD_HEIGHT = 400;
+const PIECE_PANEL_X = 420;
+
+const TANGRAM_PIECES: Omit<Piece, 'x' | 'y' | 'rotation' | 'selected'>[] = [
+  {
+    id: 1,
+    color: '#EF4444',
+    points: [
+      { x: 0, y: 0 },
+      { x: 100, y: 0 },
+      { x: 50, y: 50 },
+    ],
+  },
+  {
+    id: 2,
+    color: '#3B82F6',
+    points: [
+      { x: 0, y: 0 },
+      { x: 50, y: 0 },
+      { x: 50, y: 50 },
+      { x: 0, y: 50 },
+    ],
+  },
+  {
+    id: 3,
+    color: '#22C55E',
+    points: [
+      { x: 0, y: 0 },
+      { x: 70, y: 0 },
+      { x: 70, y: 70 },
+      { x: 0, y: 70 },
+    ],
+  },
+  {
+    id: 4,
+    color: '#EAB308',
+    points: [
+      { x: 0, y: 0 },
+      { x: 50, y: 0 },
+      { x: 50, y: 50 },
+      { x: 0, y: 50 },
+    ],
+  },
+  {
+    id: 5,
+    color: '#8B5CF6',
+    points: [
+      { x: 0, y: 0 },
+      { x: 50, y: 25 },
+      { x: 25, y: 50 },
+    ],
+  },
+  {
+    id: 6,
+    color: '#EC4899',
+    points: [
+      { x: 0, y: 0 },
+      { x: 50, y: 25 },
+      { x: 0, y: 50 },
+    ],
+  },
+  {
+    id: 7,
+    color: '#06B6D4',
+    points: [
+      { x: 0, y: 0 },
+      { x: 50, y: 0 },
+      { x: 50, y: 25 },
+      { x: 25, y: 25 },
+      { x: 25, y: 50 },
+      { x: 0, y: 50 },
+    ],
+  },
+];
+
+const TARGET_SHAPE: { pieces: Omit<Piece, 'color'>[] } = {
+  pieces: [
+    {
+      id: 1,
+      points: [
+        { x: 0, y: 0 },
+        { x: 100, y: 0 },
+        { x: 50, y: 50 },
+      ],
+      x: 150,
+      y: 0,
+      rotation: 0,
+    },
+  ],
+};
 
 export default function Tangram() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [pieces, setPieces] = useState<Piece[]>([]);
+  const [gameState, setGameState] = useState<'idle' | 'playing' | 'won'>('idle');
+  const [selectedPiece, setSelectedPiece] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [moves, setMoves] = useState(0);
-  const [gameState, setGameState] = useState<'idle'|'playing'|'won'>('idle');
-  const [tiles, setTiles] = useState<number[]>([]);
-  const [emptyIdx, setEmptyIdx] = useState(GRID * GRID - 1);
-  const [time, setTime] = useState(0);
-  const [memoryCards, setMemoryCards] = useState<number[]>([]);
-  const [flipped, setFlipped] = useState<number[]>([]);
-  const [matched, setMatched] = useState<Set<number>>(new Set());
-  const [canFlip, setCanFlip] = useState(true);
+  const [showTarget, setShowTarget] = useState(false);
 
   const initGame = useCallback(() => {
-    if (0 === 0) {
-      const arr = Array.from({length: GRID*GRID}, (_,i) => i);
-      arr[GRID*GRID-1] = 0;
-      for (let i = 0; i < 189; i++) {
-        const ei = arr.indexOf(0);
-        const neighbors = [];
-        if (ei % GRID > 0) neighbors.push(ei-1);
-        if (ei % GRID < GRID-1) neighbors.push(ei+1);
-        if (ei >= GRID) neighbors.push(ei-GRID);
-        if (ei < GRID*GRID-GRID) neighbors.push(ei+GRID);
-        const ni = neighbors[Math.floor(Math.random()*neighbors.length)];
-        [arr[ei], arr[ni]] = [arr[ni], arr[ei]];
-      }
-      setTiles(arr);
-      setEmptyIdx(arr.indexOf(0));
-    } else if (0 === 1) {
-      const pairs = GRID * GRID;
-      const cards: number[] = [];
-      for (let i = 0; i < pairs/2; i++) { cards.push(i, i); }
-      for (let i = cards.length-1; i > 0; i--) {
-        const j = Math.floor(Math.random()*(i+1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-      }
-      setMemoryCards(cards);
-      setFlipped([]);
-      setMatched(new Set());
-      setCanFlip(true);
-    } else {
-      const pattern = Array.from({length: GRID*GRID}, () => Math.floor(Math.random()*4));
-      setTiles(pattern);
-    }
-    setScore(0); setMoves(0); setGameState('playing'); setTime(0);
+    const newPieces = TANGRAM_PIECES.map((p, i) => ({
+      ...p,
+      x: PIECE_PANEL_X + (i % 2) * 60,
+      y: 50 + Math.floor(i / 2) * 80,
+      rotation: 0,
+      selected: false,
+    }));
+    setPieces(newPieces);
+    setSelectedPiece(null);
+    setGameState('playing');
+    setScore(0);
+    setMoves(0);
   }, []);
 
-  useEffect(() => {
-    if (gameState !== 'playing') return;
-    const timer = setInterval(() => setTime(t => t+1), 1000);
-    return () => clearInterval(timer);
-  }, [gameState]);
+  const rotatePiece = useCallback((id: number, angle: number) => {
+    setPieces((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, rotation: (p.rotation + angle) % 360 } : p
+      )
+    );
+    setMoves((m) => m + 1);
+  }, []);
 
-  const handleClick = useCallback((idx: number) => {
-    if (gameState !== 'playing') return;
-    if (0 === 0) {
-      const ei = tiles.indexOf(0);
-      const row = Math.floor(idx/GRID), col = idx%GRID;
-      const er = Math.floor(ei/GRID), ec = ei%GRID;
-      if ((Math.abs(row-er)+Math.abs(col-ec)) === 1) {
-        const newTiles = [...tiles];
-        [newTiles[idx], newTiles[ei]] = [newTiles[ei], newTiles[idx]];
-        setTiles(newTiles);
-        setMoves(m => m+1);
-        let won = true;
-        for (let i = 0; i < GRID*GRID-1; i++) { if (newTiles[i] !== i+1) { won = false; break; } }
-        if (won) { setGameState('won'); setScore(Math.max(1000 - moves*10 - time*2, 100)); }
-      }
-    } else if (0 === 1) {
-      if (!canFlip || flipped.includes(idx) || matched.has(idx)) return;
-      const newFlipped = [...flipped, idx];
-      setFlipped(newFlipped);
-      if (newFlipped.length === 2) {
-        setCanFlip(false);
-        setMoves(m => m+1);
-        if (memoryCards[newFlipped[0]] === memoryCards[newFlipped[1]]) {
-          const newMatched = new Set(matched);
-          newMatched.add(newFlipped[0]); newMatched.add(newFlipped[1]);
-          setMatched(newMatched);
-          setScore(s => s+100);
-          setFlipped([]); setCanFlip(true);
-          if (newMatched.size === GRID*GRID) { setGameState('won'); setScore(s => s + Math.max(500-time*5, 50)); }
-        } else {
-          setTimeout(() => { setFlipped([]); setCanFlip(true); }, 800);
-        }
-      }
-    } else {
-      const target = (idx + 1) % (GRID*GRID);
-      if (tiles[idx] === target) {
-        const newTiles = [...tiles];
-        newTiles[idx] = (newTiles[idx] + 1) % 4;
-        setTiles(newTiles);
-        setScore(s => s+10); setMoves(m => m+1);
-        if (newTiles.every(t => t === 0)) { setGameState('won'); setScore(s => s + 200); }
-      } else {
-        setMoves(m => m+1);
+  const movePiece = useCallback(
+    (id: number, dx: number, dy: number) => {
+      setPieces((prev) =>
+        prev.map((p) =>
+          p.id === id ? { ...p, x: p.x + dx, y: p.y + dy } : p
+        )
+      );
+      setMoves((m) => m + 1);
+    },
+    []
+  );
+
+  const resetPiecePosition = useCallback((id: number) => {
+    const piece = TANGRAM_PIECES.find((p) => p.id === id);
+    if (piece) {
+      const idx = TANGRAM_PIECES.findIndex((p) => p.id === id);
+      setPieces((prev) =>
+        prev.map((p) =>
+          p.id === id
+            ? {
+                ...p,
+                x: PIECE_PANEL_X + (idx % 2) * 60,
+                y: 50 + Math.floor(idx / 2) * 80,
+                rotation: 0,
+              }
+            : p
+        )
+      );
+    }
+  }, []);
+
+  const isPointInPiece = (
+    px: number,
+    py: number,
+    piece: Piece
+  ): boolean => {
+    const cos = Math.cos((piece.rotation * Math.PI) / 180);
+    const sin = Math.sin((piece.rotation * Math.PI) / 180);
+
+    const transformedPoints = piece.points.map((p) => ({
+      x: piece.x + p.x * cos - p.y * sin,
+      y: piece.y + p.x * sin + p.y * cos,
+    }));
+
+    let inside = false;
+    for (let i = 0, j = transformedPoints.length - 1; i < transformedPoints.length; j = i++) {
+      const xi = transformedPoints[i].x,
+        yi = transformedPoints[i].y;
+      const xj = transformedPoints[j].x,
+        yj = transformedPoints[j].y;
+
+      if (
+        yi > py !== yj > py &&
+        px < ((xj - xi) * (py - yi)) / (yj - yi) + xi
+      ) {
+        inside = !inside;
       }
     }
-  }, [gameState, tiles, flipped, matched, memoryCards, canFlip, moves, time]);
+    return inside;
+  };
+
+  const handleCanvasClick = useCallback(
+    (e: React.MouseEvent<HTMLCanvasElement>) => {
+      if (gameState !== 'playing') return;
+
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      let clickedPiece: Piece | null = null;
+      for (let i = pieces.length - 1; i >= 0; i--) {
+        if (isPointInPiece(x, y, pieces[i])) {
+          clickedPiece = pieces[i];
+          break;
+        }
+      }
+
+      if (clickedPiece) {
+        setSelectedPiece(clickedPiece.id);
+        setPieces((prev) =>
+          prev.map((p) => ({ ...p, selected: p.id === clickedPiece!.id }))
+        );
+      } else {
+        setSelectedPiece(null);
+        setPieces((prev) => prev.map((p) => ({ ...p, selected: false })));
+      }
+    },
+    [gameState, pieces]
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedPiece === null) return;
+
+      const step = 10;
+      switch (e.key) {
+        case 'ArrowUp':
+        case 'w':
+        case 'W':
+          e.preventDefault();
+          movePiece(selectedPiece, 0, -step);
+          break;
+        case 'ArrowDown':
+        case 's':
+        case 'S':
+          e.preventDefault();
+          movePiece(selectedPiece, 0, step);
+          break;
+        case 'ArrowLeft':
+        case 'a':
+        case 'A':
+          e.preventDefault();
+          movePiece(selectedPiece, -step, 0);
+          break;
+        case 'ArrowRight':
+        case 'd':
+        case 'D':
+          e.preventDefault();
+          movePiece(selectedPiece, step, 0);
+          break;
+        case 'r':
+        case 'R':
+          e.preventDefault();
+          rotatePiece(selectedPiece, 45);
+          break;
+        case 'Escape':
+          e.preventDefault();
+          resetPiecePosition(selectedPiece);
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPiece, movePiece, rotatePiece, resetPiecePosition]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-    ctx.fillStyle = '#0a0a1a';
-    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-    if (0 === 0) {
-      for (let i = 0; i < GRID*GRID; i++) {
-        const r = Math.floor(i/GRID), c = i%GRID;
-        const x = c*CELL+4, y = r*CELL+4;
-        if (tiles[i] === 0) {
-          ctx.fillStyle = '#1a1a2e';
-          ctx.fillRect(x, y, CELL-8, CELL-8);
-          continue;
-        }
-        const grad = ctx.createLinearGradient(x, y, x+CELL-8, y+CELL-8);
-        grad.addColorStop(0, PRIMARY);
-        grad.addColorStop(1, SECONDARY);
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.roundRect(x, y, CELL-8, CELL-8, 8);
-        ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 33px Arial';
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(String(tiles[i]), x+(CELL-8)/2, y+(CELL-8)/2);
-      }
-    } else if (0 === 1) {
-      for (let i = 0; i < GRID*GRID; i++) {
-        const r = Math.floor(i/GRID), c = i%GRID;
-        const x = c*CELL+4, y = r*CELL+4;
-        const isFlipped = flipped.includes(i) || matched.has(i);
-        ctx.fillStyle = isFlipped ? (matched.has(i) ? '#22c55e' : PRIMARY) : '#2a2a4a';
-        ctx.beginPath();
-        ctx.roundRect(x, y, CELL-8, CELL-8, 8);
-        ctx.fill();
-        if (isFlipped) {
-          ctx.fillStyle = '#fff';
-          ctx.font = 'bold 33px Arial';
-          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText(String(memoryCards[i]+1), x+(CELL-8)/2, y+(CELL-8)/2);
-        } else {
-          ctx.fillStyle = '#555';
-          ctx.font = 'bold 33px Arial';
-          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText('?', x+(CELL-8)/2, y+(CELL-8)/2);
-        }
-      }
-    } else {
-      for (let i = 0; i < GRID*GRID; i++) {
-        const r = Math.floor(i/GRID), c = i%GRID;
-        const x = c*CELL+4, y = r*CELL+4;
-        const colors = [PRIMARY, SECONDARY, '#22c55e'];
-        ctx.fillStyle = colors[tiles[i]];
-        ctx.beginPath();
-        ctx.roundRect(x, y, CELL-8, CELL-8, 8);
-        ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 25px Arial';
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(String(tiles[i]), x+(CELL-8)/2, y+(CELL-8)/2);
-      }
+    ctx.fillStyle = '#0a0a1a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= BOARD_WIDTH; x += 20) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, BOARD_HEIGHT);
+      ctx.stroke();
     }
-  }, [tiles, flipped, matched, memoryCards]);
+    for (let y = 0; y <= BOARD_HEIGHT; y += 20) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(BOARD_WIDTH, y);
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle = '#555';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+
+    pieces.forEach((piece) => {
+      ctx.save();
+
+      if (piece.selected) {
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 15;
+      }
+
+      ctx.translate(piece.x, piece.y);
+      ctx.rotate((piece.rotation * Math.PI) / 180);
+
+      ctx.fillStyle = piece.color;
+      ctx.beginPath();
+      ctx.moveTo(piece.points[0].x, piece.points[0].y);
+      for (let i = 1; i < piece.points.length; i++) {
+        ctx.lineTo(piece.points[i].x, piece.points[i].y);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.strokeStyle = piece.selected ? '#fff' : 'rgba(255,255,255,0.5)';
+      ctx.lineWidth = piece.selected ? 3 : 1;
+      ctx.stroke();
+
+      ctx.restore();
+    });
+  }, [pieces]);
+
+  const checkShape = useCallback(() => {
+    let placedCount = 0;
+    pieces.forEach((piece) => {
+      if (piece.x < BOARD_WIDTH && piece.y < BOARD_HEIGHT && piece.x >= 0 && piece.y >= 0) {
+        placedCount++;
+      }
+    });
+    const completionRatio = placedCount / pieces.length;
+    setScore(Math.floor(completionRatio * 100));
+
+    if (completionRatio >= 0.8) {
+      setGameState('won');
+    }
+  }, [pieces]);
 
   return (
-    <div style={{background:'#0a0a1a',minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',padding:20}}>
-      <motion.h1 initial={{opacity:0,y:-20}} animate={{opacity:1,y:0}} style={{color:PRIMARY,fontSize:28,marginBottom:10}}>📐 七巧板</motion.h1>
-      <div style={{display:'flex',gap:20,marginBottom:10}}>
-        <span style={{color:'#fff'}}>分数: {score}</span>
-        <span style={{color:'#fff'}}>步数: {moves}</span>
-        <span style={{color:'#fff'}}>时间: {time}s</span>
+    <div style={{ background: '#0a0a1a', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 20 }}>
+      <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ color: '#EF4444', fontSize: 28, marginBottom: 10 }}>📐 七巧板拼图</motion.h1>
+      <div style={{ display: 'flex', gap: 20, marginBottom: 10 }}>
+        <span style={{ color: '#fff' }}>完成度: {score}%</span>
+        <span style={{ color: '#fff' }}>操作次数: {moves}</span>
       </div>
-      <canvas ref={canvasRef} width={CANVAS_SIZE} height={CANVAS_SIZE}
-        onClick={e => { const rect = canvasRef.current!.getBoundingClientRect(); const x = e.clientX-rect.left; const y = e.clientY-rect.top; const c = Math.floor(x/CELL); const r = Math.floor(y/CELL); if (c>=0&&c<GRID&&r>=0&&r<GRID) handleClick(r*GRID+c); }}
-        style={{border:'2px solid '+PRIMARY,borderRadius:12,cursor:'pointer'}} />
-      <div style={{marginTop:10,color:'#888',fontSize:14}}>点击数字方块移动，将数字按顺序排列</div>
-      {gameState === 'won' && <motion.div initial={{scale:0}} animate={{scale:1}} style={{color:'#22c55e',fontSize:24,marginTop:10}}>恭喜通关! 得分: {score}</motion.div>}
-      <div style={{marginTop:15,display:'flex',gap:10}}>
-        <motion.button whileHover={{scale:1.05}} whileTap={{scale:0.95}} onClick={initGame}
-          style={{padding:'10px 24px',background:PRIMARY,color:'#000',border:'none',borderRadius:8,fontSize:16,cursor:'pointer',fontWeight:'bold'}}>
+      <div style={{ color: '#888', fontSize: 14, marginBottom: 10 }}>
+        点击选择七巧板碎片，拖拽或使用方向键/WASD移动，R键旋转，ESC键重置位置
+      </div>
+      <div style={{ display: 'flex', gap: 20 }}>
+        <canvas
+          ref={canvasRef}
+          width={BOARD_WIDTH}
+          height={BOARD_HEIGHT}
+          onClick={handleCanvasClick}
+          style={{ border: '2px solid #333', borderRadius: 8, cursor: 'crosshair' }}
+        />
+        <div
+          style={{
+            width: 150,
+            height: BOARD_HEIGHT,
+            background: '#1a1a2e',
+            borderRadius: 8,
+            padding: 10,
+            border: '2px solid #333',
+          }}
+        >
+          <div style={{ color: '#888', fontSize: 14, marginBottom: 10 }}>碎片存放区</div>
+          {TANGRAM_PIECES.map((p, i) => (
+            <div
+              key={p.id}
+              style={{
+                width: 60,
+                height: 60,
+                position: 'absolute',
+                left: PIECE_PANEL_X + (i % 2) * 70,
+                top: 50 + Math.floor(i / 2) * 80,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      {selectedPiece !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={{ marginTop: 15, color: '#fff', fontSize: 14, textAlign: 'center' }}
+        >
+          已选择碎片 #{selectedPiece}
+          <br />
+          <span style={{ color: '#888' }}>
+            方向键/WASD移动 | R旋转45° | ESC重置
+          </span>
+        </motion.div>
+      )}
+      {gameState === 'won' && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          style={{ color: '#22c55e', fontSize: 24, marginTop: 15 }}
+        >
+          🎉 恭喜完成拼图! 操作次数: {moves}
+        </motion.div>
+      )}
+      <div style={{ marginTop: 15, display: 'flex', gap: 10 }}>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={checkShape}
+          style={{
+            padding: '10px 24px',
+            background: '#3B82F6',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 16,
+            cursor: 'pointer',
+            fontWeight: 'bold',
+          }}
+        >
+          检查完成度
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={initGame}
+          style={{
+            padding: '10px 24px',
+            background: '#EF4444',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 16,
+            cursor: 'pointer',
+            fontWeight: 'bold',
+          }}
+        >
           {gameState === 'idle' ? '开始游戏' : '重新开始'}
         </motion.button>
-        <motion.button whileHover={{scale:1.05}} whileTap={{scale:0.95}} onClick={() => navigate('/')}
-          style={{padding:'10px 24px',background:'#333',color:'#fff',border:'none',borderRadius:8,fontSize:16,cursor:'pointer'}}>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => navigate('/')}
+          style={{
+            padding: '10px 24px',
+            background: '#333',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 16,
+            cursor: 'pointer',
+          }}
+        >
           返回首页
         </motion.button>
       </div>

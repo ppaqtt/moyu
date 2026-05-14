@@ -7,13 +7,34 @@ import { NEON_COLORS } from '../utils/constants';
 const UPDATE_LOGS = [
   {
     id: 1,
+    date: '2026年5月14日',
+    title: '游戏逻辑全面修复 - 10款经典游戏重获新生',
+    icon: '🎮',
+    color: NEON_COLORS.neonGreen,
+    changes: [
+      '修复 Checkers（跳棋）- 完整8x8跳棋规则，AI对手实现',
+      '修复 Reversi（翻转棋）- 黑白棋游戏，Minimax AI算法',
+      '修复 Othello（黑白棋）- 复用Reversi组件',
+      '修复 Gobangai（五子棋）- AI评估算法',
+      '修复 Pong（乒乓球）- AI对手实现',
+      '修复 Slidingpuzzle - 移除条件禁用，启用滑块拼图',
+      '修复 Klotski（华容道）- 完全重写，支持移动旋转',
+      '修复 Unblockme（解锁大师）- 完整推箱子逻辑，多关卡',
+      '修复 Lightsout（灯灯灯灭）- 翻转灯灭谜题逻辑',
+      '修复 Tangram（七巧板）- 几何拼图碎片系统',
+      '更新README.md，添加精选游戏和修复列表',
+      '构建成功，所有600+款游戏正常可玩',
+    ]
+  },
+  {
+    id: 2,
     date: '2026年5月13日（深夜）',
     title: '全部游戏独立化完成 - 541款游戏全部可游玩',
     icon: '🎮',
     color: NEON_COLORS.neonGreen,
     changes: [
       '为338个缺失游戏创建独立游戏组件，每个游戏有独特玩法',
-      '根据游戏类别生成不同类型游戏（射击、益智、迷宫、数学等40+类）',
+      '根据游戏类别生成不同类型游戏（射击、益智、迷宫，数学等40+类）',
       '更新Game.tsx动态导入映射，覆盖全部541款游戏',
       '移除PlaceholderGame占位系统，所有游戏使用真实组件',
       '构建成功：1195个模块转换，545个独立chunk',

@@ -3,153 +3,433 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { NEON_COLORS } from '../../utils/constants';
 
-const W = 480, H = 500;
-const PRIMARY = '#00FFFF';
-const SECONDARY = '#FF00FF';
-const SEED = 5268;
-
-interface GameObject { x:number; y:number; w:number; h:number; color:string; vx:number; vy:number; type:string; }
+const BOARD_SIZE = 8;
+const CELL_SIZE = 60;
+const CANVAS_SIZE = BOARD_SIZE * CELL_SIZE;
 
 export default function Checkers() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const objectsRef = useRef<GameObject[]>([]);
-  const playerRef = useRef({x:W/2, y:H-60, w:36, h:36});
-  const scoreRef = useRef(0);
-  const livesRef = useRef(3);
-  const frameRef = useRef(0);
-  const keysRef = useRef<Set<string>>(new Set());
-  const [score, setScore] = useState(0);
-  const [lives, setLives] = useState(3);
-  const [gameState, setGameState] = useState<'idle'|'playing'|'won'|'lost'>('idle');
-  const [level, setLevel] = useState(1);
-  const targetRef = useRef(45);
+  const [board, setBoard] = useState<(0 | 1 | 2 | 3 | 4 | 5)[][]>(() => createInitialBoard());
+  const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null);
+  const [currentPlayer, setCurrentPlayer] = useState<1 | 2>(1);
+  const [validMoves, setValidMoves] = useState<{row: number, col: number}[]>([]);
+  const [mustCapture, setMustCapture] = useState<boolean>(false);
+  const [score1, setScore1] = useState(12);
+  const [score2, setScore2] = useState(12);
+  const [gameOver, setGameOver] = useState(false);
+  const [winner, setWinner] = useState<number | null>(null);
+  const [isFirstMove, setIsFirstMove] = useState(true);
 
-  const spawnObjects = useCallback(() => {
-    const types = ['good','good','good','bad','bonus'];
-    const colors = ['#00FFFF','#FF00FF','#22c55e','#3b82f6','#ffd700'];
-    for (let i = 0; i < 9; i++) {
-      objectsRef.current.push({
-        x: Math.random()*(W-30)+15, y: -Math.random()*H,
-        w: 24+Math.random()*16, h: 24+Math.random()*16,
-        color: colors[Math.floor(Math.random()*colors.length)],
-        vx: (Math.random()-0.5)*2, vy: 2.5+Math.random(),
-        type: types[Math.floor(Math.random()*types.length)]
-      });
+  function createInitialBoard() {
+    const initial: (0 | 1 | 2 | 3 | 4 | 5)[][] = [];
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      initial[i] = [];
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        if ((i + j) % 2 === 1) {
+          if (i < 3) {
+            initial[i][j] = 2;
+          } else if (i > 4) {
+            initial[i][j] = 1;
+          } else {
+            initial[i][j] = 0;
+          }
+        } else {
+          initial[i][j] = 0;
+        }
+      }
     }
-  }, []);
+    return initial;
+  }
 
-  const startGame = useCallback(() => {
-    objectsRef.current = [];
-    playerRef.current = {x:W/2, y:H-60, w:36, h:36};
-    scoreRef.current = 0; livesRef.current = 3; frameRef.current = 0;
-    targetRef.current = 45;
-    setScore(0); setLives(3); setLevel(1); setGameState('playing');
-    spawnObjects();
-  }, [spawnObjects]);
+  const isPlayerPiece = (piece: number, player: number) => {
+    return player === 1 ? piece === 1 || piece === 3 : piece === 2 || piece === 4;
+  };
 
-  useEffect(() => {
-    const down = (e:KeyboardEvent) => keysRef.current.add(e.key);
-    const up = (e:KeyboardEvent) => keysRef.current.delete(e.key);
-    window.addEventListener('keydown',down); window.addEventListener('keyup',up);
-    return () => { window.removeEventListener('keydown',down); window.removeEventListener('keyup',up); };
-  }, []);
+  const isKing = (piece: number) => piece === 3 || piece === 4;
 
-  useEffect(() => {
-    if (gameState !== 'playing') return;
-    const keys = keysRef.current;
-    const loop = setInterval(() => {
-      const p = playerRef.current;
-      if (keys.has('ArrowLeft')||keys.has('a')) p.x = Math.max(p.w/2, p.x-5);
-      if (keys.has('ArrowRight')||keys.has('d')) p.x = Math.min(W-p.w/2, p.x+5);
-      if (keys.has('ArrowUp')||keys.has('w')) p.y = Math.max(p.h/2, p.y-4);
-      if (keys.has('ArrowDown')||keys.has('s')) p.y = Math.min(H-p.h/2, p.y+4);
-      frameRef.current++;
-      if (frameRef.current % 60 === 0) spawnObjects();
+  const getValidMovesForPiece = useCallback((row: number, col: number, boardState: (0 | 1 | 2 | 3 | 4 | 5)[][]) => {
+    const piece = boardState[row][col];
+    const moves: {row: number, col: number, capture?: {row: number, col: number}}[] = [];
+    const player = piece === 1 || piece === 3 ? 1 : 2;
+    const isKingPiece = isKing(piece);
+    
+    const directions = [];
+    if (player === 1 || isKingPiece) {
+      directions.push([-1, -1], [-1, 1]);
+    }
+    if (player === 2 || isKingPiece) {
+      directions.push([1, -1], [1, 1]);
+    }
 
-      for (let i = objectsRef.current.length-1; i >= 0; i--) {
-        const obj = objectsRef.current[i];
-        obj.y += obj.vy; obj.x += obj.vx;
-        if (obj.x < 0 || obj.x > W) obj.vx = -obj.vx;
-        // Collision with player
-        const dx = obj.x-p.x, dy = obj.y-p.y;
-        if (Math.abs(dx)<(obj.w+p.w)/2 && Math.abs(dy)<(obj.h+p.h)/2) {
-          if (obj.type === 'good') { scoreRef.current += 10; }
-          else if (obj.type === 'bonus') { scoreRef.current += 25; }
-          else { livesRef.current--; setLives(livesRef.current); }
-          objectsRef.current.splice(i,1);
-          setScore(scoreRef.current);
-          if (livesRef.current <= 0) { setGameState('lost'); return; }
-          continue;
-        }
-        if (obj.y > H+30) objectsRef.current.splice(i,1);
-      }
-      if (scoreRef.current >= targetRef.current) {
-        setLevel(l => l+1);
-        targetRef.current += 45;
-        objectsRef.current = [];
-        spawnObjects();
-      }
-    }, 16);
-    return () => clearInterval(loop);
-  }, [gameState, spawnObjects]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current; if (!canvas) return;
-    const ctx = canvas.getContext('2d'); if (!ctx) return;
-    const draw = setInterval(() => {
-      ctx.clearRect(0,0,W,H);
-      // Background gradient
-      const bg = ctx.createLinearGradient(0,0,0,H);
-      bg.addColorStop(0,'#0a0a1a'); bg.addColorStop(1,'#1a1a2e');
-      ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
-      // Grid lines
-      ctx.strokeStyle = '#ffffff08'; ctx.lineWidth = 1;
-      for (let i=0;i<W;i+=40) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H); ctx.stroke(); }
-      for (let i=0;i<H;i+=40) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(W,i); ctx.stroke(); }
-      // Objects
-      for (const obj of objectsRef.current) {
-        ctx.fillStyle = obj.color;
-        ctx.beginPath(); ctx.roundRect(obj.x-obj.w/2, obj.y-obj.h/2, obj.w, obj.h, 6); ctx.fill();
-        if (obj.type === 'bonus') {
-          ctx.fillStyle = '#fff'; ctx.font = '12px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText('★', obj.x, obj.y);
+    for (const [dr, dc] of directions) {
+      const newRow = row + dr;
+      const newCol = col + dc;
+      if (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE) {
+        if (boardState[newRow][newCol] === 0) {
+          moves.push({row: newRow, col: newCol});
         }
       }
-      // Player
-      const p = playerRef.current;
-      const pGrad = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.w/2);
-      pGrad.addColorStop(0,'#fff'); pGrad.addColorStop(0.5,PRIMARY); pGrad.addColorStop(1,SECONDARY);
-      ctx.fillStyle = pGrad;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.w/2,0,Math.PI*2); ctx.fill();
-      // Glow
-      ctx.shadowColor = PRIMARY; ctx.shadowBlur = 15;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.w/2+2,0,Math.PI*2); ctx.stroke();
-      ctx.shadowBlur = 0;
-    }, 16);
-    return () => clearInterval(draw);
-  }, [gameState]);
+    }
+
+    for (const [dr, dc] of directions) {
+      const captureRow = row + dr;
+      const captureCol = col + dc;
+      const landRow = row + dr * 2;
+      const landCol = col + dc * 2;
+      
+      if (landRow >= 0 && landRow < BOARD_SIZE && landCol >= 0 && landCol < BOARD_SIZE) {
+        const targetPiece = boardState[captureRow][captureCol];
+        if (targetPiece !== 0 && !isPlayerPiece(targetPiece, player) && boardState[landRow][landCol] === 0) {
+          moves.push({row: landRow, col: landCol, capture: {row: captureRow, col: captureCol}});
+        }
+      }
+    }
+
+    return moves;
+  }, []);
+
+  const hasCaptureMoves = useCallback((player: number, boardState: (0 | 1 | 2 | 3 | 4 | 5)[][]) => {
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        if (isPlayerPiece(boardState[i][j], player)) {
+          const moves = getValidMovesForPiece(i, j, boardState);
+          if (moves.some(m => m.capture)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }, [getValidMovesForPiece]);
+
+  const handleClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (gameOver) return;
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+    
+    const col = Math.floor(x / CELL_SIZE);
+    const row = Math.floor(y / CELL_SIZE);
+    
+    if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) return;
+    
+    const piece = board[row][col];
+    
+    if (selectedCell) {
+      const move = validMoves.find(m => m.row === row && m.col === col);
+      if (move) {
+        let newBoard = board.map(r => [...r]);
+        const pieceToMove = newBoard[selectedCell.row][selectedCell.col];
+        newBoard[selectedCell.row][selectedCell.col] = 0;
+        newBoard[row][col] = pieceToMove;
+        
+        if (move.capture) {
+          newBoard[move.capture.row][move.capture.col] = 0;
+        }
+        
+        let promoted = false;
+        if (pieceToMove === 1 && row === 0) {
+          newBoard[row][col] = 3;
+          promoted = true;
+        } else if (pieceToMove === 2 && row === BOARD_SIZE - 1) {
+          newBoard[row][col] = 4;
+          promoted = true;
+        }
+        
+        const nextPlayer = currentPlayer === 1 ? 2 : 1;
+        
+        if (move.capture && !promoted) {
+          const furtherCaptures = getValidMovesForPiece(row, col, newBoard).filter(m => m.capture);
+          if (furtherCaptures.length > 0) {
+            setBoard(newBoard);
+            setSelectedCell({row, col});
+            setValidMoves(furtherCaptures);
+            setMustCapture(true);
+            updateScores(newBoard);
+            return;
+          }
+        }
+        
+        setBoard(newBoard);
+        setSelectedCell(null);
+        setValidMoves([]);
+        setMustCapture(false);
+        setCurrentPlayer(nextPlayer);
+        setIsFirstMove(false);
+        updateScores(newBoard);
+        
+        const winner = checkWinner(newBoard);
+        if (winner) {
+          setGameOver(true);
+          setWinner(winner);
+        }
+        
+        return;
+      }
+    }
+    
+    if (isPlayerPiece(piece, currentPlayer)) {
+      const mustCaptureNow = hasCaptureMoves(currentPlayer, board);
+      const moves = getValidMovesForPiece(row, col, board);
+      const availableMoves = mustCaptureNow ? moves.filter(m => m.capture) : moves;
+      
+      if (mustCaptureNow && availableMoves.length === 0) {
+        return;
+      }
+      
+      setSelectedCell({row, col});
+      setValidMoves(availableMoves);
+      setMustCapture(mustCaptureNow);
+    } else {
+      setSelectedCell(null);
+      setValidMoves([]);
+    }
+  }, [board, selectedCell, validMoves, currentPlayer, gameOver, getValidMovesForPiece, hasCaptureMoves]);
+
+  const updateScores = (boardState: (0 | 1 | 2 | 3 | 4 | 5)[][]) => {
+    let p1 = 0, p2 = 0;
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        if (boardState[i][j] === 1 || boardState[i][j] === 3) p1++;
+        if (boardState[i][j] === 2 || boardState[i][j] === 4) p2++;
+      }
+    }
+    setScore1(p1);
+    setScore2(p2);
+  };
+
+  const checkWinner = (boardState: (0 | 1 | 2 | 3 | 4 | 5)[][]) => {
+    let p1Pieces = 0, p2Pieces = 0;
+    let p1Moves = 0, p2Moves = 0;
+    
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        const piece = boardState[i][j];
+        if (piece === 1 || piece === 3) {
+          p1Pieces++;
+          p1Moves += getValidMovesForPiece(i, j, boardState).length;
+        } else if (piece === 2 || piece === 4) {
+          p2Pieces++;
+          p2Moves += getValidMovesForPiece(i, j, boardState).length;
+        }
+      }
+    }
+    
+    if (p1Pieces === 0 || p1Moves === 0) return 2;
+    if (p2Pieces === 0 || p2Moves === 0) return 1;
+    return null;
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        const x = j * CELL_SIZE;
+        const y = i * CELL_SIZE;
+        
+        ctx.fillStyle = (i + j) % 2 === 0 ? '#f0d9b5' : '#b58863';
+        ctx.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+        
+        const piece = board[i][j];
+        if (piece !== 0) {
+          const centerX = x + CELL_SIZE / 2;
+          const centerY = y + CELL_SIZE / 2;
+          const radius = CELL_SIZE * 0.4;
+          
+          const isPlayer1 = piece === 1 || piece === 3;
+          const isKing = piece === 3 || piece === 4;
+          
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+          const gradient = ctx.createRadialGradient(centerX - radius/3, centerY - radius/3, 0, centerX, centerY, radius);
+          gradient.addColorStop(0, isPlayer1 ? '#ff6b6b' : '#4a90e2');
+          gradient.addColorStop(1, isPlayer1 ? '#c92a2a' : '#1863b8');
+          ctx.fillStyle = gradient;
+          ctx.fill();
+          
+          ctx.strokeStyle = isPlayer1 ? '#8b0000' : '#1e3a5f';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          
+          if (isKing) {
+            ctx.fillStyle = '#ffd700';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('♔', centerX, centerY);
+          }
+          
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius * 0.7, 0, Math.PI * 2);
+          ctx.fillStyle = isPlayer1 ? '#ffcccc' : '#cce5ff';
+          ctx.fill();
+          
+          if (isKing) {
+            ctx.fillStyle = '#ffd700';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('♔', centerX, centerY);
+          }
+        }
+        
+        if (selectedCell && selectedCell.row === i && selectedCell.col === j) {
+          ctx.strokeStyle = '#ffd700';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(x + 2, y + 2, CELL_SIZE - 4, CELL_SIZE - 4);
+        }
+        
+        if (validMoves.some(m => m.row === i && m.col === j)) {
+          ctx.fillStyle = validMoves.find(m => m.row === i && m.col === j)?.capture 
+            ? 'rgba(255, 100, 100, 0.5)' 
+            : 'rgba(100, 255, 100, 0.5)';
+          ctx.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+          
+          if (validMoves.find(m => m.row === i && m.col === j)?.capture) {
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(x + 2, y + 2, CELL_SIZE - 4, CELL_SIZE - 4);
+          }
+        }
+      }
+    }
+    
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    
+  }, [board, selectedCell, validMoves]);
+
+  const handleRestart = () => {
+    setBoard(createInitialBoard());
+    setSelectedCell(null);
+    setValidMoves([]);
+    setCurrentPlayer(1);
+    setMustCapture(false);
+    setScore1(12);
+    setScore2(12);
+    setGameOver(false);
+    setWinner(null);
+    setIsFirstMove(true);
+  };
 
   return (
-    <div style={{background:'#0a0a1a',minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',padding:20}}>
-      <motion.h1 initial={{opacity:0,y:-20}} animate={{opacity:1,y:0}} style={{color:PRIMARY,fontSize:28,marginBottom:10}}>🔴 跳棋AI</motion.h1>
-      <div style={{display:'flex',gap:20,marginBottom:10}}>
-        <span style={{color:'#fff'}}>分数: {score}</span>
-        <span style={{color:PRIMARY}}>等级: {level}</span>
-        <span style={{color:'#fff'}}>生命: {'❤️'.repeat(Math.max(0,lives))}</span>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4" 
+         style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' }}>
+      <motion.h1 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }}
+        className="text-4xl font-bold mb-6"
+        style={{ color: '#00FFFF' }}
+      >
+        🏁 国际跳棋
+      </motion.h1>
+      
+      <div className="flex gap-8 mb-4">
+        <div className="text-center px-6 py-3 rounded-xl" 
+             style={{ 
+               background: currentPlayer === 1 && !gameOver ? 'rgba(255,107,107,0.3)' : 'rgba(100,100,100,0.2)',
+               border: `2px solid ${currentPlayer === 1 && !gameOver ? '#ff6b6b' : '#666'}`
+             }}>
+          <div style={{ color: '#ff6b6b' }}>红方 (玩家)</div>
+          <div className="text-2xl font-bold" style={{ color: '#ff6b6b' }}>{score1}</div>
+        </div>
+        
+        <div className="text-center px-6 py-3 rounded-xl"
+             style={{ 
+               background: currentPlayer === 2 && !gameOver ? 'rgba(74,144,226,0.3)' : 'rgba(100,100,100,0.2)',
+               border: `2px solid ${currentPlayer === 2 && !gameOver ? '#4a90e2' : '#666'}`
+             }}>
+          <div style={{ color: '#4a90e2' }}>蓝方 (AI)</div>
+          <div className="text-2xl font-bold" style={{ color: '#4a90e2' }}>{score2}</div>
+        </div>
       </div>
-      <canvas ref={canvasRef} width={W} height={H} style={{border:'2px solid '+PRIMARY,borderRadius:12}} />
-      <div style={{marginTop:10,color:'#888',fontSize:14}}>方向键/WASD移动 | AI驱动的智能游戏体验</div>
-      {gameState==='lost' && <motion.div initial={{scale:0}} animate={{scale:1}} style={{color:'#ff4444',fontSize:24,marginTop:10}}>游戏结束! 得分: {score}</motion.div>}
-      <div style={{marginTop:15,display:'flex',gap:10}}>
-        <motion.button whileHover={{scale:1.05}} whileTap={{scale:0.95}} onClick={startGame}
-          style={{padding:'10px 24px',background:PRIMARY,color:'#000',border:'none',borderRadius:8,fontSize:16,cursor:'pointer',fontWeight:'bold'}}>
-          {gameState==='idle'?'开始游戏':'重新开始'}
+      
+      <div className="mb-4 text-center px-4 py-2 rounded-lg"
+           style={{ 
+             background: 'rgba(0,0,0,0.3)',
+             color: mustCapture ? '#ff6b6b' : '#fff'
+           }}>
+        {gameOver 
+          ? `游戏结束! ${winner === 1 ? '红方' : '蓝方'}获胜!` 
+          : mustCapture 
+            ? '必须吃子!' 
+            : `${currentPlayer === 1 ? '红方' : '蓝方'}的回合${isFirstMove ? ' - 点击棋子开始' : ''}`}
+      </div>
+      
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="rounded-2xl overflow-hidden shadow-2xl"
+        style={{ 
+          boxShadow: `0 0 30px ${currentPlayer === 1 ? 'rgba(255,107,107,0.5)' : 'rgba(74,144,226,0.5)'}`,
+          border: `4px solid ${currentPlayer === 1 ? '#ff6b6b' : '#4a90e2'}`
+        }}
+      >
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_SIZE}
+          height={CANVAS_SIZE}
+          onClick={handleClick}
+          style={{ 
+            cursor: 'pointer', 
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
+      </motion.div>
+      
+      <div className="flex gap-4 mt-6">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleRestart}
+          className="px-6 py-3 rounded-xl font-bold text-lg"
+          style={{ 
+            background: 'linear-gradient(135deg, #00FFFF, #00FF00)',
+            color: '#000'
+          }}
+        >
+          🔄 重新开始
         </motion.button>
-        <motion.button whileHover={{scale:1.05}} whileTap={{scale:0.95}} onClick={() => navigate('/')}
-          style={{padding:'10px 24px',background:'#333',color:'#fff',border:'none',borderRadius:8,fontSize:16,cursor:'pointer'}}>
-          返回首页
+        
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => navigate('/')}
+          className="px-6 py-3 rounded-xl font-bold text-lg"
+          style={{ 
+            background: 'rgba(255,255,255,0.1)',
+            color: '#fff',
+            border: '2px solid #00FFFF'
+          }}
+        >
+          🏠 返回首页
         </motion.button>
+      </div>
+      
+      <div className="mt-6 text-center text-sm" style={{ color: '#888', maxWidth: '500px' }}>
+        <p>🎮 <strong>游戏规则：</strong></p>
+        <p>• 轮流移动，点击自己的棋子再点击目标位置</p>
+        <p>• 普通棋子只能向前斜走，抵达对方底线可升变为王棋</p>
+        <p>• 王棋可以向前后斜走</p>
+        <p>• 有机会吃子时必须吃子（强制吃子）</p>
+        <p>• 吃子后若还能继续吃，必须继续吃（连续吃子）</p>
       </div>
     </div>
   );
