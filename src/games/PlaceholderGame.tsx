@@ -953,8 +953,8 @@ export default function PlaceholderGame({
       setTimeout(() => gameState.current.keys.delete(' '), 50);
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown, true);
+    window.addEventListener('keyup', handleKeyUp, true);
     canvas.addEventListener('click', handleClick);
 
     let animationId: number;
@@ -966,8 +966,8 @@ export default function PlaceholderGame({
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('keyup', handleKeyUp, true);
       canvas.removeEventListener('click', handleClick);
     };
   }, [gameStatus, drawGame]);

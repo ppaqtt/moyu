@@ -59,8 +59,8 @@ export default function Prisonbreak() {
         if (nr===SIZE-2&&nc===SIZE-2) { setGameState('won'); setScore(Math.max(1000-moves*5-time*2,100)); }
       }
     };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('keydown', handleKey, true);
+    return () => window.removeEventListener('keydown', handleKey, true);
   }, [gameState, player, maze, moves, time]);
 
   useEffect(() => {

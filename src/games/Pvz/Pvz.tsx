@@ -50,8 +50,8 @@ export default function Pvz() {
       if (e.key === 'ArrowLeft') paddleRef.current = Math.max(0, paddleRef.current - 30);
       if (e.key === 'ArrowRight') paddleRef.current = Math.min(W-PADDLE_W, paddleRef.current + 30);
     };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('keydown', handleKey, true);
+    return () => window.removeEventListener('keydown', handleKey, true);
   }, []);
 
   useEffect(() => {

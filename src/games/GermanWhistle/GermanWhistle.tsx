@@ -59,8 +59,8 @@ export default function GermanWhistle() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress, true);
+    return () => window.removeEventListener('keydown', handleKeyPress, true);
   }, [gameStarted, gameState.phase]);
 
   useEffect(() => {

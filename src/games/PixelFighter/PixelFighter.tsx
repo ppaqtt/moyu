@@ -326,14 +326,14 @@ const PixelFighter: React.FC = () => {
   }, [drawMenu, drawFighter, drawHUD, drawGameOver, updateInput]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown, true);
+    window.addEventListener('keyup', handleKeyUp, true);
 
     animationRef.current = requestAnimationFrame(gameLoop);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('keyup', handleKeyUp, true);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -352,8 +352,8 @@ const PixelFighter: React.FC = () => {
       }
     };
 
-    window.addEventListener('keydown', handleEnter);
-    return () => window.removeEventListener('keydown', handleEnter);
+    window.addEventListener('keydown', handleEnter, true);
+    return () => window.removeEventListener('keydown', handleEnter, true);
   }, []);
 
   return (

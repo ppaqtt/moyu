@@ -326,14 +326,14 @@ const BrawlStars: React.FC = () => {
   }, [drawMenu, drawCharacterSelect, drawPlayer, drawPowerUp, drawHUD, drawGameOver, updateInput, characters]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown, true);
+    window.addEventListener('keyup', handleKeyUp, true);
 
     animationRef.current = requestAnimationFrame(gameLoop);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('keyup', handleKeyUp, true);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -365,11 +365,11 @@ const BrawlStars: React.FC = () => {
       }
     };
 
-    window.addEventListener('keydown', handleEnter);
-    window.addEventListener('keydown', handleArrow);
+    window.addEventListener('keydown', handleEnter, true);
+    window.addEventListener('keydown', handleArrow, true);
     return () => {
-      window.removeEventListener('keydown', handleEnter);
-      window.removeEventListener('keydown', handleArrow);
+      window.removeEventListener('keydown', handleEnter, true);
+      window.removeEventListener('keydown', handleArrow, true);
     };
   }, [characters.length]);
 

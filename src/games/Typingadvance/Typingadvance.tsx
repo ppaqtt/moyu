@@ -37,8 +37,8 @@ export default function Typingadvance() {
       setGuessed(ng);
       if (!word.includes(letter)) { setLives(l => l-1); }
     };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('keydown', handleKey, true);
+    return () => window.removeEventListener('keydown', handleKey, true);
   }, [gameState, guessed, word]);
 
   useEffect(() => {

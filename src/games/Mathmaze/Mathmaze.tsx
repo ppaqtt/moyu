@@ -65,8 +65,8 @@ export default function Mathmaze() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => { if (e.key==='Enter') handleSubmit(); };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('keydown', handleKey, true);
+    return () => window.removeEventListener('keydown', handleKey, true);
   }, [handleSubmit]);
 
   return (

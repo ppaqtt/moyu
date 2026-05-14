@@ -97,8 +97,8 @@ export default function FireIce({ onScoreUpdate, onGameOver, onExit }: FireIcePr
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [handleFireMove, handleIceMove]);
 
   const renderTile = (x: number, y: number) => {
