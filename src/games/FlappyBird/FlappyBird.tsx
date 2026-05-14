@@ -45,14 +45,15 @@ export default function FlappyBird({ onScoreUpdate, onGameOver, onExit }: Flappy
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key === 'ArrowUp' || e.key.toLowerCase() === 'w') {
         e.preventDefault();
+        e.stopPropagation();
         engine.flap();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [engine]);
 
   const handleClick = () => {
