@@ -35,6 +35,13 @@ export default function Bejeweled({ onScoreUpdate, onGameOver, onExit }: Bejewel
     onScoreUpdate(state.score);
   }, [engine, onScoreUpdate]);
 
+  useEffect(() => {
+    engine.setOnStateChange(updateState);
+    return () => {
+      engine.setOnStateChange(() => {});
+    };
+  }, [engine, updateState]);
+
   const handleGemClick = useCallback((row: number, col: number) => {
     if (isAnimating) return;
 

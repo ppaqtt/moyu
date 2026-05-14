@@ -32,15 +32,21 @@ export class GameBejeweledEngine {
   private isGameOver: boolean;
   private level: number;
   private targetScore: number;
+  private onStateChange?: () => void;
 
-  constructor() {
+  constructor(onStateChange?: () => void) {
     this.board = [];
     this.score = 0;
     this.combo = 0;
     this.isGameOver = false;
     this.level = 1;
     this.targetScore = 1000;
+    this.onStateChange = onStateChange;
     this.init();
+  }
+
+  setOnStateChange(callback: () => void): void {
+    this.onStateChange = callback;
   }
 
   init(): void {
@@ -214,6 +220,7 @@ export class GameBejeweledEngine {
     setTimeout(() => {
       this.dropGems();
       this.fillBoard();
+      this.onStateChange?.();
       
       const newMatches = this.findMatches();
       if (newMatches.length > 0) {
