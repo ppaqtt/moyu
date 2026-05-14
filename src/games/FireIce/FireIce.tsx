@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useGameRecord } from '../../hooks/useLocalStorage';
 import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
@@ -66,6 +66,40 @@ export default function FireIce({ onScoreUpdate, onGameOver, onExit }: FireIcePr
     engine.reset();
     updateState();
   }, [engine, updateState]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key.toLowerCase()) {
+        case 'w':
+          handleFireMove('up');
+          break;
+        case 's':
+          handleFireMove('down');
+          break;
+        case 'a':
+          handleFireMove('left');
+          break;
+        case 'd':
+          handleFireMove('right');
+          break;
+        case 'arrowup':
+          handleIceMove('up');
+          break;
+        case 'arrowdown':
+          handleIceMove('down');
+          break;
+        case 'arrowleft':
+          handleIceMove('left');
+          break;
+        case 'arrowright':
+          handleIceMove('right');
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleFireMove, handleIceMove]);
 
   const renderTile = (x: number, y: number) => {
     const isWall = level.walls.some(w => w.x === x && w.y === y);

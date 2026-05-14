@@ -185,7 +185,7 @@ export default function Tetris({ onScoreUpdate, onGameOver, onExit }: TetrisProp
 
   return (
     <motion.div
-      className="flex flex-col lg:flex-row items-center gap-8"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}

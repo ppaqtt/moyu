@@ -147,6 +147,8 @@ export class GameSketchoutEngine {
   tick(): void {
     if (this.isGameOver) return;
 
+    this.updateEnemyAI();
+
     for (const proj of this.projectiles) {
       if (!proj.active) continue;
 
@@ -186,28 +188,42 @@ export class GameSketchoutEngine {
     }
   }
 
+  private updateEnemyAI(): void {
+    const dx = this.player.x - this.enemy.x;
+    const dy = (this.player.y - TANK_SIZE / 2) - (this.enemy.y - TANK_SIZE / 2);
+    
+    const targetAngle = Math.atan2(-dy, dx) * (180 / Math.PI);
+    
+    let angleDiff = targetAngle - this.enemy.angle;
+    while (angleDiff > 180) angleDiff -= 360;
+    while (angleDiff < -180) angleDiff += 360;
+
+    const turnSpeed = 1;
+    if (Math.abs(angleDiff) > turnSpeed) {
+      this.enemy.angle += angleDiff > 0 ? turnSpeed : -turnSpeed;
+    } else {
+      this.enemy.angle = targetAngle;
+    }
+
+    this.enemy.angle = Math.max(10, Math.min(170, this.enemy.angle));
+  }
+
   private enemyShoot(): void {
     const now = Date.now();
     if (now - this.enemy.lastShot < SHOT_COOLDOWN * 1.5) return;
 
-    const dx = this.player.x - this.enemy.x;
-    const dy = (this.player.y - TANK_SIZE / 2) - (this.enemy.y - TANK_SIZE / 2);
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    const baseAngle = Math.atan2(dy, dx) * (180 / Math.PI);
-    const spread = (Math.random() - 0.5) * 20;
-    const adjustedAngle = baseAngle + spread;
-
-    this.enemy.angle = adjustedAngle;
     this.enemy.lastShot = now;
 
     const rad = (this.enemy.angle * Math.PI) / 180;
+    const windCompensation = -this.wind * 50;
+
+    const adjustedRad = rad + windCompensation * (Math.PI / 180);
 
     this.projectiles.push({
       x: this.enemy.x + Math.cos(rad) * TANK_SIZE,
       y: this.enemy.y - Math.sin(rad) * TANK_SIZE,
-      vx: Math.cos(rad) * PROJECTILE_SPEED * 0.8,
-      vy: -Math.sin(rad) * PROJECTILE_SPEED * 0.8,
+      vx: Math.cos(adjustedRad) * PROJECTILE_SPEED * 0.85,
+      vy: -Math.sin(adjustedRad) * PROJECTILE_SPEED * 0.85,
       owner: 'enemy',
       damage: 20,
       radius: 8,
