@@ -306,8 +306,8 @@ export default function Skiing() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [engine, gameStatus]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {

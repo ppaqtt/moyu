@@ -51,8 +51,8 @@ export default function Egyptianroom() {
   useEffect(() => {
     const down = (e:KeyboardEvent) => keysRef.current.add(e.key);
     const up = (e:KeyboardEvent) => keysRef.current.delete(e.key);
-    window.addEventListener('keydown',down); window.addEventListener('keyup',up);
-    return () => { window.removeEventListener('keydown',down); window.removeEventListener('keyup',up); };
+    window.addEventListener('keydown', down, true); window.addEventListener('keyup', up, true);
+    return () => { window.removeEventListener('keydown', down, true); window.removeEventListener('keyup', up, true); };
   }, []);
 
   useEffect(() => {

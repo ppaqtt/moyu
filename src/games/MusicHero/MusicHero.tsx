@@ -117,8 +117,8 @@ export default function MusicHero() {
   }, [gameState, handleTap]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [handleKeyDown]);
 
   const laneKeys = ['1', '2', '3', '4'];

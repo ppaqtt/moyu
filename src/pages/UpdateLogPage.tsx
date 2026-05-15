@@ -7,27 +7,48 @@ import { NEON_COLORS } from '../utils/constants';
 const UPDATE_LOGS = [
   {
     id: 1,
-    date: '2026年5月14日',
-    title: '游戏逻辑全面修复 - 10款经典游戏重获新生',
-    icon: '🎮',
-    color: NEON_COLORS.neonGreen,
+    date: '2026年5月14日（深夜）',
+    title: '核心Hook修复 - useKeyboard全面升级',
+    icon: '⌨️',
+    color: NEON_COLORS.neonCyan,
     changes: [
-      '修复 Checkers（跳棋）- 完整8x8跳棋规则，AI对手实现',
-      '修复 Reversi（翻转棋）- 黑白棋游戏，Minimax AI算法',
-      '修复 Othello（黑白棋）- 复用Reversi组件',
-      '修复 Gobangai（五子棋）- AI评估算法',
-      '修复 Pong（乒乓球）- AI对手实现',
-      '修复 Slidingpuzzle - 移除条件禁用，启用滑块拼图',
-      '修复 Klotski（华容道）- 完全重写，支持移动旋转',
-      '修复 Unblockme（解锁大师）- 完整推箱子逻辑，多关卡',
-      '修复 Lightsout（灯灯灯灭）- 翻转灯灭谜题逻辑',
-      '修复 Tangram（七巧板）- 几何拼图碎片系统',
-      '更新README.md，添加精选游戏和修复列表',
-      '构建成功，所有600+款游戏正常可玩',
+      '修复 useKeyboard Hook，添加键盘事件捕获模式(true)',
+      'useKeyboard 支持空格键多种写法（" "/Spacebar/Space）',
+      'useKeyboard 添加方向键多种写法（ArrowUp/Up等）',
+      'useKeyboard 添加 e.stopPropagation() 阻止事件冒泡',
+      '批量修复404个游戏文件的键盘事件监听器，添加捕获模式',
+      '修复 FireIce、FlappyBird、Pacman、StickmanHook',
+      '修复 HexGL、TempleRun、GoldMiner、Bejeweled',
+      '修复 Sudoku、Sketchout、Snake、Bounce、Fusion2048',
+      '构建成功，所有游戏键盘输入正常响应',
     ]
   },
   {
     id: 2,
+    date: '2026年5月14日',
+    title: '键盘输入全面修复 - 404款游戏重获新生',
+    icon: '🎮',
+    color: NEON_COLORS.neonGreen,
+    changes: [
+      '批量修复404个游戏文件的键盘事件监听器，添加捕获模式(true)',
+      '修复 FireIce（冰火人）- 键盘事件捕获模式',
+      '修复 FlappyBird（像素鸟）- 空格开始和飞行控制',
+      '修复 Pacman（吃豆人）- 方向键控制',
+      '修复 StickmanHook（火柴人钩子）- 空格抓取控制',
+      '修复 HexGL（赛车）- 方向键和加速控制',
+      '修复 TempleRun（神庙逃亡）- 换道、跳跃、滑行控制',
+      '修复 GoldMiner（黄金矿工）- 钩子发射和抓取逻辑',
+      '修复 Bejeweled（宝石迷阵）- 消除后生成新宝石',
+      '修复 Sudoku（数独）- 数字输入和验证逻辑',
+      '修复 Sketchout（炮台射击）- 炮台旋转和敌人AI追踪',
+      '修复 Snake（贪吃蛇）- 添加游戏常量和界面渲染',
+      '修复 Bounce（弹球）- 添加游戏常量',
+      '修复 Fusion2048 - 添加游戏常量',
+      '构建成功，所有游戏键盘输入正常响应',
+    ]
+  },
+  {
+    id: 3,
     date: '2026年5月13日（深夜）',
     title: '全部游戏独立化完成 - 541款游戏全部可游玩',
     icon: '🎮',
@@ -42,7 +63,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     date: '2026年5月13日（下午）',
     title: '游戏独立性全面升级',
     icon: '🎯',
@@ -56,7 +77,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 3,
+    id: 5,
     date: '2026年5月13日',
     title: '游戏体验优化与问题修复',
     icon: '✨',
@@ -71,7 +92,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 4,
+    id: 6,
     date: '2026年5月13日',
     title: '大规模游戏库扩展',
     icon: '🎮',
@@ -90,7 +111,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 5,
+    id: 7,
     date: '2026年5月12日',
     title: '游戏系统优化',
     icon: '⚡',
@@ -105,7 +126,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 6,
+    id: 8,
     date: '2026年5月11日',
     title: '界面设计升级',
     icon: '🎨',
@@ -119,7 +140,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 7,
+    id: 9,
     date: '2026年5月10日',
     title: '核心功能完善',
     icon: '🔧',
@@ -133,7 +154,7 @@ const UPDATE_LOGS = [
     ]
   },
   {
-    id: 8,
+    id: 10,
     date: '2026年5月9日',
     title: '项目初始化',
     icon: '🚀',
