@@ -7,6 +7,10 @@ interface UseKeyboardOptions {
   onArrowRight?: () => void;
   onSpace?: () => void;
   onEscape?: () => void;
+  onW?: () => void;
+  onA?: () => void;
+  onS?: () => void;
+  onD?: () => void;
   enabled?: boolean;
 }
 
@@ -41,6 +45,30 @@ export function useKeyboard(options: UseKeyboardOptions) {
         e.preventDefault();
         e.stopPropagation();
         optionsRef.current.onArrowRight?.();
+        break;
+      case 'w':
+      case 'W':
+        e.preventDefault();
+        e.stopPropagation();
+        optionsRef.current.onW?.();
+        break;
+      case 'a':
+      case 'A':
+        e.preventDefault();
+        e.stopPropagation();
+        optionsRef.current.onA?.();
+        break;
+      case 's':
+      case 'S':
+        e.preventDefault();
+        e.stopPropagation();
+        optionsRef.current.onS?.();
+        break;
+      case 'd':
+      case 'D':
+        e.preventDefault();
+        e.stopPropagation();
+        optionsRef.current.onD?.();
         break;
       case ' ':
       case 'Spacebar':
