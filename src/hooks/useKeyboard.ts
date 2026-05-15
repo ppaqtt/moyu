@@ -7,10 +7,6 @@ interface UseKeyboardOptions {
   onArrowRight?: () => void;
   onSpace?: () => void;
   onEscape?: () => void;
-  onW?: () => void;
-  onA?: () => void;
-  onS?: () => void;
-  onD?: () => void;
   enabled?: boolean;
 }
 
@@ -23,38 +19,47 @@ export function useKeyboard(options: UseKeyboardOptions) {
 
     switch (e.key) {
       case 'ArrowUp':
+      case 'Up':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onArrowUp?.();
-        optionsRef.current.onW?.();
         break;
       case 'ArrowDown':
+      case 'Down':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onArrowDown?.();
-        optionsRef.current.onS?.();
         break;
       case 'ArrowLeft':
+      case 'Left':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onArrowLeft?.();
-        optionsRef.current.onA?.();
         break;
       case 'ArrowRight':
+      case 'Right':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onArrowRight?.();
-        optionsRef.current.onD?.();
         break;
       case ' ':
+      case 'Spacebar':
+      case 'Space':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onSpace?.();
         break;
       case 'Escape':
+      case 'Esc':
         e.preventDefault();
+        e.stopPropagation();
         optionsRef.current.onEscape?.();
         break;
     }
   }, []);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [handleKeyDown]);
 }
