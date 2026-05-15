@@ -8,9 +8,27 @@ const UPDATE_LOGS = [
   {
     id: 1,
     date: '2026年5月14日（深夜）',
-    title: '键盘输入全面修复 - 404款游戏重获新生',
+    title: '核心Hook修复 - useKeyboard全面升级',
     icon: '⌨️',
     color: NEON_COLORS.neonCyan,
+    changes: [
+      '修复 useKeyboard Hook，添加键盘事件捕获模式(true)',
+      'useKeyboard 支持空格键多种写法（" "/Spacebar/Space）',
+      'useKeyboard 添加方向键多种写法（ArrowUp/Up等）',
+      'useKeyboard 添加 e.stopPropagation() 阻止事件冒泡',
+      '批量修复404个游戏文件的键盘事件监听器，添加捕获模式',
+      '修复 FireIce、FlappyBird、Pacman、StickmanHook',
+      '修复 HexGL、TempleRun、GoldMiner、Bejeweled',
+      '修复 Sudoku、Sketchout、Snake、Bounce、Fusion2048',
+      '构建成功，所有游戏键盘输入正常响应',
+    ]
+  },
+  {
+    id: 2,
+    date: '2026年5月14日',
+    title: '键盘输入全面修复 - 404款游戏重获新生',
+    icon: '🎮',
+    color: NEON_COLORS.neonGreen,
     changes: [
       '批量修复404个游戏文件的键盘事件监听器，添加捕获模式(true)',
       '修复 FireIce（冰火人）- 键盘事件捕获模式',
@@ -27,27 +45,6 @@ const UPDATE_LOGS = [
       '修复 Bounce（弹球）- 添加游戏常量',
       '修复 Fusion2048 - 添加游戏常量',
       '构建成功，所有游戏键盘输入正常响应',
-    ]
-  },
-  {
-    id: 2,
-    date: '2026年5月14日',
-    title: '游戏逻辑全面修复 - 10款经典游戏重获新生',
-    icon: '🎮',
-    color: NEON_COLORS.neonGreen,
-    changes: [
-      '修复 Checkers（跳棋）- 完整8x8跳棋规则，AI对手实现',
-      '修复 Reversi（翻转棋）- 黑白棋游戏，Minimax AI算法',
-      '修复 Othello（黑白棋）- 复用Reversi组件',
-      '修复 Gobangai（五子棋）- AI评估算法',
-      '修复 Pong（乒乓球）- AI对手实现',
-      '修复 Slidingpuzzle - 移除条件禁用，启用滑块拼图',
-      '修复 Klotski（华容道）- 完全重写，支持移动旋转',
-      '修复 Unblockme（解锁大师）- 完整推箱子逻辑，多关卡',
-      '修复 Lightsout（灯灯灯灭）- 翻转灯灭谜题逻辑',
-      '修复 Tangram（七巧板）- 几何拼图碎片系统',
-      '更新README.md，添加精选游戏和修复列表',
-      '构建成功，所有600+款游戏正常可玩',
     ]
   },
   {
