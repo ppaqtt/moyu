@@ -19,7 +19,8 @@ export function useKeyboard(options: UseKeyboardOptions) {
   optionsRef.current = options;
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (!optionsRef.current.enabled) return;
+    const enabled = optionsRef.current.enabled;
+    if (enabled !== undefined && !enabled) return;
 
     switch (e.key) {
       case 'ArrowUp':
