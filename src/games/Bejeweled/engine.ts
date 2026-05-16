@@ -110,6 +110,7 @@ export class GameBejeweledEngine {
       
       if (selRow === row && selCol === col) {
         this.board[selRow][selCol].isSelected = false;
+        this.onStateChange?.();
         return false;
       }
 
@@ -123,11 +124,13 @@ export class GameBejeweledEngine {
       } else {
         this.board[selRow][selCol].isSelected = false;
         gem.isSelected = true;
+        this.onStateChange?.();
         return false;
       }
     }
 
     gem.isSelected = true;
+    this.onStateChange?.();
     return false;
   }
 
@@ -156,6 +159,7 @@ export class GameBejeweledEngine {
 
     this.board[row1][col1].type = this.board[row2][col2].type;
     this.board[row2][col2].type = temp;
+    this.onStateChange?.();
     return false;
   }
 
@@ -173,7 +177,9 @@ export class GameBejeweledEngine {
             end++;
           }
           for (let i = c; i <= end; i++) {
-            matches.push({ row: r, col: i });
+            if (!matches.some(m => m.row === r && m.col === i)) {
+              matches.push({ row: r, col: i });
+            }
           }
         }
       }
@@ -217,16 +223,15 @@ export class GameBejeweledEngine {
       this.targetScore = Math.floor(this.targetScore * 1.5);
     }
 
-    setTimeout(() => {
-      this.dropGems();
-      this.fillBoard();
-      this.onStateChange?.();
-      
-      const newMatches = this.findMatches();
-      if (newMatches.length > 0) {
-        this.processMatches(newMatches);
-      }
-    }, 300);
+    this.dropGems();
+    this.fillBoard();
+
+    const newMatches = this.findMatches();
+    if (newMatches.length > 0) {
+      setTimeout(() => this.processMatches(newMatches), 300);
+    }
+
+    this.onStateChange?.();
   }
 
   private dropGems(): void {
@@ -246,15 +251,48 @@ export class GameBejeweledEngine {
   }
 
   private fillBoard(): void {
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      for (let r = BOARD_SIZE - 1; r >= 0; r--) {
         if (this.board[r][c].type === -1) {
-          this.board[r][c].type = Math.floor(Math.random() * GEM_TYPES);
+          let type: number;
+          do {
+            type = Math.floor(Math.random() * GEM_TYPES);
+          } while (this.wouldFillMatch(r, c, type));
+          
+          this.board[r][c].type = type;
           this.board[r][c].isMatched = false;
           this.board[r][c].isNew = true;
         }
       }
     }
+  }
+
+  private wouldFillMatch(row: number, col: number, type: number): boolean {
+    if (col >= 2) {
+      if (this.board[row][col - 1]?.type === type && 
+          this.board[row][col - 2]?.type === type) {
+        return true;
+      }
+    }
+    if (col <= BOARD_SIZE - 3) {
+      if (this.board[row][col + 1]?.type === type && 
+          this.board[row][col + 2]?.type === type) {
+        return true;
+      }
+    }
+    if (row >= 2) {
+      if (this.board[row - 1]?.[col]?.type === type && 
+          this.board[row - 2]?.[col]?.type === type) {
+        return true;
+      }
+    }
+    if (row <= BOARD_SIZE - 3) {
+      if (this.board[row + 1]?.[col]?.type === type && 
+          this.board[row + 2]?.[col]?.type === type) {
+        return true;
+      }
+    }
+    return false;
   }
 
   hasValidMoves(): boolean {
