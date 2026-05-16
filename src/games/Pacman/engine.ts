@@ -82,8 +82,8 @@ export class GamePacmanEngine {
 
   constructor() {
     this.pacman = {
-      x: CELL_SIZE * 10,
-      y: CELL_SIZE * 15,
+      x: CELL_SIZE * 10 + CELL_SIZE / 2,
+      y: CELL_SIZE * 18 + CELL_SIZE / 2,
       direction: 'left',
       nextDirection: 'left',
       mouthAngle: 0,
@@ -282,8 +282,8 @@ export class GamePacmanEngine {
   }
 
   private resetPositions(): void {
-    this.pacman.x = CELL_SIZE * 10;
-    this.pacman.y = CELL_SIZE * 15;
+    this.pacman.x = CELL_SIZE * 10 + CELL_SIZE / 2;
+    this.pacman.y = CELL_SIZE * 18 + CELL_SIZE / 2;
     this.pacman.direction = 'left';
     this.pacman.nextDirection = 'left';
 
