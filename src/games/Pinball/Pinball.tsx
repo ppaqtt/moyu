@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { STORAGE_KEYS, PINBALL_CONSTANTS, NEON_COLORS } from '../../utils/constants';
+import { STORAGE_KEYS, PINBALL_CONSTANTS } from '../../utils/constants';
 import { PinballEngine, PinballState } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT } = PINBALL_CONSTANTS;
@@ -21,7 +21,6 @@ export default function Pinball() {
 
   const navigate = useNavigate();
 
-  // Initialize engine
   useEffect(() => {
     engineRef.current = new PinballEngine();
     return () => {
@@ -31,14 +30,11 @@ export default function Pinball() {
     };
   }, []);
 
-  // Drawing
   const draw = useCallback((ctx: CanvasRenderingContext2D, state: PinballState) => {
     const { ball, leftFlipper, rightFlipper, launcher, bumpers, walls } = state;
 
-    // Clear
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Background
     const bgGrad = ctx.createLinearGradient(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     bgGrad.addColorStop(0, '#0f0f1a');
     bgGrad.addColorStop(0.5, '#1a1a2e');
@@ -46,7 +42,6 @@ export default function Pinball() {
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Draw walls
     ctx.strokeStyle = 'rgba(108, 92, 231, 0.4)';
     ctx.lineWidth = 3;
     ctx.lineCap = 'round';
@@ -57,12 +52,10 @@ export default function Pinball() {
       ctx.stroke();
     }
 
-    // Draw bumpers
     for (const bumper of bumpers) {
       const isHit = bumper.hitTimer > 0;
       const glowSize = isHit ? bumper.radius + 10 : bumper.radius + 4;
 
-      // Glow
       const glowGrad = ctx.createRadialGradient(
         bumper.x, bumper.y, bumper.radius * 0.3,
         bumper.x, bumper.y, glowSize
@@ -75,13 +68,11 @@ export default function Pinball() {
       ctx.arc(bumper.x, bumper.y, glowSize, 0, Math.PI * 2);
       ctx.fill();
 
-      // Bumper body
       ctx.fillStyle = isHit ? '#ffffff' : bumper.color;
       ctx.beginPath();
       ctx.arc(bumper.x, bumper.y, bumper.radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Inner ring
       ctx.strokeStyle = 'rgba(255,255,255,0.4)';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -89,11 +80,9 @@ export default function Pinball() {
       ctx.stroke();
     }
 
-    // Draw launcher lane
     ctx.fillStyle = 'rgba(108, 92, 231, 0.15)';
     ctx.fillRect(launcher.x - launcher.width / 2, launcher.y, launcher.width, launcher.height);
 
-    // Launcher spring
     if (state.isLaunching) {
       const springY = launcher.y + launcher.height - 20;
       const compression = launcher.power / launcher.maxPower;
@@ -107,9 +96,8 @@ export default function Pinball() {
         springHeight
       );
 
-      // Power indicator
       if (launcher.isCharging) {
-        ctx.fillStyle = NEON_COLORS.neonPink;
+        ctx.fillStyle = '#ff6b9d';
         ctx.font = 'bold 12px monospace';
         ctx.textAlign = 'center';
         ctx.fillText(
@@ -120,7 +108,6 @@ export default function Pinball() {
       }
     }
 
-    // Draw flippers
     const drawFlipper = (
       flipper: typeof leftFlipper,
       color: string
@@ -128,7 +115,6 @@ export default function Pinball() {
       const tipX = flipper.x + Math.cos(flipper.angle) * flipper.length;
       const tipY = flipper.y + Math.sin(flipper.angle) * flipper.length;
 
-      // Glow
       ctx.shadowColor = color;
       ctx.shadowBlur = flipper.isActive ? 20 : 8;
 
@@ -140,7 +126,6 @@ export default function Pinball() {
       ctx.lineTo(tipX, tipY);
       ctx.stroke();
 
-      // Pivot point
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(flipper.x, flipper.y, flipper.width / 2, 0, Math.PI * 2);
@@ -149,12 +134,10 @@ export default function Pinball() {
       ctx.shadowBlur = 0;
     };
 
-    drawFlipper(leftFlipper, NEON_COLORS.neonPink);
-    drawFlipper(rightFlipper, NEON_COLORS.neonBlue);
+    drawFlipper(leftFlipper, '#ff6b9d');
+    drawFlipper(rightFlipper, '#00d2ff');
 
-    // Draw ball
     if (ball.active || state.isLaunching) {
-      // Ball glow
       const ballGlow = ctx.createRadialGradient(
         ball.x, ball.y, 0,
         ball.x, ball.y, ball.radius * 3
@@ -167,7 +150,6 @@ export default function Pinball() {
       ctx.arc(ball.x, ball.y, ball.radius * 3, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ball body
       const ballGrad = ctx.createRadialGradient(
         ball.x - ball.radius * 0.3,
         ball.y - ball.radius * 0.3,
@@ -184,23 +166,20 @@ export default function Pinball() {
       ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ball highlight
       ctx.fillStyle = 'rgba(255,255,255,0.6)';
       ctx.beginPath();
       ctx.arc(ball.x - ball.radius * 0.25, ball.y - ball.radius * 0.25, ball.radius * 0.35, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Score popup area (top)
     ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
     ctx.font = 'bold 14px monospace';
     ctx.textAlign = 'center';
     if (state.isLaunching) {
-      ctx.fillText('SPACE \u53d1\u5c04', CANVAS_WIDTH / 2, 30);
+      ctx.fillText('SPACE 发射', CANVAS_WIDTH / 2, 30);
     }
   }, []);
 
-  // Game loop
   const gameLoop = useCallback(() => {
     const engine = engineRef.current;
     const canvas = canvasRef.current;
@@ -225,7 +204,6 @@ export default function Pinball() {
 
       draw(ctx, state);
     } else if (gameStatus === 'idle') {
-      // Draw initial state
       const state = engine.getState();
       draw(ctx, state);
     } else if (gameStatus === 'gameover') {
@@ -245,7 +223,6 @@ export default function Pinball() {
     };
   }, [gameLoop]);
 
-  // Keyboard controls
   useEffect(() => {
     const engine = engineRef.current;
     if (!engine) return;
@@ -287,7 +264,6 @@ export default function Pinball() {
     };
   }, [gameStatus]);
 
-  // Start game
   const handleStart = useCallback(() => {
     if (engineRef.current) {
       engineRef.current.reset();
@@ -297,7 +273,6 @@ export default function Pinball() {
     }
   }, []);
 
-  // Restart game
   const handleRestart = useCallback(() => {
     if (engineRef.current) {
       engineRef.current.reset();
@@ -307,7 +282,6 @@ export default function Pinball() {
     }
   }, []);
 
-  // Navigate home
   const handleGoHome = useCallback(() => {
     navigate('/');
   }, [navigate]);
@@ -320,29 +294,28 @@ export default function Pinball() {
       }}
     >
       <div className="flex flex-col items-center gap-5">
-        {/* Header */}
         <div className="flex items-center justify-between w-full" style={{ maxWidth: CANVAS_WIDTH }}>
           <motion.button
             onClick={handleGoHome}
             className="px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300"
             style={{
-              backgroundColor: NEON_COLORS.darkPurple,
-              color: NEON_COLORS.neonBlue,
-              boxShadow: `0 0 10px ${NEON_COLORS.neonBlue}40`
+              backgroundColor: '#1a1a2e',
+              color: '#00d2ff',
+              boxShadow: '0 0 10px rgba(0, 210, 255, 0.4)'
             }}
-            whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonBlue}` }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0, 210, 255, 0.8)' }}
             whileTap={{ scale: 0.95 }}
           >
-            &larr; \u8fd4\u56de
+            ← 返回
           </motion.button>
 
           <div className="text-center">
-            <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-              \u5f53\u524d\u5206\u6570
+            <div className="text-sm opacity-70" style={{ color: '#ffd700' }}>
+              当前分数
             </div>
             <motion.div
               className="text-3xl font-bold"
-              style={{ color: NEON_COLORS.neonPink }}
+              style={{ color: '#ff6b9d' }}
               key={score}
               initial={{ scale: 1.3 }}
               animate={{ scale: 1 }}
@@ -353,29 +326,27 @@ export default function Pinball() {
           </div>
 
           <div className="text-center">
-            <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-              \u6700\u9ad8\u5206
+            <div className="text-sm opacity-70" style={{ color: '#ffd700' }}>
+              最高分
             </div>
-            <div className="text-2xl font-bold" style={{ color: NEON_COLORS.neonBlue }}>
+            <div className="text-2xl font-bold" style={{ color: '#00d2ff' }}>
               {highScore}
             </div>
           </div>
         </div>
 
-        {/* Lives */}
-        <div className="flex items-center gap-1" style={{ color: NEON_COLORS.gold }}>
+        <div className="flex items-center gap-1" style={{ color: '#ffd700' }}>
           {Array.from({ length: 3 }).map((_, i) => (
             <span
               key={i}
               className="text-xl transition-all duration-300"
               style={{ opacity: i < lives ? 1 : 0.2 }}
             >
-              {i < lives ? '\u2764' : '\u2665'}
+              {i < lives ? '❤️' : '🖤'}
             </span>
           ))}
         </div>
 
-        {/* Canvas */}
         <div
           className="relative rounded-2xl overflow-hidden"
           style={{
@@ -384,7 +355,7 @@ export default function Pinball() {
             background: 'rgba(26, 26, 46, 0.8)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(108, 92, 231, 0.3)',
-            boxShadow: `0 0 30px ${NEON_COLORS.neonPink}30, inset 0 0 50px rgba(0,0,0,0.5)`
+            boxShadow: '0 0 30px rgba(255, 107, 157, 0.3), inset 0 0 50px rgba(0,0,0,0.5)'
           }}
         >
           <canvas
@@ -394,7 +365,6 @@ export default function Pinball() {
             style={{ display: 'block' }}
           />
 
-          {/* Idle overlay */}
           <AnimatePresence>
             {gameStatus === 'idle' && (
               <motion.div
@@ -407,18 +377,18 @@ export default function Pinball() {
                 <motion.div
                   className="text-5xl font-bold mb-3"
                   style={{
-                    color: NEON_COLORS.neonPink,
-                    textShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                    color: '#ff6b9d',
+                    textShadow: '0 0 20px rgba(255, 107, 157, 0.8)'
                   }}
                   initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  \u5f39\u73e0\u53f0
+                  弹球台
                 </motion.div>
                 <motion.div
                   className="text-lg mb-8"
-                  style={{ color: NEON_COLORS.neonBlue }}
+                  style={{ color: '#00d2ff' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -430,34 +400,33 @@ export default function Pinball() {
                   onClick={handleStart}
                   className="px-8 py-3 rounded-xl font-bold text-lg mb-6"
                   style={{
-                    background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.accent})`,
-                    color: NEON_COLORS.white,
-                    boxShadow: `0 0 25px ${NEON_COLORS.neonPink}80`
+                    background: 'linear-gradient(135deg, #ff6b9d, #a855f7)',
+                    color: '#ffffff',
+                    boxShadow: '0 0 25px rgba(255, 107, 157, 0.8)'
                   }}
-                  whileHover={{ scale: 1.08, boxShadow: `0 0 40px ${NEON_COLORS.neonPink}` }}
+                  whileHover={{ scale: 1.08, boxShadow: '0 0 40px rgba(255, 107, 157, 1)' }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  \u5f00\u59cb\u6e38\u620f
+                  开始游戏
                 </motion.button>
 
                 <motion.div
                   className="text-sm opacity-60 text-center leading-6"
-                  style={{ color: NEON_COLORS.gold }}
+                  style={{ color: '#ffd700' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <div>\u2190 \u2192 \u63a7\u5236\u6321\u677f</div>
-                  <div>\u7a7a\u683c\u952e \u53d1\u5c04\u5f39\u73e0</div>
+                  <div>← → 控制挡板</div>
+                  <div>空格键 发射弹球</div>
                 </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Game Over overlay */}
           <AnimatePresence>
             {gameStatus === 'gameover' && (
               <motion.div
@@ -470,35 +439,35 @@ export default function Pinball() {
                 <motion.div
                   className="text-4xl font-bold mb-4"
                   style={{
-                    color: NEON_COLORS.neonPink,
-                    textShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                    color: '#ff6b9d',
+                    textShadow: '0 0 20px rgba(255, 107, 157, 0.8)'
                   }}
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: 'spring', damping: 12 }}
                 >
-                  \u6e38\u620f\u7ed3\u675f
+                  游戏结束
                 </motion.div>
 
                 <motion.div
                   className="text-2xl mb-2"
-                  style={{ color: NEON_COLORS.gold }}
+                  style={{ color: '#ffd700' }}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  \u6700\u7ec8\u5f97\u5206: {score}
+                  最终得分: {score}
                 </motion.div>
 
                 {score >= highScore && score > 0 && (
                   <motion.div
                     className="text-lg mb-4"
-                    style={{ color: NEON_COLORS.neonGreen }}
+                    style={{ color: '#39ff14' }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                   >
-                    \u65b0\u7eaa\u5f55!
+                    🏆 新纪录!
                   </motion.div>
                 )}
 
@@ -507,9 +476,9 @@ export default function Pinball() {
                     onClick={handleRestart}
                     className="px-6 py-3 rounded-lg font-bold"
                     style={{
-                      backgroundColor: NEON_COLORS.neonPink,
-                      color: NEON_COLORS.white,
-                      boxShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                      backgroundColor: '#ff6b9d',
+                      color: '#ffffff',
+                      boxShadow: '0 0 20px rgba(255, 107, 157, 0.8)'
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -517,15 +486,15 @@ export default function Pinball() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    \u518d\u73a9\u4e00\u6b21
+                    再玩一次
                   </motion.button>
                   <motion.button
                     onClick={handleGoHome}
                     className="px-6 py-3 rounded-lg font-bold"
                     style={{
-                      backgroundColor: NEON_COLORS.darkPurple,
-                      color: NEON_COLORS.neonBlue,
-                      border: `2px solid ${NEON_COLORS.neonBlue}`
+                      backgroundColor: '#1a1a2e',
+                      color: '#00d2ff',
+                      border: '2px solid #00d2ff'
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -533,7 +502,7 @@ export default function Pinball() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    \u8fd4\u56de\u9996\u9875
+                    返回主页
                   </motion.button>
                 </div>
               </motion.div>
@@ -541,7 +510,6 @@ export default function Pinball() {
           </AnimatePresence>
         </div>
 
-        {/* Controls hint */}
         <div
           className="glass-card rounded-xl px-6 py-4 text-center"
           style={{
@@ -552,46 +520,46 @@ export default function Pinball() {
             width: '100%'
           }}
         >
-          <div className="flex justify-center gap-8 text-sm" style={{ color: NEON_COLORS.gold }}>
+          <div className="flex justify-center gap-8 text-sm" style={{ color: '#ffd700' }}>
             <div className="flex items-center gap-2">
               <kbd
                 className="px-2 py-1 rounded text-xs font-mono"
                 style={{
                   background: 'rgba(108, 92, 231, 0.3)',
-                  color: NEON_COLORS.white,
+                  color: '#ffffff',
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                &larr;
+                ←
               </kbd>
               <kbd
                 className="px-2 py-1 rounded text-xs font-mono"
                 style={{
                   background: 'rgba(108, 92, 231, 0.3)',
-                  color: NEON_COLORS.white,
+                  color: '#ffffff',
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                &rarr;
+                →
               </kbd>
-              <span>\u63a7\u5236\u6321\u677f</span>
+              <span>控制挡板</span>
             </div>
             <div className="flex items-center gap-2">
               <kbd
                 className="px-3 py-1 rounded text-xs font-mono"
                 style={{
                   background: 'rgba(108, 92, 231, 0.3)',
-                  color: NEON_COLORS.white,
+                  color: '#ffffff',
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
                 Space
               </kbd>
-              <span>\u53d1\u5c04\u5f39\u73e0</span>
+              <span>发射弹球</span>
             </div>
           </div>
-          <div className="mt-2 text-xs opacity-50" style={{ color: NEON_COLORS.gold }}>
-            \u78b0\u649e\u969c\u788d\u7269\u5f97 100 \u5206 | \u6321\u677f\u5f39\u8d77\u5f97 10 \u5206 | \u5171 3 \u6761\u547d
+          <div className="mt-2 text-xs opacity-50" style={{ color: '#ffd700' }}>
+            碰撞障碍物得 100 分 | 挡板弹起得 10 分 | 共 3 条命
           </div>
         </div>
       </div>
