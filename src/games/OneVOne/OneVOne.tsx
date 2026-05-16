@@ -22,61 +22,68 @@ export default function OneVOne({ onScoreUpdate, onGameOver, onExit }: OneVOnePr
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.ONEVONE);
   const keysPressed = useRef<Set<string>>(new Set());
 
-  const handleTick = useCallback(() => {
-    if (keysPressed.current.has('a') || keysPressed.current.has('A')) {
-      engine.player1MoveLeft();
-    }
-    if (keysPressed.current.has('d') || keysPressed.current.has('D')) {
-      engine.player1MoveRight();
-    }
-    if (keysPressed.current.has('w') || keysPressed.current.has('W')) {
-      engine.player1Jump();
-    }
-    if (keysPressed.current.has('q') || keysPressed.current.has('Q')) {
-      engine.player1AimUp();
-    }
-    if (keysPressed.current.has('e') || keysPressed.current.has('E')) {
-      engine.player1AimDown();
-    }
-    if (keysPressed.current.has('f') || keysPressed.current.has('F')) {
-      engine.player1Shoot();
-    }
+  useEffect(() => {
+    const gameLoop = () => {
+      if (isStarted && !state.roundWinner) {
+        if (keysPressed.current.has('a') || keysPressed.current.has('A')) {
+          engine.player1MoveLeft();
+        }
+        if (keysPressed.current.has('d') || keysPressed.current.has('D')) {
+          engine.player1MoveRight();
+        }
+        if (keysPressed.current.has('w') || keysPressed.current.has('W')) {
+          engine.player1Jump();
+        }
+        if (keysPressed.current.has('q') || keysPressed.current.has('Q')) {
+          engine.player1AimUp();
+        }
+        if (keysPressed.current.has('e') || keysPressed.current.has('E')) {
+          engine.player1AimDown();
+        }
+        if (keysPressed.current.has('f') || keysPressed.current.has('F')) {
+          engine.player1Shoot();
+        }
 
-    if (keysPressed.current.has('ArrowLeft')) {
-      engine.player2MoveLeft();
-    }
-    if (keysPressed.current.has('ArrowRight')) {
-      engine.player2MoveRight();
-    }
-    if (keysPressed.current.has('ArrowUp')) {
-      engine.player2Jump();
-    }
-    if (keysPressed.current.has('u') || keysPressed.current.has('U')) {
-      engine.player2AimUp();
-    }
-    if (keysPressed.current.has('o') || keysPressed.current.has('O')) {
-      engine.player2AimDown();
-    }
-    if (keysPressed.current.has(' ')) {
-      engine.player2Shoot();
-    }
+        if (keysPressed.current.has('ArrowLeft')) {
+          engine.player2MoveLeft();
+        }
+        if (keysPressed.current.has('ArrowRight')) {
+          engine.player2MoveRight();
+        }
+        if (keysPressed.current.has('ArrowUp')) {
+          engine.player2Jump();
+        }
+        if (keysPressed.current.has('u') || keysPressed.current.has('U')) {
+          engine.player2AimUp();
+        }
+        if (keysPressed.current.has('o') || keysPressed.current.has('O')) {
+          engine.player2AimDown();
+        }
+        if (keysPressed.current.has(' ') || keysPressed.current.has('Spacebar') || keysPressed.current.has('Space')) {
+          engine.player2Shoot();
+        }
 
-    engine.tick();
-    const newState = engine.getState();
-    setState(newState);
-    onScoreUpdate(newState.scores.player1);
+        engine.tick();
+        const newState = engine.getState();
+        setState(newState);
+        onScoreUpdate(newState.scores.player1);
 
-    if (newState.roundWinner) {
-      updateScore(newState.scores.player1);
-    }
-  }, [engine, onScoreUpdate, updateScore]);
+        if (newState.roundWinner) {
+          updateScore(newState.scores.player1);
+        }
+      }
+      requestAnimationFrame(gameLoop);
+    };
 
-  useGameLoop({ callback: handleTick, delay: 16, enabled: true });
+    const animationId = requestAnimationFrame(gameLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [engine, isStarted, state.roundWinner, onScoreUpdate, updateScore]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key);
-      if (!isStarted && (e.key === 'Enter' || e.key === ' ')) {
+      keysPressed.current.add(e.key.toLowerCase());
+      if (!isStarted && !state.roundWinner && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space')) {
         e.preventDefault();
         engine.start();
         setIsStarted(true);
@@ -85,6 +92,7 @@ export default function OneVOne({ onScoreUpdate, onGameOver, onExit }: OneVOnePr
 
     const handleKeyUp = (e: KeyboardEvent) => {
       keysPressed.current.delete(e.key);
+      keysPressed.current.delete(e.key.toLowerCase());
     };
 
     window.addEventListener('keydown', handleKeyDown, true);
@@ -94,7 +102,7 @@ export default function OneVOne({ onScoreUpdate, onGameOver, onExit }: OneVOnePr
       window.removeEventListener('keydown', handleKeyDown, true);
       window.removeEventListener('keyup', handleKeyUp, true);
     };
-  }, [engine, isStarted]);
+  }, [engine, isStarted, state.roundWinner]);
 
   const handleRestart = () => {
     engine.reset();
