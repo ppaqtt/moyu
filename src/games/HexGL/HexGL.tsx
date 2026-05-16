@@ -26,44 +26,48 @@ export default function HexGL({ onScoreUpdate, onGameOver, onExit }: HexGLProps)
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.HEXGL);
   const keysPressed = useRef<Set<string>>(new Set());
 
-  const handleTick = useCallback(() => {
-    if (keysPressed.current.has('ArrowLeft') || keysPressed.current.has('a') || keysPressed.current.has('A')) {
-      engine.moveLeft();
-    }
-    if (keysPressed.current.has('ArrowRight') || keysPressed.current.has('d') || keysPressed.current.has('D')) {
-      engine.moveRight();
-    }
-    if (keysPressed.current.has('ArrowUp') || keysPressed.current.has('w') || keysPressed.current.has('W')) {
-      engine.boost();
-    }
-    if (keysPressed.current.has('ArrowDown') || keysPressed.current.has('s') || keysPressed.current.has('S')) {
-      engine.brake();
-    }
+  useEffect(() => {
+    const gameLoop = () => {
+      if (isStarted && !isGameOver) {
+        if (keysPressed.current.has('ArrowLeft') || keysPressed.current.has('a')) {
+          engine.moveLeft();
+        }
+        if (keysPressed.current.has('ArrowRight') || keysPressed.current.has('d')) {
+          engine.moveRight();
+        }
+        if (keysPressed.current.has('ArrowUp') || keysPressed.current.has('w')) {
+          engine.boost();
+        }
+        if (keysPressed.current.has('ArrowDown') || keysPressed.current.has('s')) {
+          engine.brake();
+        }
 
-    engine.tick();
-    const state = engine.getState();
-    setCar({ ...state.car });
-    setObstacles([...state.obstacles]);
-    setScore(state.score);
-    setIsStarted(state.isStarted);
-    onScoreUpdate(state.score);
+        engine.tick();
+        const state = engine.getState();
+        setCar({ ...state.car });
+        setObstacles([...state.obstacles]);
+        setScore(state.score);
+        onScoreUpdate(state.score);
 
-    if (state.isGameOver && !isGameOver) {
-      setIsGameOver(true);
-      updateScore(state.score);
-      onGameOver(state.score);
-    }
-  }, [engine, onScoreUpdate, onGameOver, updateScore, isGameOver]);
+        if (state.isGameOver && !isGameOver) {
+          setIsGameOver(true);
+          updateScore(state.score);
+          onGameOver(state.score);
+        }
+      }
+      requestAnimationFrame(gameLoop);
+    };
 
-  useGameLoop({ callback: handleTick, delay: 16, enabled: true });
+    const animationId = requestAnimationFrame(gameLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [engine, isStarted, isGameOver, onScoreUpdate, onGameOver, updateScore]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key);
       keysPressed.current.add(e.key.toLowerCase());
-      if (!isStarted && (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key === 'Enter')) {
+      if (!isStarted && !isGameOver && (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key === 'Enter')) {
         e.preventDefault();
-        e.stopPropagation();
         engine.start();
         setIsStarted(true);
       }
@@ -81,7 +85,7 @@ export default function HexGL({ onScoreUpdate, onGameOver, onExit }: HexGLProps)
       window.removeEventListener('keydown', handleKeyDown, true);
       window.removeEventListener('keyup', handleKeyUp, true);
     };
-  }, [engine, isStarted]);
+  }, [engine, isStarted, isGameOver]);
 
   const handleRestart = () => {
     engine.reset();
