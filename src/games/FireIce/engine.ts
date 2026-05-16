@@ -87,6 +87,97 @@ const LEVELS: Level[] = [
     fireSpawn: {x:0,y:0},
     iceSpawn: {x:8,y:0},
     exit: {x:4,y:7}
+  },
+  {
+    walls: [
+      {x:0,y:2},{x:1,y:2},{x:7,y:2},{x:8,y:2},
+      {x:4,y:1},{x:4,y:2},{x:4,y:3},{x:4,y:5},{x:4,y:6},
+      {x:2,y:4},{x:3,y:4},{x:5,y:4},{x:6,y:4},
+      {x:0,y:5},{x:1,y:5},{x:7,y:5},{x:8,y:5}
+    ],
+    doors: [
+      {x:4,y:4,color:'both',isOpen:false}
+    ],
+    collectibles: [
+      {x:0,y:3,type:'fire',collected:false},
+      {x:8,y:3,type:'ice',collected:false},
+      {x:4,y:0,type:'both',collected:false}
+    ],
+    fireSpawn: {x:0,y:0},
+    iceSpawn: {x:8,y:0},
+    exit: {x:4,y:7}
+  },
+  {
+    walls: [
+      {x:2,y:0},{x:2,y:1},{x:2,y:2},{x:2,y:4},{x:2,y:5},
+      {x:6,y:0},{x:6,y:1},{x:6,y:2},{x:6,y:4},{x:6,y:5},
+      {x:3,y:3},{x:4,y:3},{x:5,y:3},
+      {x:1,y:6},{x:7,y:6}
+    ],
+    doors: [
+      {x:3,y:2,color:'fire',isOpen:false},
+      {x:5,y:2,color:'ice',isOpen:false},
+      {x:1,y:7,color:'fire',isOpen:false},
+      {x:7,y:7,color:'ice',isOpen:false}
+    ],
+    collectibles: [
+      {x:1,y:1,type:'fire',collected:false},
+      {x:7,y:1,type:'ice',collected:false},
+      {x:3,y:6,type:'fire',collected:false},
+      {x:5,y:6,type:'ice',collected:false}
+    ],
+    fireSpawn: {x:0,y:3},
+    iceSpawn: {x:8,y:3},
+    exit: {x:4,y:7}
+  },
+  {
+    walls: [
+      {x:1,y:1},{x:1,y:2},{x:1,y:4},{x:1,y:5},
+      {x:3,y:0},{x:3,y:1},{x:3,y:2},{x:3,y:5},{x:3,y:6},
+      {x:5,y:0},{x:5,y:1},{x:5,y:2},{x:5,y:5},{x:5,y:6},
+      {x:7,y:1},{x:7,y:2},{x:7,y:4},{x:7,y:5},
+      {x:4,y:3}
+    ],
+    doors: [
+      {x:2,y:3,color:'fire',isOpen:false},
+      {x:4,y:2,color:'ice',isOpen:false},
+      {x:6,y:3,color:'both',isOpen:false}
+    ],
+    collectibles: [
+      {x:0,y:1,type:'fire',collected:false},
+      {x:8,y:2,type:'ice',collected:false},
+      {x:4,y:1,type:'both',collected:false},
+      {x:0,y:4,type:'fire',collected:false},
+      {x:8,y:5,type:'ice',collected:false}
+    ],
+    fireSpawn: {x:0,y:0},
+    iceSpawn: {x:8,y:0},
+    exit: {x:4,y:7}
+  },
+  {
+    walls: [
+      {x:0,y:1},{x:0,y:2},{x:0,y:5},{x:0,y:6},
+      {x:2,y:2},{x:2,y:3},{x:2,y:4},
+      {x:4,y:1},{x:4,y:6},
+      {x:6,y:2},{x:6,y:3},{x:6,y:4},
+      {x:8,y:1},{x:8,y:2},{x:8,y:5},{x:8,y:6},
+      {x:1,y:4},{x:7,y:4}
+    ],
+    doors: [
+      {x:1,y:3,color:'fire',isOpen:false},
+      {x:7,y:3,color:'ice',isOpen:false},
+      {x:4,y:3,color:'both',isOpen:false}
+    ],
+    collectibles: [
+      {x:1,y:1,type:'fire',collected:false},
+      {x:7,y:1,type:'ice',collected:false},
+      {x:3,y:4,type:'fire',collected:false},
+      {x:5,y:4,type:'ice',collected:false},
+      {x:4,y:2,type:'both',collected:false}
+    ],
+    fireSpawn: {x:0,y:0},
+    iceSpawn: {x:8,y:0},
+    exit: {x:4,y:7}
   }
 ];
 
