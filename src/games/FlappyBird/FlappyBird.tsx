@@ -45,10 +45,12 @@ export default function FlappyBird({ onScoreUpdate, onGameOver, onExit }: Flappy
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space' || e.key === 'ArrowUp' || e.key.toLowerCase() === 'w') {
+      const key = e.key.toLowerCase();
+      if (key === ' ' || key === 'spacebar' || e.code === 'Space' || key === 'arrowup' || key === 'w') {
         e.preventDefault();
-        e.stopPropagation();
         engine.flap();
+        const state = engine.getState();
+        setIsStarted(state.isStarted);
       }
     };
 
@@ -58,6 +60,8 @@ export default function FlappyBird({ onScoreUpdate, onGameOver, onExit }: Flappy
 
   const handleClick = () => {
     engine.flap();
+    const state = engine.getState();
+    setIsStarted(state.isStarted);
   };
 
   const handleRestart = () => {
