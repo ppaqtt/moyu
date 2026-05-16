@@ -186,10 +186,11 @@ export class GameSudokuEngine {
       return;
     }
 
+    this.board[row][col].value = num;
+    this.board[row][col].notes = [];
+
     if (this.solution[row][col] === num) {
-      this.board[row][col].value = num;
       this.board[row][col].isError = false;
-      this.board[row][col].notes = [];
       this.clearErrors();
       this.checkComplete();
     } else {
