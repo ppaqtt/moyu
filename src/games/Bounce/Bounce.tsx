@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useGameLoop } from '../../hooks/useGameLoop';
 import { useGameRecord } from '../../hooks/useLocalStorage';
 import { BOUNCE_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
 import { GameBounceEngine, Position, Brick } from './engine';
@@ -26,58 +25,87 @@ export default function Bounce({ onScoreUpdate, onGameOver, onExit }: BounceProp
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.BOUNCE);
 
   const canvasRef = useRef<HTMLDivElement>(null);
-  const isPausedRef = useRef(false);
+  const engineRef = useRef(engine);
+  const animationRef = useRef<number>();
 
-  const handleTick = useCallback(() => {
-    if (isPausedRef.current || isGameOver || isWon) return;
+  engineRef.current = engine;
 
-    const moved = engine.tick();
-    const state = engine.getState();
+  const gameLoop = useCallback(() => {
+    const currentEngine = engineRef.current;
+    const state = currentEngine.getState();
 
-    setBall({ ...state.ball });
-    setPaddle({ ...state.paddle });
-    setBricks([...state.bricks.map(b => ({ ...b }))]);
-    setScore(state.score);
-    setLevel(state.level);
-    setLives(state.lives);
-    onScoreUpdate(state.score);
+    if (!state.isGameOver && !state.isWon) {
+      currentEngine.tick();
+      const newState = currentEngine.getState();
 
-    if (state.isGameOver) {
-      setIsGameOver(true);
-      updateScore(state.score);
-      onGameOver(state.score);
+      setBall({ ...newState.ball });
+      setPaddle({ ...newState.paddle });
+      setBricks([...newState.bricks.map(b => ({ ...b }))]);
+      setScore(newState.score);
+      setLevel(newState.level);
+      setLives(newState.lives);
+      onScoreUpdate(newState.score);
+
+      if (newState.isGameOver && !isGameOver) {
+        setIsGameOver(true);
+        updateScore(newState.score);
+        onGameOver(newState.score);
+      }
+      if (newState.isWon && !isWon) {
+        setIsWon(true);
+      }
+    } else {
+      setBall({ ...state.ball });
+      setPaddle({ ...state.paddle });
+      setBricks([...state.bricks.map(b => ({ ...b }))]);
+      setScore(state.score);
+      setLevel(state.level);
+      setLives(state.lives);
+
+      if (state.isGameOver && !isGameOver) {
+        setIsGameOver(true);
+        updateScore(state.score);
+        onGameOver(state.score);
+      }
+      if (state.isWon && !isWon) {
+        setIsWon(true);
+      }
     }
-    if (state.isWon) {
-      setIsWon(true);
-    }
-  }, [engine, onScoreUpdate, onGameOver, updateScore, isGameOver, isWon]);
 
-  useGameLoop({ callback: handleTick, delay: 16, enabled: true });
+    animationRef.current = requestAnimationFrame(gameLoop);
+  }, [isGameOver, isWon, onScoreUpdate, onGameOver, updateScore]);
+
+  useEffect(() => {
+    animationRef.current = requestAnimationFrame(gameLoop);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [gameLoop]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (isGameOver || isWon) return;
     const rect = canvasRef.current?.getBoundingClientRect();
     if (rect) {
       const x = e.clientX - rect.left;
-      engine.setPaddlePosition(x);
-      setPaddle({ ...engine.getState().paddle });
+      engineRef.current.setPaddlePosition(x);
+      setPaddle({ ...engineRef.current.getState().paddle });
     }
-  }, [engine, isGameOver, isWon]);
+  }, []);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (isGameOver || isWon) return;
     const touch = e.touches[0];
     const rect = canvasRef.current?.getBoundingClientRect();
     if (rect) {
       const x = touch.clientX - rect.left;
-      engine.setPaddlePosition(x);
-      setPaddle({ ...engine.getState().paddle });
+      engineRef.current.setPaddlePosition(x);
+      setPaddle({ ...engineRef.current.getState().paddle });
     }
-  }, [engine, isGameOver, isWon]);
+  }, []);
 
   const handleRestart = useCallback(() => {
-    engine.reset();
-    const state = engine.getState();
+    engineRef.current.reset();
+    const state = engineRef.current.getState();
     setBall({ ...state.ball });
     setPaddle({ ...state.paddle });
     setBricks([...state.bricks.map(b => ({ ...b }))]);
@@ -87,11 +115,11 @@ export default function Bounce({ onScoreUpdate, onGameOver, onExit }: BounceProp
     setIsGameOver(false);
     setIsWon(false);
     onScoreUpdate(state.score);
-  }, [engine, onScoreUpdate]);
+  }, [onScoreUpdate]);
 
   const handleNextLevel = useCallback(() => {
-    engine.nextLevel();
-    const state = engine.getState();
+    engineRef.current.nextLevel();
+    const state = engineRef.current.getState();
     setBall({ ...state.ball });
     setPaddle({ ...state.paddle });
     setBricks([...state.bricks.map(b => ({ ...b }))]);
@@ -100,7 +128,7 @@ export default function Bounce({ onScoreUpdate, onGameOver, onExit }: BounceProp
     setLives(state.lives);
     setIsWon(false);
     onScoreUpdate(state.score);
-  }, [engine, onScoreUpdate]);
+  }, [onScoreUpdate]);
 
   return (
     <div className="flex flex-col items-center gap-6">
@@ -135,7 +163,7 @@ export default function Bounce({ onScoreUpdate, onGameOver, onExit }: BounceProp
           {Array(lives).fill(0).map((_, i) => (
             <span key={i} className="text-xl">❤️</span>
           ))}
-          {Array(3 - lives).fill(0).map((_, i) => (
+          {Array(Math.max(0, 3 - lives)).fill(0).map((_, i) => (
             <span key={i} className="text-xl opacity-30">🖤</span>
           ))}
         </div>
@@ -174,14 +202,11 @@ export default function Bounce({ onScoreUpdate, onGameOver, onExit }: BounceProp
           />
         ))}
 
-        <motion.div
+        <div
           className="absolute rounded-full"
-          animate={{
-            x: ball.x - ball.radius,
-            y: ball.y - ball.radius
-          }}
-          transition={{ type: 'tween', duration: 0.016 }}
           style={{
+            left: ball.x - ball.radius,
+            top: ball.y - ball.radius,
             width: ball.radius * 2,
             height: ball.radius * 2,
             backgroundColor: NEON_COLORS.white,
