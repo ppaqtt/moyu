@@ -337,7 +337,7 @@ export default function Sketchout({ onScoreUpdate, onGameOver, onExit }: Sketcho
           >
             ↺
           </motion.button>
-          <span className="text-xs" style={{ color: NEON_COLORS.gold }}>抬高</span>
+          <span className="text-xs" style={{ color: NEON_COLORS.gold }}>压低</span>
         </div>
 
         <div className="flex flex-col items-center gap-2">
@@ -371,7 +371,7 @@ export default function Sketchout({ onScoreUpdate, onGameOver, onExit }: Sketcho
           >
             ↻
           </motion.button>
-          <span className="text-xs" style={{ color: NEON_COLORS.gold }}>压低</span>
+          <span className="text-xs" style={{ color: NEON_COLORS.gold }}>抬高</span>
         </div>
       </div>
 
