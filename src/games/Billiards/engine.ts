@@ -188,7 +188,7 @@ export class BilliardsEngine {
 
     for (let row = 0; row < rackOrder.length; row++) {
       const numInRow = rackOrder[row].length;
-      const startX = rackX + row * spacing * Math.cos(Math.PI / 6);
+      const startX = rackX - row * spacing * Math.cos(Math.PI / 6);
       for (let col = 0; col < numInRow; col++) {
         const startY = rackY + (col - (numInRow - 1) / 2) * spacing;
         const ball = createBall(rackOrder[row][col], startX, startY);
