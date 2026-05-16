@@ -77,9 +77,18 @@ export class GameStickmanEngine {
   private generateHooks(): void {
     this.hooks = [];
     for (let i = 0; i < HOOK_COUNT; i++) {
+      let x: number;
+      let y: number;
+      if (i === 0) {
+        x = 150 + Math.random() * 100;
+        y = 100 + Math.random() * 100;
+      } else {
+        x = 300 + i * 150 + Math.random() * 50;
+        y = 50 + Math.random() * 350;
+      }
       this.hooks.push({
-        x: 300 + i * 150 + Math.random() * 50,
-        y: 50 + Math.random() * 350,
+        x,
+        y,
         isActive: true
       });
     }
