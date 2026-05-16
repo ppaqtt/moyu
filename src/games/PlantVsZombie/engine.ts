@@ -128,8 +128,17 @@ export class GamePvZEngine {
     this.isPaused = false;
     this.lastSunProduction = Date.now();
     this.lastZombieSpawn = Date.now();
-    this.zombieSpawnInterval = 10000;
+    this.zombieSpawnInterval = 5000;
     this.selectedPlant = 'pea';
+    this.spawnInitialZombies();
+  }
+
+  private spawnInitialZombies(): void {
+    setTimeout(() => {
+      if (!this.isGameOver) {
+        this.spawnZombie();
+      }
+    }, 2000);
   }
 
   getState(): GamePvZState {
