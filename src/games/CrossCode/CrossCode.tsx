@@ -29,43 +29,50 @@ export default function CrossCode({ onScoreUpdate, onGameOver, onExit }: CrossCo
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.CROSSCODE);
   const keysPressed = useRef<Set<string>>(new Set());
 
-  const handleTick = useCallback(() => {
-    if (keysPressed.current.has('ArrowLeft') || keysPressed.current.has('a') || keysPressed.current.has('A')) {
-      engine.moveLeft();
-    }
-    if (keysPressed.current.has('ArrowRight') || keysPressed.current.has('d') || keysPressed.current.has('D')) {
-      engine.moveRight();
-    }
-    if (keysPressed.current.has('ArrowUp') || keysPressed.current.has('w') || keysPressed.current.has('W') || keysPressed.current.has(' ')) {
-      engine.jump();
-    }
-    if (keysPressed.current.has('j') || keysPressed.current.has('J')) {
-      engine.attack();
-    }
+  useEffect(() => {
+    const gameLoop = () => {
+      if (isStarted && !isGameOver && !isLevelUp) {
+        if (keysPressed.current.has('ArrowLeft') || keysPressed.current.has('a')) {
+          engine.moveLeft();
+        }
+        if (keysPressed.current.has('ArrowRight') || keysPressed.current.has('d')) {
+          engine.moveRight();
+        }
+        if (keysPressed.current.has('ArrowUp') || keysPressed.current.has('w') || keysPressed.current.has(' ')) {
+          engine.jump();
+        }
+        if (keysPressed.current.has('j')) {
+          engine.attack();
+        }
 
-    engine.tick();
-    const state = engine.getState();
-    setPlayer({ ...state.player });
-    setEnemies([...state.enemies]);
-    setItems([...state.items]);
-    setScore(state.score);
-    setLevel(state.level);
-    setIsLevelUp(state.isLevelUp);
-    onScoreUpdate(state.score);
+        engine.tick();
+        const state = engine.getState();
+        setPlayer({ ...state.player });
+        setEnemies([...state.enemies]);
+        setItems([...state.items]);
+        setScore(state.score);
+        setLevel(state.level);
+        setIsLevelUp(state.isLevelUp);
+        onScoreUpdate(state.score);
 
-    if (state.isGameOver && !isGameOver) {
-      setIsGameOver(true);
-      updateScore(state.score);
-      onGameOver(state.score);
-    }
-  }, [engine, onScoreUpdate, onGameOver, updateScore, isGameOver]);
+        if (state.isGameOver && !isGameOver) {
+          setIsGameOver(true);
+          updateScore(state.score);
+          onGameOver(state.score);
+        }
+      }
+      requestAnimationFrame(gameLoop);
+    };
 
-  useGameLoop({ callback: handleTick, delay: 16, enabled: true });
+    const animationId = requestAnimationFrame(gameLoop);
+    return () => cancelAnimationFrame(animationId);
+  }, [engine, isStarted, isGameOver, isLevelUp, onScoreUpdate, onGameOver, updateScore]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current.add(e.key);
-      if (!isStarted && (e.key === 'Enter' || e.key === ' ')) {
+      keysPressed.current.add(e.key.toLowerCase());
+      if (!isStarted && !isGameOver && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space')) {
         e.preventDefault();
         engine.start();
         setIsStarted(true);
@@ -74,6 +81,7 @@ export default function CrossCode({ onScoreUpdate, onGameOver, onExit }: CrossCo
 
     const handleKeyUp = (e: KeyboardEvent) => {
       keysPressed.current.delete(e.key);
+      keysPressed.current.delete(e.key.toLowerCase());
     };
 
     window.addEventListener('keydown', handleKeyDown, true);
@@ -83,7 +91,7 @@ export default function CrossCode({ onScoreUpdate, onGameOver, onExit }: CrossCo
       window.removeEventListener('keydown', handleKeyDown, true);
       window.removeEventListener('keyup', handleKeyUp, true);
     };
-  }, [engine, isStarted]);
+  }, [engine, isStarted, isGameOver]);
 
   const handleRestart = () => {
     engine.reset();
