@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { BOWLING_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { BOWLING_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
 import { BowlingEngine, BowlingState } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, LANE_WIDTH, PIN_RADIUS } = BOWLING_CONSTANTS;
@@ -24,7 +24,6 @@ export default function Bowling() {
 
   const navigate = useNavigate();
 
-  // Initialize engine
   useEffect(() => {
     engineRef.current = new BowlingEngine();
     return () => {
@@ -34,14 +33,11 @@ export default function Bowling() {
     };
   }, []);
 
-  // Drawing
   const draw = useCallback((ctx: CanvasRenderingContext2D, state: BowlingState) => {
     const { ball, pins, aimAngle, isCharging, chargePower, isRolling } = state;
 
-    // Clear
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Background
     const bgGrad = ctx.createLinearGradient(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     bgGrad.addColorStop(0, '#0f0f1a');
     bgGrad.addColorStop(0.5, '#1a1a2e');
@@ -52,7 +48,6 @@ export default function Bowling() {
     const laneLeft = (CANVAS_WIDTH - LANE_WIDTH) / 2;
     const laneRight = (CANVAS_WIDTH + LANE_WIDTH) / 2;
 
-    // Draw lane
     const laneGrad = ctx.createLinearGradient(laneLeft, 0, laneRight, 0);
     laneGrad.addColorStop(0, '#2a1a0a');
     laneGrad.addColorStop(0.1, '#3d2815');
@@ -62,7 +57,6 @@ export default function Bowling() {
     ctx.fillStyle = laneGrad;
     ctx.fillRect(laneLeft, 0, LANE_WIDTH, CANVAS_HEIGHT);
 
-    // Lane border glow
     ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -74,7 +68,6 @@ export default function Bowling() {
     ctx.lineTo(laneRight, CANVAS_HEIGHT);
     ctx.stroke();
 
-    // Lane dots (guide markers)
     ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
     const dotY = CANVAS_HEIGHT - 150;
     for (let i = 0; i < 7; i++) {
@@ -84,7 +77,6 @@ export default function Bowling() {
       ctx.fill();
     }
 
-    // Arrow markers
     ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
     const arrowY = CANVAS_HEIGHT - 200;
     for (let i = 0; i < 5; i++) {
@@ -97,7 +89,6 @@ export default function Bowling() {
       ctx.fill();
     }
 
-    // Foul line
     ctx.strokeStyle = 'rgba(255, 50, 50, 0.5)';
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
@@ -107,16 +98,13 @@ export default function Bowling() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Draw pins
     for (const pin of pins) {
       if (pin.standing) {
-        // Pin shadow
         ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
         ctx.beginPath();
         ctx.ellipse(pin.x + 2, pin.y + 2, pin.radius, pin.radius * 0.7, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Pin body
         const pinGrad = ctx.createRadialGradient(
           pin.x - pin.radius * 0.3, pin.y - pin.radius * 0.3, pin.radius * 0.1,
           pin.x, pin.y, pin.radius
@@ -129,20 +117,17 @@ export default function Bowling() {
         ctx.arc(pin.x, pin.y, pin.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Pin red stripe
         ctx.strokeStyle = '#cc3333';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.arc(pin.x, pin.y, pin.radius * 0.65, -0.5, 0.5);
         ctx.stroke();
 
-        // Pin highlight
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
         ctx.beginPath();
         ctx.arc(pin.x - pin.radius * 0.25, pin.y - pin.radius * 0.25, pin.radius * 0.3, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // Knocked pin (faded, smaller)
         ctx.save();
         ctx.translate(pin.x, pin.y);
         ctx.rotate(pin.rotation);
@@ -156,7 +141,6 @@ export default function Bowling() {
       }
     }
 
-    // Draw aim line (when not rolling)
     if (!isRolling && !state.isGameOver) {
       const ballX = CANVAS_WIDTH / 2;
       const ballY = CANVAS_HEIGHT - 50;
@@ -174,7 +158,6 @@ export default function Bowling() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Aim dot at end
       ctx.fillStyle = 'rgba(0, 210, 255, 0.6)';
       ctx.beginPath();
       ctx.arc(
@@ -185,7 +168,6 @@ export default function Bowling() {
       ctx.fill();
     }
 
-    // Draw charge indicator
     if (isCharging) {
       const ballX = CANVAS_WIDTH / 2;
       const ballY = CANVAS_HEIGHT - 50;
@@ -195,11 +177,9 @@ export default function Bowling() {
       const barY = ballY + 25;
       const fillWidth = (chargePower / 15) * maxBarWidth;
 
-      // Bar background
       ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
       ctx.fillRect(barX, barY, maxBarWidth, barHeight);
 
-      // Bar fill
       const powerRatio = chargePower / 15;
       const barColor = powerRatio < 0.5
         ? `rgba(0, 210, 255, ${0.5 + powerRatio})`
@@ -207,21 +187,17 @@ export default function Bowling() {
       ctx.fillStyle = barColor;
       ctx.fillRect(barX, barY, fillWidth, barHeight);
 
-      // Bar border
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
       ctx.lineWidth = 1;
       ctx.strokeRect(barX, barY, maxBarWidth, barHeight);
     }
 
-    // Draw ball
     if (ball.active || !isRolling) {
-      // Ball shadow
       ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
       ctx.beginPath();
       ctx.ellipse(ball.x + 3, ball.y + 3, ball.radius, ball.radius * 0.8, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ball glow
       const ballGlow = ctx.createRadialGradient(
         ball.x, ball.y, 0,
         ball.x, ball.y, ball.radius * 2.5
@@ -233,7 +209,6 @@ export default function Bowling() {
       ctx.arc(ball.x, ball.y, ball.radius * 2.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ball body
       const ballGrad = ctx.createRadialGradient(
         ball.x - ball.radius * 0.3,
         ball.y - ball.radius * 0.3,
@@ -250,7 +225,6 @@ export default function Bowling() {
       ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ball finger holes
       ctx.save();
       ctx.translate(ball.x, ball.y);
       ctx.rotate(ball.rotation);
@@ -266,21 +240,19 @@ export default function Bowling() {
       ctx.fill();
       ctx.restore();
 
-      // Ball highlight
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
       ctx.beginPath();
-      ctx.arc(ball.x - ball.radius * 0.3, ball.y - ball.radius * 0.3, ball.radius * 0.35, 0, Math.PI * 2);
+      ctx.arc(ball.x - ball.radius * 0.25, ball.y - ball.radius * 0.25, ball.radius * 0.35, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Draw message overlay (Strike/Spare)
     if (state.message) {
       ctx.save();
       ctx.font = 'bold 36px monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      const msgColor = state.message === 'STRIKE!' ? NEON_COLORS.neonPink : NEON_COLORS.neonGreen;
+      const msgColor = state.message === 'STRIKE!' ? '#ff6b9d' : '#39ff14';
       ctx.fillStyle = msgColor;
       ctx.shadowColor = msgColor;
       ctx.shadowBlur = 20;
@@ -290,7 +262,6 @@ export default function Bowling() {
     }
   }, []);
 
-  // Game loop
   const gameLoop = useCallback(() => {
     const engine = engineRef.current;
     const canvas = canvasRef.current;
@@ -336,7 +307,6 @@ export default function Bowling() {
     };
   }, [gameLoop]);
 
-  // Mouse controls
   useEffect(() => {
     const engine = engineRef.current;
     const canvas = canvasRef.current;
@@ -352,11 +322,10 @@ export default function Bowling() {
 
       if (gameStatus !== 'playing' || engine.getState().isRolling) return;
 
-      // Calculate aim angle based on mouse position relative to ball
       const ballX = CANVAS_WIDTH / 2;
       const ballY = CANVAS_HEIGHT - 50;
       const dx = x - ballX;
-      const dy = ballY - y; // Invert Y because canvas Y is flipped
+      const dy = ballY - y;
       const angle = Math.atan2(dx, dy);
       engine.setAimAngle(angle);
     };
@@ -384,7 +353,6 @@ export default function Bowling() {
     };
   }, [gameStatus]);
 
-  // Start game
   const handleStart = useCallback(() => {
     if (engineRef.current) {
       engineRef.current.reset();
@@ -396,7 +364,6 @@ export default function Bowling() {
     }
   }, []);
 
-  // Restart game
   const handleRestart = useCallback(() => {
     if (engineRef.current) {
       engineRef.current.reset();
@@ -408,12 +375,10 @@ export default function Bowling() {
     }
   }, []);
 
-  // Navigate home
   const handleGoHome = useCallback(() => {
     navigate('/');
   }, [navigate]);
 
-  // Get frame display info
   const getFrameDisplay = useCallback((frames: BowlingState['frames']) => {
     return frames.map((frame, i) => {
       let roll1 = '';
@@ -433,7 +398,6 @@ export default function Bowling() {
           }
         }
       } else {
-        // Frame 10
         if (frame.rolls.length >= 1) {
           roll1 = frame.rolls[0] === 10 ? 'X' : (frame.rolls[0] === 0 ? '-' : String(frame.rolls[0]));
         }
@@ -441,7 +405,6 @@ export default function Bowling() {
           if (frame.isStrike && frame.rolls[1] === 10) {
             roll2 = 'X';
           } else if (frame.isStrike && frame.rolls[1] + (frame.rolls[0] === 10 ? 0 : frame.rolls[0]) === 10) {
-            // This shouldn't happen in standard scoring since pins reset
             roll2 = '/';
           } else if (!frame.isStrike && frame.rolls[0] + frame.rolls[1] === 10) {
             roll2 = '/';
@@ -469,39 +432,38 @@ export default function Bowling() {
       }}
     >
       <div className="flex flex-col items-center gap-4">
-        {/* Header */}
         <div className="flex items-center justify-between w-full" style={{ maxWidth: CANVAS_WIDTH }}>
           <motion.button
             onClick={handleGoHome}
             className="px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300"
             style={{
-              backgroundColor: NEON_COLORS.darkPurple,
-              color: NEON_COLORS.neonBlue,
-              boxShadow: `0 0 10px ${NEON_COLORS.neonBlue}40`
+              backgroundColor: '#1a1a2e',
+              color: '#00d2ff',
+              boxShadow: '0 0 10px rgba(0,210,255,0.4)'
             }}
-            whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonBlue}` }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0,210,255,0.8)' }}
             whileTap={{ scale: 0.95 }}
           >
-            &larr; \u8fd4\u56de
+            ← 返回
           </motion.button>
 
           <div className="flex items-center gap-6">
             <div className="text-center">
-              <div className="text-xs opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u5e27 {currentFrame}/10
+              <div className="text-xs opacity-70" style={{ color: '#ffd700' }}>
+                局 {currentFrame}/10
               </div>
-              <div className="text-sm" style={{ color: NEON_COLORS.neonBlue }}>
-                \u7b2c {currentRoll} \u6295
+              <div className="text-sm" style={{ color: '#00d2ff' }}>
+                第 {currentRoll} 投
               </div>
             </div>
 
             <div className="text-center">
-              <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u5f53\u524d\u5f97\u5206
+              <div className="text-sm opacity-70" style={{ color: '#ffd700' }}>
+                当前得分
               </div>
               <motion.div
                 className="text-3xl font-bold"
-                style={{ color: NEON_COLORS.neonPink }}
+                style={{ color: '#ff6b9d' }}
                 key={totalScore}
                 initial={{ scale: 1.3 }}
                 animate={{ scale: 1 }}
@@ -512,17 +474,16 @@ export default function Bowling() {
             </div>
 
             <div className="text-center">
-              <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u6700\u9ad8\u5206
+              <div className="text-sm opacity-70" style={{ color: '#ffd700' }}>
+                最高分
               </div>
-              <div className="text-2xl font-bold" style={{ color: NEON_COLORS.neonBlue }}>
+              <div className="text-2xl font-bold" style={{ color: '#00d2ff' }}>
                 {highScore}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scoreboard */}
         <div
           className="glass-card rounded-xl px-2 py-2"
           style={{
@@ -548,23 +509,23 @@ export default function Bowling() {
                   padding: '2px'
                 }}
               >
-                <div className="text-xs font-bold" style={{ color: NEON_COLORS.neonBlue, fontSize: '10px' }}>
+                <div className="text-xs font-bold" style={{ color: '#00d2ff', fontSize: '10px' }}>
                   {i + 1}
                 </div>
                 <div className="flex justify-center" style={{ fontSize: '10px', minHeight: '16px' }}>
-                  <span style={{ color: fd.isStrike ? NEON_COLORS.neonPink : NEON_COLORS.white, padding: '0 1px' }}>
+                  <span style={{ color: fd.isStrike ? '#ff6b9d' : '#ffffff', padding: '0 1px' }}>
                     {fd.roll1}
                   </span>
-                  <span style={{ color: fd.isSpare ? NEON_COLORS.neonGreen : NEON_COLORS.white, padding: '0 1px' }}>
+                  <span style={{ color: fd.isSpare ? '#39ff14' : '#ffffff', padding: '0 1px' }}>
                     {fd.roll2}
                   </span>
                   {i === 9 && (
-                    <span style={{ color: NEON_COLORS.white, padding: '0 1px' }}>
+                    <span style={{ color: '#ffffff', padding: '0 1px' }}>
                       {fd.roll3}
                     </span>
                   )}
                 </div>
-                <div className="text-xs font-bold" style={{ color: NEON_COLORS.gold, fontSize: '10px', minHeight: '14px' }}>
+                <div className="text-xs font-bold" style={{ color: '#ffd700', fontSize: '10px', minHeight: '14px' }}>
                   {fd.score !== null ? fd.score : ''}
                 </div>
               </div>
@@ -572,7 +533,6 @@ export default function Bowling() {
           </div>
         </div>
 
-        {/* Canvas */}
         <div
           className="relative rounded-2xl overflow-hidden"
           style={{
@@ -581,7 +541,7 @@ export default function Bowling() {
             background: 'rgba(26, 26, 46, 0.8)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(108, 92, 231, 0.3)',
-            boxShadow: `0 0 30px ${NEON_COLORS.neonPink}30, inset 0 0 50px rgba(0,0,0,0.5)`
+            boxShadow: '0 0 30px rgba(255,107,157,0.3), inset 0 0 50px rgba(0,0,0,0.5)'
           }}
         >
           <canvas
@@ -591,7 +551,6 @@ export default function Bowling() {
             style={{ display: 'block', cursor: gameStatus === 'playing' ? 'crosshair' : 'default' }}
           />
 
-          {/* Idle overlay */}
           <AnimatePresence>
             {gameStatus === 'idle' && (
               <motion.div
@@ -604,18 +563,18 @@ export default function Bowling() {
                 <motion.div
                   className="text-5xl font-bold mb-3"
                   style={{
-                    color: NEON_COLORS.neonPink,
-                    textShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                    color: '#ff6b9d',
+                    textShadow: '0 0 20px rgba(255,107,157,0.8)'
                   }}
                   initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  \u4fdd\u9f84\u7403
+                  保龄球
                 </motion.div>
                 <motion.div
                   className="text-lg mb-8"
-                  style={{ color: NEON_COLORS.neonBlue }}
+                  style={{ color: '#00d2ff' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -627,34 +586,33 @@ export default function Bowling() {
                   onClick={handleStart}
                   className="px-8 py-3 rounded-xl font-bold text-lg mb-6"
                   style={{
-                    background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.accent})`,
-                    color: NEON_COLORS.white,
-                    boxShadow: `0 0 25px ${NEON_COLORS.neonPink}80`
+                    background: 'linear-gradient(135deg, #ff6b9d, #a855f7)',
+                    color: '#ffffff',
+                    boxShadow: '0 0 25px rgba(255,107,157,0.8)'
                   }}
-                  whileHover={{ scale: 1.08, boxShadow: `0 0 40px ${NEON_COLORS.neonPink}` }}
+                  whileHover={{ scale: 1.08, boxShadow: '0 0 40px rgba(255,107,157,1)' }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  \u5f00\u59cb\u6e38\u620f
+                  开始游戏
                 </motion.button>
 
                 <motion.div
                   className="text-sm opacity-60 text-center leading-6"
-                  style={{ color: NEON_COLORS.gold }}
+                  style={{ color: '#ffd700' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <div>\u9f20\u6807\u79fb\u52a8\u8c03\u6574\u65b9\u5411</div>
-                  <div>\u6309\u4f4f\u9f20\u6807\u84c4\u529b\uff0c\u677e\u5f00\u6295\u7403</div>
+                  <div>鼠标移动调整方向</div>
+                  <div>按住鼠标蓄力，松开投球</div>
                 </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Game Over overlay */}
           <AnimatePresence>
             {gameStatus === 'gameover' && (
               <motion.div
@@ -667,35 +625,35 @@ export default function Bowling() {
                 <motion.div
                   className="text-4xl font-bold mb-4"
                   style={{
-                    color: NEON_COLORS.neonPink,
-                    textShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                    color: '#ff6b9d',
+                    textShadow: '0 0 20px rgba(255,107,157,0.8)'
                   }}
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: 'spring', damping: 12 }}
                 >
-                  \u6e38\u620f\u7ed3\u675f
+                  游戏结束
                 </motion.div>
 
                 <motion.div
                   className="text-2xl mb-2"
-                  style={{ color: NEON_COLORS.gold }}
+                  style={{ color: '#ffd700' }}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  \u6700\u7ec8\u5f97\u5206: {totalScore}
+                  最终得分: {totalScore}
                 </motion.div>
 
                 {totalScore >= highScore && totalScore > 0 && (
                   <motion.div
                     className="text-lg mb-4"
-                    style={{ color: NEON_COLORS.neonGreen }}
+                    style={{ color: '#39ff14' }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                   >
-                    \u65b0\u7eaa\u5f55!
+                    🏆 新纪录!
                   </motion.div>
                 )}
 
@@ -704,9 +662,9 @@ export default function Bowling() {
                     onClick={handleRestart}
                     className="px-6 py-3 rounded-lg font-bold"
                     style={{
-                      backgroundColor: NEON_COLORS.neonPink,
-                      color: NEON_COLORS.white,
-                      boxShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+                      backgroundColor: '#ff6b9d',
+                      color: '#ffffff',
+                      boxShadow: '0 0 20px rgba(255,107,157,0.8)'
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -714,15 +672,15 @@ export default function Bowling() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    \u518d\u73a9\u4e00\u6b21
+                    再玩一次
                   </motion.button>
                   <motion.button
                     onClick={handleGoHome}
                     className="px-6 py-3 rounded-lg font-bold"
                     style={{
-                      backgroundColor: NEON_COLORS.darkPurple,
-                      color: NEON_COLORS.neonBlue,
-                      border: `2px solid ${NEON_COLORS.neonBlue}`
+                      backgroundColor: '#1a1a2e',
+                      color: '#00d2ff',
+                      border: '2px solid #00d2ff'
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -730,7 +688,7 @@ export default function Bowling() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    \u8fd4\u56de\u9996\u9875
+                    返回首页
                   </motion.button>
                 </div>
               </motion.div>
@@ -738,7 +696,6 @@ export default function Bowling() {
           </AnimatePresence>
         </div>
 
-        {/* Controls hint */}
         <div
           className="glass-card rounded-xl px-6 py-4 text-center"
           style={{
@@ -749,36 +706,36 @@ export default function Bowling() {
             width: '100%'
           }}
         >
-          <div className="flex justify-center gap-8 text-sm" style={{ color: NEON_COLORS.gold }}>
+          <div className="flex justify-center gap-8 text-sm" style={{ color: '#ffd700' }}>
             <div className="flex items-center gap-2">
               <kbd
                 className="px-2 py-1 rounded text-xs font-mono"
                 style={{
                   background: 'rgba(108, 92, 231, 0.3)',
-                  color: NEON_COLORS.white,
+                  color: '#ffffff',
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                \u9f20\u6807
+                鼠标
               </kbd>
-              <span>\u8c03\u6574\u65b9\u5411</span>
+              <span>调整方向</span>
             </div>
             <div className="flex items-center gap-2">
               <kbd
                 className="px-3 py-1 rounded text-xs font-mono"
                 style={{
                   background: 'rgba(108, 92, 231, 0.3)',
-                  color: NEON_COLORS.white,
+                  color: '#ffffff',
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                \u70b9\u51fb
+                点击
               </kbd>
-              <span>\u84c4\u529b\u6295\u7403</span>
+              <span>蓄力投球</span>
             </div>
           </div>
-          <div className="mt-2 text-xs opacity-50" style={{ color: NEON_COLORS.gold }}>
-            Strike(\u5168\u4e2d) +10 \u5956\u52b1\u5206 | Spare(\u8865\u4e2d) +5 \u5956\u52b1\u5206 | \u5171 10 \u5e27
+          <div className="mt-2 text-xs opacity-50" style={{ color: '#ffd700' }}>
+            Strike(全中) +10 奖励分 | Spare(补中) +5 奖励分 | 共 10 局
           </div>
         </div>
       </div>

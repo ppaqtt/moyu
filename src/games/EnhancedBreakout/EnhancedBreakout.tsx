@@ -341,7 +341,7 @@ export default function EnhancedBreakout() {
               <div className="flex gap-1">
                 {livesDisplay.map((alive, i) => (
                   <span key={i} className="text-lg" style={{ opacity: alive ? 1 : 0.25 }}>
-                    {alive ? '\u2764' : '\u2665'}
+                    {alive ? '❤️' : '🖤'}
                   </span>
                 ))}
               </div>
