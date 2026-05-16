@@ -256,30 +256,34 @@ export default function GoldMiner({ onScoreUpdate, onGameOver, onExit }: GoldMin
             y1={claw.y}
             x2={clawEndX}
             y2={clawEndY}
-            stroke={claw.grabbedItem ? '#ffd700' : '#666'}
-            strokeWidth={3}
+            stroke={claw.grabbedItem ? '#ffd700' : '#8B4513'}
+            strokeWidth={4}
+            strokeLinecap="round"
           />
 
-          {claw.grabbedItem && (
-            <>
-              <line
-                x1={clawEndX - 10}
-                y1={clawEndY}
-                x2={clawEndX}
-                y2={clawEndY + 10}
-                stroke="#ffd700"
-                strokeWidth={2}
-              />
-              <line
-                x1={clawEndX + 10}
-                y1={clawEndY}
-                x2={clawEndX}
-                y2={clawEndY + 10}
-                stroke="#ffd700"
-                strokeWidth={2}
-              />
-            </>
-          )}
+          <g transform={`translate(${clawEndX}, ${clawEndY})`}>
+            <circle
+              r="8"
+              fill="#ffd700"
+              stroke="#b8860b"
+              strokeWidth="2"
+              filter="drop-shadow(0 0 5px #ffd700)"
+            />
+            
+            <path
+              d={claw.grabbedItem ? 'M -15 5 Q -15 20 0 25 Q 15 20 15 5 Z' : 'M -15 5 L -12 20 L -8 5 M 15 5 L 12 20 L 8 5'}
+              fill={claw.grabbedItem ? '#ffd700' : 'none'}
+              stroke="#b8860b"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            
+            <line x1="-12" y1="5" x2="-18" y2="2" stroke="#b8860b" strokeWidth="2" />
+            <line x1="-12" y1="5" x2="-16" y2="8" stroke="#b8860b" strokeWidth="2" />
+            <line x1="12" y1="5" x2="18" y2="2" stroke="#b8860b" strokeWidth="2" />
+            <line x1="12" y1="5" x2="16" y2="8" stroke="#b8860b" strokeWidth="2" />
+          </g>
         </svg>
 
         {collectibles.map(renderItem)}
