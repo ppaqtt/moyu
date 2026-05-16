@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useKeyboard } from '../../hooks/useKeyboard';
 import { useGameLoop } from '../../hooks/useGameLoop';
 import { useGameRecord } from '../../hooks/useLocalStorage';
 import { SNAKE_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
@@ -24,11 +23,13 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
   const [speed, setSpeed] = useState(() => engine.getState().speed);
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.SNAKE);
 
-  const handleTick = useCallback(() => {
-    if (isGameOver) return;
+  const engineRef = useRef(engine);
+  engineRef.current = engine;
 
-    const ateFood = engine.tick();
-    const state = engine.getState();
+  const handleTick = useCallback(() => {
+    const currentEngine = engineRef.current;
+    currentEngine.tick();
+    const state = currentEngine.getState();
 
     setSnake([...state.snake]);
     setFood({ ...state.food });
@@ -41,13 +42,53 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
       updateScore(state.score);
       onGameOver(state.score);
     }
-  }, [engine, onScoreUpdate, onGameOver, updateScore, isGameOver]);
+  }, [onScoreUpdate, onGameOver, updateScore]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isGameOver) return;
+
+      switch (e.key) {
+        case 'ArrowUp':
+        case 'Up':
+        case 'w':
+        case 'W':
+          e.preventDefault();
+          e.stopPropagation();
+          engineRef.current.setDirection('up');
+          break;
+        case 'ArrowDown':
+        case 'Down':
+        case 's':
+        case 'S':
+          e.preventDefault();
+          e.stopPropagation();
+          engineRef.current.setDirection('down');
+          break;
+        case 'ArrowLeft':
+        case 'Left':
+        case 'a':
+        case 'A':
+          e.preventDefault();
+          e.stopPropagation();
+          engineRef.current.setDirection('left');
+          break;
+        case 'ArrowRight':
+        case 'Right':
+        case 'd':
+        case 'D':
+          e.preventDefault();
+          e.stopPropagation();
+          engineRef.current.setDirection('right');
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
+  }, [isGameOver]);
 
   useGameLoop({ callback: handleTick, delay: speed, enabled: !isGameOver });
-
-  const handleDirectionChange = useCallback((dir: Direction) => {
-    engine.setDirection(dir);
-  }, [engine]);
 
   const handleRestart = useCallback(() => {
     engine.reset();
@@ -59,18 +100,6 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
     setIsGameOver(false);
     onScoreUpdate(state.score);
   }, [engine, onScoreUpdate]);
-
-  useKeyboard({
-    onArrowUp: () => handleDirectionChange('up'),
-    onArrowDown: () => handleDirectionChange('down'),
-    onArrowLeft: () => handleDirectionChange('left'),
-    onArrowRight: () => handleDirectionChange('right'),
-    onW: () => handleDirectionChange('up'),
-    onS: () => handleDirectionChange('down'),
-    onA: () => handleDirectionChange('left'),
-    onD: () => handleDirectionChange('right'),
-    enabled: !isGameOver
-  });
 
   const getSnakeGradient = (index: number, total: number) => {
     const ratio = index / total;
