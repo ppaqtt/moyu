@@ -9,6 +9,8 @@ export interface Obstacle {
   rotation?: number;
 }
 
+import { NEON_COLORS } from '../../utils/constants';
+
 export interface Player {
   x: number;
   y: number;

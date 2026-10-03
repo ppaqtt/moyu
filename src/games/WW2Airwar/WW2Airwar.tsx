@@ -6,6 +6,8 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { WW2AIRWAR_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
 import { WW2AirwarEngine, Player, Enemy, Bullet, Explosion } from './engine';
 
+const { PLAYER_WIDTH, PLAYER_HEIGHT } = WW2AIRWAR_CONSTANTS;
+
 const BG_GRADIENT = 'linear-gradient(135deg, #1a0a0a 0%, #2d1810 50%, #1a1a0a 100%)';
 
 export default function WW2Airwar() {

@@ -173,7 +173,7 @@ const BowlingMaster = () => {
     const { width } = engine.getCanvasSize();
     
     return (
-      <svg className="absolute inset-0" width={width} height={state.laneY + 100}>
+      <svg className="absolute inset-0" width={width} height={laneY + 100}>
         {/* Lane */}
         <rect
           x={50}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGameLoop } from '../../hooks/useGameLoop';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { NEON_COLORS } from '../../utils/constants';
-import { PinballEngine, PinballState, Ball, Bumper, Flipper, Target } from './engine';
+import { PinballEngine, PinballState, Ball, Bumper, Flipper, Target, BALL_COLORS } from './engine';
 
 const PinballPhysics = () => {
   const navigate = useNavigate();

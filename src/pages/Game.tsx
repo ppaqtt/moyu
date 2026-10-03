@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ParticleBg from '../components/ParticleBg';
+import ErrorBoundary from '../components/ErrorBoundary';
+import PlaceholderGame from '../games/PlaceholderGame';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
 
 const gameImports: Record<string, () => Promise<any>> = {
@@ -574,14 +576,14 @@ function GamePage() {
           if (Component) {
             setGameComponent(() => Component);
           } else {
-            setGameComponent(null);
+            setGameComponent(() => PlaceholderGame);
           }
         } catch (error) {
           console.warn(`Failed to load game ${id}, using placeholder:`, error);
-          setGameComponent(null);
+          setGameComponent(() => PlaceholderGame);
         }
       } else {
-        setGameComponent(null);
+        setGameComponent(() => PlaceholderGame);
       }
     };
 
@@ -637,55 +639,35 @@ function GamePage() {
     );
   }
 
-  if (!GameComponent) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <ParticleBg />
-        <div className="relative z-10 text-center p-8">
-          <div className="text-6xl mb-4">⚠️</div>
-          <h1 className="text-3xl font-bold mb-4" style={{ color: NEON_COLORS.neonPink }}>游戏加载失败</h1>
-          <p className="text-lg mb-6" style={{ color: NEON_COLORS.textDim }}>请稍后再试，或返回首页选择其他游戏</p>
-          <motion.button 
-            onClick={handleExit} 
-            className="px-6 py-3 rounded-xl font-bold"
-            style={{ 
-              background: `linear-gradient(135deg, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`, 
-              color: '#ffffff' 
-            }}
-            whileHover={{ scale: 1.05 }}
-          >
-            返回首页
-          </motion.button>
-        </div>
-      </div>
-    );
-  }
+  const ComponentToRender = GameComponent ?? PlaceholderGame;
 
-  const ComponentToRender = GameComponent;
+  const gameProps = {
+    gameId: game.id,
+    gameName: game.name,
+    category: game.category,
+    onExit: handleExit,
+    onScoreUpdate: (score: number) => {
+      if (id) {
+        localStorage.setItem(`game_score_${id}`, score.toString());
+      }
+    },
+    onGameOver: (finalScore: number) => {
+      if (id) {
+        const currentHighScore = parseInt(localStorage.getItem(`game_highscore_${id}`) || '0');
+        if (finalScore > currentHighScore) {
+          localStorage.setItem(`game_highscore_${id}`, finalScore.toString());
+        }
+      }
+    },
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
       <ParticleBg />
       <div className="relative z-10">
-        <ComponentToRender
-          gameId={game.id}
-          gameName={game.name}
-          category={game.category}
-          onExit={handleExit}
-          onScoreUpdate={(score: number) => {
-            if (id) {
-              localStorage.setItem(`game_score_${id}`, score.toString());
-            }
-          }}
-          onGameOver={(finalScore: number) => {
-            if (id) {
-              const currentHighScore = parseInt(localStorage.getItem(`game_highscore_${id}`) || '0');
-              if (finalScore > currentHighScore) {
-                localStorage.setItem(`game_highscore_${id}`, finalScore.toString());
-              }
-            }
-          }}
-        />
+        <ErrorBoundary fallback={<PlaceholderGame {...gameProps} />}>
+          <ComponentToRender {...gameProps} />
+        </ErrorBoundary>
       </div>
     </div>
   );

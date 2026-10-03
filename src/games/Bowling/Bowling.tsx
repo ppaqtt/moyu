@@ -482,22 +482,22 @@ export default function Bowling() {
             whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonBlue}` }}
             whileTap={{ scale: 0.95 }}
           >
-            &larr; \u8fd4\u56de
+            &larr; 返回
           </motion.button>
 
           <div className="flex items-center gap-6">
             <div className="text-center">
               <div className="text-xs opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u5e27 {currentFrame}/10
+                帧 {currentFrame}/10
               </div>
               <div className="text-sm" style={{ color: NEON_COLORS.neonBlue }}>
-                \u7b2c {currentRoll} \u6295
+                第 {currentRoll} 投
               </div>
             </div>
 
             <div className="text-center">
               <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u5f53\u524d\u5f97\u5206
+                当前得分
               </div>
               <motion.div
                 className="text-3xl font-bold"
@@ -513,7 +513,7 @@ export default function Bowling() {
 
             <div className="text-center">
               <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-                \u6700\u9ad8\u5206
+                最高分
               </div>
               <div className="text-2xl font-bold" style={{ color: NEON_COLORS.neonBlue }}>
                 {highScore}
@@ -611,7 +611,7 @@ export default function Bowling() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  \u4fdd\u9f84\u7403
+                  保龄球
                 </motion.div>
                 <motion.div
                   className="text-lg mb-8"
@@ -637,7 +637,7 @@ export default function Bowling() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  \u5f00\u59cb\u6e38\u620f
+                  开始游戏
                 </motion.button>
 
                 <motion.div
@@ -647,8 +647,8 @@ export default function Bowling() {
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <div>\u9f20\u6807\u79fb\u52a8\u8c03\u6574\u65b9\u5411</div>
-                  <div>\u6309\u4f4f\u9f20\u6807\u84c4\u529b\uff0c\u677e\u5f00\u6295\u7403</div>
+                  <div>鼠标移动调整方向</div>
+                  <div>按住鼠标蓄力，松开投球</div>
                 </motion.div>
               </motion.div>
             )}
@@ -674,7 +674,7 @@ export default function Bowling() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: 'spring', damping: 12 }}
                 >
-                  \u6e38\u620f\u7ed3\u675f
+                  游戏结束
                 </motion.div>
 
                 <motion.div
@@ -684,7 +684,7 @@ export default function Bowling() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  \u6700\u7ec8\u5f97\u5206: {totalScore}
+                  最终得分: {totalScore}
                 </motion.div>
 
                 {totalScore >= highScore && totalScore > 0 && (
@@ -695,7 +695,7 @@ export default function Bowling() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                   >
-                    \u65b0\u7eaa\u5f55!
+                    新纪录!
                   </motion.div>
                 )}
 
@@ -714,7 +714,7 @@ export default function Bowling() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    \u518d\u73a9\u4e00\u6b21
+                    再玩一次
                   </motion.button>
                   <motion.button
                     onClick={handleGoHome}
@@ -730,7 +730,7 @@ export default function Bowling() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    \u8fd4\u56de\u9996\u9875
+                    返回首页
                   </motion.button>
                 </div>
               </motion.div>
@@ -759,9 +759,9 @@ export default function Bowling() {
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                \u9f20\u6807
+                鼠标
               </kbd>
-              <span>\u8c03\u6574\u65b9\u5411</span>
+              <span>调整方向</span>
             </div>
             <div className="flex items-center gap-2">
               <kbd
@@ -772,13 +772,13 @@ export default function Bowling() {
                   border: '1px solid rgba(108, 92, 231, 0.5)'
                 }}
               >
-                \u70b9\u51fb
+                点击
               </kbd>
-              <span>\u84c4\u529b\u6295\u7403</span>
+              <span>蓄力投球</span>
             </div>
           </div>
           <div className="mt-2 text-xs opacity-50" style={{ color: NEON_COLORS.gold }}>
-            Strike(\u5168\u4e2d) +10 \u5956\u52b1\u5206 | Spare(\u8865\u4e2d) +5 \u5956\u52b1\u5206 | \u5171 10 \u5e27
+            Strike(全中) +10 奖励分 | Spare(补中) +5 奖励分 | 共 10 帧
           </div>
         </div>
       </div>

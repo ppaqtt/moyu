@@ -128,6 +128,10 @@ export class BrawlStarsEngine {
     return CHARACTERS;
   }
 
+  setPhase(phase: GameState['phase']): void {
+    this.state.phase = phase;
+  }
+
   startGame(): void {
     this.state.phase = 'fighting';
     this.state.timeLeft = 120;

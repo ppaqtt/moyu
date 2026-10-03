@@ -7,6 +7,8 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { NEON_COLORS } from '../../utils/constants';
 import { BlockBuilderEngine, BlockBuilderState, Block3D } from './engine';
 
+const CANVAS_WIDTH = 400;
+
 const BlockBuilder = () => {
   const navigate = useNavigate();
   const [engine] = useState(() => new BlockBuilderEngine());

@@ -196,7 +196,7 @@ export default function Pinball() {
     ctx.font = 'bold 14px monospace';
     ctx.textAlign = 'center';
     if (state.isLaunching) {
-      ctx.fillText('SPACE \u53d1\u5c04', CANVAS_WIDTH / 2, 30);
+      ctx.fillText('SPACE 发射', CANVAS_WIDTH / 2, 30);
     }
   }, []);
 
@@ -333,12 +333,12 @@ export default function Pinball() {
             whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${NEON_COLORS.neonBlue}` }}
             whileTap={{ scale: 0.95 }}
           >
-            &larr; \u8fd4\u56de
+            &larr; 返回
           </motion.button>
 
           <div className="text-center">
             <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-              \u5f53\u524d\u5206\u6570
+              当前分数
             </div>
             <motion.div
               className="text-3xl font-bold"
@@ -354,7 +354,7 @@ export default function Pinball() {
 
           <div className="text-center">
             <div className="text-sm opacity-70" style={{ color: NEON_COLORS.gold }}>
-              \u6700\u9ad8\u5206
+              最高分
             </div>
             <div className="text-2xl font-bold" style={{ color: NEON_COLORS.neonBlue }}>
               {highScore}
@@ -370,7 +370,7 @@ export default function Pinball() {
               className="text-xl transition-all duration-300"
               style={{ opacity: i < lives ? 1 : 0.2 }}
             >
-              {i < lives ? '\u2764' : '\u2665'}
+              {i < lives ? '❤' : '♥'}
             </span>
           ))}
         </div>
@@ -414,7 +414,7 @@ export default function Pinball() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  \u5f39\u73e0\u53f0
+                  弹珠台
                 </motion.div>
                 <motion.div
                   className="text-lg mb-8"
@@ -440,7 +440,7 @@ export default function Pinball() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  \u5f00\u59cb\u6e38\u620f
+                  开始游戏
                 </motion.button>
 
                 <motion.div
@@ -450,8 +450,8 @@ export default function Pinball() {
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <div>\u2190 \u2192 \u63a7\u5236\u6321\u677f</div>
-                  <div>\u7a7a\u683c\u952e \u53d1\u5c04\u5f39\u73e0</div>
+                  <div>← → 控制挡板</div>
+                  <div>空格键 发射弹珠</div>
                 </motion.div>
               </motion.div>
             )}
@@ -477,7 +477,7 @@ export default function Pinball() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: 'spring', damping: 12 }}
                 >
-                  \u6e38\u620f\u7ed3\u675f
+                  游戏结束
                 </motion.div>
 
                 <motion.div
@@ -487,7 +487,7 @@ export default function Pinball() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  \u6700\u7ec8\u5f97\u5206: {score}
+                  最终得分: {score}
                 </motion.div>
 
                 {score >= highScore && score > 0 && (
@@ -498,7 +498,7 @@ export default function Pinball() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                   >
-                    \u65b0\u7eaa\u5f55!
+                    新纪录!
                   </motion.div>
                 )}
 
@@ -517,7 +517,7 @@ export default function Pinball() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    \u518d\u73a9\u4e00\u6b21
+                    再玩一次
                   </motion.button>
                   <motion.button
                     onClick={handleGoHome}
@@ -533,7 +533,7 @@ export default function Pinball() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    \u8fd4\u56de\u9996\u9875
+                    返回首页
                   </motion.button>
                 </div>
               </motion.div>
@@ -574,7 +574,7 @@ export default function Pinball() {
               >
                 &rarr;
               </kbd>
-              <span>\u63a7\u5236\u6321\u677f</span>
+              <span>控制挡板</span>
             </div>
             <div className="flex items-center gap-2">
               <kbd
@@ -587,11 +587,11 @@ export default function Pinball() {
               >
                 Space
               </kbd>
-              <span>\u53d1\u5c04\u5f39\u73e0</span>
+              <span>发射弹珠</span>
             </div>
           </div>
           <div className="mt-2 text-xs opacity-50" style={{ color: NEON_COLORS.gold }}>
-            \u78b0\u649e\u969c\u788d\u7269\u5f97 100 \u5206 | \u6321\u677f\u5f39\u8d77\u5f97 10 \u5206 | \u5171 3 \u6761\u547d
+            碰撞障碍物得 100 分 | 挡板弹起得 10 分 | 共 3 条命
           </div>
         </div>
       </div>

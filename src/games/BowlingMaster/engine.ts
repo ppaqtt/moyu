@@ -381,7 +381,8 @@ export class BowlingMasterEngine {
     if (this.frame >= 10 && this.throwNumber >= 2 && this.totalPinsKnocked >= 10) {
       // 10th frame bonus throw
       this.throwNumber++;
-      this.resetBallAndPins();
+      this.resetBall();
+      this.resetPins();
       return;
     }
     
