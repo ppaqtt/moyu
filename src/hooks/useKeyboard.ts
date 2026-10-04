@@ -25,6 +25,11 @@ export interface UseKeyboardOptions {
   onA?: () => void;
   onS?: () => void;
   onD?: () => void;
+  /** 方向键别名（部分游戏使用 onLeft/onRight/onUp/onDown 命名） */
+  onLeft?: () => void;
+  onRight?: () => void;
+  onUp?: () => void;
+  onDown?: () => void;
   onKey?: (key: string) => void;
   enabled?: boolean;
 }
@@ -51,24 +56,28 @@ export function useKeyboard(options: UseKeyboardOptions) {
         e.preventDefault();
         e.stopPropagation();
         opts.onArrowUp?.();
+        opts.onUp?.();
         break;
       case 'ArrowDown':
       case 'Down':
         e.preventDefault();
         e.stopPropagation();
         opts.onArrowDown?.();
+        opts.onDown?.();
         break;
       case 'ArrowLeft':
       case 'Left':
         e.preventDefault();
         e.stopPropagation();
         opts.onArrowLeft?.();
+        opts.onLeft?.();
         break;
       case 'ArrowRight':
       case 'Right':
         e.preventDefault();
         e.stopPropagation();
         opts.onArrowRight?.();
+        opts.onRight?.();
         break;
       case ' ':
       case 'Spacebar':
