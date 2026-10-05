@@ -6,6 +6,41 @@ import { NEON_COLORS } from '../utils/constants';
 
 const UPDATE_LOGS = [
   {
+    id: 99,
+    date: '2026年10月5日',
+    title: '新增游戏排行榜功能',
+    icon: '🏆',
+    color: NEON_COLORS.gold,
+    changes: [
+      '新增排行榜页面 /leaderboard：包含总榜与各游戏榜',
+      '支持设置玩家昵称，成绩按昵称归属，每个人都有自己的名字',
+      '每个游戏维护 Top20 排行，同一昵称只保留最高分',
+      '总榜按「各游戏最高分之和」排名，并显示参与游戏数',
+      '游戏页右下角新增排行榜浮层：设置昵称、查看本游戏 Top10',
+      '游戏结束时自动以当前昵称记录本局成绩',
+      '支持一键导出全部排行数据（JSON）',
+      '首页右上角新增「🏆 排行榜」入口',
+    ]
+  },
+  {
+    id: 0,
+    date: '2026年10月4日',
+    title: '全量游戏可玩性修复 - 540款游戏实测通过',
+    icon: '🛠️',
+    color: NEON_COLORS.neonOrange,
+    changes: [
+      '修复 useGameLoop 仅支持函数式调用的问题，兼容对象式 { callback, delay, enabled } 写法（影响 70+ 游戏）',
+      'useKeyboard 新增 WASD 与 onLeft/onRight/onUp/onDown 方向键别名支持',
+      '补齐 NEON_COLORS、STORAGE_KEYS.GAME_IDS 等共享常量，修复 9 款创作类游戏进入即崩溃的问题',
+      '补齐 TETRIS_CONSTANTS 缺失的速度常量，修复俄罗斯方块开局即结束的问题',
+      '修正 GameRecord 缺少 gamesPlayed 字段导致的类型错误',
+      '批量修复约 100 个游戏引擎文件的缺失常量与类型错误，补全真实数值',
+      '修复多个真实逻辑 Bug：找茬差异点超出画布、饼干店无法开局、国际象棋递归栈溢出、投篮后球不归位等',
+      'TypeScript 类型检查 0 错误，vite build 构建成功',
+      '540 款游戏逐一实测：全部正常加载、无控制台报错',
+    ]
+  },
+  {
     id: 1,
     date: '2026年5月14日（深夜）',
     title: '核心Hook修复 - useKeyboard全面升级',
@@ -171,7 +206,7 @@ const UPDATE_LOGS = [
 
 export default function UpdateLogPage() {
   const navigate = useNavigate();
-  const [expandedId, setExpandedId] = useState<number | null>(1);
+  const [expandedId, setExpandedId] = useState<number | null>(99);
 
   return (
     <div className="min-h-screen relative overflow-hidden">

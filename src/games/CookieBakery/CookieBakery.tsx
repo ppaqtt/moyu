@@ -192,8 +192,8 @@ export default function CookieBakery() {
                 onClick={() => {
                   if (isReady) {
                     handleCollect(oven.id);
-                  } else if (cookie) {
-                    setSelectedOven(oven);
+                  } else {
+                    handleSelectOven(oven);
                   }
                 }}
                 className="aspect-square rounded-lg flex flex-col items-center justify-center cursor-pointer"

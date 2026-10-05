@@ -169,7 +169,7 @@ export class IdiomChainEngine {
     }
   }
 
-  private getTurnTime(): number {
+  public getTurnTime(): number {
     switch (this.difficulty) {
       case 'easy': return 45;
       case 'medium': return 30;

@@ -101,6 +101,7 @@ const TARGET_SHAPE: { pieces: Omit<Piece, 'color'>[] } = {
       x: 150,
       y: 0,
       rotation: 0,
+      selected: false,
     },
   ],
 };

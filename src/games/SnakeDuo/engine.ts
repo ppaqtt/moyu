@@ -1,4 +1,14 @@
-import { SNAKE_DUO_CONSTANTS } from '../../utils/constants';
+import { SNAKE_DUO_CONSTANTS as BASE } from '../../utils/constants';
+
+export const SNAKE_DUO_CONSTANTS = {
+  ...BASE,
+  CANVAS_WIDTH: 600,
+  CANVAS_HEIGHT: 600,
+  GRID_SIZE: 20,
+  INITIAL_SPEED: 150,
+  FOOD_SCORE: 10,
+  TIME_BONUS: 1
+};
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, GRID_SIZE, INITIAL_SPEED, FOOD_SCORE, TIME_BONUS } = SNAKE_DUO_CONSTANTS;
 

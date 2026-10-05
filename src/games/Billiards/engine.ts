@@ -1,4 +1,10 @@
-import { BILLIARDS_CONSTANTS } from '../../utils/constants';
+import { BILLIARDS_CONSTANTS as BILLIARDS_BASE } from '../../utils/constants';
+
+export const BILLIARDS_CONSTANTS = {
+  ...BILLIARDS_BASE,
+  POCKET_RADIUS: 18,
+  MIN_SPEED: 0.15
+};
 
 const {
   CANVAS_WIDTH,

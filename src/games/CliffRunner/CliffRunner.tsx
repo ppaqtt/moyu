@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { CliffRunnerEngine } from './engine';
-import { CLIFF_RUNNER_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
+import { STORAGE_KEYS } from '../../utils/constants';
+import { CLIFF_RUNNER_CONSTANTS } from './engine';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 type GameStatus = 'idle' | 'playing' | 'gameover';

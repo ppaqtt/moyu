@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { usePlayerName, useGameLeaderboard, recordScore, DEFAULT_PLAYER_NAME } from '../hooks/useLeaderboard';
 
 const gameImports: Record<string, () => Promise<any>> = {
 '2048': () => import('../games/Game2048/Game2048'),
@@ -553,6 +554,11 @@ function GamePage() {
   const { id } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
   const [GameComponent, setGameComponent] = useState<React.ComponentType<any> | null>(null);
+  const [playerName, setPlayerName] = usePlayerName();
+  const [nameDraft, setNameDraft] = useState('');
+  const [showBoard, setShowBoard] = useState(false);
+  const leaderboard = useGameLeaderboard(id || '');
+  const displayName = playerName || DEFAULT_PLAYER_NAME;
   
   const game = GAMES_LIST.find(g => g.id === id);
   
@@ -683,9 +689,108 @@ function GamePage() {
               if (finalScore > currentHighScore) {
                 localStorage.setItem(`game_highscore_${id}`, finalScore.toString());
               }
+              recordScore(id, finalScore);
             }
           }}
         />
+      </div>
+
+      {/* 排行榜浮层 */}
+      <div className="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-3">
+        <AnimatePresence>
+          {showBoard && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              className="rounded-2xl p-4 w-72 backdrop-blur-xl"
+              style={{
+                background: 'linear-gradient(145deg, rgba(26,26,46,0.95), rgba(15,15,26,0.98))',
+                border: '1px solid rgba(255,255,255,0.12)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              }}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-bold">🏆 {game.name} 排行榜</span>
+                <button className="opacity-60" onClick={() => setShowBoard(false)}>✕</button>
+              </div>
+
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>👤</span>
+                <input
+                  value={nameDraft}
+                  onChange={(e) => setNameDraft(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && setPlayerName(nameDraft)}
+                  placeholder={displayName}
+                  maxLength={12}
+                  className="flex-1 px-3 py-1.5 rounded-lg outline-none text-sm"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    color: '#fff',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                  }}
+                />
+                <button
+                  onClick={() => setPlayerName(nameDraft)}
+                  className="px-3 py-1.5 rounded-lg text-sm font-semibold"
+                  style={{ background: NEON_COLORS.neonCyan, color: '#062b33' }}
+                >
+                  保存
+                </button>
+              </div>
+
+              <ul className="space-y-1.5">
+                {leaderboard.slice(0, 10).map((e, i) => {
+                  const isMe = e.name === displayName;
+                  return (
+                    <li
+                      key={`${e.name}-${i}`}
+                      className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-sm"
+                      style={{
+                        background: isMe ? 'rgba(0,210,255,0.12)' : 'rgba(255,255,255,0.04)',
+                        border: isMe ? '1px solid rgba(0,210,255,0.35)' : '1px solid transparent',
+                      }}
+                    >
+                      <span className="w-6 text-center">
+                        {i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}
+                      </span>
+                      <span className="flex-1 truncate">
+                        {e.name}
+                        {isMe && <span className="ml-1 text-xs" style={{ color: NEON_COLORS.neonCyan }}>我</span>}
+                      </span>
+                      <span className="font-bold" style={{ color: NEON_COLORS.neonPink }}>{e.score}</span>
+                    </li>
+                  );
+                })}
+                {leaderboard.length === 0 && (
+                  <li className="text-sm opacity-50 py-2 text-center">暂无成绩，玩一局上榜吧</li>
+                )}
+              </ul>
+
+              <button
+                onClick={() => navigate(`/leaderboard?game=${game.id}`)}
+                className="mt-3 w-full py-2 rounded-xl text-sm font-semibold"
+                style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.85)' }}
+              >
+                查看完整排行榜
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.button
+          onClick={() => { setNameDraft(playerName); setShowBoard((v) => !v); }}
+          className="px-4 py-3 rounded-full font-bold flex items-center gap-2"
+          style={{
+            background: 'linear-gradient(135deg, rgba(234,179,8,0.85), rgba(249,115,22,0.85))',
+            color: '#fff',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🏆 {displayName}
+        </motion.button>
       </div>
     </div>
   );

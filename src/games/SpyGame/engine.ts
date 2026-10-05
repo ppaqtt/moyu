@@ -5,6 +5,7 @@ export interface Player {
   hasVoted: boolean;
   isEliminated: boolean;
   votes: number;
+  currentVoteTarget?: number | null;
 }
 
 export interface SpyGameState {

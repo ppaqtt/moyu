@@ -70,6 +70,7 @@ export interface SpacePirateState {
   gems: number;
   isGameOver: boolean;
   isPlaying: boolean;
+  invincibleTime: number;
 }
 
 export class SpacePirateEngine {
@@ -145,6 +146,7 @@ export class SpacePirateEngine {
       gems: this.gems,
       isGameOver: this.isGameOver,
       isPlaying: this.isPlaying,
+      invincibleTime: this.invincibleTime,
     };
   }
 

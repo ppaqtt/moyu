@@ -35,7 +35,7 @@ export default function HouseDesign() {
   }, []);
 
   const updateRoomState = (roomIndex: number) => {
-    const room = engine.state.rooms[roomIndex];
+    const room = engine.getState().rooms[roomIndex];
     setRoomItems([...room.items]);
     setRoomBudget({ total: room.budget, spent: room.spent });
   };

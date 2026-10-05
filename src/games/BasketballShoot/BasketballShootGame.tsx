@@ -99,7 +99,8 @@ const BasketballShootGame: React.FC = () => {
 
     // Draw ball
     if (state.ball) {
-      const { x, y, radius } = state.ball;
+      const { x, y } = state.ball.position;
+      const radius = state.ball.radius;
       const gradient = ctx.createRadialGradient(x - radius/3, y - radius/3, 0, x, y, radius);
       gradient.addColorStop(0, '#ff8c42');
       gradient.addColorStop(1, '#d35400');
@@ -118,12 +119,16 @@ const BasketballShootGame: React.FC = () => {
 
     // Draw aim line when dragging
     if (isDragging && state.ball) {
+      const ballPos = state.ball.position;
+      const aimLength = 150;
+      const aimEndX = ballPos.x + Math.cos(state.aimAngle) * aimLength;
+      const aimEndY = ballPos.y + Math.sin(state.aimAngle) * aimLength;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
       ctx.lineWidth = 2;
       ctx.setLineDash([5, 5]);
       ctx.beginPath();
-      ctx.moveTo(state.ball.x, state.ball.y);
-      ctx.lineTo(state.aimEndX, state.aimEndY);
+      ctx.moveTo(ballPos.x, ballPos.y);
+      ctx.lineTo(aimEndX, aimEndY);
       ctx.stroke();
       ctx.setLineDash([]);
     }
@@ -133,7 +138,7 @@ const BasketballShootGame: React.FC = () => {
       ctx.fillStyle = particle.color;
       ctx.globalAlpha = particle.life;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.arc(particle.position.x, particle.position.y, particle.size, 0, Math.PI * 2);
       ctx.fill();
       ctx.globalAlpha = 1;
     });
@@ -145,7 +150,7 @@ const BasketballShootGame: React.FC = () => {
     ctx.fillText(`Best: ${highScore}`, 20, 70);
 
     // Draw shots left
-    ctx.fillText(`Shots: ${state.shotsLeft}`, 20, 100);
+    ctx.fillText(`Shots: ${state.maxAttempts - state.attempts}`, 20, 100);
 
     // Draw power bar when charging
     if (isCharging) {
@@ -157,7 +162,7 @@ const BasketballShootGame: React.FC = () => {
       ctx.fillStyle = '#333';
       ctx.fillRect(barX, barY, barWidth, barHeight);
 
-      const powerPercent = state.power / 100;
+      const powerPercent = state.power;
       const gradient = ctx.createLinearGradient(barX, 0, barX + barWidth, 0);
       gradient.addColorStop(0, '#00ff00');
       gradient.addColorStop(0.5, '#ffff00');
@@ -207,8 +212,9 @@ const BasketballShootGame: React.FC = () => {
     const y = e.clientY - rect.top;
 
     if (stateRef.current.ball) {
-      const dx = x - stateRef.current.ball.x;
-      const dy = y - stateRef.current.ball.y;
+      const ballPos = stateRef.current.ball.position;
+      const dx = x - ballPos.x;
+      const dy = y - ballPos.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < stateRef.current.ball.radius * 2) {
@@ -228,7 +234,9 @@ const BasketballShootGame: React.FC = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    dispatch({ type: 'AIM', x, y });
+    const ballPos = stateRef.current.ball.position;
+    const angle = Math.atan2(y - ballPos.y, x - ballPos.x);
+    dispatch({ type: 'AIM', angle });
   };
 
   const handleMouseUp = () => {

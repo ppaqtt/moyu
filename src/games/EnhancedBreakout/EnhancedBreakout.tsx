@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { ENHANCED_BREAKOUT_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { EnhancedBreakoutEngine, GameEngineState, PowerUpType } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { EnhancedBreakoutEngine, GameEngineState, PowerUpType, ENHANCED_BREAKOUT_CONSTANTS } from './engine';
 
 const {
   CANVAS_WIDTH,

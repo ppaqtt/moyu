@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { RINGTOSS_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { RingTossEngine, RingTossState } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { RingTossEngine, RingTossState, RINGTOSS_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, RING_RADIUS, POLE_RADIUS, TOTAL_RINGS } = RINGTOSS_CONSTANTS;
 

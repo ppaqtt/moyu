@@ -1,4 +1,7 @@
-import { CLIFF_RUNNER_CONSTANTS } from '../../utils/constants';
+import { CLIFF_RUNNER_CONSTANTS as BASE } from '../../utils/constants';
+
+// 游戏本地增强常量：基础常量缺少 GROUND_HEIGHT 字段
+export const CLIFF_RUNNER_CONSTANTS = { ...BASE, GROUND_HEIGHT: 80 };
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, PLAYER_SIZE, GROUND_HEIGHT, GRAVITY, JUMP_FORCE } = CLIFF_RUNNER_CONSTANTS;
 

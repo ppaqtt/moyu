@@ -1,6 +1,7 @@
 export interface Track {
   id: number;
   name: string;
+  artist: string;
   category: string;
   mood: string;
   notes: number[];
@@ -55,6 +56,7 @@ export class MusicPlayerEngine {
       {
         id: 1,
         name: '星空漫步',
+        artist: '星野',
         category: '轻音乐',
         mood: '放松',
         notes: [261.63, 329.63, 392.00, 523.25, 392.00, 329.63, 261.63],
@@ -65,6 +67,7 @@ export class MusicPlayerEngine {
       {
         id: 2,
         name: '海浪声',
+        artist: '自然之声',
         category: '自然',
         mood: '平静',
         notes: [196.00, 220.00, 246.94, 261.63, 220.00, 196.00],
@@ -75,6 +78,7 @@ export class MusicPlayerEngine {
       {
         id: 3,
         name: '森林清晨',
+        artist: '自然之声',
         category: '自然',
         mood: '清新',
         notes: [293.66, 349.23, 440.00, 523.25, 440.00, 349.23, 293.66],
@@ -85,6 +89,7 @@ export class MusicPlayerEngine {
       {
         id: 4,
         name: '月光曲',
+        artist: '贝多芬',
         category: '古典',
         mood: '浪漫',
         notes: [329.63, 392.00, 440.00, 523.25, 659.25, 523.25, 440.00],
@@ -95,6 +100,7 @@ export class MusicPlayerEngine {
       {
         id: 5,
         name: '雨后彩虹',
+        artist: 'Aurora',
         category: '轻音乐',
         mood: '愉悦',
         notes: [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 392.00],
@@ -105,6 +111,7 @@ export class MusicPlayerEngine {
       {
         id: 6,
         name: '梦幻夜',
+        artist: 'Dreamscape',
         category: '电子',
         mood: '梦幻',
         notes: [220.00, 261.63, 329.63, 392.00, 329.63, 261.63, 220.00],
@@ -115,6 +122,7 @@ export class MusicPlayerEngine {
       {
         id: 7,
         name: '咖啡时光',
+        artist: 'Cafe Trio',
         category: '爵士',
         mood: '悠闲',
         notes: [246.94, 293.66, 329.63, 349.23, 293.66, 246.94, 220.00],
@@ -125,6 +133,7 @@ export class MusicPlayerEngine {
       {
         id: 8,
         name: '星际旅行',
+        artist: 'Nova',
         category: '电子',
         mood: '科幻',
         notes: [174.61, 196.00, 220.00, 246.94, 293.66, 246.94, 220.00],
@@ -135,6 +144,7 @@ export class MusicPlayerEngine {
       {
         id: 9,
         name: '樱花树下',
+        artist: 'Sakura',
         category: '和风',
         mood: '优雅',
         notes: [392.00, 440.00, 523.25, 587.33, 523.25, 440.00, 392.00],
@@ -145,6 +155,7 @@ export class MusicPlayerEngine {
       {
         id: 10,
         name: '瀑布冥想',
+        artist: 'Zen',
         category: '冥想',
         mood: '宁静',
         notes: [130.81, 164.81, 196.00, 164.81, 130.81, 98.00],

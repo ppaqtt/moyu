@@ -43,6 +43,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
 export interface GameRecord {
   bestScore: number;
   totalGames: number;
+  gamesPlayed: number;
   lastPlayed: string;
 }
 
@@ -50,6 +51,7 @@ export function useGameRecord(gameId: string) {
   const [record, setRecord] = useLocalStorage<GameRecord>(gameId, {
     bestScore: 0,
     totalGames: 0,
+    gamesPlayed: 0,
     lastPlayed: ''
   });
 
@@ -57,12 +59,13 @@ export function useGameRecord(gameId: string) {
     setRecord(prev => ({
       bestScore: Math.max(prev.bestScore, score),
       totalGames: prev.totalGames + 1,
+      gamesPlayed: (prev.gamesPlayed ?? prev.totalGames) + 1,
       lastPlayed: new Date().toISOString()
     }));
   }, [setRecord]);
 
   const reset = useCallback(() => {
-    setRecord({ bestScore: 0, totalGames: 0, lastPlayed: '' });
+    setRecord({ bestScore: 0, totalGames: 0, gamesPlayed: 0, lastPlayed: '' });
   }, [setRecord]);
 
   return { record, updateScore, reset };

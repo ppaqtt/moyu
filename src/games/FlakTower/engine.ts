@@ -9,7 +9,7 @@ export interface Bullet {
   y: number;
   vx: number;
   vy: number;
-  type: 'flak' | ' tracer';
+  type: 'flak' | 'tracer';
   life: number;
 }
 

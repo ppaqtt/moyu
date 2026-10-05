@@ -1,4 +1,15 @@
-import { SPACE_SHOOTER_CONSTANTS } from '../../utils/constants';
+import { SPACE_SHOOTER_CONSTANTS as BASE } from '../../utils/constants';
+
+export const SPACE_SHOOTER_CONSTANTS = {
+  ...BASE,
+  PLAYER_SIZE: 40,
+  BULLET_SIZE: 6,
+  ENEMY_SIZE: 36,
+  POWERUP_SIZE: 24,
+  INITIAL_SPEED: 6,
+  BULLET_SPEED: 12,
+  ENEMY_SPEED: 2
+};
 
 const {
   CANVAS_WIDTH,

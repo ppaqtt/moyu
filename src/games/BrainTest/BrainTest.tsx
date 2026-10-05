@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { BRAIN_TEST_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { BrainTestEngine } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { BrainTestEngine, BRAIN_TEST_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT } = BRAIN_TEST_CONSTANTS;
 

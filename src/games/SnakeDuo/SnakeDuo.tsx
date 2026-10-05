@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useGameLoop } from '../../hooks/useGameLoop';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { SNAKE_DUO_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
-import { SnakeDuoEngine, Direction, Player, SnakeDuoState, Position } from './engine';
+import { STORAGE_KEYS } from '../../utils/constants';
+import { SnakeDuoEngine, Direction, Player, SnakeDuoState, Position, SNAKE_DUO_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, GRID_SIZE } = SNAKE_DUO_CONSTANTS;
 const CELL_SIZE = CANVAS_WIDTH / GRID_SIZE;

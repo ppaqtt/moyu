@@ -1,4 +1,11 @@
-import { BUBBLE_SHOOTER_CONSTANTS } from '../../utils/constants';
+import { BUBBLE_SHOOTER_CONSTANTS as BUBBLE_SHOOTER_BASE } from '../../utils/constants';
+
+export const BUBBLE_SHOOTER_CONSTANTS = {
+  ...BUBBLE_SHOOTER_BASE,
+  GRID_COLS: BUBBLE_SHOOTER_BASE.COLS,
+  GRID_ROWS: BUBBLE_SHOOTER_BASE.ROWS,
+  COLORS: ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#e67e22']
+};
 
 interface Bubble {
   x: number;

@@ -113,7 +113,7 @@ export default function IceRun({ onScoreUpdate, onGameOver, onExit }: IceRunProp
         top: obs.y,
         width: obs.width,
         height: obs.height,
-        ...getObstacleStyle(obs)
+        ...getObstacleStyle(obs.type)
       }}
       animate={
         obs.type === 'fish' ? { rotate: [-10, 10, -10], scale: [1, 1.1, 1] } :

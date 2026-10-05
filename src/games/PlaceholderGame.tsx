@@ -41,6 +41,26 @@ interface GameContext {
   controls: string;
 }
 
+interface GameStateData {
+  player: { x: number; y: number; width: number; height: number };
+  objects: GameObject[];
+  particles: Particle[];
+  keys: Set<string>;
+  mouseX: number;
+  mouseY: number;
+  startTime: number;
+  difficulty: number;
+  score: number;
+  gameOver: boolean;
+  snake?: { x: number; y: number }[];
+  bird?: { y: number; vy: number };
+  runner?: { x: number; y: number; vy: number; onGround: boolean };
+  paddle?: { x?: number; y?: number };
+  grid?: number[][];
+  cards?: { value: string; flipped: boolean; matched: boolean; x: number; y: number }[];
+  notes?: { time: number; lane: number }[];
+}
+
 // 根据游戏ID和类别确定游戏类型
 function getGameContext(gameId: string, category: string): GameContext {
   const contexts: Record<string, GameContext> = {
@@ -98,7 +118,7 @@ export default function PlaceholderGame({
     return saved ? parseInt(saved) : 0;
   });
   
-  const gameState = useRef({
+  const gameState = useRef<GameStateData>({
     player: { x: 0, y: 0, width: 30, height: 30 },
     objects: [] as GameObject[],
     particles: [] as Particle[],

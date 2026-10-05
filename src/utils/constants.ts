@@ -18,9 +18,12 @@ export const NEON_COLORS = {
   neonPurple: '#a855f7',
   neonBlue: '#3b82f6',
   neonGreen: '#22c55e',
+  neonOrange: '#ff8800',
+  neonYellow: '#ffff00',
   gold: '#ffd700',
   white: '#ffffff',
   darkPurple: 'rgba(26, 26, 46, 0.8)',
+  cardBg: 'rgba(26, 26, 46, 0.65)',
 };
 
 export const GAME_CONFIG = {
@@ -585,12 +588,27 @@ export const STORAGE_KEYS = {
   LANTERN: 'lantern_highscore',
   LABORDAY: 'laborday_highscore',
   NATIONALDAY: 'nationalday_highscore',
+  GAME_IDS: {
+    SAND_ART: 'sandart_highscore',
+    TRUTH_DARE: 'truthdare_highscore',
+    DRAW_GUESS: 'drawguess_highscore',
+    DRAW_GUESS_2: 'drawguess2_highscore',
+    MEME_CREATOR: 'memecreator_highscore',
+    GIF_MAKER: 'gifmaker_highscore',
+    CODE_ART: 'codeart_highscore',
+    SIMPLE_DRAW: 'simpledraw_highscore',
+    QUIZ_RELAY: 'quizrelay_highscore',
+    SPY_GAME: 'spygame_highscore',
+    COLORING_BOOK: 'coloringbook_highscore',
+    PIXEL_CANVAS: 'pixelcanvas_highscore',
+    EMOJI_MAKER: 'emojimaker_highscore',
+  },
 };
 
 // All game constants
 export const GAME_2048_CONSTANTS = { GRID_SIZE: 3, TILE_SIZE: 100, GAP: 12, CANVAS_SIZE: 336 };
 export const FUSION_CONSTANTS = { GRID_SIZE: 6, TILE_SIZE: 70, GAP: 8, CANVAS_WIDTH: 436, CANVAS_HEIGHT: 400, DROP_INTERVAL: 1000 };
-export const TETRIS_CONSTANTS = { BOARD_WIDTH: 10, BOARD_HEIGHT: 20, CELL_SIZE: 30 };
+export const TETRIS_CONSTANTS = { BOARD_WIDTH: 10, BOARD_HEIGHT: 20, CELL_SIZE: 30, INITIAL_SPEED: 800, SPEED_INCREMENT: 0.85, LINES_PER_LEVEL: 10 };
 export const SNAKE_CONSTANTS = { GRID_SIZE: 20, CANVAS_SIZE: 400, CELL_SIZE: 20, INITIAL_LENGTH: 3, INITIAL_SPEED: 150, SPEED_INCREMENT: 10 };
 export const MINESWEEPER_CONSTANTS = { ROWS: 16, COLS: 16, MINE_COUNT: 40 };
 export const BEJEWEL_CONSTANTS = { GRID_SIZE: 8, CELL_SIZE: 50 };
@@ -1533,7 +1551,7 @@ export const TANK_BATTLE_ENGINE_CONSTANTS_10 = TANK_BATTLE_CONSTANTS;
 export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_10 = ZOMBIE_SHOOTER_CONSTANTS;
 
 // GAMES_LIST
-export const GAMES_LIST = [
+export const GAMES_LIST: Array<{ id: string; name: string; category: string; icon: string; difficulty: string; description?: string }> = [
   { id: '2048', name: '2048', category: 'puzzle', icon: '🔢', difficulty: 'medium' },
   { id: 'tetris', name: '俄罗斯方块', category: 'puzzle', icon: '🧱', difficulty: 'medium' },
   { id: 'snake', name: '贪吃蛇', category: 'puzzle', icon: '🐍', difficulty: 'easy' },

@@ -1,4 +1,9 @@
-import { BRAIN_TEST_CONSTANTS } from '../../utils/constants';
+import { BRAIN_TEST_CONSTANTS as BRAIN_TEST_BASE } from '../../utils/constants';
+
+export const BRAIN_TEST_CONSTANTS = {
+  ...BRAIN_TEST_BASE,
+  QUESTION_COUNT: BRAIN_TEST_BASE.TOTAL_QUESTIONS
+};
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, QUESTION_COUNT, TIME_LIMIT } = BRAIN_TEST_CONSTANTS;
 

@@ -1,5 +1,7 @@
 // 一笔画游戏引擎
-import { ONESTROKE_CONSTANTS } from '../../utils/constants';
+import { ONESTROKE_CONSTANTS as BASE } from '../../utils/constants';
+
+export const ONESTROKE_CONSTANTS = { ...BASE, GRID_SIZE: 500 };
 
 interface Node {
   id: number;

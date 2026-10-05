@@ -356,7 +356,7 @@ export class IntChessEngine {
   private finishTurn(): void {
     this.isCheck = this.isInCheckForPlayer(this.currentPlayer);
 
-    if (this.isInCheckmate(this.currentPlayer === 'white' ? 'black' : 'white')) {
+    if (this.isCheckmate(this.currentPlayer === 'white' ? 'black' : 'white')) {
       this.isGameOver = true;
       this.winner = this.currentPlayer;
       return;
@@ -478,6 +478,25 @@ export class IntChessEngine {
     return moves.filter(pos => !this.wouldBeInCheck(piece, pos));
   }
 
+  private getRawAttackMoves(piece: Piece): Position[] {
+    const moves: Position[] = [];
+
+    switch (piece.type) {
+      case 'queen':
+        this.addRookMoves(piece, moves);
+        this.addBishopMoves(piece, moves);
+        break;
+      case 'rook':
+        this.addRookMoves(piece, moves);
+        break;
+      case 'bishop':
+        this.addBishopMoves(piece, moves);
+        break;
+    }
+
+    return moves;
+  }
+
   private findKing(player: Player): Piece | undefined {
     return this.pieces.find(p => p.type === 'king' && p.player === player);
   }
@@ -515,7 +534,7 @@ export class IntChessEngine {
           }
         }
       } else {
-        const moves = this.getValidMovesForAI(piece);
+        const moves = this.getRawAttackMoves(piece);
         if (moves.some(m => m.row === row && m.col === col)) {
           return true;
         }

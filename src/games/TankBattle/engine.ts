@@ -1,4 +1,13 @@
-import { TANK_BATTLE_CONSTANTS } from '../../utils/constants';
+import { TANK_BATTLE_CONSTANTS as BASE } from '../../utils/constants';
+
+export const TANK_BATTLE_CONSTANTS = {
+  ...BASE,
+  TANK_SIZE: 30,
+  BULLET_SIZE: 6,
+  INITIAL_SPEED: 3,
+  BULLET_SPEED: 8,
+  ENEMY_SPEED: 1.2
+};
 
 const {
   CANVAS_WIDTH,

@@ -1,4 +1,10 @@
-import { BOWLING_CONSTANTS } from '../../utils/constants';
+import { BOWLING_CONSTANTS as BOWLING_BASE } from '../../utils/constants';
+
+export const BOWLING_CONSTANTS = {
+  ...BOWLING_BASE,
+  LANE_WIDTH: 320,
+  TOTAL_FRAMES: 10
+};
 
 const {
   CANVAS_WIDTH,

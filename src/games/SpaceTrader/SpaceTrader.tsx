@@ -21,6 +21,7 @@ const CARGO_CONFIG: Record<CargoType, { name: string; emoji: string; color: stri
 
 export default function SpaceTrader() {
   const navigate = useNavigate();
+  const INITIAL_CREDITS = 500;
   const [engine] = useState(() => new SpaceTraderEngine());
   const [gameStatus, setGameStatus] = useState<'idle' | 'playing' | 'gameover'>('idle');
   const [credits, setCredits] = useState(INITIAL_CREDITS);
@@ -34,8 +35,6 @@ export default function SpaceTrader() {
   const [selectedCargo, setSelectedCargo] = useState<CargoType | null>(null);
   const [tradeMode, setTradeMode] = useState<'buy' | 'sell'>('buy');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const INITIAL_CREDITS = 500;
 
   const handleExit = useCallback(() => {
     navigate('/');

@@ -78,7 +78,7 @@ const FLIPPER_POWER = 18;
 const FLIPPER_SPEED = 0.3;
 const BUMPER_BOUNCE = 1.5;
 
-const BALL_COLORS = ['#ff4444', '#44ff44', '#4444ff', '#ffff00', '#ff44ff'];
+export const BALL_COLORS = ['#ff4444', '#44ff44', '#4444ff', '#ffff00', '#ff44ff'];
 
 export class PinballEngine {
   private balls: Ball[] = [];

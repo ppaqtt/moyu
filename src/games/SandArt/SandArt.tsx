@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useGameRecord } from '../../hooks/useLocalStorage';
 import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { SandArtEngine, SAND_COLORS, BACKGROUNDS } from './engine';
+import { SandArtEngine, SAND_COLORS, BACKGROUNDS, Point } from './engine';
 
 interface SandArtProps {
   onScoreUpdate: (score: number) => void;

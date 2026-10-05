@@ -1,12 +1,36 @@
 import { useEffect, useCallback, useRef } from 'react';
 
-interface UseKeyboardOptions {
+/**
+ * useKeyboard
+ *
+ * 支持的回调：
+ *  - onArrowUp / onArrowDown / onArrowLeft / onArrowRight  方向键
+ *  - onSpace                                                空格
+ *  - onEscape                                               Esc
+ *  - onW / onA / onS / onD                                  WASD（大小写均触发）
+ *  - onKey?: (key: string) => void                          任意按键的兜底回调
+ *
+ *  enabled 为 false 时整体禁用。
+ *
+ * 历史实现只识别方向键/空格/Esc，导致大量使用 WASD 的游戏无法控制。
+ */
+export interface UseKeyboardOptions {
   onArrowUp?: () => void;
   onArrowDown?: () => void;
   onArrowLeft?: () => void;
   onArrowRight?: () => void;
   onSpace?: () => void;
   onEscape?: () => void;
+  onW?: () => void;
+  onA?: () => void;
+  onS?: () => void;
+  onD?: () => void;
+  /** 方向键别名（部分游戏使用 onLeft/onRight/onUp/onDown 命名） */
+  onLeft?: () => void;
+  onRight?: () => void;
+  onUp?: () => void;
+  onDown?: () => void;
+  onKey?: (key: string) => void;
   enabled?: boolean;
 }
 
@@ -15,46 +39,82 @@ export function useKeyboard(options: UseKeyboardOptions) {
   optionsRef.current = options;
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (!optionsRef.current.enabled) return;
+    const opts = optionsRef.current;
+    if (opts.enabled === false) return;
 
-    switch (e.key) {
+    const key = e.key;
+    const lower = key.length === 1 ? key.toLowerCase() : key;
+
+    // 始终允许通过 onKey 暴露原始按键
+    if (opts.onKey) {
+      opts.onKey(key);
+    }
+
+    switch (key) {
       case 'ArrowUp':
       case 'Up':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onArrowUp?.();
+        opts.onArrowUp?.();
+        opts.onUp?.();
         break;
       case 'ArrowDown':
       case 'Down':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onArrowDown?.();
+        opts.onArrowDown?.();
+        opts.onDown?.();
         break;
       case 'ArrowLeft':
       case 'Left':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onArrowLeft?.();
+        opts.onArrowLeft?.();
+        opts.onLeft?.();
         break;
       case 'ArrowRight':
       case 'Right':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onArrowRight?.();
+        opts.onArrowRight?.();
+        opts.onRight?.();
         break;
       case ' ':
       case 'Spacebar':
       case 'Space':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onSpace?.();
+        opts.onSpace?.();
         break;
       case 'Escape':
       case 'Esc':
         e.preventDefault();
         e.stopPropagation();
-        optionsRef.current.onEscape?.();
+        opts.onEscape?.();
         break;
+      default:
+        // WASD 等
+        if (lower !== key) {
+          // 小写化后才进入此处（即字母键）
+          switch (lower) {
+            case 'w':
+              e.preventDefault();
+              opts.onW?.();
+              break;
+            case 'a':
+              e.preventDefault();
+              opts.onA?.();
+              break;
+            case 's':
+              e.preventDefault();
+              opts.onS?.();
+              break;
+            case 'd':
+              e.preventDefault();
+              opts.onD?.();
+              break;
+          }
+        }
     }
   }, []);
 
@@ -63,3 +123,5 @@ export function useKeyboard(options: UseKeyboardOptions) {
     return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [handleKeyDown]);
 }
+
+export default useKeyboard;

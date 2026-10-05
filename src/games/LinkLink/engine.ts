@@ -1,5 +1,14 @@
 // 连连看游戏引擎
-import { LINKLINK_CONSTANTS } from '../../utils/constants';
+import { LINKLINK_CONSTANTS as BASE } from '../../utils/constants';
+
+export const LINKLINK_CONSTANTS = {
+  ...BASE,
+  GRID_COLS: 8,
+  GRID_ROWS: 8,
+  TILE_WIDTH: 40,
+  TILE_HEIGHT: 40,
+  ICON_TYPES: ['🍎', '🍊', '🍋', '🍇', '🍓', '🍒']
+};
 
 interface Tile {
   type: number;
@@ -44,7 +53,7 @@ export class LinkLinkEngine {
     const icons: number[] = [];
 
     for (let i = 0; i < pairs; i++) {
-      const iconType = (i % ICON_TYPES) + 1;
+      const iconType = (i % ICON_TYPES.length) + 1;
       icons.push(iconType, iconType);
     }
 

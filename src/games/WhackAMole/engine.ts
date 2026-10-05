@@ -1,3 +1,10 @@
+import { WHACK_A_MOLE_CONSTANTS as BASE } from '../../utils/constants';
+
+export const WHACK_A_MOLE_CONSTANTS = {
+  ...BASE,
+  MOLE_SIZE: 60,
+};
+
 export interface Hole {
   x: number;
   y: number;

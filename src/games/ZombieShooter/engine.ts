@@ -1,4 +1,14 @@
-import { ZOMBIE_SHOOTER_CONSTANTS } from '../../utils/constants';
+import { ZOMBIE_SHOOTER_CONSTANTS as BASE } from '../../utils/constants';
+
+export const ZOMBIE_SHOOTER_CONSTANTS = {
+  ...BASE,
+  PLAYER_SIZE: 40,
+  ZOMBIE_SIZE: 30,
+  BULLET_SIZE: 8,
+  INITIAL_SPEED: 4,
+  BULLET_SPEED: 10,
+  ZOMBIE_SPEED: 1.2,
+};
 
 const {
   CANVAS_WIDTH,

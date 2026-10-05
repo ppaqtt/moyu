@@ -1,4 +1,7 @@
-import { ENHANCED_BREAKOUT_CONSTANTS } from '../../utils/constants';
+import { ENHANCED_BREAKOUT_CONSTANTS as BASE } from '../../utils/constants';
+
+// 游戏本地增强常量：基础常量缺少本游戏所需的多数字段
+export const ENHANCED_BREAKOUT_CONSTANTS = { ...BASE, PADDLE_HEIGHT: 14, BALL_SPEED: 5, BRICK_ROWS: 6, BRICK_COLS: 10, BRICK_HEIGHT: 22, BRICK_GAP: 6, POWERUP_CHANCE: 0.25 };
 
 const {
   CANVAS_WIDTH,

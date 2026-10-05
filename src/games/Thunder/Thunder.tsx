@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useGameLoop } from '../../hooks/useGameLoop';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { THUNDER_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
-import { ThunderEngine, Player, Enemy, Bullet, PowerUp } from './engine';
+import { STORAGE_KEYS } from '../../utils/constants';
+import { ThunderEngine, Player, Enemy, Bullet, PowerUp, THUNDER_CONSTANTS } from './engine';
 
 const { BULLET_WIDTH, BULLET_HEIGHT } = THUNDER_CONSTANTS;
 

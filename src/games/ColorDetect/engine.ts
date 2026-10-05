@@ -16,6 +16,7 @@ export interface ColorDetectState {
   options: ColorOption[];
   correctOption: string;
   timeLeft: number;
+  totalTimeLeft: number;
   lastResult: 'correct' | 'wrong' | 'timeout' | null;
   streak: number;
   bestStreak: number;
@@ -139,6 +140,7 @@ export class ColorDetectEngine implements ColorDetectEngine {
       options: [...this.options],
       correctOption: this.correctOption,
       timeLeft: this.timeLeft,
+      totalTimeLeft: this.totalTimeLeft,
       lastResult: this.lastResult,
       streak: this.streak,
       bestStreak: this.bestStreak,

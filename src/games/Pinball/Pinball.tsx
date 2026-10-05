@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { STORAGE_KEYS, PINBALL_CONSTANTS, NEON_COLORS } from '../../utils/constants';
-import { PinballEngine, PinballState } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { PinballEngine, PinballState, PINBALL_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT } = PINBALL_CONSTANTS;
 

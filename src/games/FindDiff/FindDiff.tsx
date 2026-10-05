@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { FindDiffEngine } from './engine';
-import { FINDDIFF_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
+import { FINDDIFF_CONSTANTS } from './engine';
+import { STORAGE_KEYS } from '../../utils/constants';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -235,7 +236,7 @@ export default function FindDiff() {
                   const diff = gameState.differences.find(d => {
                     const gridX = i % 4;
                     const gridY = Math.floor(i / 4);
-                    const diffGridX = Math.floor((d.x - 1) / 200);
+                    const diffGridX = Math.floor((d.x - 1) / 100);
                     const diffGridY = Math.floor((d.y - 1) / 150);
                     return gridX === diffGridX && gridY === diffGridY;
                   });

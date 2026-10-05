@@ -1,4 +1,6 @@
-import { GOBANG_CONSTANTS } from '../../utils/constants';
+import { GOBANG_CONSTANTS as BASE } from '../../utils/constants';
+
+export const GOBANG_CONSTANTS = { ...BASE, WIN_COUNT: 5 };
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, GRID_SIZE, CELL_SIZE, WIN_COUNT } = GOBANG_CONSTANTS;
 
