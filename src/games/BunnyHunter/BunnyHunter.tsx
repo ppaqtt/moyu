@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { BunnyHunterEngine } from './engine';
-import { BUNNY_HUNTER_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
+import { BunnyHunterEngine, BUNNY_HUNTER_CONSTANTS } from './engine';
+import { STORAGE_KEYS } from '../../utils/constants';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 type GameStatus = 'idle' | 'playing' | 'gameover';

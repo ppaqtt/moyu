@@ -2,15 +2,15 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { WHACK_A_MOLE_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
-import { WhackAMoleEngine, Hole, HitEffect } from './engine';
+import { STORAGE_KEYS } from '../../utils/constants';
+import { WhackAMoleEngine, Hole, HitEffect, WHACK_A_MOLE_CONSTANTS as ENGINE_CONSTANTS } from './engine';
 
-const CANVAS_WIDTH = WHACK_A_MOLE_CONSTANTS.CANVAS_WIDTH;
-const CANVAS_HEIGHT = WHACK_A_MOLE_CONSTANTS.CANVAS_HEIGHT;
+const CANVAS_WIDTH = ENGINE_CONSTANTS.CANVAS_WIDTH;
+const CANVAS_HEIGHT = ENGINE_CONSTANTS.CANVAS_HEIGHT;
 const GRID_COLS = 3;
 const GRID_ROWS = 3;
-const HOLE_RADIUS = WHACK_A_MOLE_CONSTANTS.HOLE_SIZE / 2;
-const MOLE_SIZE = WHACK_A_MOLE_CONSTANTS.MOLE_SIZE;
+const HOLE_RADIUS = ENGINE_CONSTANTS.HOLE_SIZE / 2;
+const MOLE_SIZE = ENGINE_CONSTANTS.MOLE_SIZE;
 
 const GROUND_COLOR = '#5D4037';
 const HOLE_COLOR = '#3E2723';

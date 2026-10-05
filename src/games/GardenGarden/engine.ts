@@ -214,7 +214,7 @@ export class GardenGardenEngine {
     return true;
   }
 
-  private tick(): void {
+  public tick(): void {
     const now = Date.now();
     const deltaSeconds = (now - this.lastUpdate) / 1000;
 

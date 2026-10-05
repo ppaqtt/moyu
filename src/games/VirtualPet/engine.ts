@@ -241,7 +241,7 @@ export class VirtualPetEngine {
     }
   }
 
-  private tick(): void {
+  tick(): void {
     const now = Date.now();
     const deltaTime = (now - this.lastUpdate) / TICK_INTERVAL;
 

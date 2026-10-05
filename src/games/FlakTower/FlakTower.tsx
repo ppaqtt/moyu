@@ -6,7 +6,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { FLAK_TOWER_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
 import { FlakTowerEngine, Bullet, Enemy, Explosion } from './engine';
 
-const { TOWER_X, TOWER_Y, TOWER_RADIUS } = FLAK_TOWER_CONSTANTS;
+const { CANVAS_WIDTH, CANVAS_HEIGHT, TOWER_X, TOWER_Y, TOWER_RADIUS } = FLAK_TOWER_CONSTANTS;
 
 const BG_GRADIENT = 'linear-gradient(180deg, #1a1a2e 0%, #2d2d4a 50%, #1a2a1a 100%)';
 

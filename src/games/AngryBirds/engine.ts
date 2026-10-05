@@ -77,13 +77,31 @@ const FRICTION = 0.8;
 const RESTITUTION = 0.3;
 
 const BIRD_COLORS = ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff'];
+type BlockType = 'wood' | 'stone' | 'glass';
+interface LevelBlockDef {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  type: BlockType;
+}
+interface LevelPigDef {
+  x: number;
+  y: number;
+  radius: number;
+  health: number;
+}
+interface LevelDef {
+  blocks: LevelBlockDef[];
+  pigs: LevelPigDef[];
+}
 const BLOCK_TYPES = {
   wood: { health: 2, color: '#8B4513', points: 50 },
   stone: { health: 4, color: '#808080', points: 100 },
   glass: { health: 1, color: '#87CEEB', points: 25 }
 };
 
-const LEVELS = [
+const LEVELS: LevelDef[] = [
   {
     blocks: [
       { x: 400, y: GROUND_Y - 30, width: 80, height: 20, type: 'wood' },

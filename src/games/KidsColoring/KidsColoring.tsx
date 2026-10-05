@@ -34,7 +34,7 @@ export default function KidsColoring() {
     setCurrentStroke(state.currentStroke);
     setCurrentColor(state.currentColor);
     setBrushSize(state.brushSize);
-    setSelectedTemplate(state.getSelectedTemplate());
+    setSelectedTemplate(engine.getSelectedTemplate());
     setIsErasing(state.isErasing);
   }, [engine]);
 

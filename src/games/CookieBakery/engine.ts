@@ -128,18 +128,14 @@ export class CookieBakeryEngine {
     this.gameStarted = true;
     this.lastUpdate = Date.now();
 
-    // Start with one oven
+    // 开局赠送一个烤箱，否则玩家无法开始烤制
     if (this.ovens.length === 0) {
-      this.addOven();
+      this.ovens.push(this.createOven());
     }
   }
 
-  addOven(): boolean {
-    if (this.ovens.length >= MAX_OVENS) return false;
-    if (this.coins < 300) return false;
-
-    this.coins -= 300;
-    const oven: Oven = {
+  private createOven(): Oven {
+    return {
       id: `oven_${Date.now()}`,
       level: 1,
       maxCookies: 3,
@@ -148,7 +144,14 @@ export class CookieBakeryEngine {
       isActive: false,
       cookies: [],
     };
-    this.ovens.push(oven);
+  }
+
+  addOven(): boolean {
+    if (this.ovens.length >= MAX_OVENS) return false;
+    if (this.coins < 300) return false;
+
+    this.coins -= 300;
+    this.ovens.push(this.createOven());
     return true;
   }
 
@@ -286,17 +289,11 @@ export class CookieBakeryEngine {
     return true;
   }
 
-  private tick(): void {
+  tick(): void {
     const now = Date.now();
     this.lastUpdate = now;
 
-    // Check for ready cookies
-    this.ovens.forEach(oven => {
-      oven.cookies = oven.cookies.filter(cookie => {
-        const elapsed = now - cookie.bakedAt;
-        return elapsed < cookie.type.bakeTime * 1000 * oven.speedMultiplier;
-      });
-    });
+    // 烤好的饼干保留在烤箱中，等待玩家手动收取（不能在此删除，否则 collectCookie 永远取不到）
 
     // Auto baker
     if (this.autoBakerActive && this.ovens.length > 0) {
@@ -304,7 +301,7 @@ export class CookieBakeryEngine {
       if (oven.cookies.length < oven.maxCookies) {
         const basicRecipe = COOKIE_TYPES.find(c => c.id === 'chocolate');
         if (basicRecipe && this.unlockedRecipes.includes('chocolate')) {
-          this.startBaking('chocolate', oven.id);
+          this.startBaking(oven.id, 'chocolate');
         }
       }
     }

@@ -1,4 +1,7 @@
-import { DANCING_LINE_CONSTANTS } from '../../utils/constants';
+import { DANCING_LINE_CONSTANTS as BASE } from '../../utils/constants';
+
+// 游戏本地增强常量：基础常量缺少 NODE_RADIUS、SEGMENT_LENGTH 字段
+export const DANCING_LINE_CONSTANTS = { ...BASE, NODE_RADIUS: 14, SEGMENT_LENGTH: 50 };
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, LINE_WIDTH, NODE_RADIUS, SEGMENT_LENGTH } = DANCING_LINE_CONSTANTS;
 

@@ -1,4 +1,6 @@
-import { FRUIT_NINJA_CONSTANTS } from '../../utils/constants';
+import { FRUIT_NINJA_CONSTANTS as BASE } from '../../utils/constants';
+
+export const FRUIT_NINJA_CONSTANTS = { ...BASE, FRUIT_SIZE: 70, FRUIT_SPEED: 12 };
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, FRUIT_SIZE, FRUIT_SPEED, SPAWN_INTERVAL } = FRUIT_NINJA_CONSTANTS;
 

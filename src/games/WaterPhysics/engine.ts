@@ -25,6 +25,7 @@ export interface WaterPhysicsState {
   flowRate: number;
   viscosity: number;
   mode: 'idle' | 'pouring' | 'draining';
+  drainOpen: boolean;
   score: number;
   collected: number;
   target: number;
@@ -236,6 +237,7 @@ export class WaterPhysicsEngine {
       flowRate: this.flowRate,
       viscosity: this.viscosity,
       mode: this.mode,
+      drainOpen: this.drainOpen,
       score: this.score,
       collected: this.collected,
       target: this.target

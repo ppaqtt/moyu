@@ -97,7 +97,7 @@ export class QuickReflexEngine implements QuickReflexEngine {
       return 'wait';
     }
 
-    if (this.phase === 'ready' || this.phase === 'waiting') {
+    if (this.phase === 'ready') {
       this.phase = 'tooEarly';
       this.phaseStartTime = Date.now();
       this.score = Math.max(0, this.score - 20);
@@ -151,7 +151,7 @@ export class QuickReflexEngine implements QuickReflexEngine {
   tick(): void {
     if (!this.isRunning) return;
 
-    if (this.phase === 'waiting' && Date.now() >= this.nextTargetTime) {
+    if (this.phase === 'ready' && Date.now() >= this.nextTargetTime) {
       this.phase = 'click';
       this.targetAppearTime = Date.now();
     }

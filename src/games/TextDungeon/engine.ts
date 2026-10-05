@@ -55,6 +55,7 @@ export interface Player {
   armors: Item[];
   potions: number;
   keys: number;
+  luck: number;
   inventory: Item[];
 }
 
@@ -78,10 +79,11 @@ const ENEMIES_BY_FLOOR: Record<number, EnemyType[]> = {
   5: ['orc', 'dragon'],
 };
 
-const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'hp' | 'maxHp'>> = {
+const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'maxHp'>> = {
   slime: {
     name: '史莱姆',
     type: 'slime',
+    hp: 20,
     attack: 5,
     defense: 2,
     exp: 10,
@@ -91,6 +93,7 @@ const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'hp' | 'maxHp'>> = {
   goblin: {
     name: '哥布林',
     type: 'goblin',
+    hp: 30,
     attack: 10,
     defense: 5,
     exp: 25,
@@ -100,6 +103,7 @@ const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'hp' | 'maxHp'>> = {
   skeleton: {
     name: '骷髅战士',
     type: 'skeleton',
+    hp: 45,
     attack: 15,
     defense: 10,
     exp: 40,
@@ -109,6 +113,7 @@ const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'hp' | 'maxHp'>> = {
   orc: {
     name: '兽人战士',
     type: 'orc',
+    hp: 60,
     attack: 25,
     defense: 20,
     exp: 75,
@@ -118,6 +123,7 @@ const ENEMY_DATA: Record<EnemyType, Omit<Enemy, 'id' | 'hp' | 'maxHp'>> = {
   dragon: {
     name: '远古巨龙',
     type: 'dragon',
+    hp: 80,
     attack: 40,
     defense: 30,
     exp: 200,
@@ -167,7 +173,7 @@ function generateFloor(floor: number): Room[] {
       const type = floorEnemies[Math.floor(Math.random() * floorEnemies.length)];
       const base = ENEMY_DATA[type];
       const level = floor;
-      const hp = base.hp !== undefined ? base.hp : 20 + floor * 10;
+      const hp = base.hp;
       const maxHp = hp + level * 5;
       enemies.push({
         ...base,
@@ -243,6 +249,7 @@ export class TextDungeonEngine {
       armors: [],
       potions: 3,
       keys: 0,
+      luck: 10,
       inventory: [],
     };
 
@@ -525,6 +532,7 @@ export class TextDungeonEngine {
       armors: [],
       potions: 3,
       keys: 0,
+      luck: 10,
       inventory: [],
     };
 

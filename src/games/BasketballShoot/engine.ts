@@ -351,6 +351,15 @@ export function basketballReducer(state: GameState, action: GameAction, canvasWi
 
           if (newState.attempts >= newState.maxAttempts) {
             newState.gameOver = true;
+          } else {
+            // Return the ball to the player's hand for the next shot
+            newBall.isHeld = true;
+            newBall.position = { x: 100, y: canvasHeight - 150 };
+            newBall.velocity = { x: 0, y: 0 };
+            newBall.trail = [];
+            newState.isShooting = false;
+            newState.power = 0;
+            newState.shotMade = null;
           }
         }
 

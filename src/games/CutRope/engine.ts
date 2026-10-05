@@ -79,7 +79,15 @@ const CONSTRAINT_ITERATIONS = 5;
 const ROPE_SEGMENT_LENGTH = 15;
 const CANDY_RADIUS = 15;
 
-const LEVELS = [
+interface LevelData {
+  ropes: { startX: number; startY: number; endX: number; endY: number; attached: boolean }[];
+  candyStart: { x: number; y: number };
+  stars: { x: number; y: number; radius: number }[];
+  targets: { x: number; y: number; width: number; height: number; type: 'mouth' | 'basket' }[];
+  obstacles: never[];
+}
+
+const LEVELS: LevelData[] = [
   {
     ropes: [
       { startX: 100, startY: 50, endX: 200, endY: 150, attached: true },

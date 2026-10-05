@@ -51,6 +51,7 @@ export interface BowlingMasterState {
   maxScore: number;
   currentScores: number[];
   totalPinsKnocked: number;
+  laneY: number;
 }
 
 const CANVAS_WIDTH = 500;
@@ -149,7 +150,8 @@ export class BowlingMasterEngine {
       angle: 0,
       maxScore: 300,
       currentScores: [...this.currentScores],
-      totalPinsKnocked: this.totalPinsKnocked
+      totalPinsKnocked: this.totalPinsKnocked,
+      laneY: this.laneY
     };
   }
 
@@ -381,7 +383,7 @@ export class BowlingMasterEngine {
     if (this.frame >= 10 && this.throwNumber >= 2 && this.totalPinsKnocked >= 10) {
       // 10th frame bonus throw
       this.throwNumber++;
-      this.resetBallAndPins();
+      this.resetPins();
       return;
     }
     

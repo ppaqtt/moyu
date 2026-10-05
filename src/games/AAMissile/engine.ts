@@ -47,6 +47,7 @@ export interface AAMissileState {
   enemiesDestroyed: number;
   missilesFired: number;
   accuracy: number;
+  interceptRate: number;
 }
 
 export class AAMissileEngine {
@@ -110,7 +111,8 @@ export class AAMissileEngine {
       wave: this.wave,
       enemiesDestroyed: this.enemiesDestroyed,
       missilesFired: this.missilesFired,
-      accuracy: this.missilesFired > 0 ? (this.enemiesDestroyed / this.missilesFired) * 100 : 0
+      accuracy: this.missilesFired > 0 ? (this.enemiesDestroyed / this.missilesFired) * 100 : 0,
+      interceptRate: this.interceptRate
     };
   }
 

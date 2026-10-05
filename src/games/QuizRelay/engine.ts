@@ -162,7 +162,7 @@ export class QuizRelayEngine {
 
   private nextQuestion(): void {
     const filteredQuestions = this.questions.filter(q => {
-      if (this.state.difficulty !== 'all' && q.difficulty !== this.state.difficulty) return false;
+      if (q.difficulty !== this.state.difficulty) return false;
       if (this.state.category !== 'all' && q.category !== this.state.category) return false;
       return true;
     });

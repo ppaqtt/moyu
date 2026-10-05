@@ -1,4 +1,15 @@
-import { BUNNY_HUNTER_CONSTANTS } from '../../utils/constants';
+import { BUNNY_HUNTER_CONSTANTS as BUNNY_HUNTER_BASE } from '../../utils/constants';
+
+export const BUNNY_HUNTER_CONSTANTS = {
+  ...BUNNY_HUNTER_BASE,
+  BUNNY_SIZE: 50,
+  BULLET_SPEED: 12,
+  BUNNY_SPAWN_INTERVAL: 800,
+  GAME_DURATION: 60,
+  SCORE_HIT: 10,
+  SCORE_MISS: -5,
+  COOP_BONUS: 2
+};
 
 const {
   CANVAS_WIDTH,

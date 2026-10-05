@@ -1,4 +1,12 @@
-import { SPEED_ESCAPE_CONSTANTS } from '../../utils/constants';
+import { SPEED_ESCAPE_CONSTANTS as BASE } from '../../utils/constants';
+
+export const SPEED_ESCAPE_CONSTANTS = {
+  ...BASE,
+  CAR_WIDTH: 40,
+  CAR_HEIGHT: 70,
+  INITIAL_SPEED: 5,
+  LANE_COUNT: 4
+};
 
 const {
   CANVAS_WIDTH,

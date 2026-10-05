@@ -330,7 +330,7 @@ export class SurfingEngine {
       const dy = this.surfer.y - obs.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < this.surfer.jumpHeight > 15 ? obs.radius + 15 : obs.radius + 20) {
+      if (dist < (this.surfer.jumpHeight > 15 ? obs.radius + 15 : obs.radius + 20)) {
         return true;
       }
     }

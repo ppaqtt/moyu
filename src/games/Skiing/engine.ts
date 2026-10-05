@@ -1,4 +1,12 @@
-import { SKIING_CONSTANTS } from '../../utils/constants';
+import { SKIING_CONSTANTS as BASE } from '../../utils/constants';
+
+export const SKIING_CONSTANTS = {
+  ...BASE,
+  PLAYER_SIZE: 28,
+  OBSTACLE_SIZE: 34,
+  INITIAL_SPEED: 4,
+  SPEED_INCREMENT: 0.05
+};
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, PLAYER_SIZE, OBSTACLE_SIZE, INITIAL_SPEED, SPEED_INCREMENT } = SKIING_CONSTANTS;
 

@@ -13,7 +13,7 @@ export default function Checkers() {
   const [board, setBoard] = useState<(0 | 1 | 2 | 3 | 4 | 5)[][]>(() => createInitialBoard());
   const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null);
   const [currentPlayer, setCurrentPlayer] = useState<1 | 2>(1);
-  const [validMoves, setValidMoves] = useState<{row: number, col: number}[]>([]);
+  const [validMoves, setValidMoves] = useState<{row: number, col: number, capture?: {row: number, col: number}}[]>([]);
   const [mustCapture, setMustCapture] = useState<boolean>(false);
   const [score1, setScore1] = useState(12);
   const [score2, setScore2] = useState(12);

@@ -22,6 +22,7 @@ export const NEON_COLORS = {
 
 export interface PlayerStats {
   health: number;
+  maxHealth: number;
   energy: number;
   experience: number;
   level: number;
@@ -148,6 +149,7 @@ export class ForestAdventureEngine {
     return {
       stats: {
         health: 100,
+        maxHealth: 100,
         energy: 100,
         experience: 0,
         level: 1

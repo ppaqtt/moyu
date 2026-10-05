@@ -6,7 +6,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { APACHE_ATTACK_CONSTANTS, STORAGE_KEYS } from '../../utils/constants';
 import { ApacheAttackEngine, Bullet, Target, Explosion } from './engine';
 
-const { HELI_WIDTH, HELI_HEIGHT, TARGET_WIDTH, TARGET_HEIGHT } = APACHE_ATTACK_CONSTANTS;
+const { CANVAS_WIDTH, CANVAS_HEIGHT, HELI_WIDTH, HELI_HEIGHT, TARGET_WIDTH, TARGET_HEIGHT } = APACHE_ATTACK_CONSTANTS;
 
 const BG_GRADIENT = 'linear-gradient(180deg, #1a3a1a 0%, #2d4a2d 50%, #1a1a0a 100%)';
 

@@ -1,4 +1,12 @@
-import { RINGTOSS_CONSTANTS } from '../../utils/constants';
+import { RINGTOSS_CONSTANTS as BASE } from '../../utils/constants';
+
+export const RINGTOSS_CONSTANTS = {
+  ...BASE,
+  RING_RADIUS: 16,
+  POLE_RADIUS: 10,
+  TOTAL_RINGS: 10,
+  THROW_POWER: 22
+};
 
 const {
   CANVAS_WIDTH,

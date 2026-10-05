@@ -1,4 +1,7 @@
-import { CHESS_CONSTANTS } from '../../utils/constants';
+import { CHESS_CONSTANTS as BASE } from '../../utils/constants';
+
+// 游戏本地增强常量：基础常量缺少 PIECE_SIZE 字段
+export const CHESS_CONSTANTS = { ...BASE, PIECE_SIZE: 60 };
 
 const { CELL_SIZE, PIECE_SIZE } = CHESS_CONSTANTS;
 

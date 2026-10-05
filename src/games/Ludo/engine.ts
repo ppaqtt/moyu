@@ -1,4 +1,6 @@
-import { LUDO_CONSTANTS } from '../../utils/constants';
+import { LUDO_CONSTANTS as BASE } from '../../utils/constants';
+
+export const LUDO_CONSTANTS = { ...BASE, CELL_SIZE: 40, PIECE_SIZE: 22, DICE_SIZE: 64 };
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, CELL_SIZE, PIECE_SIZE } = LUDO_CONSTANTS;
 

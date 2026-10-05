@@ -8,6 +8,9 @@ import { WW2AirwarEngine, Player, Enemy, Bullet, Explosion } from './engine';
 
 const BG_GRADIENT = 'linear-gradient(135deg, #1a0a0a 0%, #2d1810 50%, #1a1a0a 100%)';
 
+const PLAYER_WIDTH = WW2AIRWAR_CONSTANTS.PLAYER_WIDTH;
+const PLAYER_HEIGHT = WW2AIRWAR_CONSTANTS.PLAYER_HEIGHT;
+
 export default function WW2Airwar() {
   const navigate = useNavigate();
   const [engine] = useState(() => new WW2AirwarEngine());

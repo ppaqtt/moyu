@@ -2,7 +2,7 @@ export type Suit = 'spade' | 'heart' | 'club' | 'diamond';
 export type CardType = 'basic' | 'trick' | 'delayedTrick' | 'equip';
 export type BasicType = 'slash' | 'jink' | 'peach' | 'wine';
 export type TrickType = 'duel' | 'dismantlement' | 'fireAttack' | 'peachGarden' | 'lightning';
-export type EquipType = 'weapon' | 'armor' | 'horse';
+export type EquipType = 'weapon' | 'armor' | 'horse' | 'eightTrigrams' | 'nineChapters';
 
 export interface Card {
   id: string;
@@ -311,7 +311,7 @@ export class ThreeKingdomsEngine {
         hasSlash: false,
         hasJink: 0,
         canUseWine: true,
-        isWounded: generalData.hp < generalData.maxHp,
+        isWounded: false,
       };
 
       const handCards: Card[] = [];
@@ -524,8 +524,11 @@ export class ThreeKingdomsEngine {
   }
 
   private useSlash(attacker: Player, target: Player, card: Card): void {
-    if (!attacker.general || attacker.general.name === '张飞') {
-      attacker.hasSlash = true;
+    if (!attacker.general) {
+      return;
+    }
+    if (attacker.general.name === '张飞') {
+      attacker.general.hasSlash = true;
     }
     
     this.message = `${attacker.general?.name} 对 ${target.general?.name} 使用了【杀】！`;
@@ -540,7 +543,7 @@ export class ThreeKingdomsEngine {
       target.defenseTarget = attacker.id;
       this.action = 'responseJink';
       
-      if (targetId !== 0) {
+      if (target.id !== 0) {
         setTimeout(() => this.aiRespondJink(target), 1500);
       }
     } else {
@@ -644,7 +647,7 @@ export class ThreeKingdomsEngine {
       (target.general?.name === '关羽' && target.handCards.some(c => this.isRedCard(c)));
 
     if (hasSlash) {
-      if (targetId !== 0) {
+      if (target.id !== 0) {
         setTimeout(() => this.aiRespondDuel(target, attacker), 1000);
       } else {
         this.action = 'duel';

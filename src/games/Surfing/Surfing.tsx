@@ -177,7 +177,7 @@ export default function Surfing() {
     ctx.restore();
   }, []);
 
-  const drawSurfer = useCallback((ctx: CanvasRenderingContext2D, surfer: { x: number; y: number; rotation: number; speed: number; isOnWave: boolean; isJumping: boolean; jumpHeight: number; currentTrick: string | null }, wave: { x: number; y: number; amplitude: number; frequency: number; phase: number }) => {
+  const drawSurfer = useCallback((ctx: CanvasRenderingContext2D, surfer: { x: number; y: number; rotation: number; speed: number; isOnWave: boolean; isJumping: boolean; jumpHeight: number }, wave: { x: number; y: number; amplitude: number; frequency: number; phase: number }, currentTrick: string | null) => {
     ctx.save();
     ctx.translate(surfer.x, surfer.y - (surfer.isJumping ? surfer.jumpHeight : 0));
 
@@ -247,13 +247,13 @@ export default function Surfing() {
 
     ctx.restore();
 
-    if (surfer.currentTrick) {
+    if (currentTrick) {
       ctx.font = 'bold 14px Arial';
       ctx.textAlign = 'center';
       ctx.fillStyle = '#ffd700';
       ctx.shadowColor = '#ffd700';
       ctx.shadowBlur = 15;
-      ctx.fillText(surfer.currentTrick, 0, -60);
+      ctx.fillText(currentTrick, 0, -60);
       ctx.shadowBlur = 0;
     }
 
@@ -314,7 +314,7 @@ export default function Surfing() {
 
     const mainWave = state.waves.find(w => w.type === 'normal') || state.waves[0];
     if (mainWave) {
-      drawSurfer(ctx, state.surfer, mainWave);
+      drawSurfer(ctx, state.surfer, mainWave, state.currentTrick);
     }
 
     drawParticles(ctx, state.particles);

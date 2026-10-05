@@ -1,5 +1,8 @@
 // 找不同游戏引擎
-import { FINDDIFF_CONSTANTS } from '../../utils/constants';
+import { FINDDIFF_CONSTANTS as BASE } from '../../utils/constants';
+
+// 游戏本地增强常量：基础常量缺少 DIFF_COUNT、TIME_LIMIT 字段
+export const FINDDIFF_CONSTANTS = { ...BASE, DIFF_COUNT: 5, TIME_LIMIT: 60 };
 
 interface Difference {
   x: number;
@@ -67,7 +70,7 @@ export class FindDiffEngine {
     // 生成不同之处
     const differences: Difference[] = [];
     const gridSize = 4;
-    const cellWidth = 200;
+    const cellWidth = 100;
     const cellHeight = 150;
 
     for (let i = 0; i < DIFF_COUNT; i++) {

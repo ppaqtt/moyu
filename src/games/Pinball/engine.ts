@@ -1,4 +1,11 @@
-import { PINBALL_CONSTANTS } from '../../utils/constants';
+import { PINBALL_CONSTANTS as BASE } from '../../utils/constants';
+
+export const PINBALL_CONSTANTS = {
+  ...BASE,
+  FLIPPER_LENGTH: 70,
+  GRAVITY: 0.25,
+  BUMPER_RADIUS: 25
+};
 
 const {
   CANVAS_WIDTH,

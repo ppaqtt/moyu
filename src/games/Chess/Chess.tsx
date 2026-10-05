@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { CHESS_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { ChessEngine, Piece, Position } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { ChessEngine, Piece, Position, CHESS_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, CELL_SIZE } = CHESS_CONSTANTS;
 

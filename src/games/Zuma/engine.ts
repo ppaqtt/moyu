@@ -1,5 +1,14 @@
 // 祖玛游戏引擎
-import { ZUMA_CONSTANTS } from '../../utils/constants';
+import { ZUMA_CONSTANTS as BASE } from '../../utils/constants';
+
+export const ZUMA_CONSTANTS = {
+  ...BASE,
+  CURVE_RADIUS: 180,
+  PATH_SPEED: 0.6,
+  SHOOT_SPEED: 12,
+  BALL_RADIUS: 14,
+  COLORS: ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'],
+};
 
 interface Ball {
   x: number;

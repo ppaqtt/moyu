@@ -157,6 +157,10 @@ export class BrawlStarsEngine {
     this.state = this.createInitialState();
   }
 
+  setPhase(phase: GameState['phase']): void {
+    this.state.phase = phase;
+  }
+
   private updatePlayer(player: Player, input: { left: boolean; right: boolean; attack: boolean; special: boolean }, opponent: Player): void {
     if (player.health <= 0) return;
 

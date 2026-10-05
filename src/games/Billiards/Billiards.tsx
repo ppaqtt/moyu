@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { BILLIARDS_CONSTANTS, STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
-import { BilliardsEngine, BilliardsState, Ball } from './engine';
+import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
+import { BilliardsEngine, BilliardsState, Ball, BILLIARDS_CONSTANTS } from './engine';
 
 const { CANVAS_WIDTH, CANVAS_HEIGHT, BALL_RADIUS, POCKET_RADIUS } = BILLIARDS_CONSTANTS;
 
