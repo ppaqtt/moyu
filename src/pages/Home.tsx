@@ -88,11 +88,25 @@ export default function Home() {
       <ParticleBg />
 
       <motion.div
-        className="absolute top-6 right-6 z-20"
+        className="absolute top-6 right-6 z-20 flex gap-3"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
       >
+        <motion.button
+          onClick={() => navigate('/leaderboard')}
+          className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+          style={{
+            background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.3), rgba(249, 115, 22, 0.3))',
+            color: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(234, 179, 8, 0.35)',
+            backdropFilter: 'blur(10px)'
+          }}
+          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(234, 179, 8, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🏆 排行榜
+        </motion.button>
         <motion.button
           onClick={() => navigate('/updates')}
           className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
