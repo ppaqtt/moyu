@@ -6,6 +6,23 @@ import { NEON_COLORS } from '../utils/constants';
 
 const UPDATE_LOGS = [
   {
+    id: 99,
+    date: '2026年10月5日',
+    title: '新增游戏排行榜功能',
+    icon: '🏆',
+    color: NEON_COLORS.gold,
+    changes: [
+      '新增排行榜页面 /leaderboard：包含总榜与各游戏榜',
+      '支持设置玩家昵称，成绩按昵称归属，每个人都有自己的名字',
+      '每个游戏维护 Top20 排行，同一昵称只保留最高分',
+      '总榜按「各游戏最高分之和」排名，并显示参与游戏数',
+      '游戏页右下角新增排行榜浮层：设置昵称、查看本游戏 Top10',
+      '游戏结束时自动以当前昵称记录本局成绩',
+      '支持一键导出全部排行数据（JSON）',
+      '首页右上角新增「🏆 排行榜」入口',
+    ]
+  },
+  {
     id: 0,
     date: '2026年10月4日',
     title: '全量游戏可玩性修复 - 540款游戏实测通过',
@@ -189,7 +206,7 @@ const UPDATE_LOGS = [
 
 export default function UpdateLogPage() {
   const navigate = useNavigate();
-  const [expandedId, setExpandedId] = useState<number | null>(0);
+  const [expandedId, setExpandedId] = useState<number | null>(99);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
