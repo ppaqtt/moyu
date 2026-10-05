@@ -4,6 +4,24 @@ import { NEON_COLORS } from '../utils/constants';
 
 const UPDATE_LOGS = [
   {
+    id: 0,
+    date: '2026年10月4日',
+    title: '全量游戏可玩性修复 - 540款游戏实测通过',
+    icon: '🛠️',
+    color: NEON_COLORS.neonOrange,
+    changes: [
+      '修复 useGameLoop 仅支持函数式调用的问题，兼容对象式 { callback, delay, enabled } 写法（影响 70+ 游戏）',
+      'useKeyboard 新增 WASD 与 onLeft/onRight/onUp/onDown 方向键别名支持',
+      '补齐 NEON_COLORS、STORAGE_KEYS.GAME_IDS 等共享常量，修复 9 款创作类游戏进入即崩溃的问题',
+      '补齐 TETRIS_CONSTANTS 缺失的速度常量，修复俄罗斯方块开局即结束的问题',
+      '修正 GameRecord 缺少 gamesPlayed 字段导致的类型错误',
+      '批量修复约 100 个游戏引擎文件的缺失常量与类型错误，补全真实数值',
+      '修复多个真实逻辑 Bug：找茬差异点超出画布、饼干店无法开局、国际象棋递归栈溢出、投篮后球不归位等',
+      'TypeScript 类型检查 0 错误，vite build 构建成功',
+      '540 款游戏逐一实测：全部正常加载、无控制台报错',
+    ]
+  },
+  {
     id: 1,
     date: '2026年5月13日',
     title: '大规模游戏库扩展',
@@ -82,7 +100,7 @@ const UPDATE_LOGS = [
 ];
 
 export default function UpdateLog() {
-  const [expandedId, setExpandedId] = useState<number | null>(1);
+  const [expandedId, setExpandedId] = useState<number | null>(0);
 
   return (
     <div className="py-16 px-4">
