@@ -21,6 +21,7 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
   const [food, setFood] = useState<Position>(() => engine.getState().food);
   const [score, setScore] = useState(() => engine.getState().score);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
   const [speed, setSpeed] = useState(() => engine.getState().speed);
   const { record, updateScore } = useGameRecord(STORAGE_KEYS.SNAKE);
 
@@ -43,7 +44,7 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
     }
   }, [engine, onScoreUpdate, onGameOver, updateScore, isGameOver]);
 
-  useGameLoop({ callback: handleTick, delay: speed, enabled: !isGameOver });
+  useGameLoop({ callback: handleTick, delay: speed, enabled: isStarted && !isGameOver });
 
   const handleDirectionChange = useCallback((dir: Direction) => {
     engine.setDirection(dir);
@@ -57,6 +58,7 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
     setScore(state.score);
     setSpeed(state.speed);
     setIsGameOver(false);
+    setIsStarted(true);
     onScoreUpdate(state.score);
   }, [engine, onScoreUpdate]);
 
@@ -69,7 +71,7 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
     onS: () => handleDirectionChange('down'),
     onA: () => handleDirectionChange('left'),
     onD: () => handleDirectionChange('right'),
-    enabled: !isGameOver
+    enabled: isStarted && !isGameOver
   });
 
   const getSnakeGradient = (index: number, total: number) => {
@@ -170,6 +172,33 @@ export default function Snake({ onScoreUpdate, onGameOver, onExit }: SnakeProps)
             boxShadow: `0 0 20px ${NEON_COLORS.neonPink}, 0 0 40px ${NEON_COLORS.neonPink}50`
           }}
         />
+
+        {!isStarted && (
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4"
+            style={{ backgroundColor: 'rgba(26, 26, 46, 0.92)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="text-4xl font-bold" style={{ color: NEON_COLORS.neonPink }}>贪吃蛇</div>
+            <div className="text-base opacity-70" style={{ color: NEON_COLORS.gold }}>
+              方向键 / WASD 控制方向
+            </div>
+            <motion.button
+              onClick={handleRestart}
+              className="px-8 py-3 rounded-xl font-bold"
+              style={{
+                backgroundColor: NEON_COLORS.neonPink,
+                color: NEON_COLORS.white,
+                boxShadow: `0 0 20px ${NEON_COLORS.neonPink}`
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              开始游戏
+            </motion.button>
+          </motion.div>
+        )}
 
         {isGameOver && (
           <motion.div

@@ -21,7 +21,7 @@ export default function SimpleDraw({ onScoreUpdate, onGameOver, onExit }: Simple
   const [selectedWidth, setSelectedWidth] = useState(4);
   const [selectedBg, setSelectedBg] = useState('#ffffff');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record } = useGameRecord(STORAGE_KEYS.GAME_IDS.SIMPLE_DRAW || 'simpledraw_highscore');
+  const { record } = useGameRecord('simpledraw_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

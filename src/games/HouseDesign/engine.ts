@@ -33,7 +33,7 @@ export interface HouseDesignState {
 }
 
 export class HouseDesignEngine {
-  private state: HouseDesignState;
+  state: HouseDesignState;
   private roomCount: number = 4;
   private canvasWidth: number;
   private canvasHeight: number;

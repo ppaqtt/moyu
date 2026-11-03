@@ -194,7 +194,7 @@ export class AngryBirdsEngine {
       vx: 0,
       vy: 0,
       isDestroyed: false
-    }));
+    } as Block));
 
     this.pigs = levelData.pigs.map((p, i) => ({
       id: i,

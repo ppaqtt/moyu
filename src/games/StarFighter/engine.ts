@@ -62,6 +62,7 @@ export interface StarFighterState {
   energy: number;
   maxEnergy: number;
   boost: number;
+  invincibleTime: number;
 }
 
 export class StarFighterEngine {
@@ -150,7 +151,8 @@ export class StarFighterEngine {
       isPlaying: this.isPlaying,
       energy: this.energy,
       maxEnergy: this.maxEnergy,
-      boost: this.boost
+      boost: this.boost,
+      invincibleTime: this.invincibleTime
     };
   }
 

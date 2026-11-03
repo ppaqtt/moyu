@@ -19,6 +19,8 @@ const CARGO_CONFIG: Record<CargoType, { name: string; emoji: string; color: stri
   luxury: { name: '奢侈品', emoji: '💎', color: '#9b59b6' }
 };
 
+const INITIAL_CREDITS = 500;
+
 export default function SpaceTrader() {
   const navigate = useNavigate();
   const [engine] = useState(() => new SpaceTraderEngine());
@@ -34,8 +36,6 @@ export default function SpaceTrader() {
   const [selectedCargo, setSelectedCargo] = useState<CargoType | null>(null);
   const [tradeMode, setTradeMode] = useState<'buy' | 'sell'>('buy');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const INITIAL_CREDITS = 500;
 
   const handleExit = useCallback(() => {
     navigate('/');

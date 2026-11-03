@@ -201,7 +201,7 @@ export class MemoryMatchEngine {
     this.maxMoves = moves;
   }
 
-  public getGridSize(): number {
+  public getGridSize(): { rows: number; cols: number } {
     const totalCards = this.totalPairs * 2;
     const cols = Math.ceil(Math.sqrt(totalCards));
     const rows = Math.ceil(totalCards / cols);

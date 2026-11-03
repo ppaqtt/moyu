@@ -10,7 +10,7 @@ interface Piece {
   x: number;
   y: number;
   rotation: number;
-  selected: boolean;
+  selected?: boolean;
 }
 
 const BOARD_WIDTH = 400;

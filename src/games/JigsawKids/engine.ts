@@ -90,7 +90,7 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
     
     this.moves = 0;
     this.startTime = Date.now();
-    this.isComplete = false;
+    this.gameCompleted = false;
   }
 
   public movePiece(pieceId: number, newX: number, newY: number): boolean {
@@ -113,7 +113,7 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
     this.moves++;
     
     if (this.checkCompletion()) {
-      this.isComplete = true;
+      this.gameCompleted = true;
     }
 
     return true;
@@ -131,9 +131,13 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
       gridSize: this.gridSize,
       moves: this.moves,
       startTime: this.startTime,
-      isComplete: this.isComplete,
+      isComplete: this.gameCompleted,
       currentImage: this.currentImage
     };
+  }
+
+  public isComplete(): boolean {
+    return this.gameCompleted;
   }
 
   public getGridSize(): number {
@@ -142,10 +146,6 @@ export class JigsawKidsEngineClass implements JigsawKidsEngine {
 
   public getMoves(): number {
     return this.moves;
-  }
-
-  public isComplete(): boolean {
-    return this.gameCompleted;
   }
 
   public getImages(): string[] {

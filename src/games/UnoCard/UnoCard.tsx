@@ -183,7 +183,7 @@ export default function UnoCard() {
     return names[color];
   };
 
-  const getCardDisplay = (card: UnoCard): string => {
+  const getCardDisplay = (card: UnoCardType): string => {
     if (card.type === 'number') return card.value.toString();
     if (card.type === 'skip') return '禁';
     if (card.type === 'reverse') return '转';
@@ -193,7 +193,7 @@ export default function UnoCard() {
     return '';
   };
 
-  const canPlayCard = (card: UnoCard): boolean => {
+  const canPlayCard = (card: UnoCardType): boolean => {
     const engine = engineRef.current;
     if (!engine) return false;
     return engine.canPlayCard(card, topCard, currentColor);

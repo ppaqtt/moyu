@@ -43,6 +43,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
 export interface GameRecord {
   bestScore: number;
   totalGames: number;
+  gamesPlayed?: number;
   lastPlayed: string;
 }
 

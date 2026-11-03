@@ -356,7 +356,7 @@ export class IntChessEngine {
   private finishTurn(): void {
     this.isCheck = this.isInCheckForPlayer(this.currentPlayer);
 
-    if (this.isInCheckmate(this.currentPlayer === 'white' ? 'black' : 'white')) {
+    if (this.isCheckmate(this.currentPlayer === 'white' ? 'black' : 'white')) {
       this.isGameOver = true;
       this.winner = this.currentPlayer;
       return;

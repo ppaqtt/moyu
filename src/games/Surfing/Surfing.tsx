@@ -177,7 +177,7 @@ export default function Surfing() {
     ctx.restore();
   }, []);
 
-  const drawSurfer = useCallback((ctx: CanvasRenderingContext2D, surfer: { x: number; y: number; rotation: number; speed: number; isOnWave: boolean; isJumping: boolean; jumpHeight: number; currentTrick: string | null }, wave: { x: number; y: number; amplitude: number; frequency: number; phase: number }) => {
+  const drawSurfer = useCallback((ctx: CanvasRenderingContext2D, surfer: { x: number; y: number; rotation: number; speed: number; isOnWave: boolean; isJumping: boolean; jumpHeight: number; currentTrick?: string | null }, wave: { x: number; y: number; amplitude: number; frequency: number; phase: number }) => {
     ctx.save();
     ctx.translate(surfer.x, surfer.y - (surfer.isJumping ? surfer.jumpHeight : 0));
 

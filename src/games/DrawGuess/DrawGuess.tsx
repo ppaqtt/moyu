@@ -20,7 +20,7 @@ export default function DrawGuess({ onScoreUpdate, onGameOver, onExit }: DrawGue
   const [guessInput, setGuessInput] = useState('');
   const [showHint, setShowHint] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.DRAW_GUESS || 'drawguess_highscore');
+  const { record, updateScore } = useGameRecord('drawguess_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

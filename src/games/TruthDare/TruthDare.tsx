@@ -16,7 +16,7 @@ export default function TruthDare({ onScoreUpdate, onGameOver, onExit }: TruthDa
   const [playerName, setPlayerName] = useState('');
   const [maxRounds, setMaxRounds] = useState(10);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS?.TRUTH_DARE || 'truthdare_highscore');
+  const { record, updateScore } = useGameRecord('truthdare_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

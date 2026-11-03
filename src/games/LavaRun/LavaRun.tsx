@@ -122,7 +122,7 @@ export default function LavaRun({ onScoreUpdate, onGameOver, onExit }: LavaRunPr
         top: obs.y,
         width: obs.width,
         height: obs.height,
-        ...getObstacleStyle(obs)
+        ...getObstacleStyle(obs.type)
       }}
       animate={obs.type === 'gem' ? { rotate: 360, scale: [1, 1.15, 1] } : { scale: [1, 1.1, 1] }}
       transition={obs.type === 'gem'

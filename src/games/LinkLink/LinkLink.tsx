@@ -167,7 +167,9 @@ export default function LinkLink() {
               style={{
                 width: boardWidth + 16,
                 height: boardHeight + 16,
-                background: 'rgba(0, 0, 0, 0.3)'
+                background: 'rgba(0, 0, 0, 0.3)',
+                gridTemplateColumns: `repeat(${GRID_COLS}, ${TILE_WIDTH - 4}px)`,
+                gridTemplateRows: `repeat(${GRID_ROWS}, ${TILE_HEIGHT - 4}px)`
               }}
             >
               {board.map((row, rowIndex) =>

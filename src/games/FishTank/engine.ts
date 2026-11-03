@@ -231,7 +231,7 @@ export class FishTankEngine {
     return true;
   }
 
-  private tick(): void {
+  tick(): void {
     const now = Date.now();
     this.lastUpdate = now;
 

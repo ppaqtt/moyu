@@ -20,6 +20,7 @@ export interface ColorDetectState {
   streak: number;
   bestStreak: number;
   isGameOver: boolean;
+  totalTimeLeft: number;
 }
 
 export interface ColorDetectEngine {
@@ -142,7 +143,8 @@ export class ColorDetectEngine implements ColorDetectEngine {
       lastResult: this.lastResult,
       streak: this.streak,
       bestStreak: this.bestStreak,
-      isGameOver: this.isGameOver
+      isGameOver: this.isGameOver,
+      totalTimeLeft: this.totalTimeLeft
     };
   }
 

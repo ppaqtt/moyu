@@ -44,26 +44,26 @@ const PACMAN_SPEED = 2;
 
 const MAZE = [
   "#####################",
-  "#........#.........#",
-  "#.####.#.#.#######.#",
-  "#.#    #.#.#.....#.#",
-  "#.# ####.#.#.###.#.#",
-  "#.####.#.#.#.#.#.#.#",
-  "#......#...#.#.#...#",
-  "####.#####.#.#.#####",
-  "   #.#     #.#.....",
-  "   #.#.###.#.######",
-  "   #...#   #.......",
-  "   #.###.#####.####",
-  "   #.....#   #.#...",
-  "#####.###.#.#.#.###",
-  "#.....#   #.#...#..",
-  "#.###.#.###.#####.#",
-  "#.#...#.....#....#.",
-  "#.#.#########.##.#.",
-  "#.#........#...#.#",
-  "#.#########..###.#.",
-  "###################"
+  "#.........#.........#",
+  "#.###.###.#.###.###.#",
+  "#.#.....#.#.#.....#.#",
+  "#.#.###.#.#.#.###.#.#",
+  "#...#...#...#...#...#",
+  "###.#.#######.#.#####",
+  "#...#.........#.....#",
+  "#.#####.#####.#####.#",
+  "#.......#...#.......#",
+  "#.#####.#.#.#.#####.#",
+  "#.#...#.#.#.#.#...#.#",
+  "#.#.#.#.#.#.#.#.#.#.#",
+  "#...#...#...#...#...#",
+  "###.#.#######.#.#####",
+  "#...#.........#.....#",
+  "#.#####.#####.#####.#",
+  "#.........#.........#",
+  "#.###.###.#.###.###.#",
+  "#.........#.........#",
+  "#####################"
 ];
 
 export class GamePacmanEngine {
@@ -83,7 +83,7 @@ export class GamePacmanEngine {
   constructor() {
     this.pacman = {
       x: CELL_SIZE * 10,
-      y: CELL_SIZE * 15,
+      y: CELL_SIZE * 9,
       direction: 'left',
       nextDirection: 'left',
       mouthAngle: 0,
@@ -104,9 +104,10 @@ export class GamePacmanEngine {
 
   private initGhosts(): Ghost[] {
     const ghostColors = ['#FF0000', '#FFB8FF', '#00FFFF', '#FFB852'];
+    const spawns: [number, number][] = [[9, 7], [11, 7], [9, 11], [11, 11]];
     return ghostColors.map((color, i) => ({
-      x: CELL_SIZE * (10 + i),
-      y: CELL_SIZE * 9,
+      x: CELL_SIZE * spawns[i][0],
+      y: CELL_SIZE * spawns[i][1],
       direction: 'down' as const,
       color,
       isVulnerable: false,
@@ -283,14 +284,14 @@ export class GamePacmanEngine {
 
   private resetPositions(): void {
     this.pacman.x = CELL_SIZE * 10;
-    this.pacman.y = CELL_SIZE * 15;
+    this.pacman.y = CELL_SIZE * 9;
     this.pacman.direction = 'left';
     this.pacman.nextDirection = 'left';
 
-    const ghostColors = ['#FF0000', '#FFB8FF', '#00FFFF', '#FFB852'];
+    const spawns: [number, number][] = [[9, 7], [11, 7], [9, 11], [11, 11]];
     this.ghosts.forEach((ghost, i) => {
-      ghost.x = CELL_SIZE * (10 + i);
-      ghost.y = CELL_SIZE * 9;
+      ghost.x = CELL_SIZE * spawns[i][0];
+      ghost.y = CELL_SIZE * spawns[i][1];
       ghost.isVulnerable = false;
       ghost.isRecovering = false;
     });
@@ -311,7 +312,7 @@ export class GamePacmanEngine {
   reset(): void {
     this.pacman = {
       x: CELL_SIZE * 10,
-      y: CELL_SIZE * 15,
+      y: CELL_SIZE * 9,
       direction: 'left',
       nextDirection: 'left',
       mouthAngle: 0,

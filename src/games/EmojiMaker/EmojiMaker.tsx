@@ -17,7 +17,7 @@ export default function EmojiMaker({ onScoreUpdate, onGameOver, onExit }: EmojiM
   const [state, setState] = useState(() => engine.getState());
   const [activeTab, setActiveTab] = useState<'face' | 'eyes' | 'eyebrows' | 'mouth' | 'accessories'>('face');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.EMOJI_MAKER || 'emojimaker_highscore');
+  const { record, updateScore } = useGameRecord('emojimaker_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

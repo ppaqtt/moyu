@@ -328,10 +328,10 @@ export class MemeMakerEngine {
   getTextAtPoint(x: number, y: number): TextElement | null {
     for (let i = this.textElements.length - 1; i >= 0; i--) {
       const element = this.textElements[i];
-      ctx.save();
-      ctx.font = `${element.fontWeight} ${element.fontStyle} ${element.fontSize}px "${element.fontFamily}"`;
-      const metrics = ctx.measureText(element.text);
-      ctx.restore();
+      this.ctx.save();
+      this.ctx.font = `${element.fontWeight} ${element.fontStyle} ${element.fontSize}px "${element.fontFamily}"`;
+      const metrics = this.ctx.measureText(element.text);
+      this.ctx.restore();
 
       const halfWidth = metrics.width / 2;
       const halfHeight = element.fontSize / 2;

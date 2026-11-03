@@ -124,6 +124,10 @@ export class BrawlStarsEngine {
     return this.state;
   }
 
+  setPhase(phase: GameState['phase']): void {
+    this.state.phase = phase;
+  }
+
   getCharacters(): Character[] {
     return CHARACTERS;
   }

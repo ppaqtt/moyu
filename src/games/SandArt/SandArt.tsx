@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useGameRecord } from '../../hooks/useLocalStorage';
 import { STORAGE_KEYS, NEON_COLORS } from '../../utils/constants';
 import { SandArtEngine, SAND_COLORS, BACKGROUNDS } from './engine';
+import type { Point } from './engine';
 
 interface SandArtProps {
   onScoreUpdate: (score: number) => void;
@@ -19,7 +20,7 @@ export default function SandArt({ onScoreUpdate, onGameOver, onExit }: SandArtPr
   const [isPlaying, setIsPlaying] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.SAND_ART || 'sandart_highscore');
+  const { record, updateScore } = useGameRecord('sandart_highscore');
 
   useEffect(() => {
     engine.setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);

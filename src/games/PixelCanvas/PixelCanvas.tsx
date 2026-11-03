@@ -20,7 +20,7 @@ export default function PixelCanvas({ onScoreUpdate, onGameOver, onExit }: Pixel
   const [isDrawing, setIsDrawing] = useState(false);
   const [showPresets, setShowPresets] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.PIXEL_CANVAS || 'pixelcanvas_highscore');
+  const { record, updateScore } = useGameRecord('pixelcanvas_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

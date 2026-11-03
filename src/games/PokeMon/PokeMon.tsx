@@ -136,7 +136,7 @@ export default function PokeMon() {
       className="p-4 rounded-xl"
       style={{
         backgroundColor: NEON_COLORS.surface,
-        border: `2px solid ${getTypeColor(monster.type)}60`,
+        border: `2px solid ${getTypeColor(monster.type.type)}60`,
       }}
       whileHover={{ scale: 1.02 }}
     >
@@ -144,7 +144,7 @@ export default function PokeMon() {
         <span className="text-4xl">{monster.type.emoji}</span>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-bold" style={{ color: getTypeColor(monster.type) }}>
+            <span className="font-bold" style={{ color: getTypeColor(monster.type.type) }}>
               {monster.type.name}
             </span>
             <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: getRarityColor(monster.type.rarity) + '30', color: getRarityColor(monster.type.rarity) }}>
