@@ -18,7 +18,7 @@ export default function ColoringBook({ onScoreUpdate, onGameOver, onExit }: Colo
   const [state, setState] = useState(() => engine.getState());
   const [showComplete, setShowComplete] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.COLORING_BOOK || 'coloringbook_highscore');
+  const { record, updateScore } = useGameRecord('coloringbook_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

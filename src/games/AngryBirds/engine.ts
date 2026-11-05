@@ -190,7 +190,7 @@ export class AngryBirdsEngine {
       rotation: 0,
       health: BLOCK_TYPES[b.type].health,
       maxHealth: BLOCK_TYPES[b.type].health,
-      type: b.type,
+      type: b.type as 'wood' | 'stone' | 'glass',
       vx: 0,
       vy: 0,
       isDestroyed: false

@@ -19,7 +19,7 @@ export default function CodeArt({ onScoreUpdate, onGameOver, onExit }: CodeArtPr
   const [errors, setErrors] = useState<string[]>([]);
   const [showPatterns, setShowPatterns] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.CODE_ART || 'codeart_highscore');
+  const { record, updateScore } = useGameRecord('codeart_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

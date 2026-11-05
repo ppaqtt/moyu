@@ -99,7 +99,8 @@ const BasketballShootGame: React.FC = () => {
 
     // Draw ball
     if (state.ball) {
-      const { x, y, radius } = state.ball;
+      const { position, radius } = state.ball;
+      const x = position.x, y = position.y;
       const gradient = ctx.createRadialGradient(x - radius/3, y - radius/3, 0, x, y, radius);
       gradient.addColorStop(0, '#ff8c42');
       gradient.addColorStop(1, '#d35400');
@@ -122,8 +123,9 @@ const BasketballShootGame: React.FC = () => {
       ctx.lineWidth = 2;
       ctx.setLineDash([5, 5]);
       ctx.beginPath();
-      ctx.moveTo(state.ball.x, state.ball.y);
-      ctx.lineTo(state.aimEndX, state.aimEndY);
+      const aimLength = 90 + state.power * 120;
+      ctx.moveTo(state.ball.position.x, state.ball.position.y);
+      ctx.lineTo(state.ball.position.x + Math.cos(state.aimAngle) * aimLength, state.ball.position.y + Math.sin(state.aimAngle) * aimLength);
       ctx.stroke();
       ctx.setLineDash([]);
     }
@@ -133,7 +135,7 @@ const BasketballShootGame: React.FC = () => {
       ctx.fillStyle = particle.color;
       ctx.globalAlpha = particle.life;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.arc(particle.position.x, particle.position.y, particle.size, 0, Math.PI * 2);
       ctx.fill();
       ctx.globalAlpha = 1;
     });
@@ -145,7 +147,7 @@ const BasketballShootGame: React.FC = () => {
     ctx.fillText(`Best: ${highScore}`, 20, 70);
 
     // Draw shots left
-    ctx.fillText(`Shots: ${state.shotsLeft}`, 20, 100);
+    ctx.fillText(`Shots: ${state.maxAttempts - state.attempts}`, 20, 100);
 
     // Draw power bar when charging
     if (isCharging) {
@@ -207,8 +209,8 @@ const BasketballShootGame: React.FC = () => {
     const y = e.clientY - rect.top;
 
     if (stateRef.current.ball) {
-      const dx = x - stateRef.current.ball.x;
-      const dy = y - stateRef.current.ball.y;
+      const dx = x - stateRef.current.ball.position.x;
+      const dy = y - stateRef.current.ball.position.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < stateRef.current.ball.radius * 2) {
@@ -228,7 +230,7 @@ const BasketballShootGame: React.FC = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    dispatch({ type: 'AIM', x, y });
+    dispatch({ type: 'AIM', angle: Math.atan2(y - stateRef.current.ball.position.y, x - stateRef.current.ball.position.x) });
   };
 
   const handleMouseUp = () => {

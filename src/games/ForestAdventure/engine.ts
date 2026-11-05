@@ -22,6 +22,7 @@ export const NEON_COLORS = {
 
 export interface PlayerStats {
   health: number;
+  maxHealth: number;
   energy: number;
   experience: number;
   level: number;
@@ -148,6 +149,7 @@ export class ForestAdventureEngine {
     return {
       stats: {
         health: 100,
+        maxHealth: 100,
         energy: 100,
         experience: 0,
         level: 1
@@ -159,8 +161,8 @@ export class ForestAdventureEngine {
       ],
       equippedWeapon: { ...ITEMS.sword },
       map,
-      monsters: this.generateMonsters(),
-      puzzles: this.generatePuzzles(),
+      monsters: this.generateMonsters(map),
+      puzzles: this.generatePuzzles(map),
       quests: this.generateQuests(),
       score: 0,
       depth: 1,
@@ -225,7 +227,7 @@ export class ForestAdventureEngine {
     return map;
   }
 
-  private generateMonsters(): Monster[] {
+  private generateMonsters(map: MapTile[][]): Monster[] {
     const monsters: Monster[] = [];
     const monsterTypes: Monster['type'][] = ['wolf', 'bear', 'snake', 'spider'];
     const monsterStats: Record<string, { name: string; health: number; damage: number; exp: number; icon: string }> = {
@@ -241,10 +243,11 @@ export class ForestAdventureEngine {
       const type = monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
       const stats = monsterStats[type];
       let x, y;
+      let guard = 0;
       do {
         x = Math.floor(Math.random() * this.config.mapWidth);
         y = Math.floor(Math.random() * this.config.mapHeight);
-      } while (!this.state?.map[x][y]?.walkable || (x === this.config.mapWidth / 2 && y === this.config.mapHeight / 2));
+      } while ((!map[x]?.[y]?.walkable || (x === this.config.mapWidth / 2 && y === this.config.mapHeight / 2)) && guard++ < 500);
 
       const monster: Monster = {
         id: `monster_${i}`,
@@ -260,8 +263,8 @@ export class ForestAdventureEngine {
       };
 
       monsters.push(monster);
-      if (this.state?.map[x]) {
-        this.state.map[x][y].monster = monster;
+      if (map[x]) {
+        map[x][y].monster = monster;
       }
     }
 
@@ -281,23 +284,24 @@ export class ForestAdventureEngine {
       defeated: false
     };
     monsters.push(boss);
-    if (this.state?.map[boss.x]) {
-      this.state.map[boss.x][boss.y].monster = boss;
+    if (map[boss.x]) {
+      map[boss.x][boss.y].monster = boss;
     }
 
     return monsters;
   }
 
-  private generatePuzzles(): Puzzle[] {
+  private generatePuzzles(map: MapTile[][]): Puzzle[] {
     const puzzles: Puzzle[] = [];
 
     // 生成机关
     for (let i = 0; i < 5; i++) {
       let x, y;
+      let guard = 0;
       do {
         x = Math.floor(Math.random() * this.config.mapWidth);
         y = Math.floor(Math.random() * this.config.mapHeight);
-      } while (!this.state?.map[x][y]?.walkable);
+      } while (!map[x]?.[y]?.walkable && guard++ < 500);
 
       const types: Puzzle['type'][] = ['lever', 'button', 'chest'];
       const puzzle: Puzzle = {
@@ -309,8 +313,8 @@ export class ForestAdventureEngine {
       };
 
       puzzles.push(puzzle);
-      if (this.state?.map[x]) {
-        this.state.map[x][y].puzzle = puzzle;
+      if (map[x]) {
+        map[x][y].puzzle = puzzle;
       }
     }
 
@@ -324,9 +328,9 @@ export class ForestAdventureEngine {
       requiredItem: 'ancient_key'
     };
     puzzles.push(door);
-    if (this.state?.map[door.x]) {
-      this.state.map[door.x][door.y].puzzle = door;
-      this.state.map[door.x][door.y].walkable = false;
+    if (map[door.x]) {
+      map[door.x][door.y].puzzle = door;
+      map[door.x][door.y].walkable = false;
     }
 
     return puzzles;

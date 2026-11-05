@@ -20,7 +20,7 @@ export default function QuizRelay({ onScoreUpdate, onGameOver, onExit }: QuizRel
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   const [timePerQuestion, setTimePerQuestion] = useState(15);
   const [totalQuestions, setTotalQuestions] = useState(20);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS?.QUIZ_RELAY || 'quizrelay_highscore');
+  const { record, updateScore } = useGameRecord('quizrelay_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

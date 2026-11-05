@@ -116,7 +116,7 @@ export default function WaterRun({ onScoreUpdate, onGameOver, onExit }: WaterRun
         top: obs.y,
         width: obs.width,
         height: obs.height,
-        ...getObstacleStyle(obs)
+        ...getObstacleStyle(obs.type)
       }}
       animate={
         obs.type === 'coin' ? { rotate: 360, scale: [1, 1.15, 1] } :

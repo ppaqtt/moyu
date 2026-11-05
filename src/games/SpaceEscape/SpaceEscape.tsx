@@ -114,7 +114,7 @@ export default function SpaceEscape({ onScoreUpdate, onGameOver, onExit }: Space
         top: obs.y,
         width: obs.width,
         height: obs.height,
-        ...getObstacleStyle(obs),
+        ...getObstacleStyle(obs.type),
         transform: obs.rotation ? `rotate(${obs.rotation}deg)` : undefined
       }}
       animate={

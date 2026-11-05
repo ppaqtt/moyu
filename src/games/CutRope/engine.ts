@@ -248,7 +248,7 @@ export class CutRopeEngine {
       ...t,
       id: i,
       isActive: true
-    }));
+    })) as Target[];
   }
 
   private createRope(id: number, data: { startX: number; startY: number; endX: number; endY: number; attached: boolean }): Rope {

@@ -326,6 +326,8 @@ export class MemeMakerEngine {
   }
 
   getTextAtPoint(x: number, y: number): TextElement | null {
+    const ctx = this.ctx;
+    if (!ctx) return null;
     for (let i = this.textElements.length - 1; i >= 0; i--) {
       const element = this.textElements[i];
       ctx.save();

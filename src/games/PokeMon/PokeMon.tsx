@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGameLoop } from '../../hooks/useGameLoop';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { NEON_COLORS } from '../../utils/constants';
-import { PokeMonEngine, PokeMonState, Monster, WildMonster, MONSTER_TYPES, SHOP_ITEMS } from './engine';
+import { PokeMonEngine, PokeMonState, Monster, WildMonster, MonsterType, MONSTER_TYPES, SHOP_ITEMS } from './engine';
 
 type GameStatus = 'idle' | 'playing' | 'shop' | 'battle';
 type TabType = 'team' | 'shop';
@@ -104,8 +104,9 @@ export default function PokeMon() {
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
+  const getTypeColor = (type: string | MonsterType) => {
+    const key = typeof type === 'string' ? type : type.type;
+    switch (key) {
       case 'fire': return '#ff4500';
       case 'water': return '#1e90ff';
       case 'grass': return '#32cd32';

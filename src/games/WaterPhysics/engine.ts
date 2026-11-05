@@ -28,6 +28,7 @@ export interface WaterPhysicsState {
   score: number;
   collected: number;
   target: number;
+  drainOpen: boolean;
 }
 
 const CANVAS_WIDTH = 400;
@@ -238,7 +239,8 @@ export class WaterPhysicsEngine {
       mode: this.mode,
       score: this.score,
       collected: this.collected,
-      target: this.target
+      target: this.target,
+      drainOpen: this.drainOpen
     };
   }
 

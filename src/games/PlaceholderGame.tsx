@@ -6,6 +6,7 @@ interface PlaceholderGameProps {
   gameId: string;
   gameName: string;
   category: string;
+  icon?: string;
   onScoreUpdate?: (score: number) => void;
   onGameOver?: (score: number) => void;
   onExit?: () => void;
@@ -108,7 +109,14 @@ export default function PlaceholderGame({
     startTime: 0,
     difficulty: 1,
     score: 0,
-    gameOver: false
+    gameOver: false,
+    snake: undefined as any,
+    bird: undefined as any,
+    runner: undefined as any,
+    paddle: undefined as any,
+    grid: undefined as any,
+    cards: undefined as any,
+    notes: undefined as any
   });
 
   const gameContext = getGameContext(gameId, category);

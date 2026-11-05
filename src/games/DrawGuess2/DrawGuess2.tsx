@@ -19,7 +19,7 @@ export default function DrawGuess2({ onScoreUpdate, onGameOver, onExit }: DrawGu
   const [guessInput, setGuessInput] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('animals');
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS?.DRAW_GUESS_2 || 'drawguess2_highscore');
+  const { record, updateScore } = useGameRecord('drawguess2_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

@@ -109,6 +109,7 @@ export class MountainClimberEngine {
   }
 
   private initializeGame(): GameState {
+    const route = this.generateRoute();
     return {
       stats: {
         stamina: 100,
@@ -123,8 +124,8 @@ export class MountainClimberEngine {
         { ...EQUIPMENT_LIST[2] }
       ],
       equippedItems: [],
-      route: this.generateRoute(),
-      obstacles: this.generateObstacles(),
+      route,
+      obstacles: this.generateObstacles(route),
       score: 0,
       altitude: 0,
       distance: 0,
@@ -159,13 +160,13 @@ export class MountainClimberEngine {
     return route;
   }
 
-  private generateObstacles(): Obstacle[] {
+  private generateObstacles(route: RoutePoint[]): Obstacle[] {
     const obstacles: Obstacle[] = [];
     const types: Obstacle['type'][] = ['rock', 'ice', 'gap', 'avalanche', 'storm'];
 
     for (let i = 0; i < 20; i++) {
-      const routeIndex = Math.floor(Math.random() * (this.state.route.length - 10)) + 5;
-      const routePoint = this.state.route[routeIndex];
+      const routeIndex = Math.floor(Math.random() * (route.length - 10)) + 5;
+      const routePoint = route[routeIndex];
 
       obstacles.push({
         id: `obstacle_${i}`,

@@ -194,7 +194,7 @@ export class SwordIOEngine {
     };
   }
 
-  private getSwordBase(player: { x: number; y: number; sword: Sword }): Position {
+  private getSwordBase(player: { x: number; y: number; sword: Sword; radius: number }): Position {
     return {
       x: player.x + Math.cos(player.sword.angle) * player.radius,
       y: player.y + Math.sin(player.sword.angle) * player.radius

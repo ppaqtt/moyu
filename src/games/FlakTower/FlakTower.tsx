@@ -127,19 +127,19 @@ export default function FlakTower() {
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = '#2d3d2d';
-      ctx.fillRect(0, TOWER_Y + TOWER_RADIUS, CANVAS_WIDTH, CANVAS_HEIGHT - TOWER_Y - TOWER_RADIUS);
+      ctx.fillRect(0, TOWER_Y + TOWER_RADIUS, width, height - TOWER_Y - TOWER_RADIUS);
 
       ctx.strokeStyle = '#3d4d3d';
       ctx.lineWidth = 2;
-      for (let x = 0; x < CANVAS_WIDTH; x += 30) {
+      for (let x = 0; x < width; x += 30) {
         ctx.beginPath();
         ctx.moveTo(x, TOWER_Y + TOWER_RADIUS);
-        ctx.lineTo(x, CANVAS_HEIGHT);
+        ctx.lineTo(x, height);
         ctx.stroke();
       }
 
       for (let i = 0; i < 40; i++) {
-        const x = (i * 47) % CANVAS_WIDTH;
+        const x = (i * 47) % width;
         const y = (i * 31) % (TOWER_Y + TOWER_RADIUS - 20) + 20;
         ctx.beginPath();
         ctx.arc(x, y, 1, 0, Math.PI * 2);

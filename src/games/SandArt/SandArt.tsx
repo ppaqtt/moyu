@@ -13,13 +13,15 @@ interface SandArtProps {
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 500;
 
+interface Point { x: number; y: number }
+
 export default function SandArt({ onScoreUpdate, onGameOver, onExit }: SandArtProps) {
   const [engine] = useState(() => new SandArtEngine());
   const [state, setState] = useState(() => engine.getState());
   const [isPlaying, setIsPlaying] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.SAND_ART || 'sandart_highscore');
+  const { record, updateScore } = useGameRecord('sandart_highscore');
 
   useEffect(() => {
     engine.setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);

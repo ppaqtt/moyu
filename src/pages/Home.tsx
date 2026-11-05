@@ -265,7 +265,7 @@ export default function Home() {
                     className="text-sm mb-4 leading-relaxed"
                     style={{ color: 'rgba(255, 255, 255, 0.5)' }}
                   >
-                    {game.description || `${game.category}类游戏`}
+                    {`${game.category} 类游戏 · 点击开始`}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">

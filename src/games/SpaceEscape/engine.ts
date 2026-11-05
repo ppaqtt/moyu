@@ -1,3 +1,5 @@
+import { NEON_COLORS } from '../../utils/constants';
+
 export interface Obstacle {
   x: number;
   y: number;

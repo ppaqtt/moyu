@@ -27,7 +27,7 @@ export default function GifMaker({ onScoreUpdate, onGameOver, onExit }: GifMaker
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewRef = useRef<HTMLCanvasElement>(null);
   const playbackIntervalRef = useRef<number | null>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.GIF_MAKER || 'gifmaker_highscore');
+  const { record, updateScore } = useGameRecord('gifmaker_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

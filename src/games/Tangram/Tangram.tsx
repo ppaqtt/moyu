@@ -89,7 +89,7 @@ const TANGRAM_PIECES: Omit<Piece, 'x' | 'y' | 'rotation' | 'selected'>[] = [
   },
 ];
 
-const TARGET_SHAPE: { pieces: Omit<Piece, 'color'>[] } = {
+const TARGET_SHAPE: { pieces: Omit<Piece, 'color' | 'selected'>[] } = {
   pieces: [
     {
       id: 1,

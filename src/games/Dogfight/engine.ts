@@ -43,7 +43,7 @@ export interface SmokeTrail {
 }
 
 export interface DogfightState {
-  player: { x: number; y: number; vx: number; vy: number; angle: number; health: number; boost: number; };
+  player: { x: number; y: number; vx: number; vy: number; angle: number; health: number; boost: number; invincibleTime: number; };
   bullets: Bullet[];
   enemies: EnemyPlane[];
   explosions: Explosion[];
@@ -96,7 +96,7 @@ export class DogfightEngine {
 
   getState(): DogfightState {
     return {
-      player: { x: this.player.x, y: this.player.y, vx: this.player.vx, vy: this.player.vy, angle: this.player.angle, health: this.player.health, boost: this.player.boost },
+      player: { x: this.player.x, y: this.player.y, vx: this.player.vx, vy: this.player.vy, angle: this.player.angle, health: this.player.health, boost: this.player.boost, invincibleTime: this.player.invincibleTime },
       bullets: this.bullets.map(b => ({ ...b })),
       enemies: this.enemies.map(e => ({ ...e })),
       explosions: this.explosions.map(e => ({ ...e })),

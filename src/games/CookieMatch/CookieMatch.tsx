@@ -120,7 +120,7 @@ const CookieMatch: React.FC = () => {
     const x = piece.x + 30;
     const y = piece.y + 30;
     const floatOffset = Math.sin(piece.floatPhase) * 2;
-    const baseSize = 24 * piece.scale;
+    const baseSize = Math.max(0.1, 24 * piece.scale);
     const cookieColor = COOKIE_COLORS[piece.type] || COOKIE_COLORS[0];
 
     ctx.save();
@@ -241,7 +241,7 @@ const CookieMatch: React.FC = () => {
     ctx.lineWidth = 2;
     for (let i = -2; i <= 2; i++) {
       ctx.beginPath();
-      ctx.arc(0, 0, size * 0.3 + i * 5, -Math.PI * 0.7, Math.PI * 0.7);
+      ctx.arc(0, 0, Math.max(0.1, size * 0.3 + i * 5), -Math.PI * 0.7, Math.PI * 0.7);
       ctx.stroke();
     }
   };
@@ -309,7 +309,7 @@ const CookieMatch: React.FC = () => {
     } else {
       ctx.fillStyle = particle.color;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size * (particle.life / particle.maxLife), 0, Math.PI * 2);
+      ctx.arc(particle.x, particle.y, Math.max(0.1, particle.size * (particle.life / particle.maxLife)), 0, Math.PI * 2);
       ctx.fill();
     }
     

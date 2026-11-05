@@ -55,6 +55,7 @@ export interface Player {
   armors: Item[];
   potions: number;
   keys: number;
+  luck: number;
   inventory: Item[];
 }
 
@@ -167,7 +168,7 @@ function generateFloor(floor: number): Room[] {
       const type = floorEnemies[Math.floor(Math.random() * floorEnemies.length)];
       const base = ENEMY_DATA[type];
       const level = floor;
-      const hp = base.hp !== undefined ? base.hp : 20 + floor * 10;
+      const hp = 20 + floor * 10;
       const maxHp = hp + level * 5;
       enemies.push({
         ...base,
@@ -243,6 +244,7 @@ export class TextDungeonEngine {
       armors: [],
       potions: 3,
       keys: 0,
+      luck: 10,
       inventory: [],
     };
 
@@ -525,6 +527,7 @@ export class TextDungeonEngine {
       armors: [],
       potions: 3,
       keys: 0,
+      luck: 10,
       inventory: [],
     };
 

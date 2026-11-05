@@ -18,7 +18,7 @@ export default function SpyGame({ onScoreUpdate, onGameOver, onExit }: SpyGamePr
   const [showWord, setShowWord] = useState(false);
   const [myPlayerId] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS?.SPY_GAME || 'spygame_highscore');
+  const { record, updateScore } = useGameRecord('spygame_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

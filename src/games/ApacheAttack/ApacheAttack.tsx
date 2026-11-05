@@ -127,14 +127,14 @@ export default function ApacheAttack() {
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = '#3d5c3d';
-      ctx.fillRect(0, CANVAS_HEIGHT - 60, CANVAS_WIDTH, 60);
+      ctx.fillRect(0, height - 60, width, 60);
 
       ctx.strokeStyle = '#4a6b4a';
       ctx.lineWidth = 1;
-      for (let i = 0; i < CANVAS_WIDTH; i += 40) {
+      for (let i = 0; i < width; i += 40) {
         ctx.beginPath();
-        ctx.moveTo(i, CANVAS_HEIGHT - 60);
-        ctx.lineTo(i + 20, CANVAS_HEIGHT);
+        ctx.moveTo(i, height - 60);
+        ctx.lineTo(i + 20, height);
         ctx.stroke();
       }
 

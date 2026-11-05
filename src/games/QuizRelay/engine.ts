@@ -11,7 +11,7 @@ export interface Question {
   text: string;
   options: string[];
   correctIndex: number;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'all';
   category: string;
 }
 
@@ -26,7 +26,7 @@ export interface QuizRelayState {
   selectedAnswer: number | null;
   isCorrect: boolean | null;
   roundResults: { teamId: number; correct: boolean; time: number }[];
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'all';
   category: string | 'all';
   timePerQuestion: number;
   bonusPoints: number;

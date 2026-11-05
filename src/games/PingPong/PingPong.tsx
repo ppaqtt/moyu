@@ -301,7 +301,7 @@ export default function PingPong() {
             style={{
               background: difficulty === d ? NEON_COLORS.neonPurple : NEON_COLORS.surface,
               color: '#fff',
-              ringColor: NEON_COLORS.neonCyan,
+              boxShadow: difficulty === d ? `0 0 0 2px ${NEON_COLORS.neonCyan}` : 'none',
             }}
           >
             {d === 'easy' ? '简单' : d === 'medium' ? '中等' : '困难'}

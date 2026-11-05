@@ -6,6 +6,8 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { NEON_COLORS } from '../../utils/constants';
 import { PinballEngine, PinballState, Ball, Bumper, Flipper, Target } from './engine';
 
+const BALL_COLORS = ['#ff4444', '#44ff44', '#4444ff', '#ffff00', '#ff44ff'];
+
 const PinballPhysics = () => {
   const navigate = useNavigate();
   const [engine] = useState(() => new PinballEngine());

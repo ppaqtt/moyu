@@ -153,6 +153,10 @@ export class BrawlStarsEngine {
     this.startGame();
   }
 
+  setPhase(phase: 'menu' | 'select' | 'fighting' | 'gameover'): void {
+    this.state.phase = phase;
+  }
+
   reset(): void {
     this.state = this.createInitialState();
   }

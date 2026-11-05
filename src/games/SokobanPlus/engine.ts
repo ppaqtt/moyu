@@ -107,7 +107,7 @@ export class SokobanPlusEngine {
     this.loadLevel(1);
   }
 
-  private loadLevel(levelNum: number): void {
+  loadLevel(levelNum: number): void {
     this.level = levelNum;
     this.isComplete = false;
     this.moves = 0;

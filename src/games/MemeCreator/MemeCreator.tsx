@@ -29,7 +29,7 @@ export default function MemeCreator({ onScoreUpdate, onGameOver, onExit }: MemeC
   const [showPresets, setShowPresets] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { record, updateScore } = useGameRecord(STORAGE_KEYS.GAME_IDS.MEME_CREATOR || 'memecreator_highscore');
+  const { record, updateScore } = useGameRecord('memecreator_highscore');
 
   const updateState = useCallback(() => {
     setState(engine.getState());

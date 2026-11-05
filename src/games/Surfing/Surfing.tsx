@@ -314,7 +314,7 @@ export default function Surfing() {
 
     const mainWave = state.waves.find(w => w.type === 'normal') || state.waves[0];
     if (mainWave) {
-      drawSurfer(ctx, state.surfer, mainWave);
+      drawSurfer(ctx, { ...state.surfer, currentTrick: state.currentTrick }, mainWave);
     }
 
     drawParticles(ctx, state.particles);

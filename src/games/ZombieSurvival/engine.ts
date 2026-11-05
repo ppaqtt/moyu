@@ -159,7 +159,7 @@ export class ZombieSurvivalEngine {
       equippedWeapon: { ...WEAPONS[1] },
       map,
       zombies: [],
-      buildings: this.generateBuildings(),
+      buildings: this.generateBuildings(map),
       wave: 1,
       kills: 0,
       score: 0,
@@ -200,7 +200,7 @@ export class ZombieSurvivalEngine {
     return map;
   }
 
-  private generateBuildings(): Building[] {
+  private generateBuildings(map: MapTile[][]): Building[] {
     const buildings: Building[] = [];
     const types: Building['type'][] = ['house', 'shop', 'hospital', 'police', 'warehouse'];
     const names = {
@@ -229,9 +229,9 @@ export class ZombieSurvivalEngine {
       // 标记建筑区域
       for (let bx = x; bx < x + width && bx < this.config.mapWidth; bx++) {
         for (let by = y; by < y + height && by < this.config.mapHeight; by++) {
-          this.state.map[bx][by].type = 'building';
-          this.state.map[bx][by].walkable = false;
-          this.state.map[bx][by].building = building;
+          map[bx][by].type = 'building';
+          map[bx][by].walkable = false;
+          map[bx][by].building = building;
         }
       }
     }

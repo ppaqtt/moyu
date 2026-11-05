@@ -7,6 +7,7 @@ export interface Track {
   duration: number;
   bpm: number;
   color: string;
+  artist?: string;
 }
 
 export interface MusicPlayerState {
