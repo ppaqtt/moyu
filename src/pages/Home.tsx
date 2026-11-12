@@ -1,98 +1,137 @@
-import React, { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
+import GameGrid from '../components/GameGrid';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { CATEGORY_INFO } from '../data/categories';
+import { COLLECTIONS, getCollectionGames } from '../data/collections';
+import { getDailyGame, getHighScore, usePlayerData } from '../lib/playerData';
+import { getGameSearchText } from '../data/gameGuides';
 
-const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
-  'all': { name: '全部', icon: '🎮', color: '#a855f7' },
-  'puzzle': { name: '益智解谜', icon: '🧩', color: '#06b6d4' },
-  'arcade': { name: '街机经典', icon: '🕹️', color: '#22c55e' },
-  'co-op': { name: '双人合作', icon: '👥', color: '#ec4899' },
-  'shooting': { name: '飞行射击', icon: '🚀', color: '#ef4444' },
-  'strategy': { name: '策略经营', icon: '💰', color: '#f59e0b' },
-  'tower': { name: '塔防游戏', icon: '🏰', color: '#8b5cf6' },
-  'idle': { name: '放置挂机', icon: '💤', color: '#10b981' },
-  'board': { name: '桌游棋牌', icon: '♟️', color: '#3b82f6' },
-  'card': { name: '卡牌游戏', icon: '🃏', color: '#06b6d4' },
-  'fighting': { name: '格斗对战', icon: '👊', color: '#f97316' },
-  'io': { name: 'IO竞技', icon: '🌐', color: '#84cc16' },
-  'rhythm': { name: '音乐节奏', icon: '🎵', color: '#ec4899' },
-  'music': { name: '音乐创作', icon: '🎹', color: '#6366f1' },
-  'reaction': { name: '反应训练', icon: '🎯', color: '#f59e0b' },
-  'math': { name: '数学挑战', icon: '➕', color: '#06b6d4' },
-  'creative': { name: '创意工具', icon: '🎨', color: '#ec4899' },
-  'match3': { name: '消除游戏', icon: '💎', color: '#a855f7' },
-  'physics': { name: '物理模拟', icon: '⚙️', color: '#22c55e' },
-  '养成': { name: '养成游戏', icon: '🐾', color: '#f472b6' },
-  'sports': { name: '运动竞技', icon: '🏃', color: '#3b82f6' },
-  'survival': { name: '生存冒险', icon: '🏆', color: '#f97316' },
-  'parkour': { name: '跑酷闯关', icon: '🏃', color: '#06b6d4' },
-  'word': { name: '文字词汇', icon: '🔤', color: '#8b5cf6' },
-  'adventure': { name: '文字冒险', icon: '📖', color: '#f59e0b' },
-  'ai': { name: 'AI对抗', icon: '🧠', color: '#06b6d4' },
-  'coding': { name: '编程学习', icon: '💻', color: '#22c55e' },
-  'maze': { name: '迷宫逃脱', icon: '🗺️', color: '#f97316' },
-  'visual': { name: '视觉错觉', icon: '👁️', color: '#ec4899' },
-  'retro': { name: '怀旧经典', icon: '🕹️', color: '#f59e0b' },
-  'language': { name: '语言学习', icon: '🌍', color: '#3b82f6' },
-  'holiday': { name: '节日主题', icon: '🎉', color: '#ef4444' },
-  'simulation': { name: '模拟经营', icon: '🏭', color: '#84cc16' },
-  'multiplayer': { name: '多人对战', icon: '🎮', color: '#a855f7' },
-  'escape': { name: '密室逃脱', icon: '🚪', color: '#f97316' },
-  'story': { name: '互动剧情', icon: '📖', color: '#ec4899' },
-  'party': { name: '派对游戏', icon: '🎪', color: '#f59e0b' },
-  'pixel': { name: '像素风格', icon: '👾', color: '#22c55e' },
-  'aibattle': { name: 'AI合作对战', icon: '🤖', color: '#06b6d4' },
-  'tech': { name: '科技未来', icon: '🔬', color: '#6366f1' },
-  'life': { name: '生活实用', icon: '📋', color: '#10b981' },
-  'social': { name: '社交休闲', icon: '👥', color: '#ec4899' },
-  'education': { name: '教育科普', icon: '🧪', color: '#3b82f6' },
-  'career': { name: '职业体验', icon: '👨‍🍳', color: '#f97316' },
-  'animal': { name: '动物题材', icon: '🐕', color: '#f472b6' },
-  'cooking': { name: '美食料理', icon: '🍔', color: '#ef4444' },
-  'driving': { name: '交通驾驶', icon: '🚗', color: '#22c55e' },
-  'craft': { name: '手工制作', icon: '🎨', color: '#ec4899' },
-  'puzzle2': { name: '解谜游戏', icon: '🧩', color: '#a855f7' },
-};
+type Scope = 'all' | 'favorites' | 'recent';
 
 const getAllCategories = () => {
   const categoryCounts: Record<string, number> = {};
   GAMES_LIST.forEach(game => {
     categoryCounts[game.category] = (categoryCounts[game.category] || 0) + 1;
   });
-  
-  return [{ id: 'all', ...CATEGORY_INFO['all'], count: GAMES_LIST.length }]
-    .concat(
-      Object.entries(categoryCounts)
-        .map(([id, count]) => ({
-          id,
-          ...(CATEGORY_INFO[id] || { name: id, icon: '🎮', color: '#a855f7' }),
-          count
-        }))
-        .sort((a, b) => b.count - a.count)
-    );
+
+  return [{ id: 'all', ...CATEGORY_INFO.all, count: GAMES_LIST.length }].concat(
+    Object.entries(categoryCounts)
+      .map(([id, count]) => ({
+        id,
+        ...(CATEGORY_INFO[id] || { name: id, icon: '🎮', color: '#a855f7' }),
+        count,
+      }))
+      .sort((a, b) => b.count - a.count),
+  );
 };
 
 export default function Home() {
   const navigate = useNavigate();
+  const { favorites, recent, toggleFavorite, daily } = usePlayerData();
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const categories = getAllCategories();
+  const [search, setSearch] = useState('');
+  const [scope, setScope] = useState<Scope>('all');
+  const [activeCollection, setActiveCollection] = useState<string | null>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
-  const filteredGames = selectedCategory === 'all'
-    ? GAMES_LIST
-    : GAMES_LIST.filter(game => game.category === selectedCategory);
+  const categories = useMemo(getAllCategories, []);
+  const dailyGame = useMemo(() => getDailyGame(), []);
+  const dailyHighScore = Math.max(daily?.bestScore ?? 0, getHighScore(dailyGame.id));
+
+  const activeCollectionData = COLLECTIONS.find(item => item.id === activeCollection) ?? null;
+
+  const games = useMemo(() => {
+    let list = GAMES_LIST;
+
+    if (activeCollectionData) {
+      list = getCollectionGames(activeCollectionData);
+    } else if (selectedCategory !== 'all') {
+      list = list.filter(game => game.category === selectedCategory);
+    }
+
+    if (scope === 'favorites') {
+      list = list.filter(game => favorites.includes(game.id));
+    } else if (scope === 'recent') {
+      const order = new Map(recent.map((item, index) => [item.id, index]));
+      list = list
+        .filter(game => order.has(game.id))
+        .sort((a, b) => (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
+    }
+
+    const keyword = search.trim().toLowerCase();
+    if (keyword) {
+      list = list.filter(game => getGameSearchText(game).includes(keyword));
+    }
+
+    return list;
+  }, [activeCollectionData, selectedCategory, scope, favorites, recent, search]);
+
+  const scrollToResults = () => {
+    window.setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 40);
+  };
+
+  const openGame = (gameId: string) => navigate(`/game/${gameId}`);
+
+  const playRandom = () => {
+    const pool = games.length > 0 ? games : GAMES_LIST;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    navigate(`/game/${pick.id}`);
+  };
+
+  const selectCollection = (collectionId: string) => {
+    setActiveCollection(collectionId);
+    setSelectedCategory('all');
+    setScope('all');
+    setSearch('');
+    scrollToResults();
+  };
+
+  const resetCollection = () => {
+    setActiveCollection(null);
+    scrollToResults();
+  };
+
+  const selectCategory = (categoryId: string) => {
+    setActiveCollection(null);
+    setSelectedCategory(categoryId);
+    scrollToResults();
+  };
+
+  const scopeLabel = activeCollectionData
+    ? activeCollectionData.title
+    : selectedCategory === 'all'
+      ? '全部游戏'
+      : categories.find(item => item.id === selectedCategory)?.name ?? '全部游戏';
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center p-6 relative overflow-hidden">
       <ParticleBg />
 
       <motion.div
-        className="absolute top-6 right-6 z-20"
+        className="absolute top-6 right-6 z-20 flex items-center gap-3"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
       >
+        <motion.button
+          onClick={() => navigate('/multiplayer')}
+          className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+          style={{
+            background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(6, 182, 212, 0.25))',
+            color: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(34, 197, 94, 0.35)',
+            backdropFilter: 'blur(10px)',
+          }}
+          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🛰️ 联机对战
+        </motion.button>
         <motion.button
           onClick={() => navigate('/updates')}
           className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
@@ -100,7 +139,7 @@ export default function Home() {
             background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
             color: 'rgba(255, 255, 255, 0.9)',
             border: '1px solid rgba(168, 85, 247, 0.3)',
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
           }}
           whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
           whileTap={{ scale: 0.95 }}
@@ -110,7 +149,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div
-        className="text-center mb-10 relative z-10"
+        className="text-center mt-10 mb-8 relative z-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -119,7 +158,7 @@ export default function Home() {
           className="inline-flex items-center gap-3 px-6 py-2 rounded-full mb-4"
           style={{
             background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.2))',
-            border: '1px solid rgba(168, 85, 247, 0.3)'
+            border: '1px solid rgba(168, 85, 247, 0.3)',
           }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -127,7 +166,7 @@ export default function Home() {
         >
           <span className="text-2xl">🎮</span>
           <span className="text-sm font-medium" style={{ color: NEON_COLORS.neonCyan }}>
-            {GAMES_LIST.length}款精品游戏
+            {GAMES_LIST.length} 款精品游戏
           </span>
         </motion.div>
 
@@ -139,11 +178,9 @@ export default function Home() {
             background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            filter: 'drop-shadow(0 0 40px rgba(255, 107, 157, 0.4))'
+            filter: 'drop-shadow(0 0 40px rgba(255, 107, 157, 0.4))',
           }}
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-          }}
+          animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
           transition={{ duration: 5, repeat: Infinity }}
         >
           摸鱼小游戏
@@ -151,10 +188,7 @@ export default function Home() {
 
         <motion.p
           className="text-lg md:text-xl"
-          style={{
-            color: 'rgba(255, 255, 255, 0.7)',
-            letterSpacing: '0.2em'
-          }}
+          style={{ color: 'rgba(255, 255, 255, 0.7)', letterSpacing: '0.2em' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -163,140 +197,287 @@ export default function Home() {
         </motion.p>
       </motion.div>
 
+      {/* 随机摸鱼 + 每日一局 */}
       <motion.div
-        className="flex flex-wrap justify-center gap-3 mb-10 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
+        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 relative z-10"
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.35 }}
       >
-        {categories.map((cat, index) => (
-          <motion.button
-            key={cat.id}
-            onClick={() => setSelectedCategory(cat.id)}
-            className="px-5 py-2.5 rounded-2xl font-semibold text-sm flex items-center gap-2 transition-all duration-300"
-            style={{
-              backgroundColor: selectedCategory === cat.id ? cat.color : 'rgba(255, 255, 255, 0.08)',
-              color: selectedCategory === cat.id ? '#ffffff' : 'rgba(255, 255, 255, 0.7)',
-              border: `2px solid ${selectedCategory === cat.id ? cat.color : 'transparent'}`,
-              boxShadow: selectedCategory === cat.id ? `0 0 25px ${cat.color}50` : 'none',
-              backdropFilter: 'blur(10px)'
-            }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-          >
-            <span className="text-lg">{cat.icon}</span>
-            <span>{cat.name}</span>
-            <span className="text-xs px-2 py-0.5 rounded-full" style={{
-              backgroundColor: selectedCategory === cat.id ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.1)'
-            }}>
-              {cat.count}
-            </span>
-          </motion.button>
-        ))}
+        <motion.button
+          onClick={playRandom}
+          className="text-left rounded-3xl p-6 relative overflow-hidden group"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 107, 157, 0.18), rgba(168, 85, 247, 0.16))',
+            border: '1px solid rgba(255, 107, 157, 0.35)',
+            backdropFilter: 'blur(16px)',
+          }}
+          whileHover={{ scale: 1.015, boxShadow: '0 0 32px rgba(255, 107, 157, 0.25)' }}
+          whileTap={{ scale: 0.99 }}
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-xs font-semibold tracking-widest mb-2" style={{ color: NEON_COLORS.neonPink }}>
+                RANDOM
+              </div>
+              <div className="text-2xl font-black mb-1">随机摸鱼</div>
+              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.55)' }}>
+                选择困难？从当前 {games.length} 款里随机开一局
+              </div>
+            </div>
+            <div className="text-5xl group-hover:rotate-12 transition-transform duration-300">🎲</div>
+          </div>
+        </motion.button>
+
+        <motion.button
+          onClick={() => navigate(`/game/${dailyGame.id}`)}
+          className="text-left rounded-3xl p-6 relative overflow-hidden group"
+          style={{
+            background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(34, 197, 94, 0.14))',
+            border: '1px solid rgba(6, 182, 212, 0.35)',
+            backdropFilter: 'blur(16px)',
+          }}
+          whileHover={{ scale: 1.015, boxShadow: '0 0 32px rgba(6, 182, 212, 0.25)' }}
+          whileTap={{ scale: 0.99 }}
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-xs font-semibold tracking-widest mb-2" style={{ color: NEON_COLORS.neonCyan }}>
+                DAILY · {new Date().toLocaleDateString('zh-CN')}
+              </div>
+              <div className="text-2xl font-black mb-1">每日一局</div>
+              <div className="text-sm flex items-center gap-2" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                <span className="text-xl">{dailyGame.icon}</span>
+                <span>{dailyGame.name}</span>
+                {daily ? (
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full"
+                    style={{ background: 'rgba(34, 197, 94, 0.18)', color: '#4ade80', border: '1px solid rgba(34,197,94,0.4)' }}
+                  >
+                    已打卡
+                  </span>
+                ) : (
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full"
+                    style={{ background: 'rgba(255, 255, 255, 0.08)', color: 'rgba(255,255,255,0.55)' }}
+                  >
+                    待挑战
+                  </span>
+                )}
+              </div>
+              <div className="text-xs mt-2" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>
+                今日最高分 {dailyHighScore}
+              </div>
+            </div>
+            <div className="text-5xl group-hover:-translate-y-1 transition-transform duration-300">📅</div>
+          </div>
+        </motion.button>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl relative z-10 px-4">
-        {filteredGames.map((game, index) => (
-          <motion.div
-            key={game.id}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-          >
-            <motion.div
-              className="cursor-pointer group relative"
-              whileHover={{ scale: 1.03, y: -5 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(`/game/${game.id}`)}
-            >
-              <div
-                className="relative rounded-3xl p-5 overflow-hidden backdrop-blur-xl"
+      {/* 搜索与快捷筛选 */}
+      <motion.div
+        className="w-full max-w-6xl relative z-10 mb-6"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <div className="flex flex-col lg:flex-row gap-3">
+          <div className="relative flex-1">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              🔍
+            </span>
+            <input
+              value={search}
+              onChange={event => {
+                setSearch(event.target.value);
+                if (event.target.value) setScope('all');
+              }}
+              placeholder="搜索游戏名、分类或玩法，例如：双人 / 推箱子 / 音乐"
+              className="w-full pl-11 pr-11 py-3.5 rounded-2xl outline-none text-sm"
+              style={{
+                background: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                color: '#ffffff',
+                backdropFilter: 'blur(12px)',
+              }}
+            />
+            {search && (
+              <button
+                type="button"
+                onClick={() => setSearch('')}
+                aria-label="清空搜索"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)' }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          <div className="flex gap-2">
+            {([
+              { id: 'all', label: '全部', count: GAMES_LIST.length },
+              { id: 'favorites', label: '★ 收藏', count: favorites.length },
+              { id: 'recent', label: '🕘 最近', count: recent.length },
+            ] as const).map(item => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => {
+                  setScope(item.id);
+                  setActiveCollection(null);
+                  scrollToResults();
+                }}
+                className="px-4 py-3.5 rounded-2xl text-sm font-semibold whitespace-nowrap transition-all"
                 style={{
-                  background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 26, 0.95))',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                  background: scope === item.id ? 'rgba(168, 85, 247, 0.28)' : 'rgba(255, 255, 255, 0.06)',
+                  border: `1px solid ${scope === item.id ? 'rgba(168, 85, 247, 0.6)' : 'rgba(255, 255, 255, 0.12)'}`,
+                  color: scope === item.id ? '#ffffff' : 'rgba(255, 255, 255, 0.65)',
                 }}
               >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `radial-gradient(circle at 50% 0%, ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}15, transparent 60%)`
-                  }}
-                />
+                {item.label} <span className="opacity-60">{item.count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </motion.div>
 
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl"
-                      style={{
-                        background: `linear-gradient(135deg, ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}30`, border: `1px solid ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}50`
-                      }}
-                    >
-                      {game.icon}
-                    </div>
-                    <motion.div
-                      className="px-3 py-1 rounded-full text-xs font-bold"
-                      style={{
-                        background: `linear-gradient(135deg, ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}, ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}80)`,
-                        color: '#ffffff'
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      开始
-                    </motion.div>
-                  </div>
+      {/* 人工策展合集 */}
+      <motion.section
+        className="w-full max-w-6xl relative z-10 mb-8"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.45 }}
+      >
+        <div className="flex items-center justify-between mb-3 px-1">
+          <div>
+            <div className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.85)' }}>人工策展</div>
+            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              从 {categories.length - 1} 个分类里挑出的 8 种摸鱼姿势
+            </div>
+          </div>
+          {activeCollectionData && (
+            <button
+              type="button"
+              onClick={resetCollection}
+              className="text-xs px-3 py-1.5 rounded-full"
+              style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.65)' }}
+            >
+              清除合集 ✕
+            </button>
+          )}
+        </div>
 
-                  <h3
-                    className="text-xl font-bold mb-2"
-                    style={{
-                      fontFamily: "'Noto Sans SC', sans-serif",
-                      background: `linear-gradient(135deg, #ffffff, #a0a0a0)`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent'
-                    }}
-                  >
-                    {game.name}
-                  </h3>
-
-                  <p
-                    className="text-sm mb-4 leading-relaxed"
-                    style={{ color: 'rgba(255, 255, 255, 0.5)' }}
-                  >
-                    {game.description || `${game.category}类游戏`}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {game.difficulty && (
-                      <span
-                        className="text-xs px-2.5 py-1 rounded-lg font-medium"
-                        style={{
-                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                          color: 'rgba(255, 255, 255, 0.6)',
-                          border: '1px solid rgba(255, 255, 255, 0.1)'
-                        }}
-                      >
-                        {game.difficulty === 'easy' ? '简单' : game.difficulty === 'medium' ? '中等' : '困难'}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <motion.div
-                className="absolute -inset-0.5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {COLLECTIONS.map((collection, index) => {
+            const isActive = collection.id === activeCollection;
+            const count = getCollectionGames(collection).length;
+            return (
+              <motion.button
+                key={collection.id}
+                type="button"
+                onClick={() => selectCollection(collection.id)}
+                className="text-left rounded-2xl p-4 relative overflow-hidden"
                 style={{
-                  background: `linear-gradient(135deg, ${['#ff6b9d', '#00d2ff', '#a855f7', '#22c55e', '#f97316', '#eab308'][index % 6]}, ${['#a855f7', '#22c55e', '#f97316', '#eab308', '#ff6b9d', '#00d2ff'][index % 6]})`,
-                  zIndex: -1,
-                  filter: 'blur(20px)',
-                  opacity: 0.4
+                  background: isActive
+                    ? `linear-gradient(135deg, ${collection.color}38, ${collection.color}14)`
+                    : 'rgba(255, 255, 255, 0.05)',
+                  border: `1px solid ${isActive ? collection.color : 'rgba(255, 255, 255, 0.1)'}`,
+                  boxShadow: isActive ? `0 0 24px ${collection.color}30` : 'none',
                 }}
-              />
-            </motion.div>
-          </motion.div>
-        ))}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * index }}
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-2xl">{collection.icon}</span>
+                  <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{count} 款</span>
+                </div>
+                <div className="text-sm font-bold mb-1" style={{ color: '#ffffff' }}>{collection.title}</div>
+                <div className="text-xs leading-snug line-clamp-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                  {collection.subtitle}
+                </div>
+              </motion.button>
+            );
+          })}
+        </div>
+      </motion.section>
+
+      {/* 分类筛选 */}
+      <motion.div
+        className="flex flex-wrap justify-center gap-2.5 mb-8 relative z-10 max-w-6xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        {categories.map((cat, index) => {
+          const isActive = !activeCollectionData && selectedCategory === cat.id;
+          return (
+            <motion.button
+              key={cat.id}
+              onClick={() => selectCategory(cat.id)}
+              className="px-4 py-2 rounded-2xl font-semibold text-xs flex items-center gap-1.5 transition-all duration-300"
+              style={{
+                backgroundColor: isActive ? cat.color : 'rgba(255, 255, 255, 0.06)',
+                color: isActive ? '#ffffff' : 'rgba(255, 255, 255, 0.65)',
+                border: `1px solid ${isActive ? cat.color : 'rgba(255,255,255,0.08)'}`,
+                boxShadow: isActive ? `0 0 18px ${cat.color}50` : 'none',
+                backdropFilter: 'blur(10px)',
+              }}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: Math.min(index, 16) * 0.02 }}
+            >
+              <span>{cat.icon}</span>
+              <span>{cat.name}</span>
+              <span
+                className="text-[10px] px-1.5 py-0.5 rounded-full"
+                style={{ backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)' }}
+              >
+                {cat.count}
+              </span>
+            </motion.button>
+          );
+        })}
+      </motion.div>
+
+      {/* 结果区 */}
+      <div ref={resultsRef} className="w-full max-w-7xl relative z-10 px-1 scroll-mt-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4 px-1">
+          <div className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            {scopeLabel}
+            {search.trim() && <> · 搜索「{search.trim()}」</>}
+            <span className="ml-2 font-bold" style={{ color: NEON_COLORS.neonCyan }}>{games.length}</span> 款
+          </div>
+          {scope === 'recent' && recent.length > 0 && (
+            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>最近玩过的游戏会自动出现在这里</div>
+          )}
+        </div>
+
+        <GameGrid
+          games={games}
+          favorites={favorites}
+          onOpen={openGame}
+          onToggleFavorite={toggleFavorite}
+          emptyTitle={
+            scope === 'favorites'
+              ? '还没有收藏任何游戏'
+              : scope === 'recent'
+                ? '还没有最近玩过的游戏'
+                : '没有找到匹配的游戏'
+          }
+          emptyHint={
+            scope === 'favorites'
+              ? '点击游戏卡片右上角的 ☆ 就能收藏'
+              : scope === 'recent'
+                ? '随便点开一局，它会自动记录在这里'
+                : '换个关键词，或切换分类再试试'
+          }
+        />
       </div>
 
       <motion.footer
@@ -310,7 +491,7 @@ export default function Home() {
           style={{
             background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 26, 0.9))',
             border: '1px solid rgba(255, 255, 255, 0.1)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
           }}
         >
           <div className="footer-content">
@@ -320,14 +501,14 @@ export default function Home() {
                 background: `linear-gradient(135deg, ${NEON_COLORS.neonPink}, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                filter: 'drop-shadow(0 0 20px rgba(255, 107, 157, 0.3)'
+                filter: 'drop-shadow(0 0 20px rgba(255, 107, 157, 0.3)',
               }}
             >
               摸鱼小游戏
             </motion.div>
 
             <p className="footer-desc text-lg mb-6" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              工作累了？来放松一下 ✨ 精选647款小游戏，让你在工作间隙轻松摸鱼放松身心
+              工作累了？来放松一下 ✨ 精选 {GAMES_LIST.length} 款小游戏，让你在工作间隙轻松摸鱼放松身心
             </p>
 
             <div className="social-links flex justify-center gap-4 mb-8">
@@ -341,16 +522,16 @@ export default function Home() {
                   background: 'rgba(255, 255, 255, 0.08)',
                   color: 'rgba(255, 255, 255, 0.7)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
+                  backdropFilter: 'blur(10px)',
                 }}
-                onMouseEnter={(e) => {
+                onMouseEnter={e => {
                   e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(6, 182, 212, 0.3))';
                   e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 107, 157, 0.4)';
                   e.currentTarget.style.borderColor = 'rgba(255, 107, 157, 0.5)';
                   e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
                 }}
-                onMouseLeave={(e) => {
+                onMouseLeave={e => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
                   e.currentTarget.style.boxShadow = 'none';
@@ -370,16 +551,16 @@ export default function Home() {
                   background: 'rgba(255, 255, 255, 0.08)',
                   color: 'rgba(255, 255, 255, 0.7)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
+                  backdropFilter: 'blur(10px)',
                 }}
-                onMouseEnter={(e) => {
+                onMouseEnter={e => {
                   e.currentTarget.style.background = 'linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3))';
                   e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.boxShadow = '0 0 20px rgba(6, 182, 212, 0.4)';
                   e.currentTarget.style.borderColor = 'rgba(6, 182, 212, 0.5)';
                   e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
                 }}
-                onMouseLeave={(e) => {
+                onMouseLeave={e => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
                   e.currentTarget.style.boxShadow = 'none';

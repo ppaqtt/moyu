@@ -1,10 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { getGameGuide } from '../data/gameGuides';
+import { getDailyGame, getHighScore, markDailyPlayed, recordPlay, updateDailyScore } from '../lib/playerData';
 
-const gameImports: Record<string, () => Promise<any>> = {
+interface GameComponentProps {
+  gameId: string;
+  gameName: string;
+  category: string;
+  onExit: () => void;
+  onScoreUpdate: (score: number) => void;
+  onGameOver: (score: number) => void;
+}
+
+type GameComponentType = React.ComponentType<GameComponentProps>;
+
+const gameImports: Record<string, () => Promise<{ default?: GameComponentType }>> = {
 '2048': () => import('../games/Game2048/Game2048'),
   '2048battle': () => import('../games/2048battle/2048battle'),
   'aamissile': () => import('../games/AAMissile/AAMissile'),
@@ -546,19 +559,61 @@ const gameImports: Record<string, () => Promise<any>> = {
   'zooescape': () => import('../games/Zooescape/Zooescape'),
   'zootycoon': () => import('../games/Zootycoon/Zootycoon'),
   'zuma': () => import('../games/Zuma/Zuma'),
+  'beatmaster': () => import('../games/BeatMaster/BeatMaster'),
+  'beatmetronome': () => import('../games/BeatMetronome/BeatMetronome'),
+  'carrepair': () => import('../games/CarRepair/CarRepair'),
+  'codebreak': () => import('../games/CodeBreak/CodeBreak'),
+  'composebasic': () => import('../games/ComposeBasic/ComposeBasic'),
+  'drumsimulator': () => import('../games/DrumSimulator/DrumSimulator'),
+  'gamecenter': () => import('../games/GameCenter/GameCenter'),
+  'guesssong': () => import('../games/GuessSong/GuessSong'),
+  'housedesign': () => import('../games/HouseDesign/HouseDesign'),
+  'idlespace': () => import('../games/IdleSpace/IdleSpace'),
+  'fourchess': () => import('../games/Intchess/Intchess'),
+  'jigsawkids': () => import('../games/JigsawKids/JigsawKids'),
+  'karaoke': () => import('../games/Karaoke/Karaoke'),
+  'keyunlock': () => import('../games/KeyUnlock/KeyUnlock'),
+  'kidscoloring': () => import('../games/KidsColoring/KidsColoring'),
+  'mathkids': () => import('../games/MathKids/MathKids'),
+  'mixmaster': () => import('../games/MixMaster/MixMaster'),
+  'musicplayer': () => import('../games/MusicPlayer/MusicPlayer'),
+  'patternslide': () => import('../games/PatternSlide/PatternSlide'),
+  'petlink': () => import('../games/PetLink/PetLink'),
+  'pvzclassic': () => import('../games/Pvz/Pvz'),
+  'roomescape': () => import('../games/RoomEscape/RoomEscape'),
+  'sokobanplus': () => import('../games/SokobanPlus/SokobanPlus'),
+  'starmatch': () => import('../games/StarMatch/StarMatch'),
+  'subwaysurfers': () => import('../games/SubwaySurfers/SubwaySurfers'),
+  'supermarket': () => import('../games/SuperMarket/SuperMarket'),
+  'synthplay': () => import('../games/SynthPlay/SynthPlay'),
+  'whitenoise': () => import('../games/WhiteNoise/WhiteNoise'),
 };
 
 function GamePage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
-  const [GameComponent, setGameComponent] = useState<React.ComponentType<any> | null>(null);
-  
+  const [GameComponent, setGameComponent] = useState<GameComponentType | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
+  const [highScore, setHighScore] = useState(0);
+
   const game = GAMES_LIST.find(g => g.id === id);
-  
+  const dailyGame = useMemo(getDailyGame, []);
+  const guide = useMemo(() => (game ? getGameGuide(game) : null), [game]);
+  const isDaily = Boolean(game && dailyGame.id === game.id);
+
   const handleExit = () => {
     navigate('/');
   };
+
+  useEffect(() => {
+    if (!game) return;
+    recordPlay(game.id);
+    if (dailyGame.id === game.id) {
+      markDailyPlayed(game.id);
+    }
+    setHighScore(getHighScore(game.id));
+  }, [game, dailyGame.id]);
 
   useEffect(() => {
     if (!id) {
@@ -682,11 +737,118 @@ function GamePage() {
               const currentHighScore = parseInt(localStorage.getItem(`game_highscore_${id}`) || '0');
               if (finalScore > currentHighScore) {
                 localStorage.setItem(`game_highscore_${id}`, finalScore.toString());
+                setHighScore(finalScore);
               }
+              updateDailyScore(id, Math.max(finalScore, currentHighScore));
             }
           }}
         />
       </div>
+
+      {isDaily && (
+        <div
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-1.5 rounded-full text-xs font-bold"
+          style={{
+            background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.9), rgba(34, 197, 94, 0.9))',
+            color: '#06121c',
+            boxShadow: '0 0 24px rgba(6, 182, 212, 0.45)',
+          }}
+        >
+          📅 今日挑战 · 最高分 {highScore}
+        </div>
+      )}
+
+      <motion.button
+        type="button"
+        onClick={() => setShowGuide(true)}
+        className="fixed left-4 bottom-4 z-50 px-4 py-2.5 rounded-2xl text-sm font-bold flex items-center gap-2"
+        style={{
+          background: 'rgba(15, 15, 26, 0.85)',
+          border: '1px solid rgba(168, 85, 247, 0.45)',
+          color: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(12px)',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
+        }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+      >
+        <span>ⓘ</span>
+        <span>怎么玩</span>
+      </motion.button>
+
+      <AnimatePresence>
+        {showGuide && guide && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+            style={{ background: 'rgba(5, 5, 12, 0.72)', backdropFilter: 'blur(8px)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowGuide(false)}
+          >
+            <motion.div
+              className="w-full max-w-lg rounded-3xl p-6 relative"
+              style={{
+                background: 'linear-gradient(145deg, rgba(30, 30, 54, 0.98), rgba(15, 15, 26, 0.98))',
+                border: '1px solid rgba(168, 85, 247, 0.35)',
+                boxShadow: '0 24px 64px rgba(0, 0, 0, 0.6)',
+              }}
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.98 }}
+              onClick={event => event.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl">{game.icon}</div>
+                  <div>
+                    <div className="text-xl font-black">{game.name}</div>
+                    <div className="text-xs mt-0.5" style={{ color: 'rgba(255, 255, 255, 0.45)' }}>
+                      {isDaily ? '今日挑战' : '玩法说明'}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowGuide(false)}
+                  aria-label="关闭玩法说明"
+                  className="w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{ background: 'rgba(255, 255, 255, 0.08)', color: 'rgba(255, 255, 255, 0.7)' }}
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <div className="text-sm font-bold mb-1.5" style={{ color: NEON_COLORS.neonCyan }}>怎么玩</div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>
+                    {guide.howToPlay}
+                  </p>
+                </div>
+                <div>
+                  <div className="text-sm font-bold mb-1.5" style={{ color: NEON_COLORS.neonPink }}>高分技巧</div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>
+                    {guide.tips}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowGuide(false)}
+                className="mt-6 w-full py-3 rounded-2xl font-bold text-sm"
+                style={{
+                  background: `linear-gradient(135deg, ${NEON_COLORS.neonCyan}, ${NEON_COLORS.neonPurple})`,
+                  color: '#ffffff',
+                }}
+              >
+                开始摸鱼
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1533,7 +1533,17 @@ export const TANK_BATTLE_ENGINE_CONSTANTS_10 = TANK_BATTLE_CONSTANTS;
 export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_10 = ZOMBIE_SHOOTER_CONSTANTS;
 
 // GAMES_LIST
-export const GAMES_LIST = [
+export interface GameMeta {
+  id: string;
+  name: string;
+  category: string;
+  icon: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  description?: string;
+  tags?: string[];
+}
+
+export const GAMES_LIST: GameMeta[] = [
   { id: '2048', name: '2048', category: 'puzzle', icon: '🔢', difficulty: 'medium' },
   { id: 'tetris', name: '俄罗斯方块', category: 'puzzle', icon: '🧱', difficulty: 'medium' },
   { id: 'snake', name: '贪吃蛇', category: 'puzzle', icon: '🐍', difficulty: 'easy' },
@@ -2157,6 +2167,35 @@ export const GAMES_LIST = [
   { id: 'wordart', name: '文字艺术', category: 'creative', icon: '✍️', difficulty: 'easy' },
   // 运动竞技类扩展
   { id: 'golf', name: '高尔夫球', category: 'sports', icon: '⛳', difficulty: 'hard' },
+  // 已存在但此前未注册的 28 款游戏
+  { id: 'beatmaster', name: '节拍大师', category: 'rhythm', icon: '🎵', difficulty: 'hard' },
+  { id: 'beatmetronome', name: '节奏节拍器', category: 'music', icon: '🥁', difficulty: 'easy' },
+  { id: 'carrepair', name: '汽车维修', category: 'simulation', icon: '🔧', difficulty: 'medium' },
+  { id: 'codebreak', name: '密码破译', category: 'puzzle', icon: '🔐', difficulty: 'medium' },
+  { id: 'composebasic', name: '作曲入门', category: 'music', icon: '🎼', difficulty: 'easy' },
+  { id: 'drumsimulator', name: '架子鼓模拟', category: 'music', icon: '🥁', difficulty: 'medium' },
+  { id: 'gamecenter', name: '游戏厅大亨', category: 'strategy', icon: '🕹️', difficulty: 'medium' },
+  { id: 'guesssong', name: '听歌识曲', category: 'music', icon: '🎧', difficulty: 'medium' },
+  { id: 'housedesign', name: '房屋设计', category: 'creative', icon: '🏠', difficulty: 'easy' },
+  { id: 'idlespace', name: '星际能源帝国', category: 'idle', icon: '🚀', difficulty: 'medium' },
+  { id: 'fourchess', name: '四子连线', category: 'board', icon: '⚫', difficulty: 'medium' },
+  { id: 'jigsawkids', name: '拼图乐园', category: 'puzzle', icon: '🧩', difficulty: 'easy' },
+  { id: 'karaoke', name: '卡拉OK练习', category: 'music', icon: '🎤', difficulty: 'easy' },
+  { id: 'keyunlock', name: '钥匙解锁', category: 'maze', icon: '🔑', difficulty: 'medium' },
+  { id: 'kidscoloring', name: '儿童涂色', category: 'creative', icon: '🎨', difficulty: 'easy' },
+  { id: 'mathkids', name: '数学练习', category: 'math', icon: '🔢', difficulty: 'easy' },
+  { id: 'mixmaster', name: '混音大师', category: 'music', icon: '🎚️', difficulty: 'medium' },
+  { id: 'musicplayer', name: '音乐播放器', category: 'life', icon: '🎧', difficulty: 'easy' },
+  { id: 'patternslide', name: '图案华容道', category: 'puzzle2', icon: '🖼️', difficulty: 'medium' },
+  { id: 'petlink', name: '宠物连连看', category: 'puzzle', icon: '🐾', difficulty: 'easy' },
+  { id: 'pvzclassic', name: '砖块挑战', category: 'arcade', icon: '🧱', difficulty: 'medium' },
+  { id: 'roomescape', name: '密室逃脱', category: 'escape', icon: '🚪', difficulty: 'medium' },
+  { id: 'sokobanplus', name: '推箱子进阶', category: 'puzzle2', icon: '📦', difficulty: 'hard' },
+  { id: 'starmatch', name: '星星配对', category: 'puzzle', icon: '⭐', difficulty: 'easy' },
+  { id: 'subwaysurfers', name: '地铁冲浪', category: 'parkour', icon: '🛹', difficulty: 'medium' },
+  { id: 'supermarket', name: '超市大亨', category: 'simulation', icon: '🛒', difficulty: 'medium' },
+  { id: 'synthplay', name: '电子琴模拟', category: 'music', icon: '🎹', difficulty: 'easy' },
+  { id: 'whitenoise', name: '白噪音放松', category: 'life', icon: '🌊', difficulty: 'easy' },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };
