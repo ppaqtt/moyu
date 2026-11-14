@@ -1533,7 +1533,21 @@ export const TANK_BATTLE_ENGINE_CONSTANTS_10 = TANK_BATTLE_CONSTANTS;
 export const ZOMBIE_SHOOTER_ENGINE_CONSTANTS_10 = ZOMBIE_SHOOTER_CONSTANTS;
 
 // GAMES_LIST
-export const GAMES_LIST = [
+export interface Game {
+  id: string;
+  name: string;
+  category: string;
+  icon: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  description?: string;
+  tags?: string[];
+  duration?: number;
+  players?: 1 | 2;
+  keyboard?: boolean;
+  silent?: boolean;
+}
+
+export const GAMES_LIST: Game[] = [
   { id: '2048', name: '2048', category: 'puzzle', icon: '🔢', difficulty: 'medium' },
   { id: 'tetris', name: '俄罗斯方块', category: 'puzzle', icon: '🧱', difficulty: 'medium' },
   { id: 'snake', name: '贪吃蛇', category: 'puzzle', icon: '🐍', difficulty: 'easy' },
@@ -2157,6 +2171,41 @@ export const GAMES_LIST = [
   { id: 'wordart', name: '文字艺术', category: 'creative', icon: '✍️', difficulty: 'easy' },
   // 运动竞技类扩展
   { id: 'golf', name: '高尔夫球', category: 'sports', icon: '⛳', difficulty: 'hard' },
+  // 已有目录但此前未注册的游戏
+  { id: 'beatmaster', name: '节拍大师', category: 'rhythm', icon: '🎵', difficulty: 'hard', description: '在节拍落到判定线时按下 1-6 键，连击越高分数越高', tags: ['键盘', '节奏', '连击'], duration: 4, players: 1, keyboard: true, silent: false },
+  { id: 'beatmetronome', name: '节奏节拍器', category: 'music', icon: '🥁', difficulty: 'easy', description: '可调速度与拍号的节拍器，支持平稳、摇摆等节奏模式', tags: ['工具', '节奏', '音频'], duration: 5, players: 1, keyboard: false, silent: false },
+  { id: 'carrepair', name: '汽车维修', category: 'simulation', icon: '🔧', difficulty: 'medium', description: '接单修车，选对工具提高效率，赚取收入提升声望', tags: ['经营', '鼠标', '单局短'], duration: 8, players: 1, keyboard: false, silent: true },
+  { id: 'codebreak', name: '密码破译', category: 'puzzle', icon: '🔐', difficulty: 'medium', description: '根据提示推断密码，每关 5 次机会，答得越快分越高', tags: ['逻辑', '键盘', '推理'], duration: 5, players: 1, keyboard: true, silent: true },
+  { id: 'composebasic', name: '作曲入门', category: 'music', icon: '🎼', difficulty: 'easy', description: '按小节拼出你的第一首曲子，支持拍号与多轨编辑', tags: ['创作', '音乐', '鼠标'], duration: 10, players: 1, keyboard: false, silent: false },
+  { id: 'drumsimulator', name: '架子鼓模拟', category: 'music', icon: '🥁', difficulty: 'medium', description: '用 S/D/K/L 键敲击底鼓、军鼓、踩镲与强音镲', tags: ['键盘', '音乐', '节奏'], duration: 5, players: 1, keyboard: true, silent: false },
+  { id: 'gamecenter', name: '游戏中心', category: 'simulation', icon: '🕹️', difficulty: 'medium', description: '经营一家游戏厅，升级机器、维修设备、扩大客流', tags: ['经营', '鼠标', '耐玩'], duration: 12, players: 1, keyboard: false, silent: true },
+  { id: 'guesssong', name: '听歌识曲', category: 'rhythm', icon: '🎤', difficulty: 'medium', description: '听旋律猜歌名，三档难度挑战你的曲库', tags: ['音乐', '听力', '限时'], duration: 5, players: 1, keyboard: false, silent: false },
+  { id: 'housedesign', name: '房屋设计', category: 'creative', icon: '🏠', difficulty: 'easy', description: '在预算内挑选家具布置房间，旋转与删除都很自由', tags: ['创作', '鼠标', '放松'], duration: 10, players: 1, keyboard: false, silent: true },
+  { id: 'idlespace', name: '太空放置', category: 'idle', icon: '🚀', difficulty: 'easy', description: '升级产能与速度，收集恒星并飞向更远的宇宙', tags: ['放置', '挂机', '耐玩'], duration: 12, players: 1, keyboard: false, silent: true },
+  { id: 'intchessmini', name: '国际象棋（简易）', category: 'board', icon: '♟️', difficulty: 'medium', description: '精简版国际象棋，点击走子与 AI 对弈', tags: ['棋类', '回合制', 'AI'], duration: 8, players: 1, keyboard: false, silent: true },
+  { id: 'jigsawkids', name: '拼图乐园', category: 'puzzle', icon: '🧩', difficulty: 'easy', description: '三档大小的拼图，点击两块交换直到图案复原', tags: ['拼图', '鼠标', '亲子'], duration: 6, players: 1, keyboard: false, silent: true },
+  { id: 'karaoke', name: '卡拉OK练习', category: 'music', icon: '🎤', difficulty: 'easy', description: '跟着音高提示按键演唱，练习音准与节奏', tags: ['音乐', '键盘', '练习'], duration: 5, players: 1, keyboard: true, silent: false },
+  { id: 'keyunlock', name: '钥匙解锁', category: 'maze', icon: '🔑', difficulty: 'easy', description: '用方向键收集对应颜色钥匙，打开门到达金色出口', tags: ['键盘', '迷宫', '闯关'], duration: 4, players: 1, keyboard: true, silent: true },
+  { id: 'kidscoloring', name: '儿童涂色', category: 'creative', icon: '🖍️', difficulty: 'easy', description: '选择图案与颜色，拖动鼠标或手指完成涂色作品', tags: ['绘画', '鼠标', '亲子'], duration: 8, players: 1, keyboard: false, silent: true },
+  { id: 'mathkids', name: '数学练习', category: 'math', icon: '🔢', difficulty: 'easy', description: '随机出题并输入答案，三档难度锻炼心算', tags: ['键盘', '数学', '练习'], duration: 3, players: 1, keyboard: true, silent: true },
+  { id: 'mixmaster', name: '混音大师', category: 'music', icon: '🎚️', difficulty: 'medium', description: '组合鼓点、贝斯与旋律，做一段属于自己的混音', tags: ['音乐', '创作', '鼠标'], duration: 8, players: 1, keyboard: false, silent: false },
+  { id: 'musicplayer', name: '音乐播放器', category: 'music', icon: '🎧', difficulty: 'easy', description: '内置播放列表的音乐播放器，摸鱼时放空一下', tags: ['音乐', '放松', '挂机'], duration: 10, players: 1, keyboard: false, silent: false },
+  { id: 'patternslide', name: '图案华容道', category: 'puzzle2', icon: '🧩', difficulty: 'medium', description: '滑动数字或图案滑块，按顺序排好即可通关', tags: ['滑块', '逻辑', '键盘'], duration: 6, players: 1, keyboard: true, silent: true },
+  { id: 'petlink', name: '宠物连连看', category: 'match3', icon: '🐾', difficulty: 'easy', description: '点击两只相同宠物配对消除，连击有额外加分', tags: ['三消', '鼠标', '轻松'], duration: 5, players: 1, keyboard: false, silent: true },
+  { id: 'pvzbreakout', name: '僵尸打砖块', category: 'arcade', icon: '🧱', difficulty: 'medium', description: '用挡板反弹小球击碎所有砖块，小心别让球掉落', tags: ['键盘', '打砖块', '经典'], duration: 5, players: 1, keyboard: true, silent: true },
+  { id: 'roomescape', name: '密室逃脱', category: 'escape', icon: '🚪', difficulty: 'medium', description: '用方向键移动，收集钥匙与线索，解开谜题逃出房间', tags: ['键盘', '解谜', '探索'], duration: 8, players: 1, keyboard: true, silent: true },
+  { id: 'sokobanplus', name: '推箱子进阶', category: 'puzzle', icon: '📦', difficulty: 'hard', description: '把箱子推到目标点，关卡更多也更绕，别推进死角', tags: ['键盘', '推箱子', '逻辑'], duration: 8, players: 1, keyboard: true, silent: true },
+  { id: 'starmatch', name: '星星配对', category: 'match3', icon: '⭐', difficulty: 'easy', description: '翻开卡片找出相同星星，记住位置才能更快配对', tags: ['记忆', '鼠标', '轻松'], duration: 4, players: 1, keyboard: false, silent: true },
+  { id: 'subwaysurfers', name: '地铁跑酷', category: 'arcade', icon: '🚇', difficulty: 'medium', description: '左右换道躲避障碍，跑得越远速度越快', tags: ['键盘', '跑酷', '反应'], duration: 4, players: 1, keyboard: true, silent: true },
+  { id: 'supermarket', name: '超市大亨', category: 'strategy', icon: '🛒', difficulty: 'medium', description: '开店迎客、结账补货，管理库存把超市做大', tags: ['经营', '鼠标', '耐玩'], duration: 12, players: 1, keyboard: false, silent: true },
+  { id: 'synthplay', name: '电子琴模拟', category: 'music', icon: '🎹', difficulty: 'easy', description: '用 A-W-S-E-D 等按键演奏，可切换音色与八度', tags: ['键盘', '音乐', '创作'], duration: 8, players: 1, keyboard: true, silent: false },
+  { id: 'whitenoise', name: '白噪音放松', category: 'life', icon: '🎧', difficulty: 'easy', description: '混合雨声、海浪等白噪音，支持定时关闭', tags: ['放松', '音频', '静音'], duration: 15, players: 1, keyboard: false, silent: false },
+  // 新增：结构与现有单文件游戏一致
+  { id: 'typingspeed', name: '打字速度', category: 'word', icon: '⌨️', difficulty: 'medium', description: '60 秒内打出尽可能多的单词，实时统计 WPM 与准确率', tags: ['键盘', '限时', '练习'], duration: 2, players: 1, keyboard: true, silent: true },
+  { id: 'reactiontest', name: '反应力测试', category: 'reaction', icon: '⚡', difficulty: 'medium', description: '连续 5 轮等待绿光亮起后点击，测出平均反应速度', tags: ['鼠标', '限时', '轻量'], duration: 1, players: 1, keyboard: false, silent: true },
+  { id: '2048merge', name: '2048 合并版', category: 'puzzle', icon: '🔢', difficulty: 'hard', description: '5×5 棋盘上的 2048 变体，合并到 4096 挑战更高分', tags: ['键盘', '数字', '耐玩'], duration: 8, players: 1, keyboard: true, silent: true },
+  { id: 'minesweeperpro', name: '扫雷专业版', category: 'puzzle', icon: '💣', difficulty: 'hard', description: '经典扫雷进阶版，支持插旗与首点保护，排清全部地雷', tags: ['鼠标', '逻辑', '经典'], duration: 6, players: 1, keyboard: false, silent: true },
+  { id: 'sudokupro', name: '数独挑战', category: 'puzzle', icon: '🧮', difficulty: 'hard', description: '随机生成的多难度数独，支持键盘输入与冲突提示', tags: ['键盘', '逻辑', '数字'], duration: 10, players: 1, keyboard: true, silent: true },
 ];
 
 export const WW2FIGHTER_CONSTANTS = { CANVAS_WIDTH: 600, CANVAS_HEIGHT: 800, PLAYER_WIDTH: 50, PLAYER_HEIGHT: 60, ENEMY_SIZE: 40, BULLET_WIDTH: 6, BULLET_HEIGHT: 15, ENEMY_BULLET_WIDTH: 8, ENEMY_BULLET_HEIGHT: 12 };

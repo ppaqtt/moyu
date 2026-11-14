@@ -5,14 +5,15 @@ const path = require('path');
 const constantsPath = path.join(__dirname, 'src', 'utils', 'constants.ts');
 const content = fs.readFileSync(constantsPath, 'utf8');
 
-// 找到 GAMES_LIST 的完整定义
-const startMarker = 'export const GAMES_LIST: Game[] = [';
-const startIndex = content.indexOf(startMarker);
+// 找到 GAMES_LIST 的完整定义（兼容带或不带类型标注的声明）
+const declarationIndex = content.indexOf('export const GAMES_LIST');
 
-if (startIndex === -1) {
+if (declarationIndex === -1) {
   console.error('❌ 未找到 GAMES_LIST');
   process.exit(1);
 }
+
+const startIndex = content.indexOf('[', content.indexOf('=', declarationIndex));
 
 // 找到匹配的 ] 结束标记
 let bracketCount = 0;

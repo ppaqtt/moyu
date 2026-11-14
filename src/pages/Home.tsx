@@ -2,7 +2,22 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
-import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { NEON_COLORS } from '../utils/constants';
+import { getEnrichedGames } from '../utils/gameMeta';
+import type { EnrichedGame } from '../utils/gameMeta';
+
+const GAMES = getEnrichedGames();
+
+function getCardChips(game: EnrichedGame): string[] {
+  const difficulty = game.difficulty === 'easy' ? '简单' : game.difficulty === 'medium' ? '中等' : '困难';
+  return Array.from(new Set([
+    difficulty,
+    `${game.duration} 分钟`,
+    game.players === 2 ? '双人' : '',
+    game.keyboard ? '键盘' : '',
+    ...game.tags.slice(0, 2),
+  ].filter(Boolean)));
+}
 
 const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
   'all': { name: '全部', icon: '🎮', color: '#a855f7' },
@@ -54,15 +69,16 @@ const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string 
   'driving': { name: '交通驾驶', icon: '🚗', color: '#22c55e' },
   'craft': { name: '手工制作', icon: '🎨', color: '#ec4899' },
   'puzzle2': { name: '解谜游戏', icon: '🧩', color: '#a855f7' },
+  '3d': { name: '3D视觉', icon: '🎡', color: '#6366f1' },
 };
 
 const getAllCategories = () => {
   const categoryCounts: Record<string, number> = {};
-  GAMES_LIST.forEach(game => {
+  GAMES.forEach(game => {
     categoryCounts[game.category] = (categoryCounts[game.category] || 0) + 1;
   });
   
-  return [{ id: 'all', ...CATEGORY_INFO['all'], count: GAMES_LIST.length }]
+  return [{ id: 'all', ...CATEGORY_INFO['all'], count: GAMES.length }]
     .concat(
       Object.entries(categoryCounts)
         .map(([id, count]) => ({
@@ -80,8 +96,8 @@ export default function Home() {
   const categories = getAllCategories();
 
   const filteredGames = selectedCategory === 'all'
-    ? GAMES_LIST
-    : GAMES_LIST.filter(game => game.category === selectedCategory);
+    ? GAMES
+    : GAMES.filter(game => game.category === selectedCategory);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
@@ -93,20 +109,37 @@ export default function Home() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <motion.button
-          onClick={() => navigate('/updates')}
-          className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
-          style={{
-            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
-            color: 'rgba(255, 255, 255, 0.9)',
-            border: '1px solid rgba(168, 85, 247, 0.3)',
-            backdropFilter: 'blur(10px)'
-          }}
-          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
-          whileTap={{ scale: 0.95 }}
-        >
-          📝 更新日志
-        </motion.button>
+        <div className="flex items-center gap-3">
+          <motion.button
+            onClick={() => navigate('/collections')}
+            className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+            style={{
+              background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(6, 182, 212, 0.3))',
+              color: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(34, 197, 94, 0.35)',
+              backdropFilter: 'blur(10px)'
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+          >
+            🎯 合集专题
+          </motion.button>
+
+          <motion.button
+            onClick={() => navigate('/updates')}
+            className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+            style={{
+              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
+              color: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(168, 85, 247, 0.3)',
+              backdropFilter: 'blur(10px)'
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+          >
+            📝 更新日志
+          </motion.button>
+        </div>
       </motion.div>
 
       <motion.div
@@ -127,7 +160,7 @@ export default function Home() {
         >
           <span className="text-2xl">🎮</span>
           <span className="text-sm font-medium" style={{ color: NEON_COLORS.neonCyan }}>
-            {GAMES_LIST.length}款精品游戏
+            {GAMES.length}款精品游戏
           </span>
         </motion.div>
 
@@ -269,8 +302,9 @@ export default function Home() {
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
-                    {game.difficulty && (
+                    {getCardChips(game).map(chip => (
                       <span
+                        key={chip}
                         className="text-xs px-2.5 py-1 rounded-lg font-medium"
                         style={{
                           backgroundColor: 'rgba(255, 255, 255, 0.08)',
@@ -278,9 +312,9 @@ export default function Home() {
                           border: '1px solid rgba(255, 255, 255, 0.1)'
                         }}
                       >
-                        {game.difficulty === 'easy' ? '简单' : game.difficulty === 'medium' ? '中等' : '困难'}
+                        {chip}
                       </span>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
@@ -327,7 +361,7 @@ export default function Home() {
             </motion.div>
 
             <p className="footer-desc text-lg mb-6" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              工作累了？来放松一下 ✨ 精选647款小游戏，让你在工作间隙轻松摸鱼放松身心
+              工作累了？来放松一下 ✨ 精选{GAMES.length}款小游戏，让你在工作间隙轻松摸鱼放松身心
             </p>
 
             <div className="social-links flex justify-center gap-4 mb-8">
