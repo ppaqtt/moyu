@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { exportGameSave, importSaveArchive, recordGameSave } from '../utils/saveManager';
 
 const gameImports: Record<string, () => Promise<any>> = {
 '2048': () => import('../games/Game2048/Game2048'),
@@ -211,6 +212,7 @@ const gameImports: Record<string, () => Promise<any>> = {
   'gobangai': () => import('../games/Gobangai/Gobangai'),
   'goldminer': () => import('../games/GoldMiner/GoldMiner'),
   'golf': () => import('../games/Golf/Golf'),
+  'go': () => import('../games/Go/Go'),
   'gomoku': () => import('../games/Gomoku/Gomoku'),
   'grammar': () => import('../games/Grammar/Grammar'),
   'guitarsim': () => import('../games/Guitarsim/Guitarsim'),
@@ -546,6 +548,34 @@ const gameImports: Record<string, () => Promise<any>> = {
   'zooescape': () => import('../games/Zooescape/Zooescape'),
   'zootycoon': () => import('../games/Zootycoon/Zootycoon'),
   'zuma': () => import('../games/Zuma/Zuma'),
+  'beatmaster': () => import('../games/BeatMaster/BeatMaster'),
+  'beatmetronome': () => import('../games/BeatMetronome/BeatMetronome'),
+  'carrepair': () => import('../games/CarRepair/CarRepair'),
+  'codebreak': () => import('../games/CodeBreak/CodeBreak'),
+  'composebasic': () => import('../games/ComposeBasic/ComposeBasic'),
+  'drumsimulator': () => import('../games/DrumSimulator/DrumSimulator'),
+  'gamecenter': () => import('../games/GameCenter/GameCenter'),
+  'guesssong': () => import('../games/GuessSong/GuessSong'),
+  'housedesign': () => import('../games/HouseDesign/HouseDesign'),
+  'idlespace': () => import('../games/IdleSpace/IdleSpace'),
+  'sevenchess': () => import('../games/Intchess/Intchess'),
+  'jigsawkids': () => import('../games/JigsawKids/JigsawKids'),
+  'karaoke': () => import('../games/Karaoke/Karaoke'),
+  'keyunlock': () => import('../games/KeyUnlock/KeyUnlock'),
+  'kidscoloring': () => import('../games/KidsColoring/KidsColoring'),
+  'mathkids': () => import('../games/MathKids/MathKids'),
+  'mixmaster': () => import('../games/MixMaster/MixMaster'),
+  'musicplayer': () => import('../games/MusicPlayer/MusicPlayer'),
+  'patternslide': () => import('../games/PatternSlide/PatternSlide'),
+  'petlink': () => import('../games/PetLink/PetLink'),
+  'roomescape': () => import('../games/RoomEscape/RoomEscape'),
+  'sokobanplus': () => import('../games/SokobanPlus/SokobanPlus'),
+  'starmatch': () => import('../games/StarMatch/StarMatch'),
+  'subwaysurfers': () => import('../games/SubwaySurfers/SubwaySurfers'),
+  'supermarket': () => import('../games/SuperMarket/SuperMarket'),
+  'synthplay': () => import('../games/SynthPlay/SynthPlay'),
+  'whitenoise': () => import('../games/WhiteNoise/WhiteNoise'),
+  'pvzbrick': () => import('../games/Pvz/Pvz'),
 };
 
 function GamePage() {
@@ -553,11 +583,32 @@ function GamePage() {
   const { id } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
   const [GameComponent, setGameComponent] = useState<React.ComponentType<any> | null>(null);
+  const [showSavePanel, setShowSavePanel] = useState(false);
+  const [saveMessage, setSaveMessage] = useState('');
+  const saveFileRef = useRef<HTMLInputElement>(null);
   
   const game = GAMES_LIST.find(g => g.id === id);
   
   const handleExit = () => {
     navigate('/');
+  };
+
+  const handleExportSave = () => {
+    if (!id) return;
+    const count = exportGameSave(id);
+    setSaveMessage(count ? `已导出 ${count} 条数据` : '该游戏暂无可导出的存档');
+  };
+
+  const handleImportSave = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file || !id) return;
+    try {
+      const result = await importSaveArchive(file, id);
+      setSaveMessage(`已导入 ${result.count} 条数据，重新进入游戏后生效`);
+    } catch (error) {
+      setSaveMessage(error instanceof Error ? error.message : '导入失败');
+    }
   };
 
   useEffect(() => {
@@ -675,6 +726,7 @@ function GamePage() {
           onScoreUpdate={(score: number) => {
             if (id) {
               localStorage.setItem(`game_score_${id}`, score.toString());
+              recordGameSave(id, { lastScore: score });
             }
           }}
           onGameOver={(finalScore: number) => {
@@ -683,9 +735,103 @@ function GamePage() {
               if (finalScore > currentHighScore) {
                 localStorage.setItem(`game_highscore_${id}`, finalScore.toString());
               }
+              recordGameSave(id, {
+                lastScore: finalScore,
+                highScore: Math.max(finalScore, currentHighScore),
+              });
             }
           }}
         />
+      </div>
+
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+        {showSavePanel && (
+          <motion.div
+            className="w-72 rounded-2xl p-4"
+            style={{
+              background: 'linear-gradient(145deg, rgba(26, 26, 46, 0.97), rgba(15, 15, 26, 0.98))',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
+              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.55)',
+            }}
+            initial={{ opacity: 0, y: 10, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-bold" style={{ color: NEON_COLORS.gold }}>
+                💾 {game.name} 存档
+              </span>
+              <button
+                onClick={() => setShowSavePanel(false)}
+                className="text-xs px-2 py-1 rounded-lg"
+                style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.6)' }}
+              >
+                关闭
+              </button>
+            </div>
+            <p className="text-[11px] mb-3" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              进度与最高分保存在本地，可导出 JSON 备份。
+            </p>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handleExportSave}
+                className="px-3 py-2 rounded-xl text-xs font-bold"
+                style={{
+                  background: `linear-gradient(135deg, ${NEON_COLORS.neonPurple}, ${NEON_COLORS.neonCyan})`,
+                  color: '#fff',
+                }}
+              >
+                导出本游戏存档
+              </button>
+              <button
+                onClick={() => saveFileRef.current?.click()}
+                className="px-3 py-2 rounded-xl text-xs font-bold"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  color: 'rgba(255,255,255,0.8)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                }}
+              >
+                导入本游戏存档
+              </button>
+              <button
+                onClick={() => navigate('/settings')}
+                className="px-3 py-2 rounded-xl text-xs font-bold"
+                style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.5)' }}
+              >
+                全部存档管理 →
+              </button>
+            </div>
+            <input
+              ref={saveFileRef}
+              type="file"
+              accept="application/json,.json"
+              onChange={handleImportSave}
+              className="hidden"
+            />
+            {saveMessage && (
+              <div
+                className="mt-3 text-[11px] rounded-lg px-2.5 py-2"
+                style={{ background: 'rgba(0, 210, 255, 0.1)', color: NEON_COLORS.neonCyan }}
+              >
+                {saveMessage}
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        <motion.button
+          onClick={() => setShowSavePanel(panel => !panel)}
+          className="px-4 py-3 rounded-2xl font-bold text-sm"
+          style={{
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(6, 182, 212, 0.9))',
+            color: '#fff',
+            boxShadow: '0 8px 28px rgba(168, 85, 247, 0.45)',
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          💾 存档
+        </motion.button>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ParticleBg from '../components/ParticleBg';
 import { GAMES_LIST, NEON_COLORS } from '../utils/constants';
+import { getDailyGame, formatDailyDate } from '../utils/dailyGame';
 
 const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string }> = {
   'all': { name: '全部', icon: '🎮', color: '#a855f7' },
@@ -54,7 +55,35 @@ const CATEGORY_INFO: Record<string, { name: string; icon: string; color: string 
   'driving': { name: '交通驾驶', icon: '🚗', color: '#22c55e' },
   'craft': { name: '手工制作', icon: '🎨', color: '#ec4899' },
   'puzzle2': { name: '解谜游戏', icon: '🧩', color: '#a855f7' },
+  '3d': { name: '3D视觉', icon: '🎡', color: '#3b82f6' },
 };
+
+const PLAYER_OPTIONS = [
+  { id: 'all', label: '不限', icon: '👥' },
+  { id: '1', label: '单人', icon: '🙋' },
+  { id: '2', label: '双人', icon: '👫' },
+  { id: 'multi', label: '多人', icon: '👨‍👩‍👧' },
+] as const;
+
+const TIME_OPTIONS = [
+  { id: 0, label: '不限' },
+  { id: 5, label: '5 分钟' },
+  { id: 15, label: '15 分钟' },
+  { id: 30, label: '30 分钟' },
+] as const;
+
+const CONTROL_ICON: Record<string, string> = {
+  keyboard: '⌨️',
+  mouse: '🖱️',
+  touch: '📱',
+  gamepad: '🎮',
+};
+
+function playerLabel(players: number | 'multi') {
+  if (players === 1) return '单人';
+  if (players === 2) return '双人';
+  return '多人';
+}
 
 const getAllCategories = () => {
   const categoryCounts: Record<string, number> = {};
@@ -77,25 +106,73 @@ const getAllCategories = () => {
 export default function Home() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedTime, setSelectedTime] = useState<number>(0);
+  const [selectedPlayers, setSelectedPlayers] = useState<string>('all');
+  const [visibleCount, setVisibleCount] = useState(60);
   const categories = getAllCategories();
+  const dailyGame = useMemo(() => getDailyGame(GAMES_LIST), []);
 
-  const filteredGames = selectedCategory === 'all'
-    ? GAMES_LIST
-    : GAMES_LIST.filter(game => game.category === selectedCategory);
+  const filteredGames = useMemo(() => {
+    return GAMES_LIST.filter(game => {
+      if (selectedCategory !== 'all' && game.category !== selectedCategory) return false;
+      if (selectedTime !== 0 && game.playTime !== selectedTime) return false;
+      if (selectedPlayers !== 'all' && String(game.players) !== selectedPlayers) return false;
+      return true;
+    });
+  }, [selectedCategory, selectedTime, selectedPlayers]);
+
+  useEffect(() => {
+    setVisibleCount(60);
+  }, [selectedCategory, selectedTime, selectedPlayers]);
+
+  const visibleGames = filteredGames.slice(0, visibleCount);
+  const dailyCategory = CATEGORY_INFO[dailyGame.category] || {
+    name: dailyGame.category,
+    icon: '🎮',
+    color: '#a855f7',
+  };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 pt-24 md:pt-6 relative overflow-hidden">
       <ParticleBg />
 
       <motion.div
-        className="absolute top-6 right-6 z-20"
+        className="absolute top-6 right-6 z-20 flex flex-wrap justify-end gap-2"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
       >
         <motion.button
+          onClick={() => navigate('/coop')}
+          className="px-4 py-2.5 rounded-xl font-medium text-sm"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 107, 157, 0.25), rgba(168, 85, 247, 0.25))',
+            color: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(255, 107, 157, 0.3)',
+            backdropFilter: 'blur(10px)'
+          }}
+          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(255, 107, 157, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+        >
+          👥 双人同屏
+        </motion.button>
+        <motion.button
+          onClick={() => navigate('/settings')}
+          className="px-4 py-2.5 rounded-xl font-medium text-sm"
+          style={{
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(6, 182, 212, 0.25))',
+            color: 'rgba(255, 255, 255, 0.9)',
+            border: '1px solid rgba(168, 85, 247, 0.3)',
+            backdropFilter: 'blur(10px)'
+          }}
+          whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ⚙️ 设置
+        </motion.button>
+        <motion.button
           onClick={() => navigate('/updates')}
-          className="px-5 py-2.5 rounded-xl font-medium flex items-center gap-2"
+          className="px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-1"
           style={{
             background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))',
             color: 'rgba(255, 255, 255, 0.9)',
@@ -164,6 +241,128 @@ export default function Home() {
       </motion.div>
 
       <motion.div
+        className="w-full max-w-5xl relative z-10 mb-8"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+      >
+        <div
+          className="relative overflow-hidden rounded-3xl p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-5 cursor-pointer"
+          style={{
+            background: `linear-gradient(120deg, ${dailyCategory.color}26, rgba(26, 26, 46, 0.92) 45%, rgba(15, 15, 26, 0.96))`,
+            border: `1px solid ${dailyCategory.color}55`,
+            boxShadow: `0 12px 40px ${dailyCategory.color}22, inset 0 1px 0 rgba(255,255,255,0.08)`
+          }}
+          onClick={() => navigate(`/game/${dailyGame.id}`)}
+        >
+          <div
+            className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-20"
+            style={{ background: `radial-gradient(circle, ${dailyCategory.color}, transparent 70%)` }}
+          />
+          <div
+            className="w-20 h-20 rounded-2xl flex items-center justify-center text-5xl shrink-0"
+            style={{
+              background: `${dailyCategory.color}22`,
+              border: `1px solid ${dailyCategory.color}55`
+            }}
+          >
+            {dailyGame.icon}
+          </div>
+          <div className="flex-1 relative z-10">
+            <div className="flex flex-wrap items-center gap-2 mb-1.5">
+              <span
+                className="text-xs font-black px-2.5 py-1 rounded-lg"
+                style={{ background: dailyCategory.color, color: '#0b0b14' }}
+              >
+                每日一游
+              </span>
+              <span className="text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                {formatDailyDate()} · 每天 0 点刷新
+              </span>
+            </div>
+            <h3 className="text-2xl font-black mb-1" style={{ color: '#fff' }}>
+              {dailyGame.name}
+            </h3>
+            <div className="flex flex-wrap items-center gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              <span>{dailyCategory.icon} {dailyCategory.name}</span>
+              <span>·</span>
+              <span>⏱ {dailyGame.playTime} 分钟</span>
+              <span>·</span>
+              <span>👥 {playerLabel(dailyGame.players)}</span>
+              <span>·</span>
+              <span>{dailyGame.difficulty === 'easy' ? '简单' : dailyGame.difficulty === 'medium' ? '中等' : '困难'}</span>
+            </div>
+          </div>
+          <motion.button
+            className="relative z-10 px-6 py-3 rounded-2xl font-black text-sm shrink-0"
+            style={{
+              background: `linear-gradient(135deg, ${dailyCategory.color}, ${NEON_COLORS.neonPurple})`,
+              color: '#fff',
+              boxShadow: `0 0 24px ${dailyCategory.color}55`
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/game/${dailyGame.id}`);
+            }}
+          >
+            开始今日游戏 →
+          </motion.button>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="w-full max-w-5xl relative z-10 mb-6 rounded-2xl px-4 py-3 flex flex-col gap-3"
+        style={{
+          background: 'rgba(255, 255, 255, 0.04)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(10px)'
+        }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold w-10" style={{ color: 'rgba(255,255,255,0.45)' }}>时长</span>
+          {TIME_OPTIONS.map(option => (
+            <button
+              key={option.id}
+              onClick={() => setSelectedTime(option.id)}
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all"
+              style={{
+                background: selectedTime === option.id ? NEON_COLORS.neonCyan : 'rgba(255,255,255,0.06)',
+                color: selectedTime === option.id ? '#0b0b14' : 'rgba(255,255,255,0.65)',
+                border: `1px solid ${selectedTime === option.id ? NEON_COLORS.neonCyan : 'rgba(255,255,255,0.1)'}`
+              }}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold w-10" style={{ color: 'rgba(255,255,255,0.45)' }}>人数</span>
+          {PLAYER_OPTIONS.map(option => (
+            <button
+              key={option.id}
+              onClick={() => setSelectedPlayers(option.id)}
+              className="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all"
+              style={{
+                background: selectedPlayers === option.id ? NEON_COLORS.neonPink : 'rgba(255,255,255,0.06)',
+                color: selectedPlayers === option.id ? '#0b0b14' : 'rgba(255,255,255,0.65)',
+                border: `1px solid ${selectedPlayers === option.id ? NEON_COLORS.neonPink : 'rgba(255,255,255,0.1)'}`
+              }}
+            >
+              {option.icon} {option.label}
+            </button>
+          ))}
+          <span className="ml-auto text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            找到 {filteredGames.length} 款
+          </span>
+        </div>
+      </motion.div>
+
+      <motion.div
         className="flex flex-wrap justify-center gap-3 mb-10 relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -199,7 +398,7 @@ export default function Home() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl relative z-10 px-4">
-        {filteredGames.map((game, index) => (
+        {visibleGames.map((game, index) => (
           <motion.div
             key={game.id}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -265,7 +464,7 @@ export default function Home() {
                     className="text-sm mb-4 leading-relaxed"
                     style={{ color: 'rgba(255, 255, 255, 0.5)' }}
                   >
-                    {game.description || `${game.category}类游戏`}
+                    {CATEGORY_INFO[game.category]?.name || game.category} 类游戏
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
@@ -281,6 +480,37 @@ export default function Home() {
                         {game.difficulty === 'easy' ? '简单' : game.difficulty === 'medium' ? '中等' : '困难'}
                       </span>
                     )}
+                    <span
+                      className="text-xs px-2.5 py-1 rounded-lg font-medium"
+                      style={{
+                        backgroundColor: 'rgba(0, 210, 255, 0.08)',
+                        color: 'rgba(0, 210, 255, 0.85)',
+                        border: '1px solid rgba(0, 210, 255, 0.18)'
+                      }}
+                    >
+                      ⏱ {game.playTime} 分钟
+                    </span>
+                    <span
+                      className="text-xs px-2.5 py-1 rounded-lg font-medium"
+                      style={{
+                        backgroundColor: 'rgba(255, 107, 157, 0.08)',
+                        color: 'rgba(255, 107, 157, 0.85)',
+                        border: '1px solid rgba(255, 107, 157, 0.18)'
+                      }}
+                    >
+                      👥 {playerLabel(game.players)}
+                    </span>
+                    <span
+                      className="text-xs px-2.5 py-1 rounded-lg font-medium"
+                      title={game.controls.map(c => ({ keyboard: '键盘', mouse: '鼠标', touch: '触屏', gamepad: '手柄' }[c] || c)).join(' / ')}
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        color: 'rgba(255, 255, 255, 0.5)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)'
+                      }}
+                    >
+                      {game.controls.map(c => CONTROL_ICON[c] || '').join('')}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -298,6 +528,25 @@ export default function Home() {
           </motion.div>
         ))}
       </div>
+
+      {visibleCount < filteredGames.length && (
+        <motion.button
+          onClick={() => setVisibleCount(count => count + 60)}
+          className="relative z-10 mt-8 px-8 py-3 rounded-2xl font-bold text-sm"
+          style={{
+            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(6, 182, 212, 0.25))',
+            color: 'rgba(255, 255, 255, 0.85)',
+            border: '1px solid rgba(168, 85, 247, 0.35)',
+            backdropFilter: 'blur(10px)'
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+        >
+          加载更多（还剩 {filteredGames.length - visibleCount} 款）
+        </motion.button>
+      )}
 
       <motion.footer
         className="mt-16 text-center relative z-10 w-full px-4"
@@ -327,7 +576,7 @@ export default function Home() {
             </motion.div>
 
             <p className="footer-desc text-lg mb-6" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              工作累了？来放松一下 ✨ 精选647款小游戏，让你在工作间隙轻松摸鱼放松身心
+              工作累了？来放松一下 ✨ 精选{GAMES_LIST.length}款小游戏，让你在工作间隙轻松摸鱼放松身心
             </p>
 
             <div className="social-links flex justify-center gap-4 mb-8">
